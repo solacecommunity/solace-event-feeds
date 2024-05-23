@@ -1,0 +1,313 @@
+[
+  {
+    "topic": "acmeRetail/storeOps/retailOrder/{retailOrderVerb}/v1/{storeLocation}/{customerId}/{orderId}",
+    "eventName": "Retail Order",
+    "eventVersion": "0.1.2",
+    "messageName": "Retail_Order",
+    "topicParameters": {
+      "retailOrderVerb": {
+        "schema": {
+          "type": "string",
+          "enum": [
+            "customerInitiated",
+            "customerCancelled",
+            "customerCompleted",
+            "customerPaid",
+            "onlineInitiated",
+            "onlineCancelled",
+            "onlineCompleted",
+            "onlinePaid",
+            "onlineFulfilled"
+          ]
+        },
+        "rule": {
+          "name": "retailOrderVerb",
+          "type": "string",
+          "group": "StringRules",
+          "rule": "enum",
+          "enum": [
+            "customerInitiated",
+            "customerCancelled",
+            "customerCompleted",
+            "customerPaid",
+            "onlineInitiated",
+            "onlineCancelled",
+            "onlineCompleted",
+            "onlinePaid",
+            "onlineFulfilled"
+          ]
+        }
+      },
+      "storeLocation": {
+        "schema": {
+          "type": "string",
+          "enum": [
+            "3487",
+            "3488",
+            "3489",
+            "3490",
+            "3491",
+            "3492",
+            "3493",
+            "3494",
+            "3495",
+            "3496",
+            "3497",
+            "3498",
+            "3499",
+            "3500",
+            "3501",
+            "3502",
+            "3503",
+            "3504",
+            "3505",
+            "3506",
+            "3507",
+            "3508",
+            "3509",
+            "3555",
+            "Mobile Application",
+            "Test Data Generation",
+            "Inhouse Traffic",
+            "Partner"
+          ]
+        },
+        "rule": {
+          "name": "storeLocation",
+          "type": "string",
+          "group": "StringRules",
+          "rule": "enum",
+          "enum": [
+            "3487",
+            "3488",
+            "3489",
+            "3490",
+            "3491",
+            "3492",
+            "3493",
+            "3494",
+            "3495",
+            "3496",
+            "3497",
+            "3498",
+            "3499",
+            "3500",
+            "3501",
+            "3502",
+            "3503",
+            "3504",
+            "3505",
+            "3506",
+            "3507",
+            "3508",
+            "3509",
+            "3555",
+            "Mobile Application",
+            "Test Data Generation",
+            "Inhouse Traffic",
+            "Partner"
+          ]
+        }
+      },
+      "orderId": {
+        "schema": {
+          "type": "string"
+        },
+        "rule": {
+          "name": "orderId",
+          "type": "string",
+          "group": "StringRules",
+          "rule": "numeric",
+          "minLength": 5,
+          "maxLength": 5,
+          "leadingZeros": false
+        }
+      },
+      "customerId": {
+        "schema": {
+          "type": "string"
+        },
+        "rule": {
+          "name": "customerId",
+          "type": "string",
+          "group": "StringRules",
+          "rule": "numeric",
+          "minLength": 5,
+          "maxLength": 5,
+          "leadingZeros": false
+        }
+      }
+    },
+    "payload": {
+      "price": {
+        "type": "number",
+        "minimum": 0,
+        "rule": {
+          "name": "price",
+          "type": "number",
+          "group": "CommerceRules",
+          "rule": "price",
+          "minimum": 1,
+          "maximum": 999
+        }
+      },
+      "billTo": {
+        "type": "object",
+        "properties": {
+          "zip": {
+            "type": "string",
+            "rule": {
+              "name": "zip",
+              "type": "string",
+              "group": "LocationRules",
+              "rule": "zipCode"
+            }
+          },
+          "address": {
+            "type": "string",
+            "rule": {
+              "name": "address",
+              "type": "string",
+              "group": "LocationRules",
+              "rule": "streetAddress"
+            }
+          },
+          "city": {
+            "type": "string",
+            "rule": {
+              "name": "city",
+              "type": "string",
+              "group": "LocationRules",
+              "rule": "city"
+            }
+          },
+          "name": {
+            "type": "string",
+            "rule": {
+              "name": "name",
+              "type": "string",
+              "group": "PersonRules",
+              "rule": "fullName"
+            }
+          },
+          "state": {
+            "type": "string",
+            "rule": {
+              "name": "state",
+              "type": "string",
+              "group": "LocationRules",
+              "rule": "state"
+            }
+          }
+        },
+        "rule": {
+          "name": "billTo",
+          "type": "object"
+        }
+      },
+      "sku": {
+        "type": "string",
+        "rule": {
+          "name": "sku",
+          "type": "string",
+          "group": "StringRules",
+          "rule": "numeric",
+          "minLength": 5,
+          "maxLength": 5,
+          "leadingZeros": true
+        }
+      },
+      "shipTo": {
+        "type": "object",
+        "properties": {
+          "zip": {
+            "type": "string",
+            "rule": {
+              "type": "string",
+              "name": "zip",
+              "group": "StringRules",
+              "rule": "alpha",
+              "casing": "mixed",
+              "minLength": 10,
+              "maxLength": 10
+            }
+          },
+          "address": {
+            "type": "string",
+            "rule": {
+              "type": "string",
+              "name": "address",
+              "group": "StringRules",
+              "rule": "alpha",
+              "casing": "mixed",
+              "minLength": 10,
+              "maxLength": 10
+            }
+          },
+          "city": {
+            "type": "string",
+            "rule": {
+              "type": "string",
+              "name": "city",
+              "group": "StringRules",
+              "rule": "alpha",
+              "casing": "mixed",
+              "minLength": 10,
+              "maxLength": 10
+            }
+          },
+          "name": {
+            "type": "string",
+            "rule": {
+              "type": "string",
+              "name": "name",
+              "group": "StringRules",
+              "rule": "alpha",
+              "casing": "mixed",
+              "minLength": 10,
+              "maxLength": 10
+            }
+          },
+          "state": {
+            "type": "string",
+            "rule": {
+              "type": "string",
+              "name": "state",
+              "group": "StringRules",
+              "rule": "alpha",
+              "casing": "mixed",
+              "minLength": 10,
+              "maxLength": 10
+            }
+          }
+        },
+        "rule": {
+          "name": "shipTo",
+          "type": "object"
+        }
+      }
+    },
+    "publishSettings": {
+      "count": 20,
+      "interval": 1,
+      "delay": 0
+    },
+    "mappings": [
+      {
+        "type": "Payload Parameter",
+        "source": {
+          "type": "Payload Parameter",
+          "name": "billTo",
+          "fieldName": "billTo",
+          "fieldType": "object"
+        },
+        "target": {
+          "type": "Payload Parameter",
+          "name": "shipTo",
+          "fieldName": "shipTo",
+          "fieldType": "object"
+        }
+      }
+    ]
+  }
+]

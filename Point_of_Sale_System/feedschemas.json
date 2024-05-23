@@ -1,0 +1,119 @@
+[
+  {
+    "topic": "acmeRetail/hr/fraud/{fraudVerbs}/v1/{fraudSubtype}/{fraudId}",
+    "eventName": "Fraud",
+    "eventVersion": "1.0.0",
+    "messageName": "Fraud",
+    "topicParameters": {
+      "fraudSubtype": {
+        "schema": {
+          "type": "string"
+        }
+      },
+      "fraudVerbs": {
+        "schema": {
+          "type": "string"
+        }
+      },
+      "fraudId": {
+        "schema": {
+          "type": "string"
+        }
+      }
+    },
+    "payload": {
+      "fraudSubtype": {
+        "type": "string"
+      },
+      "fraudType": {
+        "type": "string"
+      },
+      "customerId": {
+        "description": "Persons's Id",
+        "type": "string"
+      },
+      "description": {
+        "description": "Description",
+        "type": "string"
+      },
+      "location": {
+        "type": "string"
+      },
+      "fraudDate": {
+        "description": "day in CCYY-MM-DD format",
+        "type": "string",
+        "minimum": 0
+      }
+    },
+    "consumers": [
+      {
+        "name": "pointOfSale.fraud.detected",
+        "topicSubscriptions": [
+          "acmeRetail/hr/fraud/detected/v1/*/*"
+        ]
+      }
+    ]
+  },
+  {
+    "topic": "acmeRetail/eeg/product/{productVerb}/v1/{department}/{upcCode}",
+    "eventName": "Product",
+    "eventVersion": "0.1.2",
+    "messageName": "Product",
+    "topicParameters": {
+      "productVerb": {
+        "schema": {
+          "type": "string",
+          "enum": [
+            "added",
+            "priceUpdated",
+            "removed",
+            "tempUnavail"
+          ]
+        }
+      },
+      "department": {
+        "schema": {
+          "type": "string",
+          "enum": [
+            "100",
+            "110",
+            "120",
+            "130",
+            "200",
+            "300"
+          ]
+        }
+      },
+      "upcCode": {
+        "schema": {
+          "type": "string"
+        }
+      }
+    },
+    "payload": {
+      "quantity": {
+        "type": "integer"
+      },
+      "price": {
+        "type": "number"
+      },
+      "description": {
+        "type": "string"
+      },
+      "currency": {
+        "type": "string"
+      },
+      "sku": {
+        "type": "string"
+      }
+    },
+    "consumers": [
+      {
+        "name": "pointOfSale.product.added",
+        "topicSubscriptions": [
+          "acmeRetail/eeg/product/added/v1/*/*"
+        ]
+      }
+    ]
+  }
+]
