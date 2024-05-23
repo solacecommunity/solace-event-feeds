@@ -1,0 +1,418 @@
+{
+  "messages": {
+    "Bus_Door_Open_Close_Event": {
+      "send": [
+        {
+          "topicName": "fakeLdnBus/door/v1/{routeNum}/{busNum}/{event}",
+          "topicParameters": {
+            "busNum": {
+              "schema": {
+                "type": "string",
+                "x-parser-schema-id": "busNum"
+              },
+              "x-ep-parameter-name": "busNum"
+            },
+            "event": {
+              "schema": {
+                "type": "string",
+                "enum": [
+                  "OPENED",
+                  "CLOSED"
+                ],
+                "x-parser-schema-id": "event"
+              },
+              "x-ep-enum-state-name": "DRAFT",
+              "x-ep-enum-version-displayname": "",
+              "x-ep-enum-version": "0.1.0",
+              "x-ep-enum-name": "Bus Door Status",
+              "x-ep-enum-state-id": "1",
+              "x-ep-application-domain-id": "rpcre38ld07",
+              "x-ep-enum-version-id": "tfby7je96e4",
+              "x-ep-enum-id": "9cgi5nmwptt",
+              "x-ep-shared": "true",
+              "x-ep-parameter-name": "event",
+              "x-ep-application-domain-name": "Fake London Bus"
+            },
+            "routeNum": {
+              "schema": {
+                "type": "string",
+                "x-parser-schema-id": "routeNum"
+              },
+              "x-ep-parameter-name": "routeNum"
+            }
+          },
+          "message": {
+            "x-ep-event-id": "l3q5vui0d2g",
+            "x-ep-event-version-displayname": "",
+            "description": "",
+            "x-ep-application-domain-id": "rpcre38ld07",
+            "schemaFormat": "application/vnd.aai.asyncapi+json;version=2.0.0",
+            "x-ep-event-state-name": "DRAFT",
+            "x-ep-shared": "true",
+            "x-ep-application-domain-name": "Fake London Bus",
+            "x-ep-event-version-id": "5yrm0djcsr9",
+            "payload": {
+              "x-ep-schema-version": "0.1.0",
+              "x-ep-schema-state-id": "1",
+              "x-ep-schema-version-id": "1y3slcjlu6d",
+              "x-ep-schema-id": "83grbz6k4ba",
+              "x-ep-schema-state-name": "DRAFT",
+              "x-ep-schema-name": "Empty",
+              "x-ep-application-domain-id": "rpcre38ld07",
+              "x-ep-schema-version-displayname": "",
+              "x-ep-shared": "true",
+              "x-ep-application-domain-name": "Fake London Bus",
+              "x-parser-schema-id": "Empty"
+            },
+            "x-ep-event-version": "0.1.0",
+            "x-ep-event-name": "Bus Door Open/Close Event",
+            "contentType": "application/json",
+            "x-ep-event-state-id": "1",
+            "x-parser-message-name": "Bus_Door_Open_Close_Event"
+          },
+          "servers": {},
+          "bindings": {}
+        }
+      ],
+      "receive": [],
+      "hasPayload": true,
+      "schema": "Empty"
+    },
+    "Bus_Stop_Start_Command": {
+      "send": [],
+      "receive": [
+        {
+          "topicName": "fakeLdnBus/ctrl/v1/{busNum}/{command_0_1_0}",
+          "topicParameters": {
+            "busNum": {
+              "schema": {
+                "type": "string",
+                "x-parser-schema-id": "busNum"
+              },
+              "x-ep-parameter-name": "busNum"
+            },
+            "command_0_1_0": {
+              "schema": {
+                "type": "string",
+                "enum": [
+                  "STOP",
+                  "START"
+                ],
+                "x-parser-schema-id": "command_0_1_0"
+              },
+              "x-ep-enum-state-name": "DRAFT",
+              "x-ep-enum-version-displayname": "",
+              "x-ep-enum-version": "0.1.0",
+              "x-ep-enum-name": "Bus Command Control",
+              "x-ep-enum-state-id": "1",
+              "x-ep-application-domain-id": "rpcre38ld07",
+              "x-ep-enum-version-id": "878iwxdqqhx",
+              "x-ep-enum-id": "sz13pcdpkh8",
+              "x-ep-shared": "true",
+              "x-ep-parameter-name": "command",
+              "x-ep-application-domain-name": "Fake London Bus"
+            }
+          },
+          "message": {
+            "x-ep-event-id": "5jd8lp535bm",
+            "x-ep-event-version-displayname": "",
+            "x-ep-event-version-id": "w4iyya8dqpb",
+            "x-ep-event-version": "0.1.0",
+            "x-ep-event-name": "Bus Stop/Start Command",
+            "description": "",
+            "x-ep-application-domain-id": "rpcre38ld07",
+            "x-ep-event-state-id": "1",
+            "x-ep-event-state-name": "DRAFT",
+            "x-ep-shared": "true",
+            "x-ep-application-domain-name": "Fake London Bus",
+            "x-parser-message-name": "Bus_Stop_Start_Command"
+          },
+          "servers": {},
+          "bindings": {},
+          "consumers": {}
+        }
+      ],
+      "hasPayload": false
+    },
+    "Bus_GPS_Location_Update": {
+      "send": [
+        {
+          "topicName": "fakeLdnBus/gps/v2/{routeNum}/{busNum}/{lat}/{lon}/{status}",
+          "topicParameters": {
+            "busNum": {
+              "schema": {
+                "type": "string",
+                "x-parser-schema-id": "busNum"
+              },
+              "x-ep-parameter-name": "busNum"
+            },
+            "lon": {
+              "schema": {
+                "type": "string",
+                "x-parser-schema-id": "lon"
+              },
+              "x-ep-parameter-name": "lon"
+            },
+            "lat": {
+              "schema": {
+                "type": "string",
+                "x-parser-schema-id": "lat"
+              },
+              "x-ep-parameter-name": "lat"
+            },
+            "routeNum": {
+              "schema": {
+                "type": "string",
+                "x-parser-schema-id": "routeNum"
+              },
+              "x-ep-parameter-name": "routeNum"
+            },
+            "status": {
+              "schema": {
+                "type": "string",
+                "enum": [
+                  "STOPPED",
+                  "DRIVING",
+                  "BUSSTOP",
+                  "FAULT"
+                ],
+                "x-parser-schema-id": "status"
+              },
+              "x-ep-enum-state-name": "DRAFT",
+              "x-ep-enum-version-displayname": "",
+              "x-ep-enum-version": "0.1.0",
+              "x-ep-enum-name": "Bus Status",
+              "x-ep-enum-state-id": "1",
+              "x-ep-application-domain-id": "rpcre38ld07",
+              "x-ep-enum-version-id": "w6yuemq7se6",
+              "x-ep-enum-id": "oyuj1zjg9o6",
+              "x-ep-shared": "true",
+              "x-ep-parameter-name": "status",
+              "x-ep-application-domain-name": "Fake London Bus"
+            }
+          },
+          "message": {
+            "x-ep-event-id": "oiu8cicr0f5",
+            "x-ep-event-version-displayname": "",
+            "description": "",
+            "x-ep-application-domain-id": "rpcre38ld07",
+            "schemaFormat": "application/vnd.aai.asyncapi+json;version=2.0.0",
+            "x-ep-event-state-name": "DRAFT",
+            "x-ep-shared": "true",
+            "x-ep-application-domain-name": "Fake London Bus",
+            "x-ep-event-version-id": "oj6msep2w2h",
+            "payload": {
+              "x-ep-schema-version": "0.1.0",
+              "x-ep-schema-version-id": "fc2d087hjg3",
+              "$schema": "http://json-schema.org/draft-04/schema#",
+              "x-ep-schema-state-name": "DRAFT",
+              "x-ep-schema-name": "Bus GPS Location Update",
+              "type": "object",
+              "x-ep-application-domain-id": "rpcre38ld07",
+              "x-ep-schema-version-displayname": "",
+              "x-ep-shared": "true",
+              "x-ep-application-domain-name": "Fake London Bus",
+              "x-ep-schema-state-id": "1",
+              "x-ep-schema-id": "265wh7x2ksb",
+              "properties": {
+                "busNum": {
+                  "type": "integer",
+                  "x-parser-schema-id": "<anonymous-schema-1>"
+                },
+                "psgrLoadFac": {
+                  "type": "number",
+                  "x-parser-schema-id": "<anonymous-schema-2>"
+                },
+                "lon": {
+                  "type": "number",
+                  "x-parser-schema-id": "<anonymous-schema-3>"
+                },
+                "lat": {
+                  "type": "number",
+                  "x-parser-schema-id": "<anonymous-schema-4>"
+                },
+                "rpm": {
+                  "type": "integer",
+                  "x-parser-schema-id": "<anonymous-schema-5>"
+                },
+                "speed": {
+                  "type": "integer",
+                  "x-parser-schema-id": "<anonymous-schema-6>"
+                },
+                "routeNum": {
+                  "type": "integer",
+                  "x-parser-schema-id": "<anonymous-schema-7>"
+                },
+                "status": {
+                  "type": "string",
+                  "x-parser-schema-id": "<anonymous-schema-8>"
+                }
+              },
+              "x-parser-schema-id": "Bus_GPS_Location_Update"
+            },
+            "x-ep-event-version": "0.1.0",
+            "x-ep-event-name": "Bus GPS Location Update",
+            "contentType": "application/json",
+            "x-ep-event-state-id": "1",
+            "x-parser-message-name": "Bus_GPS_Location_Update"
+          },
+          "servers": {},
+          "bindings": {}
+        }
+      ],
+      "receive": [],
+      "hasPayload": true,
+      "schema": "Bus GPS Location Update"
+    },
+    "Bus_Simulated_Fault_Command": {
+      "send": [],
+      "receive": [
+        {
+          "topicName": "fakeLdnBus/simul/v1/{busNum}/{command_0_1_0}",
+          "topicParameters": {
+            "busNum": {
+              "schema": {
+                "type": "string",
+                "x-parser-schema-id": "busNum"
+              },
+              "x-ep-parameter-name": "busNum"
+            },
+            "command_0_1_0": {
+              "schema": {
+                "type": "string",
+                "enum": [
+                  "FAULT",
+                  "FIX"
+                ],
+                "x-parser-schema-id": "command_0_1_0"
+              },
+              "x-ep-enum-state-name": "DRAFT",
+              "x-ep-enum-version-displayname": "",
+              "x-ep-enum-version": "0.1.0",
+              "x-ep-enum-name": "Bus Simulated Fault",
+              "x-ep-enum-state-id": "1",
+              "x-ep-application-domain-id": "rpcre38ld07",
+              "x-ep-enum-version-id": "sqjju97lzil",
+              "x-ep-enum-id": "cwg20nxb2vy",
+              "x-ep-shared": "true",
+              "x-ep-parameter-name": "command",
+              "x-ep-application-domain-name": "Fake London Bus"
+            }
+          },
+          "message": {
+            "x-ep-event-id": "2tqz030x6k8",
+            "x-ep-event-version-displayname": "",
+            "description": "",
+            "x-ep-application-domain-id": "rpcre38ld07",
+            "schemaFormat": "application/vnd.aai.asyncapi+json;version=2.0.0",
+            "x-ep-event-state-name": "DRAFT",
+            "x-ep-shared": "true",
+            "x-ep-application-domain-name": "Fake London Bus",
+            "x-ep-event-version-id": "t98bv6lp8co",
+            "payload": {
+              "x-ep-schema-version": "0.1.0",
+              "x-ep-schema-state-id": "1",
+              "x-ep-schema-version-id": "1y3slcjlu6d",
+              "x-ep-schema-id": "83grbz6k4ba",
+              "x-ep-schema-state-name": "DRAFT",
+              "x-ep-schema-name": "Empty",
+              "x-ep-application-domain-id": "rpcre38ld07",
+              "x-ep-schema-version-displayname": "",
+              "x-ep-shared": "true",
+              "x-ep-application-domain-name": "Fake London Bus",
+              "x-parser-schema-id": "Empty"
+            },
+            "x-ep-event-version": "0.1.0",
+            "x-ep-event-name": "Bus Simulated Fault Command",
+            "contentType": "application/json",
+            "x-ep-event-state-id": "1",
+            "x-parser-message-name": "Bus_Simulated_Fault_Command"
+          },
+          "servers": {},
+          "bindings": {},
+          "consumers": {}
+        }
+      ],
+      "hasPayload": true,
+      "schema": "Empty"
+    }
+  },
+  "schemas": {
+    "Empty": {
+      "x-ep-schema-version": "0.1.0",
+      "x-ep-schema-state-id": "1",
+      "x-ep-schema-version-id": "1y3slcjlu6d",
+      "x-ep-schema-id": "83grbz6k4ba",
+      "x-ep-schema-state-name": "DRAFT",
+      "x-ep-schema-name": "Empty",
+      "x-ep-application-domain-id": "rpcre38ld07",
+      "x-ep-schema-version-displayname": "",
+      "x-ep-shared": "true",
+      "x-ep-application-domain-name": "Fake London Bus",
+      "x-parser-schema-id": "Empty"
+    },
+    "Bus GPS Location Update": {
+      "x-ep-schema-version": "0.1.0",
+      "x-ep-schema-version-id": "fc2d087hjg3",
+      "$schema": "http://json-schema.org/draft-04/schema#",
+      "x-ep-schema-state-name": "DRAFT",
+      "x-ep-schema-name": "Bus GPS Location Update",
+      "type": "object",
+      "x-ep-application-domain-id": "rpcre38ld07",
+      "x-ep-schema-version-displayname": "",
+      "x-ep-shared": "true",
+      "x-ep-application-domain-name": "Fake London Bus",
+      "x-ep-schema-state-id": "1",
+      "x-ep-schema-id": "265wh7x2ksb",
+      "properties": {
+        "busNum": {
+          "type": "integer",
+          "x-parser-schema-id": "<anonymous-schema-1>"
+        },
+        "psgrLoadFac": {
+          "type": "number",
+          "x-parser-schema-id": "<anonymous-schema-2>"
+        },
+        "lon": {
+          "type": "number",
+          "x-parser-schema-id": "<anonymous-schema-3>"
+        },
+        "lat": {
+          "type": "number",
+          "x-parser-schema-id": "<anonymous-schema-4>"
+        },
+        "rpm": {
+          "type": "integer",
+          "x-parser-schema-id": "<anonymous-schema-5>"
+        },
+        "speed": {
+          "type": "integer",
+          "x-parser-schema-id": "<anonymous-schema-6>"
+        },
+        "routeNum": {
+          "type": "integer",
+          "x-parser-schema-id": "<anonymous-schema-7>"
+        },
+        "status": {
+          "type": "string",
+          "x-parser-schema-id": "<anonymous-schema-8>"
+        }
+      },
+      "x-parser-schema-id": "Bus_GPS_Location_Update"
+    }
+  },
+  "servers": {},
+  "info": {
+    "x-ep-application-version": "0.1.0",
+    "x-ep-application-version-id": "gkpe2pokd9c",
+    "x-ep-application-id": "i4daw755g4n",
+    "x-ep-state-name": "DRAFT",
+    "title": "Fake London Bus",
+    "x-ep-application-domain-id": "rpcre38ld07",
+    "version": "0.1.0",
+    "x-ep-state-id": "1",
+    "x-ep-application-domain-name": "Fake London Bus"
+  },
+  "version": "2.5.0",
+  "fileName": "Fake London Bus-0.1.0.json"
+}

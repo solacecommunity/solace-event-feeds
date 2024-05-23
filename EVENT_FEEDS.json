@@ -20,5 +20,15 @@
     "tags": "PoS, Shopping, Retail",
     "contributed": true,
     "lastUpdated": "2024-05-23T12:33:18.293Z"
+  },
+  {
+    "name": "Fake_London_Bus",
+    "description": "Fake London Bus",
+    "img": "assets/img/defaultfeed.png",
+    "type": "stmfeed",
+    "contributor": "Giri Venkatesan",
+    "github": "gvensan",
+    "domain": "Transportation",
+    "tags": "Bus, Control"
   }
 ]

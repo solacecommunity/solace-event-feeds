@@ -1,0 +1,248 @@
+[
+  {
+    "topic": "fakeLdnBus/door/v1/{routeNum}/{busNum}/{event}",
+    "eventName": "Bus Door Open/Close Event",
+    "eventVersion": "0.1.0",
+    "messageName": "Bus_Door_Open_Close_Event",
+    "topicParameters": {
+      "busNum": {
+        "schema": {
+          "type": "string"
+        },
+        "rule": {
+          "name": "busNum",
+          "type": "string",
+          "group": "StringRules",
+          "rule": "alpha",
+          "casing": "mixed",
+          "minLength": 10,
+          "maxLength": 10
+        }
+      },
+      "event": {
+        "schema": {
+          "type": "string",
+          "enum": [
+            "OPENED",
+            "CLOSED"
+          ]
+        },
+        "rule": {
+          "name": "event",
+          "type": "string",
+          "group": "StringRules",
+          "rule": "enum",
+          "enum": [
+            "OPENED",
+            "CLOSED"
+          ]
+        }
+      },
+      "routeNum": {
+        "schema": {
+          "type": "string"
+        },
+        "rule": {
+          "name": "routeNum",
+          "type": "string",
+          "group": "StringRules",
+          "rule": "alpha",
+          "casing": "mixed",
+          "minLength": 10,
+          "maxLength": 10
+        }
+      }
+    },
+    "publishSettings": {
+      "count": 20,
+      "interval": 1,
+      "delay": 0
+    }
+  },
+  {
+    "topic": "fakeLdnBus/gps/v2/{routeNum}/{busNum}/{lat}/{lon}/{status}",
+    "eventName": "Bus GPS Location Update",
+    "eventVersion": "0.1.0",
+    "messageName": "Bus_GPS_Location_Update",
+    "topicParameters": {
+      "busNum": {
+        "schema": {
+          "type": "string"
+        },
+        "rule": {
+          "name": "busNum",
+          "type": "string",
+          "group": "StringRules",
+          "rule": "alpha",
+          "casing": "mixed",
+          "minLength": 10,
+          "maxLength": 10
+        }
+      },
+      "lon": {
+        "schema": {
+          "type": "string"
+        },
+        "rule": {
+          "name": "lon",
+          "type": "string",
+          "group": "StringRules",
+          "rule": "alpha",
+          "casing": "mixed",
+          "minLength": 10,
+          "maxLength": 10
+        }
+      },
+      "lat": {
+        "schema": {
+          "type": "string"
+        },
+        "rule": {
+          "name": "lat",
+          "type": "string",
+          "group": "StringRules",
+          "rule": "alpha",
+          "casing": "mixed",
+          "minLength": 10,
+          "maxLength": 10
+        }
+      },
+      "routeNum": {
+        "schema": {
+          "type": "string"
+        },
+        "rule": {
+          "name": "routeNum",
+          "type": "string",
+          "group": "StringRules",
+          "rule": "alpha",
+          "casing": "mixed",
+          "minLength": 10,
+          "maxLength": 10
+        }
+      },
+      "status": {
+        "schema": {
+          "type": "string",
+          "enum": [
+            "STOPPED",
+            "DRIVING",
+            "BUSSTOP",
+            "FAULT"
+          ]
+        },
+        "rule": {
+          "name": "status",
+          "type": "string",
+          "group": "StringRules",
+          "rule": "enum",
+          "enum": [
+            "STOPPED",
+            "DRIVING",
+            "BUSSTOP",
+            "FAULT"
+          ]
+        }
+      }
+    },
+    "payload": {
+      "busNum": {
+        "type": "integer",
+        "rule": {
+          "type": "integer",
+          "name": "busNum",
+          "group": "NumberRules",
+          "rule": "int",
+          "minimum": 0,
+          "maximum": 1000
+        }
+      },
+      "psgrLoadFac": {
+        "type": "number",
+        "rule": {
+          "type": "number",
+          "name": "psgrLoadFac",
+          "group": "NumberRules",
+          "rule": "float",
+          "minimum": 0,
+          "maximum": 1000,
+          "fractionDigits": 2
+        }
+      },
+      "lon": {
+        "type": "number",
+        "rule": {
+          "type": "number",
+          "name": "lon",
+          "group": "NumberRules",
+          "rule": "float",
+          "minimum": 0,
+          "maximum": 1000,
+          "fractionDigits": 2
+        }
+      },
+      "lat": {
+        "type": "number",
+        "rule": {
+          "type": "number",
+          "name": "lat",
+          "group": "NumberRules",
+          "rule": "float",
+          "minimum": 0,
+          "maximum": 1000,
+          "fractionDigits": 2
+        }
+      },
+      "rpm": {
+        "type": "integer",
+        "rule": {
+          "type": "integer",
+          "name": "rpm",
+          "group": "NumberRules",
+          "rule": "int",
+          "minimum": 0,
+          "maximum": 1000
+        }
+      },
+      "speed": {
+        "type": "integer",
+        "rule": {
+          "type": "integer",
+          "name": "speed",
+          "group": "NumberRules",
+          "rule": "int",
+          "minimum": 0,
+          "maximum": 1000
+        }
+      },
+      "routeNum": {
+        "type": "integer",
+        "rule": {
+          "type": "integer",
+          "name": "routeNum",
+          "group": "NumberRules",
+          "rule": "int",
+          "minimum": 0,
+          "maximum": 1000
+        }
+      },
+      "status": {
+        "type": "string",
+        "rule": {
+          "type": "string",
+          "name": "status",
+          "group": "StringRules",
+          "rule": "alpha",
+          "casing": "mixed",
+          "minLength": 10,
+          "maxLength": 10
+        }
+      }
+    },
+    "publishSettings": {
+      "count": 20,
+      "interval": 1,
+      "delay": 0
+    }
+  }
+]
