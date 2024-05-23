@@ -2,7 +2,7 @@
   {
     "name": "Account_Management",
     "description": "Application for supporting account maintenance activities. Includes support for fraud detection.",
-    "img": "assets/images/feed-icon.png",
+    "img": "assets/img/defaultfeed.png",
     "type": "stmfeed",
     "contributor": "Solace Community",
     "github": "solacecommunity",
