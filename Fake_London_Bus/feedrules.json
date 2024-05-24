@@ -306,6 +306,21 @@
           "fieldName": "routeNum",
           "fieldType": "string"
         }
+      },
+      {
+        "type": "Payload Parameter",
+        "source": {
+          "type": "Topic Parameter",
+          "name": "status",
+          "fieldName": "status",
+          "fieldType": "string"
+        },
+        "target": {
+          "type": "Payload Parameter",
+          "name": "status",
+          "fieldName": "status",
+          "fieldType": "string"
+        }
       }
     ]
   }
