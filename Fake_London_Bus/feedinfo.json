@@ -1,10 +1,12 @@
 {
   "name": "Fake_London_Bus",
-  "description": "",
-  "img": "",
+  "description": "Fake London Bus",
+  "img": "assets/img/defaultfeed.png",
   "type": "stmfeed",
-  "contributor": "",
-  "github": "",
-  "domain": "",
-  "tags": ""
+  "contributor": "Giri Venkatesan",
+  "github": "gvensan",
+  "domain": "Transportation",
+  "tags": "Bus, Control",
+  "contributed": true,
+  "lastUpdated": "2024-05-23T14:30:23.127Z"
 }

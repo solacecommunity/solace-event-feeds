@@ -13,10 +13,10 @@
           "name": "busNum",
           "type": "string",
           "group": "StringRules",
-          "rule": "alpha",
-          "casing": "mixed",
-          "minLength": 10,
-          "maxLength": 10
+          "rule": "numeric",
+          "minLength": 3,
+          "maxLength": 3,
+          "leadingZeros": true
         }
       },
       "event": {
@@ -46,10 +46,10 @@
           "name": "routeNum",
           "type": "string",
           "group": "StringRules",
-          "rule": "alpha",
-          "casing": "mixed",
-          "minLength": 10,
-          "maxLength": 10
+          "rule": "numeric",
+          "minLength": 4,
+          "maxLength": 4,
+          "leadingZeros": true
         }
       }
     },
@@ -149,81 +149,83 @@
       "busNum": {
         "type": "integer",
         "rule": {
-          "type": "integer",
           "name": "busNum",
-          "group": "NumberRules",
-          "rule": "int",
-          "minimum": 0,
-          "maximum": 1000
+          "type": "integer",
+          "group": "StringRules",
+          "rule": "numeric",
+          "minLength": 3,
+          "maxLength": 3,
+          "leadingZeros": true
         }
       },
       "psgrLoadFac": {
         "type": "number",
         "rule": {
-          "type": "number",
           "name": "psgrLoadFac",
+          "type": "number",
           "group": "NumberRules",
           "rule": "float",
           "minimum": 0,
-          "maximum": 1000,
+          "maximum": 100,
           "fractionDigits": 2
         }
       },
       "lon": {
         "type": "number",
         "rule": {
-          "type": "number",
           "name": "lon",
-          "group": "NumberRules",
-          "rule": "float",
-          "minimum": 0,
-          "maximum": 1000,
-          "fractionDigits": 2
+          "type": "number",
+          "group": "LocationRules",
+          "rule": "longitude",
+          "minimum": -90,
+          "maximum": 90,
+          "precision": "6"
         }
       },
       "lat": {
         "type": "number",
         "rule": {
-          "type": "number",
           "name": "lat",
-          "group": "NumberRules",
-          "rule": "float",
-          "minimum": 0,
-          "maximum": 1000,
-          "fractionDigits": 2
+          "type": "number",
+          "group": "LocationRules",
+          "rule": "latitude",
+          "minimum": -90,
+          "maximum": 90,
+          "precision": "6"
         }
       },
       "rpm": {
         "type": "integer",
         "rule": {
-          "type": "integer",
           "name": "rpm",
+          "type": "integer",
           "group": "NumberRules",
           "rule": "int",
           "minimum": 0,
-          "maximum": 1000
+          "maximum": 5000
         }
       },
       "speed": {
         "type": "integer",
         "rule": {
-          "type": "integer",
           "name": "speed",
+          "type": "integer",
           "group": "NumberRules",
           "rule": "int",
           "minimum": 0,
-          "maximum": 1000
+          "maximum": 120
         }
       },
       "routeNum": {
         "type": "integer",
         "rule": {
-          "type": "integer",
           "name": "routeNum",
-          "group": "NumberRules",
-          "rule": "int",
-          "minimum": 0,
-          "maximum": 1000
+          "type": "integer",
+          "group": "StringRules",
+          "rule": "numeric",
+          "minLength": 4,
+          "maxLength": 4,
+          "leadingZeros": true
         }
       },
       "status": {
@@ -243,6 +245,68 @@
       "count": 20,
       "interval": 1,
       "delay": 0
-    }
+    },
+    "mappings": [
+      {
+        "type": "Topic Parameter",
+        "source": {
+          "type": "Payload Parameter",
+          "name": "busNum",
+          "fieldName": "busNum",
+          "fieldType": "integer"
+        },
+        "target": {
+          "type": "Topic Parameter",
+          "name": "busNum",
+          "fieldName": "busNum",
+          "fieldType": "string"
+        }
+      },
+      {
+        "type": "Topic Parameter",
+        "source": {
+          "type": "Payload Parameter",
+          "name": "lon",
+          "fieldName": "lon",
+          "fieldType": "number"
+        },
+        "target": {
+          "type": "Topic Parameter",
+          "name": "lon",
+          "fieldName": "lon",
+          "fieldType": "string"
+        }
+      },
+      {
+        "type": "Topic Parameter",
+        "source": {
+          "type": "Payload Parameter",
+          "name": "lat",
+          "fieldName": "lat",
+          "fieldType": "number"
+        },
+        "target": {
+          "type": "Topic Parameter",
+          "name": "lat",
+          "fieldName": "lat",
+          "fieldType": "string"
+        }
+      },
+      {
+        "type": "Topic Parameter",
+        "source": {
+          "type": "Payload Parameter",
+          "name": "routeNum",
+          "fieldName": "routeNum",
+          "fieldType": "integer"
+        },
+        "target": {
+          "type": "Topic Parameter",
+          "name": "routeNum",
+          "fieldName": "routeNum",
+          "fieldType": "string"
+        }
+      }
+    ]
   }
 ]
