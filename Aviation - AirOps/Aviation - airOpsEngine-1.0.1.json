@@ -1,0 +1,194 @@
+{
+    "components": {
+        "schemas": {
+            "flightInfo": {
+                "x-ep-schema-version": "0.1.0",
+                "x-ep-schema-version-id": "8652x4kmuef",
+                "$schema": "http://json-schema.org/draft-07/schema#",
+                "x-ep-schema-state-name": "RELEASED",
+                "x-ep-schema-name": "flightInfo",
+                "title": "Generated schema for Root",
+                "type": "object",
+                "x-ep-application-domain-id": "qa1fm649evb",
+                "x-ep-schema-version-displayname": "",
+                "x-ep-shared": "true",
+                "x-ep-application-domain-name": "Aviation: checkIn",
+                "x-ep-schema-state-id": "2",
+                "x-ep-schema-id": "kt3lfdi13c6",
+                "properties": {
+                    "beltNo": {
+                        "type": "string"
+                    },
+                    "flightNo": {
+                        "type": "number"
+                    },
+                    "newDepartureTime": {
+                        "type": "string"
+                    },
+                    "flightStatus": {
+                        "type": "string"
+                    },
+                    "newGate": {
+                        "type": "string"
+                    }
+                }
+            }
+        },
+        "messages": {
+            "aircraftLandStatus": {
+                "x-ep-event-id": "5gk4fh6ikb8",
+                "x-ep-event-version-displayname": "",
+                "description": "",
+                "x-ep-application-domain-id": "bhfgc4atcwf",
+                "schemaFormat": "application/vnd.aai.asyncapi+json;version=2.0.0",
+                "x-ep-event-state-name": "RELEASED",
+                "x-ep-shared": "true",
+                "x-ep-application-domain-name": "Aviation: airOps",
+                "x-ep-event-version-id": "ymjnjt1115i",
+                "payload": {
+                    "$ref": "#/components/schemas/flightInfo"
+                },
+                "x-ep-event-version": "0.1.0",
+                "x-ep-event-name": "aircraftLandStatus",
+                "contentType": "application/json",
+                "x-ep-event-state-id": "2"
+            },
+            "aircraftStatusDetails": {
+                "x-ep-event-id": "ip44ayc3gdn",
+                "x-ep-event-version-displayname": "",
+                "description": "",
+                "x-ep-application-domain-id": "bhfgc4atcwf",
+                "schemaFormat": "application/vnd.aai.asyncapi+json;version=2.0.0",
+                "x-ep-event-state-name": "RELEASED",
+                "x-ep-shared": "true",
+                "x-ep-application-domain-name": "Aviation: airOps",
+                "x-ep-event-version-id": "8h9ff1d80eu",
+                "payload": {
+                    "$ref": "#/components/schemas/flightInfo"
+                },
+                "x-ep-event-version": "0.1.0",
+                "x-ep-event-name": "aircraftStatusDetails",
+                "contentType": "application/json",
+                "x-ep-event-state-id": "2"
+            },
+            "newGate": {
+                "x-ep-event-id": "xghd67qjdm5",
+                "x-ep-event-version-displayname": "",
+                "description": "",
+                "x-ep-application-domain-id": "bhfgc4atcwf",
+                "schemaFormat": "application/vnd.aai.asyncapi+json;version=2.0.0",
+                "x-ep-event-state-name": "RELEASED",
+                "x-ep-shared": "true",
+                "x-ep-application-domain-name": "Aviation: airOps",
+                "x-ep-event-version-id": "udcl3kuy16e",
+                "payload": {
+                    "$ref": "#/components/schemas/flightInfo"
+                },
+                "x-ep-event-version": "0.1.0",
+                "x-ep-event-name": "newGate",
+                "contentType": "application/json",
+                "x-ep-event-state-id": "2"
+            }
+        }
+    },
+    "channels": {
+        "myair/airOps/v1/{flightStatusDetails}": {
+            "publish": {
+                "bindings": {
+                    "solace": {
+                        "destinations": [
+                            {
+                                "destinationType": "queue",
+                                "queue": {
+                                    "name": "airOpsEngine.airCraftStatusDetails",
+                                    "topicSubscriptions": ["myair/airOps/v1/*"]
+                                }
+                            }
+                        ],
+                        "bindingVersion": "0.3.0"
+                    }
+                },
+                "message": {
+                    "$ref": "#/components/messages/aircraftStatusDetails"
+                }
+            },
+            "parameters": {
+                "flightStatusDetails": {
+                    "schema": {
+                        "type": "string"
+                    },
+                    "x-ep-parameter-name": "flightStatusDetails"
+                }
+            }
+        },
+        "myair/airOps/v1/{flightNo}/{newGateNo}": {
+            "subscribe": {
+                "message": {
+                    "$ref": "#/components/messages/newGate"
+                }
+            },
+            "parameters": {
+                "flightNo": {
+                    "schema": {
+                        "type": "string"
+                    },
+                    "x-ep-parameter-name": "flightNo"
+                },
+                "newGateNo": {
+                    "schema": {
+                        "type": "string"
+                    },
+                    "x-ep-parameter-name": "newGateNo"
+                }
+            }
+        },
+        "myair/airOps/v1/{flightNo}/{flightLandStatus}": {
+            "publish": {
+                "bindings": {
+                    "solace": {
+                        "destinations": [
+                            {
+                                "destinationType": "queue",
+                                "queue": {
+                                    "name": "airOpsEngine.airCraftLandStatus",
+                                    "topicSubscriptions": ["myair/airOps/v1/*/*"]
+                                }
+                            }
+                        ],
+                        "bindingVersion": "0.3.0"
+                    }
+                },
+                "message": {
+                    "$ref": "#/components/messages/aircraftLandStatus"
+                }
+            },
+            "parameters": {
+                "flightNo": {
+                    "schema": {
+                        "type": "string"
+                    },
+                    "x-ep-parameter-name": "flightNo"
+                },
+                "flightLandStatus": {
+                    "schema": {
+                        "type": "string"
+                    },
+                    "x-ep-parameter-name": "flightLandStatus"
+                }
+            }
+        }
+    },
+    "asyncapi": "2.5.0",
+    "info": {
+        "x-ep-application-version": "1.0.1",
+        "x-ep-application-version-id": "ae8c6i3btb5",
+        "x-ep-application-id": "7yt32ym20pj",
+        "description": "AirOps systems is resposible for complex management of flight scheduling and trip oversight, crew compliance and communication, customer data, charter and maintenance .",
+        "x-ep-state-name": "RELEASED",
+        "title": "airOpsEngine",
+        "x-ep-application-domain-id": "bhfgc4atcwf",
+        "version": "1.0.1",
+        "x-ep-state-id": "2",
+        "x-ep-application-domain-name": "Aviation: airOps"
+    }
+}

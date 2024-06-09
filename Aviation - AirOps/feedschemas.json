@@ -1,0 +1,83 @@
+[
+  {
+    "topic": "myair/airOps/v1/{flightStatusDetails}",
+    "eventName": "aircraftStatusDetails",
+    "eventVersion": "0.1.0",
+    "messageName": "aircraftStatusDetails",
+    "topicParameters": {
+      "flightStatusDetails": {
+        "schema": {
+          "type": "string"
+        }
+      }
+    },
+    "payload": {
+      "beltNo": {
+        "type": "string"
+      },
+      "flightNo": {
+        "type": "number"
+      },
+      "newDepartureTime": {
+        "type": "string"
+      },
+      "flightStatus": {
+        "type": "string"
+      },
+      "newGate": {
+        "type": "string"
+      }
+    },
+    "consumers": [
+      {
+        "name": "airOpsEngine.airCraftStatusDetails",
+        "topicSubscriptions": [
+          "myair/airOps/v1/*"
+        ]
+      }
+    ]
+  },
+  {
+    "topic": "myair/airOps/v1/{flightNo}/{flightLandStatus}",
+    "eventName": "aircraftLandStatus",
+    "eventVersion": "0.1.0",
+    "messageName": "aircraftLandStatus",
+    "topicParameters": {
+      "flightNo": {
+        "schema": {
+          "type": "string"
+        }
+      },
+      "flightLandStatus": {
+        "schema": {
+          "type": "string"
+        }
+      }
+    },
+    "payload": {
+      "beltNo": {
+        "type": "string"
+      },
+      "flightNo": {
+        "type": "number"
+      },
+      "newDepartureTime": {
+        "type": "string"
+      },
+      "flightStatus": {
+        "type": "string"
+      },
+      "newGate": {
+        "type": "string"
+      }
+    },
+    "consumers": [
+      {
+        "name": "airOpsEngine.airCraftLandStatus",
+        "topicSubscriptions": [
+          "myair/airOps/v1/*/*"
+        ]
+      }
+    ]
+  }
+]

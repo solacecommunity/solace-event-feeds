@@ -32,5 +32,52 @@
     "domain": "Transportation",
     "tags": "Bus, Control",
     "lastUpdated": "2024-05-23T12:33:18.293Z"
+  },
+  {
+    "name": "Aviation - ACARSEngine",
+    "img": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQtdB0qq-iGC7RpPzwdvrlgEq8haqrY-_QQd-Wg61qrdA&s",
+    "title": "ACARSEngine",
+    "description": "ACARS-Aircraft Communications Addressing and Reporting System is a digital datalink system for transmission of short messages between aircraft and ground stations via airband radio or satellite. ",
+    "github": "solacecommunity",
+    "contributor": "Solace Community",
+    "domain": "Aviation",
+    "tags": "Landing Status, Aircraft Status",
+    "type": "stmfeed",
+    "lastUpdated": "2024-06-09T16:31:36.870Z"
+  },
+  {
+    "name": "Aviation - AirOps",
+    "img": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQtdB0qq-iGC7RpPzwdvrlgEq8haqrY-_QQd-Wg61qrdA&s",
+    "description": "AirOps systems is resposible for complex management of flight scheduling and trip oversight, crew compliance and communication, customer data, charter and maintenance .",
+    "github": "solacecommunity",
+    "contributor": "Solace Community",
+    "domain": "Aviation",
+    "tags": "Gate Change",
+    "type": "stmfeed",
+    "lastUpdated": "2024-06-09T16:31:36.870Z"
+  },
+  {
+    "name": "CRMSystem",
+    "img": "",
+    "title": "CRMSystem",
+    "description": "Mange Customer information - Address Change, Birthday, Name and other personal information change management",
+    "github": "gvensan",
+    "contributor": "Giri Venkatesan",
+    "domain": "CRM",
+    "tags": "Customer Management",
+    "type": "stmfeed",
+    "lastUpdated": "2024-06-09T16:31:36.870Z"
+  },
+  {
+    "name": "Mining - HR Service",
+    "img": "",
+    "title": "HR Service",
+    "description": "HR services in mining are crucial for managing the distinct challenges posed by the industry, which operates in often remote and hazardous environments. These services ensure the effective recruitment, retention, and development of a skilled workforce equipped to meet operational demands. Key functions include conducting robust safety and skills training, overseeing compliance with labor laws and safety regulations, and implementing programs that promote employee well-being and job satisfaction.",
+    "github": "Mining---HR-Service",
+    "contributor": "SolaceLabs",
+    "domain": "Mining",
+    "tags": "HR Service, Shift Management, Break Management",
+    "type": "stmfeed",
+    "lastUpdated": "2024-06-09T16:31:36.870Z"
   }
 ]

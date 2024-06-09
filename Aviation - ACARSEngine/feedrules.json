@@ -1,0 +1,251 @@
+[
+  {
+    "topic": "myair/airOps/v1/{flightStatusDetails}",
+    "eventName": "aircraftStatusDetails",
+    "eventVersion": "0.1.0",
+    "messageName": "aircraftStatusDetails",
+    "topicParameters": {
+      "flightStatusDetails": {
+        "schema": {
+          "type": "string"
+        },
+        "rule": {
+          "name": "flightStatusDetails",
+          "type": "string",
+          "group": "StringRules",
+          "rule": "alpha",
+          "casing": "mixed",
+          "minLength": 10,
+          "maxLength": 10
+        }
+      }
+    },
+    "payload": {
+      "beltNo": {
+        "type": "string",
+        "rule": {
+          "name": "beltNo",
+          "type": "string",
+          "group": "StringRules",
+          "rule": "enum",
+          "enum": [
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7",
+            "8",
+            "9",
+            "10"
+          ]
+        }
+      },
+      "flightNo": {
+        "type": "number",
+        "rule": {
+          "name": "flightNo",
+          "type": "number",
+          "group": "AirlineRules",
+          "rule": "flightNumber",
+          "minimum": 1,
+          "maximum": 3,
+          "leadingZeros": true
+        }
+      },
+      "newDepartureTime": {
+        "type": "string",
+        "rule": {
+          "name": "newDepartureTime",
+          "type": "string",
+          "group": "DateRules",
+          "rule": "soon",
+          "days": 1
+        }
+      },
+      "flightStatus": {
+        "type": "string",
+        "rule": {
+          "name": "flightStatus",
+          "type": "string",
+          "group": "StringRules",
+          "rule": "enum",
+          "enum": [
+            "DELAYED",
+            "GATECHANGE",
+            "ONTIME"
+          ]
+        }
+      },
+      "newGate": {
+        "type": "string",
+        "rule": {
+          "name": "newGate",
+          "type": "string",
+          "group": "StringRules",
+          "rule": "numeric",
+          "minLength": 2,
+          "maxLength": 2,
+          "leadingZeros": true
+        }
+      }
+    },
+    "publishSettings": {
+      "count": 20,
+      "interval": "2",
+      "delay": 0
+    },
+    "mappings": [
+      {
+        "type": "Topic Parameter",
+        "source": {
+          "type": "Payload Parameter",
+          "name": "flightStatus",
+          "fieldName": "flightStatus",
+          "fieldType": "string"
+        },
+        "target": {
+          "type": "Topic Parameter",
+          "name": "flightStatusDetails",
+          "fieldName": "flightStatusDetails",
+          "fieldType": "string"
+        }
+      }
+    ]
+  },
+  {
+    "topic": "myair/airOps/v1/{flightNo}/{flightLandStatus}",
+    "eventName": "aircraftLandStatus",
+    "eventVersion": "0.1.0",
+    "messageName": "aircraftLandStatus",
+    "topicParameters": {
+      "flightNo": {
+        "schema": {
+          "type": "string"
+        },
+        "rule": {
+          "name": "flightNo",
+          "type": "string",
+          "group": "StringRules",
+          "rule": "alpha",
+          "casing": "mixed",
+          "minLength": 10,
+          "maxLength": 10
+        }
+      },
+      "flightLandStatus": {
+        "schema": {
+          "type": "string"
+        },
+        "rule": {
+          "name": "flightLandStatus",
+          "type": "string",
+          "group": "StringRules",
+          "rule": "alpha",
+          "casing": "mixed",
+          "minLength": 10,
+          "maxLength": 10
+        }
+      }
+    },
+    "payload": {
+      "beltNo": {
+        "type": "string",
+        "rule": {
+          "name": "beltNo",
+          "type": "string",
+          "group": "StringRules",
+          "rule": "numeric",
+          "minLength": 2,
+          "maxLength": 2,
+          "leadingZeros": true
+        }
+      },
+      "flightNo": {
+        "type": "number",
+        "rule": {
+          "name": "flightNo",
+          "type": "number",
+          "group": "AirlineRules",
+          "rule": "flightNumber",
+          "minimum": 1,
+          "maximum": 3,
+          "leadingZeros": true
+        }
+      },
+      "newDepartureTime": {
+        "type": "string",
+        "rule": {
+          "name": "newDepartureTime",
+          "type": "string",
+          "group": "NullRules",
+          "rule": "null"
+        }
+      },
+      "flightStatus": {
+        "type": "string",
+        "rule": {
+          "name": "flightStatus",
+          "type": "string",
+          "group": "StringRules",
+          "rule": "enum",
+          "enum": [
+            "TAXYING",
+            "ARRIVED",
+            "DELAYED"
+          ]
+        }
+      },
+      "newGate": {
+        "type": "string",
+        "rule": {
+          "name": "newGate",
+          "type": "string",
+          "group": "StringRules",
+          "rule": "numeric",
+          "minLength": 2,
+          "maxLength": 2,
+          "leadingZeros": true
+        }
+      }
+    },
+    "publishSettings": {
+      "count": 20,
+      "interval": "3",
+      "delay": 0
+    },
+    "mappings": [
+      {
+        "type": "Topic Parameter",
+        "source": {
+          "type": "Payload Parameter",
+          "name": "flightNo",
+          "fieldName": "flightNo",
+          "fieldType": "number"
+        },
+        "target": {
+          "type": "Topic Parameter",
+          "name": "flightNo",
+          "fieldName": "flightNo",
+          "fieldType": "string"
+        }
+      },
+      {
+        "type": "Topic Parameter",
+        "source": {
+          "type": "Payload Parameter",
+          "name": "flightStatus",
+          "fieldName": "flightStatus",
+          "fieldType": "string"
+        },
+        "target": {
+          "type": "Topic Parameter",
+          "name": "flightLandStatus",
+          "fieldName": "flightLandStatus",
+          "fieldType": "string"
+        }
+      }
+    ]
+  }
+]

@@ -1,0 +1,176 @@
+[
+  {
+    "topic": "acmeResources/ops/ticket/ticketValid/v1/{region}/{mine}/{employeeId}/{ticketId}",
+    "eventName": "Ticket Valid",
+    "eventVersion": "0.1.0",
+    "messageName": "Ticket_Valid",
+    "topicParameters": {
+      "mine": {
+        "schema": {
+          "type": "string",
+          "enum": [
+            "Newman",
+            "Tom Price",
+            "Paraburdoo"
+          ]
+        }
+      },
+      "employeeId": {
+        "schema": {
+          "type": "string"
+        }
+      },
+      "region": {
+        "schema": {
+          "type": "string",
+          "enum": [
+            "americas",
+            "apac",
+            "emea"
+          ]
+        }
+      },
+      "ticketId": {
+        "schema": {
+          "type": "string"
+        }
+      }
+    },
+    "payload": {
+      "ticket": {
+        "maximum": 1000000,
+        "type": "number",
+        "minimum": 1
+      },
+      "employee": {
+        "maximum": 100000,
+        "type": "number",
+        "minimum": 1
+      }
+    },
+    "consumers": [
+      {
+        "name": "TicketValidConsumer",
+        "topicSubscriptions": [
+          "acmeResources/ops/ticket/ticketValid/v1/*/*/*/*"
+        ]
+      }
+    ]
+  },
+  {
+    "topic": "acmeResources/ops/ticket/ticketCancelled/v1/{region}/{mine}/{employeeId}/{ticketId}",
+    "eventName": "Ticket Cancelled",
+    "eventVersion": "0.1.0",
+    "messageName": "Ticket_Cancelled",
+    "topicParameters": {
+      "mine": {
+        "schema": {
+          "type": "string",
+          "enum": [
+            "Newman",
+            "Tom Price",
+            "Paraburdoo"
+          ]
+        }
+      },
+      "employeeId": {
+        "schema": {
+          "type": "string"
+        }
+      },
+      "region": {
+        "schema": {
+          "type": "string",
+          "enum": [
+            "americas",
+            "apac",
+            "emea"
+          ]
+        }
+      },
+      "ticketId": {
+        "schema": {
+          "type": "string"
+        }
+      }
+    },
+    "payload": {
+      "ticket": {
+        "maximum": 1000000,
+        "type": "number",
+        "minimum": 1
+      },
+      "employee": {
+        "maximum": 100000,
+        "type": "number",
+        "minimum": 1
+      }
+    },
+    "consumers": [
+      {
+        "name": "TicketCancelledConsumer",
+        "topicSubscriptions": [
+          "acmeResources/ops/ticket/ticketCancelled/v1/*/*/*/*"
+        ]
+      }
+    ]
+  },
+  {
+    "topic": "acmeResources/ops/ticket/ticketExpired/v1/{region}/{mine}/{employeeId}/{ticketId}",
+    "eventName": "Ticket Expired",
+    "eventVersion": "0.1.0",
+    "messageName": "Ticket_Expired",
+    "topicParameters": {
+      "mine": {
+        "schema": {
+          "type": "string",
+          "enum": [
+            "Newman",
+            "Tom Price",
+            "Paraburdoo"
+          ]
+        }
+      },
+      "employeeId": {
+        "schema": {
+          "type": "string"
+        }
+      },
+      "region": {
+        "schema": {
+          "type": "string",
+          "enum": [
+            "americas",
+            "apac",
+            "emea"
+          ]
+        }
+      },
+      "ticketId": {
+        "schema": {
+          "type": "string"
+        }
+      }
+    },
+    "payload": {
+      "ticket": {
+        "maximum": 1000000,
+        "type": "number",
+        "minimum": 1
+      },
+      "employee": {
+        "maximum": 100000,
+        "type": "number",
+        "minimum": 1
+      }
+    },
+    "consumers": [
+      {
+        "name": "TicketExpiredConsumer",
+        "topicSubscriptions": [
+          "acmeResources/ops/ticket/ticketExpired/v1/*/*/*/*"
+        ]
+      }
+    ]
+  }
+]

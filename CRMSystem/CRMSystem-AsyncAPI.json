@@ -1,0 +1,184 @@
+{
+    "components": {
+        "schemas": {
+            "Person": {
+                "x-ep-schema-version": "1.0.0",
+                "x-ep-schema-version-id": "uobxhua4ow2",
+                "$schema": "https://json-schema.org/draft/2019-09/schema",
+                "x-ep-schema-state-name": "DRAFT",
+                "x-ep-schema-name": "Person",
+                "title": "Person",
+                "type": "object",
+                "x-ep-application-domain-id": "dug1k1p9zsg",
+                "x-ep-schema-version-displayname": "",
+                "x-ep-shared": "true",
+                "x-ep-application-domain-name": "Acme Retail - CRM",
+                "x-ep-schema-state-id": "1",
+                "x-ep-schema-id": "ogpm7wwv4gg",
+                "properties": {
+                    "firstName": {
+                        "description": "The person's first name.",
+                        "type": "string"
+                    },
+                    "lastName": {
+                        "description": "The person's last name.",
+                        "type": "string"
+                    },
+                    "address": {
+                        "description": "This is the person's Address",
+                        "type": "string"
+                    },
+                    "age": {
+                        "description": "Age in years which must be equal to or greater than zero.",
+                        "type": "integer",
+                        "minimum": 0
+                    }
+                },
+                "$id": "https://example.com/person.schema.json"
+            }
+        },
+        "messages": {
+            "CustomerBirthdayEvent": {
+                "x-ep-event-id": "mziufbek3zi",
+                "x-ep-event-version-displayname": "",
+                "x-ep-custom-attr-sensitivity": "none",
+                "description": "Event is triggered when the CRM system determines its the customers birthday",
+                "x-ep-application-domain-id": "dug1k1p9zsg",
+                "schemaFormat": "application/vnd.aai.asyncapi+json;version=2.0.0",
+                "x-ep-event-state-name": "DRAFT",
+                "x-ep-shared": "false",
+                "x-ep-application-domain-name": "Acme Retail - CRM",
+                "x-ep-event-version-id": "3kqwjoc424q",
+                "payload": {
+                    "$ref": "#/components/schemas/Person"
+                },
+                "x-ep-event-version": "0.1.0",
+                "x-ep-event-name": "CustomerBirthdayEvent",
+                "contentType": "application/json",
+                "x-ep-event-state-id": "1"
+            },
+            "CustomerLastNameChanged": {
+                "x-ep-event-id": "gt8r9oeg6wj",
+                "x-ep-event-version-displayname": "",
+                "x-ep-custom-attr-sensitivity": "pci",
+                "description": "",
+                "x-ep-application-domain-id": "dug1k1p9zsg",
+                "schemaFormat": "application/vnd.aai.asyncapi+json;version=2.0.0",
+                "x-ep-event-state-name": "DRAFT",
+                "x-ep-shared": "false",
+                "x-ep-application-domain-name": "Acme Retail - CRM",
+                "x-ep-event-version-id": "vf6r3wh4afm",
+                "payload": {
+                    "$ref": "#/components/schemas/Person"
+                },
+                "x-ep-event-version": "0.1.0",
+                "x-ep-event-name": "CustomerLastNameChanged",
+                "contentType": "application/json",
+                "x-ep-event-state-id": "1"
+            },
+            "CustomerAddressChange": {
+                "x-ep-event-id": "08ctmc2lyp6",
+                "x-ep-event-version-displayname": "",
+                "x-ep-custom-attr-sensitivity": "pci",
+                "description": "This event is triggered when the customer updates their profile's address",
+                "x-ep-application-domain-id": "dug1k1p9zsg",
+                "schemaFormat": "application/vnd.aai.asyncapi+json;version=2.0.0",
+                "x-ep-event-state-name": "DRAFT",
+                "x-ep-shared": "false",
+                "x-ep-application-domain-name": "Acme Retail - CRM",
+                "x-ep-event-version-id": "pignujhjb64",
+                "payload": {
+                    "$ref": "#/components/schemas/Person"
+                },
+                "x-ep-event-version": "0.1.0",
+                "x-ep-event-name": "CustomerAddressChange",
+                "contentType": "application/json",
+                "x-ep-event-state-id": "1"
+            }
+        }
+    },
+    "channels": {
+        "acme/retail/crm/customer/addressChange/{version}/{custID}": {
+            "subscribe": {
+                "message": {
+                    "$ref": "#/components/messages/CustomerAddressChange"
+                }
+            },
+            "parameters": {
+                "custID": {
+                    "schema": {
+                        "type": "string"
+                    },
+                    "x-ep-parameter-name": "custID"
+                },
+                "version": {
+                    "schema": {
+                        "type": "string"
+                    },
+                    "x-ep-parameter-name": "version"
+                }
+            }
+        },
+        "acme/retail/crm/customer/birthday/{version}/{custID}/{age}": {
+            "subscribe": {
+                "message": {
+                    "$ref": "#/components/messages/CustomerBirthdayEvent"
+                }
+            },
+            "parameters": {
+                "custID": {
+                    "schema": {
+                        "type": "string"
+                    },
+                    "x-ep-parameter-name": "custID"
+                },
+                "version": {
+                    "schema": {
+                        "type": "string"
+                    },
+                    "x-ep-parameter-name": "version"
+                },
+                "age": {
+                    "schema": {
+                        "type": "string"
+                    },
+                    "x-ep-parameter-name": "age"
+                }
+            }
+        },
+        "acme/retail/crm/customer/lastNameChanged/{version}/{custID}": {
+            "subscribe": {
+                "message": {
+                    "$ref": "#/components/messages/CustomerLastNameChanged"
+                }
+            },
+            "parameters": {
+                "custID": {
+                    "schema": {
+                        "type": "string"
+                    },
+                    "x-ep-parameter-name": "custID"
+                },
+                "version": {
+                    "schema": {
+                        "type": "string"
+                    },
+                    "x-ep-parameter-name": "version"
+                }
+            }
+        }
+    },
+    "asyncapi": "2.5.0",
+    "info": {
+        "x-ep-application-version": "0.1.0",
+        "x-ep-application-version-id": "tcm931i1g14",
+        "x-ep-application-id": "lmynrzhgog2",
+        "x-ep-state-name": "DRAFT",
+        "x-ep-custom-attr-Owner": "Debadri",
+        "title": "CRMSystem",
+        "x-ep-application-domain-id": "dug1k1p9zsg",
+        "version": "0.1.0",
+        "x-ep-state-id": "1",
+        "x-ep-application-domain-name": "Acme Retail - CRM"
+    }
+}

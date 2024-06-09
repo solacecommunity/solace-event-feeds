@@ -1,0 +1,321 @@
+{
+  "messages": {
+    "aircraftStatusDetails": {
+      "send": [
+        {
+          "topicName": "myair/airOps/v1/{flightStatusDetails}",
+          "topicParameters": {
+            "flightStatusDetails": {
+              "schema": {
+                "type": "string",
+                "x-parser-schema-id": "flightStatusDetails"
+              },
+              "x-ep-parameter-name": "flightStatusDetails"
+            }
+          },
+          "message": {
+            "x-ep-event-id": "ip44ayc3gdn",
+            "x-ep-event-version-displayname": "",
+            "description": "",
+            "x-ep-application-domain-id": "bhfgc4atcwf",
+            "schemaFormat": "application/vnd.aai.asyncapi+json;version=2.0.0",
+            "x-ep-event-state-name": "RELEASED",
+            "x-ep-shared": "true",
+            "x-ep-application-domain-name": "Aviation: airOps",
+            "x-ep-event-version-id": "8h9ff1d80eu",
+            "payload": {
+              "x-ep-schema-version": "0.1.0",
+              "x-ep-schema-version-id": "8652x4kmuef",
+              "$schema": "http://json-schema.org/draft-07/schema#",
+              "x-ep-schema-state-name": "RELEASED",
+              "x-ep-schema-name": "flightInfo",
+              "title": "Generated schema for Root",
+              "type": "object",
+              "x-ep-application-domain-id": "qa1fm649evb",
+              "x-ep-schema-version-displayname": "",
+              "x-ep-shared": "true",
+              "x-ep-application-domain-name": "Aviation: checkIn",
+              "x-ep-schema-state-id": "2",
+              "x-ep-schema-id": "kt3lfdi13c6",
+              "properties": {
+                "beltNo": {
+                  "type": "string",
+                  "x-parser-schema-id": "<anonymous-schema-1>"
+                },
+                "flightNo": {
+                  "type": "number",
+                  "x-parser-schema-id": "<anonymous-schema-2>"
+                },
+                "newDepartureTime": {
+                  "type": "string",
+                  "x-parser-schema-id": "<anonymous-schema-3>"
+                },
+                "flightStatus": {
+                  "type": "string",
+                  "x-parser-schema-id": "<anonymous-schema-4>"
+                },
+                "newGate": {
+                  "type": "string",
+                  "x-parser-schema-id": "<anonymous-schema-5>"
+                }
+              },
+              "x-parser-schema-id": "flightInfo"
+            },
+            "x-ep-event-version": "0.1.0",
+            "x-ep-event-name": "aircraftStatusDetails",
+            "contentType": "application/json",
+            "x-ep-event-state-id": "2",
+            "x-parser-message-name": "aircraftStatusDetails"
+          },
+          "servers": {},
+          "bindings": {}
+        }
+      ],
+      "receive": [],
+      "hasPayload": true,
+      "schema": "flightInfo"
+    },
+    "aircraftLandStatus": {
+      "send": [
+        {
+          "topicName": "myair/airOps/v1/{flightNo}/{flightLandStatus}",
+          "topicParameters": {
+            "flightNo": {
+              "schema": {
+                "type": "string",
+                "x-parser-schema-id": "flightNo"
+              },
+              "x-ep-parameter-name": "flightNo"
+            },
+            "flightLandStatus": {
+              "schema": {
+                "type": "string",
+                "x-parser-schema-id": "flightLandStatus"
+              },
+              "x-ep-parameter-name": "flightLandStatus"
+            }
+          },
+          "message": {
+            "x-ep-event-id": "5gk4fh6ikb8",
+            "x-ep-event-version-displayname": "",
+            "description": "",
+            "x-ep-application-domain-id": "bhfgc4atcwf",
+            "schemaFormat": "application/vnd.aai.asyncapi+json;version=2.0.0",
+            "x-ep-event-state-name": "RELEASED",
+            "x-ep-shared": "true",
+            "x-ep-application-domain-name": "Aviation: airOps",
+            "x-ep-event-version-id": "ymjnjt1115i",
+            "payload": {
+              "x-ep-schema-version": "0.1.0",
+              "x-ep-schema-version-id": "8652x4kmuef",
+              "$schema": "http://json-schema.org/draft-07/schema#",
+              "x-ep-schema-state-name": "RELEASED",
+              "x-ep-schema-name": "flightInfo",
+              "title": "Generated schema for Root",
+              "type": "object",
+              "x-ep-application-domain-id": "qa1fm649evb",
+              "x-ep-schema-version-displayname": "",
+              "x-ep-shared": "true",
+              "x-ep-application-domain-name": "Aviation: checkIn",
+              "x-ep-schema-state-id": "2",
+              "x-ep-schema-id": "kt3lfdi13c6",
+              "properties": {
+                "beltNo": {
+                  "type": "string",
+                  "x-parser-schema-id": "<anonymous-schema-1>"
+                },
+                "flightNo": {
+                  "type": "number",
+                  "x-parser-schema-id": "<anonymous-schema-2>"
+                },
+                "newDepartureTime": {
+                  "type": "string",
+                  "x-parser-schema-id": "<anonymous-schema-3>"
+                },
+                "flightStatus": {
+                  "type": "string",
+                  "x-parser-schema-id": "<anonymous-schema-4>"
+                },
+                "newGate": {
+                  "type": "string",
+                  "x-parser-schema-id": "<anonymous-schema-5>"
+                }
+              },
+              "x-parser-schema-id": "flightInfo"
+            },
+            "x-ep-event-version": "0.1.0",
+            "x-ep-event-name": "aircraftLandStatus",
+            "contentType": "application/json",
+            "x-ep-event-state-id": "2",
+            "x-parser-message-name": "aircraftLandStatus"
+          },
+          "servers": {},
+          "bindings": {}
+        }
+      ],
+      "receive": [],
+      "hasPayload": true,
+      "schema": "flightInfo"
+    },
+    "loadSheet": {
+      "send": [],
+      "receive": [
+        {
+          "topicName": "myair/loadControl/v1/{flightNo}",
+          "topicParameters": {
+            "flightNo": {
+              "schema": {
+                "type": "string",
+                "x-parser-schema-id": "flightNo"
+              },
+              "x-ep-parameter-name": "flightNo"
+            }
+          },
+          "message": {
+            "x-ep-event-id": "eqmhk5oxkac",
+            "x-ep-event-version-displayname": "",
+            "description": "",
+            "x-ep-application-domain-id": "hk3r74qo6sc",
+            "schemaFormat": "application/vnd.aai.asyncapi+json;version=2.0.0",
+            "x-ep-event-state-name": "RELEASED",
+            "x-ep-shared": "true",
+            "x-ep-application-domain-name": "Aviation: loadControl",
+            "x-ep-event-version-id": "o4nznn7bgkb",
+            "payload": {
+              "x-ep-schema-version": "0.1.0",
+              "x-ep-schema-version-id": "iodqe8eixjo",
+              "$schema": "http://json-schema.org/draft-07/schema#",
+              "x-ep-schema-state-name": "RELEASED",
+              "x-ep-schema-name": "loadPlan",
+              "title": "Generated schema for Root",
+              "type": "object",
+              "x-ep-application-domain-id": "hk3r74qo6sc",
+              "x-ep-schema-version-displayname": "",
+              "x-ep-shared": "true",
+              "x-ep-application-domain-name": "Aviation: loadControl",
+              "x-ep-schema-state-id": "2",
+              "x-ep-schema-id": "5cb48gb39bi",
+              "properties": {
+                "flightNo": {
+                  "type": "string",
+                  "x-parser-schema-id": "<anonymous-schema-6>"
+                },
+                "containerNumber": {
+                  "type": "number",
+                  "x-parser-schema-id": "<anonymous-schema-7>"
+                },
+                "containerPosition": {
+                  "type": "number",
+                  "x-parser-schema-id": "<anonymous-schema-8>"
+                }
+              },
+              "x-parser-schema-id": "loadPlan"
+            },
+            "x-ep-event-version": "1.0.0",
+            "x-ep-event-name": "loadSheet",
+            "contentType": "application/json",
+            "x-ep-event-state-id": "2",
+            "x-parser-message-name": "loadSheet"
+          },
+          "servers": {},
+          "bindings": {},
+          "consumers": {
+            "ACARSEngine.loadSheet": {
+              "name": "ACARSEngine.loadSheet",
+              "topicSubscriptions": [
+                "myair/loadControl/v1/*"
+              ]
+            }
+          }
+        }
+      ],
+      "hasPayload": true,
+      "schema": "loadPlan"
+    }
+  },
+  "schemas": {
+    "loadPlan": {
+      "x-ep-schema-version": "0.1.0",
+      "x-ep-schema-version-id": "iodqe8eixjo",
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "x-ep-schema-state-name": "RELEASED",
+      "x-ep-schema-name": "loadPlan",
+      "title": "Generated schema for Root",
+      "type": "object",
+      "x-ep-application-domain-id": "hk3r74qo6sc",
+      "x-ep-schema-version-displayname": "",
+      "x-ep-shared": "true",
+      "x-ep-application-domain-name": "Aviation: loadControl",
+      "x-ep-schema-state-id": "2",
+      "x-ep-schema-id": "5cb48gb39bi",
+      "properties": {
+        "flightNo": {
+          "type": "string",
+          "x-parser-schema-id": "<anonymous-schema-6>"
+        },
+        "containerNumber": {
+          "type": "number",
+          "x-parser-schema-id": "<anonymous-schema-7>"
+        },
+        "containerPosition": {
+          "type": "number",
+          "x-parser-schema-id": "<anonymous-schema-8>"
+        }
+      },
+      "x-parser-schema-id": "loadPlan"
+    },
+    "flightInfo": {
+      "x-ep-schema-version": "0.1.0",
+      "x-ep-schema-version-id": "8652x4kmuef",
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "x-ep-schema-state-name": "RELEASED",
+      "x-ep-schema-name": "flightInfo",
+      "title": "Generated schema for Root",
+      "type": "object",
+      "x-ep-application-domain-id": "qa1fm649evb",
+      "x-ep-schema-version-displayname": "",
+      "x-ep-shared": "true",
+      "x-ep-application-domain-name": "Aviation: checkIn",
+      "x-ep-schema-state-id": "2",
+      "x-ep-schema-id": "kt3lfdi13c6",
+      "properties": {
+        "beltNo": {
+          "type": "string",
+          "x-parser-schema-id": "<anonymous-schema-1>"
+        },
+        "flightNo": {
+          "type": "number",
+          "x-parser-schema-id": "<anonymous-schema-2>"
+        },
+        "newDepartureTime": {
+          "type": "string",
+          "x-parser-schema-id": "<anonymous-schema-3>"
+        },
+        "flightStatus": {
+          "type": "string",
+          "x-parser-schema-id": "<anonymous-schema-4>"
+        },
+        "newGate": {
+          "type": "string",
+          "x-parser-schema-id": "<anonymous-schema-5>"
+        }
+      },
+      "x-parser-schema-id": "flightInfo"
+    }
+  },
+  "servers": {},
+  "info": {
+    "x-ep-application-version": "1.0.2",
+    "x-ep-application-version-id": "hcb4w5u1pgg",
+    "x-ep-application-id": "ow31p19xeq2",
+    "description": "ACARS-Aircraft Communications Addressing and Reporting System is a digital datalink system for transmission of short messages between aircraft and ground stations via airband radio or satellite. ",
+    "x-ep-state-name": "RELEASED",
+    "title": "ACARSEngine",
+    "x-ep-application-domain-id": "bhfgc4atcwf",
+    "version": "1.0.2",
+    "x-ep-state-id": "2",
+    "x-ep-application-domain-name": "Aviation: airOps"
+  },
+  "version": "2.5.0",
+  "fileName": "Aviation - ACARSEngine-1.0.2.json"
+}

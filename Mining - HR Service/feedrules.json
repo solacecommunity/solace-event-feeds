@@ -1,0 +1,470 @@
+[
+  {
+    "topic": "acmeResources/ops/employee/breakStarted/v1/{region}/{mine}/{employeeId}",
+    "eventName": "Break Started",
+    "eventVersion": "0.1.2",
+    "messageName": "Break_Started",
+    "topicParameters": {
+      "mine": {
+        "schema": {
+          "type": "string",
+          "enum": [
+            "Newman",
+            "Tom Price",
+            "Paraburdoo"
+          ]
+        },
+        "rule": {
+          "name": "mine",
+          "type": "string",
+          "group": "StringRules",
+          "rule": "enum",
+          "enum": [
+            "Newman",
+            "Tom Price",
+            "Paraburdoo"
+          ]
+        }
+      },
+      "employeeId": {
+        "schema": {
+          "type": "string"
+        },
+        "rule": {
+          "name": "employeeId",
+          "type": "string",
+          "group": "StringRules",
+          "rule": "alpha",
+          "casing": "mixed",
+          "minLength": 10,
+          "maxLength": 10
+        }
+      },
+      "region": {
+        "schema": {
+          "type": "string",
+          "enum": [
+            "americas",
+            "apac",
+            "emea"
+          ]
+        },
+        "rule": {
+          "name": "region",
+          "type": "string",
+          "group": "StringRules",
+          "rule": "enum",
+          "enum": [
+            "americas",
+            "apac",
+            "emea"
+          ]
+        }
+      }
+    },
+    "payload": {
+      "break": {
+        "maximum": 90,
+        "type": "number",
+        "minimum": 0,
+        "rule": {
+          "name": "break",
+          "type": "number",
+          "group": "StringRules",
+          "rule": "enum",
+          "enum": [
+            "15",
+            "30",
+            "45",
+            "60"
+          ]
+        }
+      },
+      "employee": {
+        "maximum": 100000,
+        "type": "number",
+        "minimum": 1,
+        "rule": {
+          "name": "employee",
+          "type": "number",
+          "group": "StringRules",
+          "rule": "numeric",
+          "minLength": 5,
+          "maxLength": 5,
+          "leadingZeros": false
+        }
+      }
+    },
+    "publishSettings": {
+      "count": 20,
+      "interval": "1",
+      "delay": 0
+    },
+    "mappings": [
+      {
+        "type": "Topic Parameter",
+        "source": {
+          "type": "Payload Parameter",
+          "name": "employee",
+          "fieldName": "employee",
+          "fieldType": "number"
+        },
+        "target": {
+          "type": "Topic Parameter",
+          "name": "employeeId",
+          "fieldName": "employeeId",
+          "fieldType": "string"
+        }
+      }
+    ]
+  },
+  {
+    "topic": "acmeResources/ops/employee/shiftEnded/v1/{region}/{mine}/{employeeId}",
+    "eventName": "Shift Ended",
+    "eventVersion": "0.1.2",
+    "messageName": "Shift_Ended",
+    "topicParameters": {
+      "mine": {
+        "schema": {
+          "type": "string",
+          "enum": [
+            "Newman",
+            "Tom Price",
+            "Paraburdoo"
+          ]
+        },
+        "rule": {
+          "name": "mine",
+          "type": "string",
+          "group": "StringRules",
+          "rule": "enum",
+          "enum": [
+            "Newman",
+            "Tom Price",
+            "Paraburdoo"
+          ]
+        }
+      },
+      "employeeId": {
+        "schema": {
+          "type": "string"
+        },
+        "rule": {
+          "name": "employeeId",
+          "type": "string",
+          "group": "StringRules",
+          "rule": "alpha",
+          "casing": "mixed",
+          "minLength": 10,
+          "maxLength": 10
+        }
+      },
+      "region": {
+        "schema": {
+          "type": "string",
+          "enum": [
+            "americas",
+            "apac",
+            "emea"
+          ]
+        },
+        "rule": {
+          "name": "region",
+          "type": "string",
+          "group": "StringRules",
+          "rule": "enum",
+          "enum": [
+            "americas",
+            "apac",
+            "emea"
+          ]
+        }
+      }
+    },
+    "payload": {
+      "shift": {
+        "maximum": 90,
+        "type": "number",
+        "minimum": 0,
+        "rule": {
+          "name": "shift",
+          "type": "number",
+          "group": "NumberRules",
+          "rule": "int",
+          "minimum": 1,
+          "maximum": 5
+        }
+      },
+      "employee": {
+        "maximum": 100000,
+        "type": "number",
+        "minimum": 1,
+        "rule": {
+          "name": "employee",
+          "type": "number",
+          "group": "StringRules",
+          "rule": "numeric",
+          "minLength": 5,
+          "maxLength": 5,
+          "leadingZeros": false
+        }
+      }
+    },
+    "publishSettings": {
+      "count": 20,
+      "interval": "1",
+      "delay": "0"
+    },
+    "mappings": [
+      {
+        "type": "Topic Parameter",
+        "source": {
+          "type": "Payload Parameter",
+          "name": "employee",
+          "fieldName": "employee",
+          "fieldType": "number"
+        },
+        "target": {
+          "type": "Topic Parameter",
+          "name": "employeeId",
+          "fieldName": "employeeId",
+          "fieldType": "string"
+        }
+      }
+    ]
+  },
+  {
+    "topic": "acmeResources/ops/employee/breakEnded/v1/{region}/{mine}/{employeeId}",
+    "eventName": "Break Ended",
+    "eventVersion": "0.1.2",
+    "messageName": "Break_Ended",
+    "topicParameters": {
+      "mine": {
+        "schema": {
+          "type": "string",
+          "enum": [
+            "Newman",
+            "Tom Price",
+            "Paraburdoo"
+          ]
+        },
+        "rule": {
+          "name": "mine",
+          "type": "string",
+          "group": "StringRules",
+          "rule": "enum",
+          "enum": [
+            "Newman",
+            "Tom Price",
+            "Paraburdoo"
+          ]
+        }
+      },
+      "employeeId": {
+        "schema": {
+          "type": "string"
+        },
+        "rule": {
+          "name": "employeeId",
+          "type": "string",
+          "group": "StringRules",
+          "rule": "alpha",
+          "casing": "mixed",
+          "minLength": 10,
+          "maxLength": 10
+        }
+      },
+      "region": {
+        "schema": {
+          "type": "string",
+          "enum": [
+            "americas",
+            "apac",
+            "emea"
+          ]
+        },
+        "rule": {
+          "name": "region",
+          "type": "string",
+          "group": "StringRules",
+          "rule": "enum",
+          "enum": [
+            "americas",
+            "apac",
+            "emea"
+          ]
+        }
+      }
+    },
+    "payload": {
+      "break": {
+        "maximum": 90,
+        "type": "number",
+        "minimum": 0,
+        "rule": {
+          "name": "break",
+          "type": "number",
+          "group": "StringRules",
+          "rule": "enum",
+          "enum": [
+            "15",
+            "30",
+            "45",
+            "60"
+          ]
+        }
+      },
+      "employee": {
+        "maximum": 100000,
+        "type": "number",
+        "minimum": 1,
+        "rule": {
+          "name": "employee",
+          "type": "number",
+          "group": "StringRules",
+          "rule": "numeric",
+          "minLength": 5,
+          "maxLength": 5,
+          "leadingZeros": false
+        }
+      }
+    },
+    "publishSettings": {
+      "count": 20,
+      "interval": "1",
+      "delay": "0"
+    },
+    "mappings": [
+      {
+        "type": "Topic Parameter",
+        "source": {
+          "type": "Payload Parameter",
+          "name": "employee",
+          "fieldName": "employee",
+          "fieldType": "number"
+        },
+        "target": {
+          "type": "Topic Parameter",
+          "name": "employeeId",
+          "fieldName": "employeeId",
+          "fieldType": "string"
+        }
+      }
+    ]
+  },
+  {
+    "topic": "acmeResources/ops/employee/shiftStarted/v1/{region}/{mine}/{employeeId}",
+    "eventName": "Shift Started",
+    "eventVersion": "0.1.2",
+    "messageName": "Shift_Started",
+    "topicParameters": {
+      "mine": {
+        "schema": {
+          "type": "string",
+          "enum": [
+            "Newman",
+            "Tom Price",
+            "Paraburdoo"
+          ]
+        },
+        "rule": {
+          "name": "mine",
+          "type": "string",
+          "group": "StringRules",
+          "rule": "enum",
+          "enum": [
+            "Newman",
+            "Tom Price",
+            "Paraburdoo"
+          ]
+        }
+      },
+      "employeeId": {
+        "schema": {
+          "type": "string"
+        },
+        "rule": {
+          "name": "employeeId",
+          "type": "string",
+          "group": "StringRules",
+          "rule": "alpha",
+          "casing": "mixed",
+          "minLength": 10,
+          "maxLength": 10
+        }
+      },
+      "region": {
+        "schema": {
+          "type": "string",
+          "enum": [
+            "americas",
+            "apac",
+            "emea"
+          ]
+        },
+        "rule": {
+          "name": "region",
+          "type": "string",
+          "group": "StringRules",
+          "rule": "enum",
+          "enum": [
+            "americas",
+            "apac",
+            "emea"
+          ]
+        }
+      }
+    },
+    "payload": {
+      "shift": {
+        "maximum": 90,
+        "type": "number",
+        "minimum": 0,
+        "rule": {
+          "name": "shift",
+          "type": "number",
+          "group": "NumberRules",
+          "rule": "int",
+          "minimum": 1,
+          "maximum": 5
+        }
+      },
+      "employee": {
+        "maximum": 100000,
+        "type": "number",
+        "minimum": 1,
+        "rule": {
+          "name": "employee",
+          "type": "number",
+          "group": "StringRules",
+          "rule": "numeric",
+          "minLength": 5,
+          "maxLength": 5,
+          "leadingZeros": false
+        }
+      }
+    },
+    "publishSettings": {
+      "count": 20,
+      "interval": "1",
+      "delay": 0
+    },
+    "mappings": [
+      {
+        "type": "Topic Parameter",
+        "source": {
+          "type": "Payload Parameter",
+          "name": "employee",
+          "fieldName": "employee",
+          "fieldType": "number"
+        },
+        "target": {
+          "type": "Topic Parameter",
+          "name": "employeeId",
+          "fieldName": "employeeId",
+          "fieldType": "string"
+        }
+      }
+    ]
+  }
+]

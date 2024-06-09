@@ -1,0 +1,34 @@
+[
+  {
+    "topic": "myair/loadControl/v1/{flightNo}",
+    "eventName": "loadSheet",
+    "eventVersion": "1.0.0",
+    "messageName": "loadSheet",
+    "topicParameters": {
+      "flightNo": {
+        "schema": {
+          "type": "string"
+        }
+      }
+    },
+    "payload": {
+      "flightNo": {
+        "type": "string"
+      },
+      "containerNumber": {
+        "type": "number"
+      },
+      "containerPosition": {
+        "type": "number"
+      }
+    },
+    "consumers": [
+      {
+        "name": "ACARSEngine.loadSheet",
+        "topicSubscriptions": [
+          "myair/loadControl/v1/*"
+        ]
+      }
+    ]
+  }
+]
