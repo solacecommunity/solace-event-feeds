@@ -7,7 +7,8 @@
     "contributor": "Solace Community",
     "github": "solacecommunity",
     "domain": "Banking",
-    "tags": "Account Management, Fraud Detection"
+    "tags": "Account Management, Fraud Detection",
+    "lastUpdated": "2024-05-23T12:33:18.293Z"
   },
   {
     "name": "Point_of_Sale_System",
@@ -29,6 +30,7 @@
     "contributor": "Giri Venkatesan",
     "github": "gvensan",
     "domain": "Transportation",
-    "tags": "Bus, Control"
+    "tags": "Bus, Control",
+    "lastUpdated": "2024-05-23T12:33:18.293Z"
   }
 ]
