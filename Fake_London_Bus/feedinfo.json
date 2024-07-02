@@ -2,7 +2,7 @@
   "name": "Fake_London_Bus",
   "description": "Fake London Bus",
   "img": "assets/img/defaultfeed.png",
-  "type": "stmfeed",
+  "type": "asyncapi-feed",
   "contributor": "Giri Venkatesan",
   "github": "gvensan",
   "domain": "Transportation",

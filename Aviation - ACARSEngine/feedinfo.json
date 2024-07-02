@@ -7,6 +7,6 @@
   "contributor": "Solace Community",
   "domain": "Aviation",
   "tags": "Landing Status, Aircraft Status",
-  "type": "stmfeed",
+  "type": "asyncapi-feed",
   "lastUpdated": "2024-06-09T16:31:36.870Z"
 }

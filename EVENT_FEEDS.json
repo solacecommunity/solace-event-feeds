@@ -3,7 +3,7 @@
     "name": "Account_Management",
     "description": "Application for supporting account maintenance activities. Includes support for fraud detection.",
     "img": "assets/img/defaultfeed.png",
-    "type": "stmfeed",
+    "type": "asyncapi-feed",
     "contributor": "Solace Community",
     "github": "solacecommunity",
     "domain": "Banking",
@@ -14,7 +14,7 @@
     "name": "Point_of_Sale_System",
     "description": "Commercial off-the-shelf (COTS) Point of Sale (PoS) system that serves checkout areas for all stores within acme-retail.   Receives Product events from supply chain management domain to allow for price updates and restrictions on purchases.  Emits Retail Order events that allow for analytics and supply chain management decisions.",
     "img": "https://cdn-icons-png.flaticon.com/512/641/641813.png",
-    "type": "stmfeed",
+    "type": "asyncapi-feed",
     "contributor": "Giri Venkatesan",
     "github": "gvensan",
     "domain": "Retail",
@@ -26,7 +26,7 @@
     "name": "Fake_London_Bus",
     "description": "Fake London Bus",
     "img": "assets/img/defaultfeed.png",
-    "type": "stmfeed",
+    "type": "asyncapi-feed",
     "contributor": "Giri Venkatesan",
     "github": "gvensan",
     "domain": "Transportation",
@@ -42,7 +42,7 @@
     "contributor": "Solace Community",
     "domain": "Aviation",
     "tags": "Landing Status, Aircraft Status",
-    "type": "stmfeed",
+    "type": "asyncapi-feed",
     "lastUpdated": "2024-06-09T16:31:36.870Z"
   },
   {
@@ -53,7 +53,7 @@
     "contributor": "Solace Community",
     "domain": "Aviation",
     "tags": "Gate Change",
-    "type": "stmfeed",
+    "type": "asyncapi-feed",
     "lastUpdated": "2024-06-09T16:31:36.870Z"
   },
   {
@@ -65,7 +65,7 @@
     "contributor": "Giri Venkatesan",
     "domain": "CRM",
     "tags": "Customer Management",
-    "type": "stmfeed",
+    "type": "asyncapi-feed",
     "lastUpdated": "2024-06-09T16:31:36.870Z"
   },
   {
@@ -77,7 +77,7 @@
     "contributor": "Solace Community",
     "domain": "Mining",
     "tags": "HR Service, Shift Management, Break Management",
-    "type": "stmfeed",
+    "type": "asyncapi-feed",
     "lastUpdated": "2024-06-09T16:31:36.870Z"
   }
 ]
