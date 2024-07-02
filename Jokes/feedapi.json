@@ -1,0 +1,5 @@
+{
+  "apiUrl": "https://official-joke-api.appspot.com/jokes/random",
+  "apiAuthType": "None",
+  "topic": "solace/feed/jokes"
+}

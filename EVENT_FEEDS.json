@@ -19,7 +19,6 @@
     "github": "gvensan",
     "domain": "Retail",
     "tags": "PoS, Shopping, Retail",
-    "contributed": true,
     "lastUpdated": "2024-05-23T12:33:18.293Z"
   },
   {
@@ -79,5 +78,16 @@
     "tags": "HR Service, Shift Management, Break Management",
     "type": "asyncapi-feed",
     "lastUpdated": "2024-06-09T16:31:36.870Z"
+  },
+  {
+    "type": "restapi-feed",
+    "name": "Jokes",
+    "description": "Random Jokes",
+    "img": "assets/img/defaultfeed.png",
+    "contributor": "Anonymous",
+    "github": "",
+    "domain": "Jokes",
+    "tags": "Jokes",
+    "lastUpdated": "2024-07-02T12:48:54.776Z"
   }
 ]

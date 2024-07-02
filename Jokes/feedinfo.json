@@ -1,0 +1,12 @@
+{
+  "type": "restapi-feed",
+  "name": "Jokes",
+  "description": "Random Jokes",
+  "img": "assets/img/defaultfeed.png",
+  "contributor": "Anonymous",
+  "github": "",
+  "domain": "Jokes",
+  "tags": "Jokes",
+  "lastUpdated": "2024-07-02T12:48:54.776Z",
+  "contributed": true
+}
