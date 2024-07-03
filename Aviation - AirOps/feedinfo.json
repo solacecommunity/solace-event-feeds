@@ -6,6 +6,6 @@
   "contributor": "Solace Community",
   "domain": "Aviation",
   "tags": "Gate Change",
-  "type": "asyncapi-feed",
+  "type": "asyncapi_feed",
   "lastUpdated": "2024-06-09T16:31:36.870Z"
 }

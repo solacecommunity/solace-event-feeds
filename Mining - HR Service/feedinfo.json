@@ -7,6 +7,6 @@
   "contributor": "SolaceLabs",
   "domain": "Mining",
   "tags": "HR Service, Shift Management, Break Management",
-  "type": "asyncapi-feed",
+  "type": "asyncapi_feed",
   "lastUpdated": "2024-06-09T16:31:36.870Z"
 }

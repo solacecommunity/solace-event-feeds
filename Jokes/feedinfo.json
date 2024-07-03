@@ -1,5 +1,5 @@
 {
-  "type": "restapi-feed",
+  "type": "restapi_feed",
   "name": "Jokes",
   "description": "Random Jokes",
   "img": "assets/img/defaultfeed.png",
