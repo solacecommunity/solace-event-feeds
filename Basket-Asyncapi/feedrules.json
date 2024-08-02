@@ -1,0 +1,317 @@
+[
+  {
+    "topic": "acmeretail/onlineservices/basket/updated/v1/{regionId}/{basketId}",
+    "eventName": "Basket Updated",
+    "eventVersion": "0.1.0",
+    "messageName": "Basket_Updated",
+    "topicParameters": {
+      "basketId": {
+        "schema": {
+          "type": "string"
+        },
+        "rule": {
+          "name": "basketId",
+          "type": "string",
+          "group": "StringRules",
+          "rule": "alpha",
+          "casing": "mixed",
+          "minLength": 10,
+          "maxLength": 10
+        }
+      },
+      "regionId": {
+        "schema": {
+          "type": "string",
+          "enum": [
+            "European Union",
+            "United Kingdom",
+            "ASEAN",
+            "Africa"
+          ]
+        },
+        "rule": {
+          "name": "regionId",
+          "type": "string",
+          "group": "StringRules",
+          "rule": "enum",
+          "enum": [
+            "European Union",
+            "United Kingdom",
+            "ASEAN",
+            "Africa"
+          ]
+        }
+      }
+    },
+    "payload": {
+      "user_id": {
+        "description": "Identifier for the user who owns the shopping basket",
+        "type": "string",
+        "rule": {
+          "description": "Identifier for the user who owns the shopping basket",
+          "type": "string",
+          "name": "user_id",
+          "group": "StringRules",
+          "rule": "alpha",
+          "casing": "mixed",
+          "minLength": 10,
+          "maxLength": 10
+        }
+      },
+      "items": {
+        "type": "array",
+        "subType": "object",
+        "name": "items",
+        "properties": {
+          "quantity": {
+            "description": "Quantity of the item in the basket",
+            "type": "integer",
+            "minimum": 1,
+            "rule": {
+              "description": "Quantity of the item in the basket",
+              "type": "integer",
+              "minimum": 0,
+              "name": "quantity",
+              "group": "NumberRules",
+              "rule": "int",
+              "maximum": 1000
+            }
+          },
+          "item_id": {
+            "description": "Identifier for the item in the basket",
+            "type": "string",
+            "rule": {
+              "description": "Identifier for the item in the basket",
+              "type": "string",
+              "name": "item_id",
+              "group": "StringRules",
+              "rule": "alpha",
+              "casing": "mixed",
+              "minLength": 10,
+              "maxLength": 10
+            }
+          }
+        },
+        "rule": {
+          "name": "items",
+          "type": "object"
+        }
+      }
+    },
+    "publishSettings": {
+      "count": 20,
+      "interval": 1,
+      "delay": 0
+    }
+  },
+  {
+    "topic": "acmeretail/onlineservices/basket/abandoned/v1/{regionId}/{basketId}",
+    "eventName": "Basket Abandoned",
+    "eventVersion": "1.1.0",
+    "messageName": "Basket_Abandoned",
+    "topicParameters": {
+      "basketId": {
+        "schema": {
+          "type": "string"
+        },
+        "rule": {
+          "name": "basketId",
+          "type": "string",
+          "group": "StringRules",
+          "rule": "alpha",
+          "casing": "mixed",
+          "minLength": 10,
+          "maxLength": 10
+        }
+      },
+      "regionId": {
+        "schema": {
+          "type": "string",
+          "enum": [
+            "European Union",
+            "United Kingdom",
+            "ASEAN",
+            "Africa"
+          ]
+        },
+        "rule": {
+          "name": "regionId",
+          "type": "string",
+          "group": "StringRules",
+          "rule": "enum",
+          "enum": [
+            "European Union",
+            "United Kingdom",
+            "ASEAN",
+            "Africa"
+          ]
+        }
+      }
+    },
+    "payload": {
+      "user_id": {
+        "description": "Identifier for the user who owns the shopping basket",
+        "type": "string",
+        "rule": {
+          "description": "Identifier for the user who owns the shopping basket",
+          "type": "string",
+          "name": "user_id",
+          "group": "StringRules",
+          "rule": "alpha",
+          "casing": "mixed",
+          "minLength": 10,
+          "maxLength": 10
+        }
+      },
+      "items": {
+        "type": "array",
+        "subType": "object",
+        "name": "items",
+        "properties": {
+          "quantity": {
+            "description": "Quantity of the item in the basket",
+            "type": "integer",
+            "minimum": 1,
+            "rule": {
+              "description": "Quantity of the item in the basket",
+              "type": "integer",
+              "minimum": 0,
+              "name": "quantity",
+              "group": "NumberRules",
+              "rule": "int",
+              "maximum": 1000
+            }
+          },
+          "item_id": {
+            "description": "Identifier for the item in the basket",
+            "type": "string",
+            "rule": {
+              "description": "Identifier for the item in the basket",
+              "type": "string",
+              "name": "item_id",
+              "group": "StringRules",
+              "rule": "alpha",
+              "casing": "mixed",
+              "minLength": 10,
+              "maxLength": 10
+            }
+          }
+        },
+        "rule": {
+          "name": "items",
+          "type": "object"
+        }
+      }
+    },
+    "publishSettings": {
+      "count": 20,
+      "interval": 1,
+      "delay": 0
+    }
+  },
+  {
+    "topic": "acmeretail/onlineservices/basket/created/v1/{regionId}/{basketId}",
+    "eventName": "Basket  Created",
+    "eventVersion": "1.1.1",
+    "messageName": "Basket_Created",
+    "topicParameters": {
+      "basketId": {
+        "schema": {
+          "type": "string"
+        },
+        "rule": {
+          "name": "basketId",
+          "type": "string",
+          "group": "StringRules",
+          "rule": "alpha",
+          "casing": "mixed",
+          "minLength": 10,
+          "maxLength": 10
+        }
+      },
+      "regionId": {
+        "schema": {
+          "type": "string",
+          "enum": [
+            "European Union",
+            "United Kingdom",
+            "ASEAN",
+            "Africa"
+          ]
+        },
+        "rule": {
+          "name": "regionId",
+          "type": "string",
+          "group": "StringRules",
+          "rule": "enum",
+          "enum": [
+            "European Union",
+            "United Kingdom",
+            "ASEAN",
+            "Africa"
+          ]
+        }
+      }
+    },
+    "payload": {
+      "user_id": {
+        "description": "Identifier for the user who owns the shopping basket",
+        "type": "string",
+        "rule": {
+          "description": "Identifier for the user who owns the shopping basket",
+          "type": "string",
+          "name": "user_id",
+          "group": "StringRules",
+          "rule": "alpha",
+          "casing": "mixed",
+          "minLength": 10,
+          "maxLength": 10
+        }
+      },
+      "items": {
+        "type": "array",
+        "subType": "object",
+        "name": "items",
+        "properties": {
+          "quantity": {
+            "description": "Quantity of the item in the basket",
+            "type": "integer",
+            "minimum": 1,
+            "rule": {
+              "description": "Quantity of the item in the basket",
+              "type": "integer",
+              "minimum": 0,
+              "name": "quantity",
+              "group": "NumberRules",
+              "rule": "int",
+              "maximum": 1000
+            }
+          },
+          "item_id": {
+            "description": "Identifier for the item in the basket",
+            "type": "string",
+            "rule": {
+              "description": "Identifier for the item in the basket",
+              "type": "string",
+              "name": "item_id",
+              "group": "StringRules",
+              "rule": "alpha",
+              "casing": "mixed",
+              "minLength": 10,
+              "maxLength": 10
+            }
+          }
+        },
+        "rule": {
+          "name": "items",
+          "type": "object"
+        }
+      }
+    },
+    "publishSettings": {
+      "count": 20,
+      "interval": 1,
+      "delay": 0
+    }
+  }
+]
