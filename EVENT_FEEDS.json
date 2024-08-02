@@ -89,5 +89,16 @@
     "domain": "Jokes",
     "tags": "Jokes",
     "lastUpdated": "2024-07-02T12:48:54.776Z"
+  },
+  {
+    "type": "asyncapi_feed",
+    "name": "basket-asyncapi",
+    "description": "The Basket writer proxies HTTP requests, forwarding them to the Basket topic in solace when a user adds a new item using the REST proxy. \n\n[Source Code within GitHub](https://github.com/confluentinc/examples/tree/7.4.0-post/microservices-orders)",
+    "img": "assets/img/defaultfeed.png",
+    "contributor": "Tamimi",
+    "github": "TamimiGithub",
+    "domain": "E-commerce",
+    "tags": "ecommerce, shopping",
+    "lastUpdated": "2024-08-01T16:08:35.226Z"
   }
 ]
