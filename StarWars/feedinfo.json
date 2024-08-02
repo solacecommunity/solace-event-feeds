@@ -1,0 +1,10 @@
+{
+  "type": "restapi_feed",
+  "name": "StarWars",
+  "description": "Star Wars API for the People End Point",
+  "img": "https://lumiere-a.akamaihd.net/v1/images/image_5c51d8fe.jpeg",
+  "contributor": "Tamimi",
+  "github": "TamimiGithub",
+  "domain": "StarWars",
+  "tags": "starwars, fiction, movie, TV"
+}
