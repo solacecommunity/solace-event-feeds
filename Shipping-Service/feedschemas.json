@@ -1,0 +1,106 @@
+[
+  {
+    "topic": "acmeretail/onlineservices/order/packaged/v1/{regionId}/{orderId}",
+    "eventName": "Order Packaged",
+    "eventVersion": "1.0.2",
+    "messageName": "Order_Packaged",
+    "topicParameters": {
+      "regionId": {
+        "schema": {
+          "type": "string"
+        }
+      },
+      "orderId": {
+        "schema": {
+          "type": "string"
+        }
+      }
+    },
+    "payload": {
+      "order_date": {
+        "format": "date-time",
+        "description": "Date and time when the order was placed",
+        "type": "string"
+      },
+      "total_price": {
+        "description": "Total price of the order",
+        "type": "number",
+        "minimum": 0
+      },
+      "order_id": {
+        "description": "Unique identifier for the order",
+        "type": "string"
+      },
+      "items": {
+        "description": "Items included in the order",
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "quantity": {
+              "description": "Quantity of the item ordered",
+              "type": "integer",
+              "minimum": 1
+            },
+            "item_id": {
+              "description": "Unique identifier for the item",
+              "type": "string"
+            },
+            "price": {
+              "description": "Price per unit of the item",
+              "type": "number",
+              "minimum": 0
+            }
+          },
+          "required": [
+            "item_id",
+            "quantity",
+            "price"
+          ]
+        }
+      },
+      "customer": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "description": "Name of the customer",
+            "type": "string"
+          },
+          "id": {
+            "description": "Unique identifier for the customer",
+            "type": "string"
+          },
+          "email": {
+            "format": "email",
+            "description": "Email address of the customer",
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "name",
+          "email"
+        ]
+      },
+      "status": {
+        "description": "Status of the order",
+        "type": "string",
+        "enum": [
+          "pending",
+          "processing",
+          "shipped",
+          "delivered",
+          "cancelled"
+        ]
+      }
+    },
+    "consumers": [
+      {
+        "name": "SHIPPING.ORDER.PACKAGED",
+        "topicSubscriptions": [
+          "acmeretail/onlineservices/order/packaged/v1/*/*"
+        ]
+      }
+    ]
+  }
+]
