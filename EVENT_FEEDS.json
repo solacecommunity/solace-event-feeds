@@ -112,5 +112,17 @@
     "tags": "Shipping",
     "lastUpdated": "2024-08-05T17:39:01.875Z",
     "contributed": true
+  },
+  {
+    "type": "restapi_feed",
+    "name": "Quotes from Alpha Vantage",
+    "description": "A lightweight stock quote API, this service returns the latest price and volume information for a ticker of your choice.",
+    "img": "https://miro.medium.com/v2/resize:fit:1400/1*UDPtLHUTpusvLU623P8Q4w.jpeg",
+    "contributor": "Giri Venkatesan",
+    "github": "gvensan",
+    "domain": "Stocks",
+    "tags": "Real-time, Delayd, Quotes",
+    "lastUpdated": "2024-08-06T12:05:19.585Z",
+    "contributed": true
   }
 ]

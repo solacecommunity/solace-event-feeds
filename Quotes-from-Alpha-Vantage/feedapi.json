@@ -1,0 +1,9 @@
+{
+  "apiUrl": "https://www.alphavantage.co/query?function=GLOBAL_QUOTE&symbol=$TICKER&apikey=$API_KEY",
+  "apiAuthType": "API Key",
+  "apiKey": "WVANWNX4M71Y3UYS",
+  "apiKeyUrl": "https://www.alphavantage.co/support/#api-key",
+  "apiKeyUrlEmbedded": true,
+  "apiKeyUrlParam": "API_KEY",
+  "topic": "solace/feed/alphavantage/quotes"
+}
