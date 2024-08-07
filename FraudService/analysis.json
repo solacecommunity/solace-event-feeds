@@ -1,0 +1,637 @@
+{
+  "messages": {
+    "Order_Updated": {
+      "send": [
+        {
+          "topicName": "acmeretail/onlineservices/order/updated/v1/{regionId}/{orderId}",
+          "topicParameters": {
+            "regionId": {
+              "schema": {
+                "type": "string",
+                "x-parser-schema-id": "regionId"
+              },
+              "x-ep-parameter-name": "regionId"
+            },
+            "orderId": {
+              "schema": {
+                "type": "string",
+                "x-parser-schema-id": "orderId"
+              },
+              "x-ep-parameter-name": "orderId"
+            }
+          },
+          "message": {
+            "x-ep-event-id": "zigwt0381vt",
+            "x-ep-event-version-displayname": "",
+            "description": "As the order moves through the fulfillment process, each service add to this topic to show current state.",
+            "x-ep-application-domain-id": "dulzuo1e3s9",
+            "schemaFormat": "application/vnd.aai.asyncapi+json;version=2.0.0",
+            "x-ep-event-state-name": "RELEASED",
+            "x-ep-shared": "true",
+            "x-ep-application-domain-name": "OnlineServices",
+            "x-ep-event-version-id": "997211i6x9t",
+            "payload": {
+              "x-ep-schema-version": "0.1.0",
+              "x-ep-schema-version-id": "b72e03okqsy",
+              "$schema": "http://json-schema.org/draft-07/schema#",
+              "x-ep-schema-state-name": "RELEASED",
+              "x-ep-schema-name": "Order_JSON",
+              "title": "Order",
+              "type": "object",
+              "x-ep-application-domain-id": "dulzuo1e3s9",
+              "required": [
+                "order_id",
+                "customer",
+                "items",
+                "total_price",
+                "order_date",
+                "status"
+              ],
+              "x-ep-schema-version-displayname": "",
+              "x-ep-shared": "true",
+              "x-ep-application-domain-name": "OnlineServices",
+              "x-ep-schema-state-id": "2",
+              "x-ep-schema-id": "i53ymgdzbp8",
+              "definitions": {
+                "order_item": {
+                  "type": "object",
+                  "properties": {
+                    "quantity": {
+                      "description": "Quantity of the item ordered",
+                      "type": "integer",
+                      "minimum": 1,
+                      "x-parser-schema-id": "<anonymous-schema-6>"
+                    },
+                    "item_id": {
+                      "description": "Unique identifier for the item",
+                      "type": "string",
+                      "x-parser-schema-id": "<anonymous-schema-7>"
+                    },
+                    "price": {
+                      "description": "Price per unit of the item",
+                      "type": "number",
+                      "minimum": 0,
+                      "x-parser-schema-id": "<anonymous-schema-8>"
+                    }
+                  },
+                  "required": [
+                    "item_id",
+                    "quantity",
+                    "price"
+                  ],
+                  "x-parser-schema-id": "<anonymous-schema-5>"
+                },
+                "customer": {
+                  "type": "object",
+                  "properties": {
+                    "name": {
+                      "description": "Name of the customer",
+                      "type": "string",
+                      "x-parser-schema-id": "<anonymous-schema-10>"
+                    },
+                    "id": {
+                      "description": "Unique identifier for the customer",
+                      "type": "string",
+                      "x-parser-schema-id": "<anonymous-schema-11>"
+                    },
+                    "email": {
+                      "format": "email",
+                      "description": "Email address of the customer",
+                      "type": "string",
+                      "x-parser-schema-id": "<anonymous-schema-12>"
+                    }
+                  },
+                  "required": [
+                    "id",
+                    "name",
+                    "email"
+                  ],
+                  "x-parser-schema-id": "<anonymous-schema-9>"
+                }
+              },
+              "properties": {
+                "order_date": {
+                  "format": "date-time",
+                  "description": "Date and time when the order was placed",
+                  "type": "string",
+                  "x-parser-schema-id": "<anonymous-schema-1>"
+                },
+                "total_price": {
+                  "description": "Total price of the order",
+                  "type": "number",
+                  "minimum": 0,
+                  "x-parser-schema-id": "<anonymous-schema-2>"
+                },
+                "order_id": {
+                  "description": "Unique identifier for the order",
+                  "type": "string",
+                  "x-parser-schema-id": "<anonymous-schema-3>"
+                },
+                "items": {
+                  "description": "Items included in the order",
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "quantity": {
+                        "description": "Quantity of the item ordered",
+                        "type": "integer",
+                        "minimum": 1,
+                        "x-parser-schema-id": "<anonymous-schema-6>"
+                      },
+                      "item_id": {
+                        "description": "Unique identifier for the item",
+                        "type": "string",
+                        "x-parser-schema-id": "<anonymous-schema-7>"
+                      },
+                      "price": {
+                        "description": "Price per unit of the item",
+                        "type": "number",
+                        "minimum": 0,
+                        "x-parser-schema-id": "<anonymous-schema-8>"
+                      }
+                    },
+                    "required": [
+                      "item_id",
+                      "quantity",
+                      "price"
+                    ],
+                    "x-parser-schema-id": "<anonymous-schema-5>"
+                  },
+                  "x-parser-schema-id": "<anonymous-schema-4>"
+                },
+                "customer": {
+                  "type": "object",
+                  "properties": {
+                    "name": {
+                      "description": "Name of the customer",
+                      "type": "string",
+                      "x-parser-schema-id": "<anonymous-schema-10>"
+                    },
+                    "id": {
+                      "description": "Unique identifier for the customer",
+                      "type": "string",
+                      "x-parser-schema-id": "<anonymous-schema-11>"
+                    },
+                    "email": {
+                      "format": "email",
+                      "description": "Email address of the customer",
+                      "type": "string",
+                      "x-parser-schema-id": "<anonymous-schema-12>"
+                    }
+                  },
+                  "required": [
+                    "id",
+                    "name",
+                    "email"
+                  ],
+                  "x-parser-schema-id": "<anonymous-schema-9>"
+                },
+                "status": {
+                  "description": "Status of the order",
+                  "type": "string",
+                  "enum": [
+                    "pending",
+                    "processing",
+                    "shipped",
+                    "delivered",
+                    "cancelled"
+                  ],
+                  "x-parser-schema-id": "<anonymous-schema-13>"
+                }
+              },
+              "x-parser-schema-id": "Order_JSON"
+            },
+            "x-ep-event-version": "1.0.2",
+            "x-ep-event-name": "Order Updated",
+            "contentType": "application/json",
+            "x-ep-event-state-id": "2",
+            "x-ep-custom-attr-confidential": "true",
+            "x-parser-message-name": "Order_Updated"
+          },
+          "servers": {},
+          "bindings": {}
+        }
+      ],
+      "receive": [],
+      "hasPayload": true,
+      "schema": "Order_JSON"
+    },
+    "Order_Created": {
+      "send": [],
+      "receive": [
+        {
+          "topicName": "acmeretail/onlineservices/order/created/v2/{regionId}/{orderId}",
+          "topicParameters": {
+            "regionId": {
+              "schema": {
+                "type": "string",
+                "x-parser-schema-id": "regionId"
+              },
+              "x-ep-parameter-name": "regionId"
+            },
+            "orderId": {
+              "schema": {
+                "type": "string",
+                "x-parser-schema-id": "orderId"
+              },
+              "x-ep-parameter-name": "orderId"
+            }
+          },
+          "message": {
+            "x-ep-event-id": "af921cb8vgr",
+            "x-ep-event-version-displayname": "",
+            "description": "Created after an order is validated as correct and passes logic checks",
+            "x-ep-application-domain-id": "dulzuo1e3s9",
+            "schemaFormat": "application/vnd.aai.asyncapi+json;version=2.0.0",
+            "x-ep-event-state-name": "RELEASED",
+            "x-ep-shared": "true",
+            "x-ep-application-domain-name": "OnlineServices",
+            "x-ep-event-version-id": "ylqo0cx8iuk",
+            "payload": {
+              "x-ep-schema-version": "0.1.0",
+              "x-ep-schema-version-id": "b72e03okqsy",
+              "$schema": "http://json-schema.org/draft-07/schema#",
+              "x-ep-schema-state-name": "RELEASED",
+              "x-ep-schema-name": "Order_JSON",
+              "title": "Order",
+              "type": "object",
+              "x-ep-application-domain-id": "dulzuo1e3s9",
+              "required": [
+                "order_id",
+                "customer",
+                "items",
+                "total_price",
+                "order_date",
+                "status"
+              ],
+              "x-ep-schema-version-displayname": "",
+              "x-ep-shared": "true",
+              "x-ep-application-domain-name": "OnlineServices",
+              "x-ep-schema-state-id": "2",
+              "x-ep-schema-id": "i53ymgdzbp8",
+              "definitions": {
+                "order_item": {
+                  "type": "object",
+                  "properties": {
+                    "quantity": {
+                      "description": "Quantity of the item ordered",
+                      "type": "integer",
+                      "minimum": 1,
+                      "x-parser-schema-id": "<anonymous-schema-6>"
+                    },
+                    "item_id": {
+                      "description": "Unique identifier for the item",
+                      "type": "string",
+                      "x-parser-schema-id": "<anonymous-schema-7>"
+                    },
+                    "price": {
+                      "description": "Price per unit of the item",
+                      "type": "number",
+                      "minimum": 0,
+                      "x-parser-schema-id": "<anonymous-schema-8>"
+                    }
+                  },
+                  "required": [
+                    "item_id",
+                    "quantity",
+                    "price"
+                  ],
+                  "x-parser-schema-id": "<anonymous-schema-5>"
+                },
+                "customer": {
+                  "type": "object",
+                  "properties": {
+                    "name": {
+                      "description": "Name of the customer",
+                      "type": "string",
+                      "x-parser-schema-id": "<anonymous-schema-10>"
+                    },
+                    "id": {
+                      "description": "Unique identifier for the customer",
+                      "type": "string",
+                      "x-parser-schema-id": "<anonymous-schema-11>"
+                    },
+                    "email": {
+                      "format": "email",
+                      "description": "Email address of the customer",
+                      "type": "string",
+                      "x-parser-schema-id": "<anonymous-schema-12>"
+                    }
+                  },
+                  "required": [
+                    "id",
+                    "name",
+                    "email"
+                  ],
+                  "x-parser-schema-id": "<anonymous-schema-9>"
+                }
+              },
+              "properties": {
+                "order_date": {
+                  "format": "date-time",
+                  "description": "Date and time when the order was placed",
+                  "type": "string",
+                  "x-parser-schema-id": "<anonymous-schema-1>"
+                },
+                "total_price": {
+                  "description": "Total price of the order",
+                  "type": "number",
+                  "minimum": 0,
+                  "x-parser-schema-id": "<anonymous-schema-2>"
+                },
+                "order_id": {
+                  "description": "Unique identifier for the order",
+                  "type": "string",
+                  "x-parser-schema-id": "<anonymous-schema-3>"
+                },
+                "items": {
+                  "description": "Items included in the order",
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "quantity": {
+                        "description": "Quantity of the item ordered",
+                        "type": "integer",
+                        "minimum": 1,
+                        "x-parser-schema-id": "<anonymous-schema-6>"
+                      },
+                      "item_id": {
+                        "description": "Unique identifier for the item",
+                        "type": "string",
+                        "x-parser-schema-id": "<anonymous-schema-7>"
+                      },
+                      "price": {
+                        "description": "Price per unit of the item",
+                        "type": "number",
+                        "minimum": 0,
+                        "x-parser-schema-id": "<anonymous-schema-8>"
+                      }
+                    },
+                    "required": [
+                      "item_id",
+                      "quantity",
+                      "price"
+                    ],
+                    "x-parser-schema-id": "<anonymous-schema-5>"
+                  },
+                  "x-parser-schema-id": "<anonymous-schema-4>"
+                },
+                "customer": {
+                  "type": "object",
+                  "properties": {
+                    "name": {
+                      "description": "Name of the customer",
+                      "type": "string",
+                      "x-parser-schema-id": "<anonymous-schema-10>"
+                    },
+                    "id": {
+                      "description": "Unique identifier for the customer",
+                      "type": "string",
+                      "x-parser-schema-id": "<anonymous-schema-11>"
+                    },
+                    "email": {
+                      "format": "email",
+                      "description": "Email address of the customer",
+                      "type": "string",
+                      "x-parser-schema-id": "<anonymous-schema-12>"
+                    }
+                  },
+                  "required": [
+                    "id",
+                    "name",
+                    "email"
+                  ],
+                  "x-parser-schema-id": "<anonymous-schema-9>"
+                },
+                "status": {
+                  "description": "Status of the order",
+                  "type": "string",
+                  "enum": [
+                    "pending",
+                    "processing",
+                    "shipped",
+                    "delivered",
+                    "cancelled"
+                  ],
+                  "x-parser-schema-id": "<anonymous-schema-13>"
+                }
+              },
+              "x-parser-schema-id": "Order_JSON"
+            },
+            "x-ep-event-version": "2.0.2",
+            "x-ep-event-name": "Order Created",
+            "contentType": "application/json",
+            "x-ep-event-state-id": "2",
+            "x-ep-custom-attr-confidential": "true",
+            "x-parser-message-name": "Order_Created"
+          },
+          "servers": {},
+          "bindings": {},
+          "consumers": {
+            "FRAUD.ORDERCREATED": {
+              "name": "FRAUD.ORDERCREATED",
+              "topicSubscriptions": [
+                "acmeretail/onlineservices/order/created/v2/*/*"
+              ]
+            }
+          }
+        }
+      ],
+      "hasPayload": true,
+      "schema": "Order_JSON"
+    }
+  },
+  "schemas": {
+    "Order_JSON": {
+      "x-ep-schema-version": "0.1.0",
+      "x-ep-schema-version-id": "b72e03okqsy",
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "x-ep-schema-state-name": "RELEASED",
+      "x-ep-schema-name": "Order_JSON",
+      "title": "Order",
+      "type": "object",
+      "x-ep-application-domain-id": "dulzuo1e3s9",
+      "required": [
+        "order_id",
+        "customer",
+        "items",
+        "total_price",
+        "order_date",
+        "status"
+      ],
+      "x-ep-schema-version-displayname": "",
+      "x-ep-shared": "true",
+      "x-ep-application-domain-name": "OnlineServices",
+      "x-ep-schema-state-id": "2",
+      "x-ep-schema-id": "i53ymgdzbp8",
+      "definitions": {
+        "order_item": {
+          "type": "object",
+          "properties": {
+            "quantity": {
+              "description": "Quantity of the item ordered",
+              "type": "integer",
+              "minimum": 1,
+              "x-parser-schema-id": "<anonymous-schema-6>"
+            },
+            "item_id": {
+              "description": "Unique identifier for the item",
+              "type": "string",
+              "x-parser-schema-id": "<anonymous-schema-7>"
+            },
+            "price": {
+              "description": "Price per unit of the item",
+              "type": "number",
+              "minimum": 0,
+              "x-parser-schema-id": "<anonymous-schema-8>"
+            }
+          },
+          "required": [
+            "item_id",
+            "quantity",
+            "price"
+          ],
+          "x-parser-schema-id": "<anonymous-schema-5>"
+        },
+        "customer": {
+          "type": "object",
+          "properties": {
+            "name": {
+              "description": "Name of the customer",
+              "type": "string",
+              "x-parser-schema-id": "<anonymous-schema-10>"
+            },
+            "id": {
+              "description": "Unique identifier for the customer",
+              "type": "string",
+              "x-parser-schema-id": "<anonymous-schema-11>"
+            },
+            "email": {
+              "format": "email",
+              "description": "Email address of the customer",
+              "type": "string",
+              "x-parser-schema-id": "<anonymous-schema-12>"
+            }
+          },
+          "required": [
+            "id",
+            "name",
+            "email"
+          ],
+          "x-parser-schema-id": "<anonymous-schema-9>"
+        }
+      },
+      "properties": {
+        "order_date": {
+          "format": "date-time",
+          "description": "Date and time when the order was placed",
+          "type": "string",
+          "x-parser-schema-id": "<anonymous-schema-1>"
+        },
+        "total_price": {
+          "description": "Total price of the order",
+          "type": "number",
+          "minimum": 0,
+          "x-parser-schema-id": "<anonymous-schema-2>"
+        },
+        "order_id": {
+          "description": "Unique identifier for the order",
+          "type": "string",
+          "x-parser-schema-id": "<anonymous-schema-3>"
+        },
+        "items": {
+          "description": "Items included in the order",
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "quantity": {
+                "description": "Quantity of the item ordered",
+                "type": "integer",
+                "minimum": 1,
+                "x-parser-schema-id": "<anonymous-schema-6>"
+              },
+              "item_id": {
+                "description": "Unique identifier for the item",
+                "type": "string",
+                "x-parser-schema-id": "<anonymous-schema-7>"
+              },
+              "price": {
+                "description": "Price per unit of the item",
+                "type": "number",
+                "minimum": 0,
+                "x-parser-schema-id": "<anonymous-schema-8>"
+              }
+            },
+            "required": [
+              "item_id",
+              "quantity",
+              "price"
+            ],
+            "x-parser-schema-id": "<anonymous-schema-5>"
+          },
+          "x-parser-schema-id": "<anonymous-schema-4>"
+        },
+        "customer": {
+          "type": "object",
+          "properties": {
+            "name": {
+              "description": "Name of the customer",
+              "type": "string",
+              "x-parser-schema-id": "<anonymous-schema-10>"
+            },
+            "id": {
+              "description": "Unique identifier for the customer",
+              "type": "string",
+              "x-parser-schema-id": "<anonymous-schema-11>"
+            },
+            "email": {
+              "format": "email",
+              "description": "Email address of the customer",
+              "type": "string",
+              "x-parser-schema-id": "<anonymous-schema-12>"
+            }
+          },
+          "required": [
+            "id",
+            "name",
+            "email"
+          ],
+          "x-parser-schema-id": "<anonymous-schema-9>"
+        },
+        "status": {
+          "description": "Status of the order",
+          "type": "string",
+          "enum": [
+            "pending",
+            "processing",
+            "shipped",
+            "delivered",
+            "cancelled"
+          ],
+          "x-parser-schema-id": "<anonymous-schema-13>"
+        }
+      },
+      "x-parser-schema-id": "Order_JSON"
+    }
+  },
+  "servers": {},
+  "info": {
+    "x-ep-application-version": "1.1.0",
+    "x-ep-application-version-id": "7q8io6bsejb",
+    "x-ep-application-id": "pacale8395q",
+    "description": "This service searches for potentially fraudulent transactions by calculating the total value of orders for a customer within a time period, then checks to see if this is over a configured limit. \n\n[GitHub](https://github.com/confluentinc/solace-streams-examples/blob/5.0.0-post/src/main/java/io/confluent/examples/streams/microservices/FraudService.java)",
+    "x-ep-state-name": "RELEASED",
+    "x-ep-custom-attr-acl-principal": "CN=FraudService,OU=Fulfillment,DC=AcmeRetail,DC=COM",
+    "title": "Fraud Service",
+    "x-ep-application-domain-id": "ky6leyc8b2e",
+    "x-ep-custom-attr-application-type": "java",
+    "version": "1.1.0",
+    "x-ep-state-id": "2",
+    "x-ep-application-domain-name": "Fulfillment"
+  },
+  "version": "2.5.0",
+  "fileName": "FraudService-1.1.0.json"
+}
