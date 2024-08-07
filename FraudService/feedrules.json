@@ -1,0 +1,222 @@
+[
+  {
+    "topic": "acmeretail/onlineservices/order/updated/v1/{regionId}/{orderId}",
+    "eventName": "Order Updated",
+    "eventVersion": "1.0.2",
+    "messageName": "Order_Updated",
+    "topicParameters": {
+      "regionId": {
+        "schema": {
+          "type": "string"
+        },
+        "rule": {
+          "name": "regionId",
+          "type": "string",
+          "group": "StringRules",
+          "rule": "alpha",
+          "casing": "mixed",
+          "minLength": 10,
+          "maxLength": 10
+        }
+      },
+      "orderId": {
+        "schema": {
+          "type": "string"
+        },
+        "rule": {
+          "name": "orderId",
+          "type": "string",
+          "group": "StringRules",
+          "rule": "alpha",
+          "casing": "mixed",
+          "minLength": 10,
+          "maxLength": 10
+        }
+      }
+    },
+    "payload": {
+      "order_date": {
+        "format": "date-time",
+        "description": "Date and time when the order was placed",
+        "type": "string",
+        "rule": {
+          "format": "date-time",
+          "description": "Date and time when the order was placed",
+          "type": "string",
+          "name": "order_date",
+          "group": "StringRules",
+          "rule": "alpha",
+          "casing": "mixed",
+          "minLength": 10,
+          "maxLength": 10
+        }
+      },
+      "total_price": {
+        "description": "Total price of the order",
+        "type": "number",
+        "minimum": 0,
+        "rule": {
+          "description": "Total price of the order",
+          "type": "number",
+          "minimum": 0,
+          "name": "total_price",
+          "group": "NumberRules",
+          "rule": "float",
+          "maximum": 1000,
+          "fractionDigits": 2
+        }
+      },
+      "order_id": {
+        "description": "Unique identifier for the order",
+        "type": "string",
+        "rule": {
+          "description": "Unique identifier for the order",
+          "type": "string",
+          "name": "order_id",
+          "group": "StringRules",
+          "rule": "alpha",
+          "casing": "mixed",
+          "minLength": 10,
+          "maxLength": 10
+        }
+      },
+      "items": {
+        "description": "Items included in the order",
+        "type": "array",
+        "subType": "object",
+        "name": "items",
+        "properties": {
+          "quantity": {
+            "description": "Quantity of the item ordered",
+            "type": "integer",
+            "minimum": 1,
+            "rule": {
+              "description": "Quantity of the item ordered",
+              "type": "integer",
+              "minimum": 0,
+              "name": "quantity",
+              "group": "NumberRules",
+              "rule": "int",
+              "maximum": 1000
+            }
+          },
+          "item_id": {
+            "description": "Unique identifier for the item",
+            "type": "string",
+            "rule": {
+              "description": "Unique identifier for the item",
+              "type": "string",
+              "name": "item_id",
+              "group": "StringRules",
+              "rule": "alpha",
+              "casing": "mixed",
+              "minLength": 10,
+              "maxLength": 10
+            }
+          },
+          "price": {
+            "description": "Price per unit of the item",
+            "type": "number",
+            "minimum": 0,
+            "rule": {
+              "description": "Price per unit of the item",
+              "type": "number",
+              "minimum": 0,
+              "name": "price",
+              "group": "NumberRules",
+              "rule": "float",
+              "maximum": 1000,
+              "fractionDigits": 2
+            }
+          }
+        },
+        "rule": {
+          "name": "items",
+          "type": "object"
+        }
+      },
+      "customer": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "description": "Name of the customer",
+            "type": "string",
+            "rule": {
+              "description": "Name of the customer",
+              "type": "string",
+              "name": "name",
+              "group": "StringRules",
+              "rule": "alpha",
+              "casing": "mixed",
+              "minLength": 10,
+              "maxLength": 10
+            }
+          },
+          "id": {
+            "description": "Unique identifier for the customer",
+            "type": "string",
+            "rule": {
+              "description": "Unique identifier for the customer",
+              "type": "string",
+              "name": "id",
+              "group": "StringRules",
+              "rule": "alpha",
+              "casing": "mixed",
+              "minLength": 10,
+              "maxLength": 10
+            }
+          },
+          "email": {
+            "format": "email",
+            "description": "Email address of the customer",
+            "type": "string",
+            "rule": {
+              "format": "email",
+              "description": "Email address of the customer",
+              "type": "string",
+              "name": "email",
+              "group": "StringRules",
+              "rule": "alpha",
+              "casing": "mixed",
+              "minLength": 10,
+              "maxLength": 10
+            }
+          }
+        },
+        "required": [
+          "id",
+          "name",
+          "email"
+        ],
+        "rule": {
+          "name": "customer",
+          "type": "object"
+        }
+      },
+      "status": {
+        "description": "Status of the order",
+        "type": "string",
+        "enum": [
+          "pending",
+          "processing",
+          "shipped",
+          "delivered",
+          "cancelled"
+        ],
+        "rule": {
+          "description": "Status of the order",
+          "type": "string",
+          "enum": "pending,processing,shipped,delivered,cancelled",
+          "name": "status",
+          "group": "StringRules",
+          "rule": "enum"
+        }
+      }
+    },
+    "publishSettings": {
+      "count": 20,
+      "interval": 1,
+      "delay": 0
+    }
+  }
+]
