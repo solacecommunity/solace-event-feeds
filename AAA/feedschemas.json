@@ -1,0 +1,71 @@
+[
+  {
+    "topic": "acmebank/solace/fraud/detected/v1/{accountID}/{transactionID}/{amount}",
+    "eventName": "Fraud Detected",
+    "eventVersion": "0.1.1",
+    "messageName": "Fraud_Detected_0_1_1",
+    "topicParameters": {
+      "accountID": {
+        "schema": {
+          "type": "string"
+        }
+      },
+      "amount": {
+        "schema": {
+          "type": "string"
+        }
+      },
+      "transactionID": {
+        "schema": {
+          "type": "string"
+        }
+      }
+    },
+    "payload": {
+      "transactionType": {
+        "description": "The transaction type.",
+        "type": "string"
+      },
+      "amount": {
+        "description": "The transaction amount.",
+        "type": "number"
+      },
+      "incidentTimestamp": {
+        "description": "When the alleged incident took place.",
+        "type": "string"
+      },
+      "transactionNum": {
+        "description": "The unique identifier of the transaction.",
+        "type": "integer"
+      },
+      "accountNum": {
+        "description": "The unique identifer of an account.",
+        "type": "integer"
+      },
+      "detectionNum": {
+        "description": "The unique identifier of the possible fraud detected.",
+        "type": "integer"
+      },
+      "currency": {
+        "description": "The currency of the transaction.",
+        "type": "string"
+      },
+      "incidentDescription": {
+        "description": "The description of the possible fraud.",
+        "type": "string"
+      },
+      "timestamp": {
+        "description": "The time stamp of the event.",
+        "type": "string"
+      }
+    },
+    "consumers": [
+      {
+        "name": "acmebank.fraud.detected",
+        "topicSubscriptions": [
+          "acmebank/solace/fraud/detected/v1/*/*/*"
+        ]
+      }
+    ]
+  }
+]
