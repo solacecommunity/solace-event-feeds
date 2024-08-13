@@ -1,0 +1,12 @@
+{
+  "type": "asyncapi_feed",
+  "name": "Acme-Bank-Core-Banking-v0",
+  "description": "Application feed for supporting core banking transaction events in a banking domain",
+  "img": "assets/img/defaultfeed.png",
+  "contributor": "Hari-Rangarajan@Solace,Hari-Rangarajan-Solace",
+  "github": "HariRangarajan-Solace",
+  "domain": "Acme-Banking",
+  "tags": "banking, transactions generator, solace broker",
+  "lastUpdated": "2024-08-13T13:53:05.705Z",
+  "contributed": true
+}
