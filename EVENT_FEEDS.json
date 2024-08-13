@@ -22,17 +22,6 @@
     "lastUpdated": "2024-05-23T12:33:18.293Z"
   },
   {
-    "name": "Fake_London_Bus",
-    "description": "Fake London Bus",
-    "img": "assets/img/defaultfeed.png",
-    "type": "asyncapi_feed",
-    "contributor": "Giri Venkatesan",
-    "github": "gvensan",
-    "domain": "Transportation",
-    "tags": "Bus, Control",
-    "lastUpdated": "2024-05-23T12:33:18.293Z"
-  },
-  {
     "name": "Aviation - ACARSEngine",
     "img": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQtdB0qq-iGC7RpPzwdvrlgEq8haqrY-_QQd-Wg61qrdA&s",
     "title": "ACARSEngine",
