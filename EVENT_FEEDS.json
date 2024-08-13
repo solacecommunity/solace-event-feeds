@@ -70,17 +70,6 @@
   },
   {
     "type": "restapi_feed",
-    "name": "Jokes",
-    "description": "Random Jokes",
-    "img": "assets/img/defaultfeed.png",
-    "contributor": "Anonymous",
-    "github": "",
-    "domain": "Jokes",
-    "tags": "Jokes",
-    "lastUpdated": "2024-07-02T12:48:54.776Z"
-  },
-  {
-    "type": "restapi_feed",
     "name": "StarWars",
     "description": "Star Wars API for the People End Point",
     "img": "https://lumiere-a.akamaihd.net/v1/images/image_5c51d8fe.jpeg",
