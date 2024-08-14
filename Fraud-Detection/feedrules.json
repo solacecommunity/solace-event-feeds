@@ -53,27 +53,26 @@
         "description": "The transaction type.",
         "type": "string",
         "rule": {
-          "description": "The transaction type.",
-          "type": "string",
           "name": "transactionType",
+          "type": "string",
           "group": "StringRules",
-          "rule": "alpha",
-          "casing": "mixed",
-          "minLength": 10,
-          "maxLength": 10
+          "rule": "enum",
+          "enum": [
+            "CREDIT",
+            "DEBIT"
+          ]
         }
       },
       "amount": {
         "description": "The transaction amount.",
         "type": "number",
         "rule": {
-          "description": "The transaction amount.",
-          "type": "number",
           "name": "amount",
+          "type": "number",
           "group": "NumberRules",
           "rule": "float",
-          "minimum": 0,
-          "maximum": 1000,
+          "minimum": 1000,
+          "maximum": 10000,
           "fractionDigits": 2
         }
       },
@@ -92,67 +91,59 @@
         "description": "The unique identifier of the transaction.",
         "type": "integer",
         "rule": {
-          "description": "The unique identifier of the transaction.",
-          "type": "integer",
           "name": "transactionNum",
-          "group": "NumberRules",
-          "rule": "int",
-          "minimum": 0,
-          "maximum": 1000
+          "type": "integer",
+          "group": "StringRules",
+          "rule": "numeric",
+          "minLength": 5,
+          "maxLength": 5,
+          "leadingZeros": true
         }
       },
       "accountNum": {
         "description": "The unique identifer of an account.",
         "type": "integer",
         "rule": {
-          "description": "The unique identifer of an account.",
-          "type": "integer",
           "name": "accountNum",
-          "group": "NumberRules",
-          "rule": "int",
-          "minimum": 0,
-          "maximum": 1000
+          "type": "integer",
+          "group": "FinanceRules",
+          "rule": "accountNumber"
         }
       },
       "detectionNum": {
         "description": "The unique identifier of the possible fraud detected.",
         "type": "integer",
         "rule": {
-          "description": "The unique identifier of the possible fraud detected.",
-          "type": "integer",
           "name": "detectionNum",
-          "group": "NumberRules",
-          "rule": "int",
-          "minimum": 0,
-          "maximum": 1000
+          "type": "integer",
+          "group": "StringRules",
+          "rule": "numeric",
+          "minLength": 3,
+          "maxLength": 3,
+          "leadingZeros": true
         }
       },
       "currency": {
         "description": "The currency of the transaction.",
         "type": "string",
         "rule": {
-          "description": "The currency of the transaction.",
-          "type": "string",
           "name": "currency",
+          "type": "string",
           "group": "StringRules",
-          "rule": "alpha",
-          "casing": "mixed",
-          "minLength": 10,
-          "maxLength": 10
+          "rule": "enum",
+          "enum": [
+            "USD"
+          ]
         }
       },
       "incidentDescription": {
         "description": "The description of the possible fraud.",
         "type": "string",
         "rule": {
-          "description": "The description of the possible fraud.",
-          "type": "string",
           "name": "incidentDescription",
-          "group": "StringRules",
-          "rule": "alpha",
-          "casing": "mixed",
-          "minLength": 10,
-          "maxLength": 10
+          "type": "string",
+          "group": "FinanceRules",
+          "rule": "transactionDescription"
         }
       },
       "timestamp": {
