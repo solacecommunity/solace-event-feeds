@@ -1,0 +1,107 @@
+[
+  {
+    "topic": "acmebank/solace/account/suspended/v1/{accountID}",
+    "eventName": "Account Suspended",
+    "eventVersion": "0.1.1",
+    "messageName": "Account_Suspended",
+    "topicParameters": {
+      "accountID": {
+        "schema": {
+          "type": "string"
+        }
+      }
+    },
+    "payload": {
+      "accountAction": {
+        "description": "An action to be taken on an account.",
+        "type": "string"
+      },
+      "accountNum": {
+        "description": "The unique identifer of an account.",
+        "type": "integer"
+      },
+      "timestamp": {
+        "description": "The time stamp of the event.",
+        "type": "string"
+      }
+    },
+    "consumers": [
+      {
+        "name": "coreBanking.accounts",
+        "topicSubscriptions": [
+          "acmebank/solace/account/*/v1/*"
+        ]
+      }
+    ]
+  },
+  {
+    "topic": "acmebank/solace/account/opened/v1/{accountID}",
+    "eventName": "Account Opened",
+    "eventVersion": "0.1.1",
+    "messageName": "Account_Opened",
+    "topicParameters": {
+      "accountID": {
+        "schema": {
+          "type": "string"
+        }
+      }
+    },
+    "payload": {
+      "accountAction": {
+        "description": "An action to be taken on an account.",
+        "type": "string"
+      },
+      "accountNum": {
+        "description": "The unique identifer of an account.",
+        "type": "integer"
+      },
+      "timestamp": {
+        "description": "The time stamp of the event.",
+        "type": "string"
+      }
+    },
+    "consumers": [
+      {
+        "name": "coreBanking.accounts",
+        "topicSubscriptions": [
+          "acmebank/solace/account/*/v1/*"
+        ]
+      }
+    ]
+  },
+  {
+    "topic": "acmebank/solace/account/resumed/v1/{accountID}",
+    "eventName": "Account Resumed",
+    "eventVersion": "0.1.1",
+    "messageName": "Account_Resumed",
+    "topicParameters": {
+      "accountID": {
+        "schema": {
+          "type": "string"
+        }
+      }
+    },
+    "payload": {
+      "accountAction": {
+        "description": "An action to be taken on an account.",
+        "type": "string"
+      },
+      "accountNum": {
+        "description": "The unique identifer of an account.",
+        "type": "integer"
+      },
+      "timestamp": {
+        "description": "The time stamp of the event.",
+        "type": "string"
+      }
+    },
+    "consumers": [
+      {
+        "name": "coreBanking.accounts",
+        "topicSubscriptions": [
+          "acmebank/solace/account/*/v1/*"
+        ]
+      }
+    ]
+  }
+]
