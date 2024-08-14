@@ -1,6 +1,6 @@
 {
   "type": "asyncapi_feed",
-  "name": "Shipping Service",
+  "name": "Shipping-Service",
   "description": "A streaming service leveraging the solace Streams API. This service reacts to orders as they are created, updating the Shipping topic as notifications are received from the delivery company",
   "img": "https://cdn-icons-png.flaticon.com/512/411/411763.png",
   "contributor": "Tamimi",
