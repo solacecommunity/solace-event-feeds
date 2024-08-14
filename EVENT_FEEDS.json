@@ -23,17 +23,6 @@
     "lastUpdated": "2024-06-09T16:31:36.870Z"
   },
   {
-    "name": "Aviation - AirOps",
-    "img": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQtdB0qq-iGC7RpPzwdvrlgEq8haqrY-_QQd-Wg61qrdA&s",
-    "description": "AirOps systems is resposible for complex management of flight scheduling and trip oversight, crew compliance and communication, customer data, charter and maintenance .",
-    "github": "solacecommunity",
-    "contributor": "Solace Community",
-    "domain": "Aviation",
-    "tags": "Gate Change",
-    "type": "asyncapi_feed",
-    "lastUpdated": "2024-06-09T16:31:36.870Z"
-  },
-  {
     "name": "CRMSystem",
     "img": "https://assets.bizclikmedia.net/1800/3eb7889182dd47f70f445f0e16f3591a:e4b74fc371efa3cf6f5942192c548b8c/gettyimages-1259086543-0-jpg.webp",
     "title": "CRMSystem",
