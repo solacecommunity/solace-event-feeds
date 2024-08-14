@@ -102,5 +102,17 @@
     "tags": "banking, transactions generator, solace broker, intelligent topics",
     "lastUpdated": "2024-08-13T19:05:27.212Z",
     "contributed": true
+  },
+  {
+    "type": "asyncapi_feed",
+    "name": "Fraud-Detection",
+    "description": "Application which scans and detects fradulent transactions in a banking domain",
+    "img": "assets/img/defaultfeed.png",
+    "contributor": "Hari-Rangarajan-Solace",
+    "github": "Hari-Rangarajan-Solace",
+    "domain": "Acme-Banking",
+    "tags": "fraud detection, banking, solace broker, intelligent topics",
+    "lastUpdated": "2024-08-14T07:30:29.801Z",
+    "contributed": true
   }
 ]
