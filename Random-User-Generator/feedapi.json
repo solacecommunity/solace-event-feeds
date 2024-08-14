@@ -1,0 +1,5 @@
+{
+  "apiUrl": "https://randomuser.me/api",
+  "apiAuthType": "None",
+  "topic": "solace/feed/randomuser"
+}
