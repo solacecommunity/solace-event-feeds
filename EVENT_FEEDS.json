@@ -71,18 +71,6 @@
   },
   {
     "type": "asyncapi_feed",
-    "name": "Core-Banking",
-    "description": "Feed generator for banking transaction events",
-    "img": "assets/img/defaultfeed.png",
-    "contributor": "Hari-Rangarajan-Solace",
-    "github": "HariRangarajan-Solace",
-    "domain": "Acme-Banking",
-    "tags": "banking, transactions generator, solace broker, intelligent topics",
-    "lastUpdated": "2024-08-14T08:38:59.373Z",
-    "contributed": true
-  },
-  {
-    "type": "asyncapi_feed",
     "name": "Shipping-Service",
     "description": "A streaming service leveraging the solace Streams API. This service reacts to orders as they are created, updating the Shipping topic as notifications are received from the delivery company",
     "img": "https://cdn-icons-png.flaticon.com/512/411/411763.png",
@@ -103,6 +91,18 @@
     "domain": "Random Data",
     "tags": "random user, fake data, fake profile",
     "lastUpdated": "2024-08-14T09:51:47.345Z",
+    "contributed": true
+  },
+  {
+    "type": "asyncapi_feed",
+    "name": "Core-Banking",
+    "description": "The Core Banking Application processes all transactions across bank accounts and automatically publishes the relevant event for each transaction. It ensures seamless, real-time management of all financial activities, enhancing operational efficiency and system integration",
+    "img": "assets/img/defaultfeed.png",
+    "contributor": "Hari-Rangarajan-Solace",
+    "github": "HariRangarajan-Solace",
+    "domain": "Acme-Banking",
+    "tags": "banking, transactions generator, solace broker, intelligent topics",
+    "lastUpdated": "2024-08-14T12:14:30.086Z",
     "contributed": true
   }
 ]
