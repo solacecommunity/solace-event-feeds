@@ -13,10 +13,13 @@
           "name": "regionId",
           "type": "string",
           "group": "StringRules",
-          "rule": "alpha",
-          "casing": "mixed",
-          "minLength": 10,
-          "maxLength": 10
+          "rule": "enum",
+          "enum": [
+            "AMER",
+            "UKI",
+            "APAC",
+            "MENA"
+          ]
         }
       },
       "orderId": {
@@ -40,15 +43,11 @@
         "description": "Date and time when the order was placed",
         "type": "string",
         "rule": {
-          "format": "date-time",
-          "description": "Date and time when the order was placed",
-          "type": "string",
           "name": "order_date",
-          "group": "StringRules",
-          "rule": "alpha",
-          "casing": "mixed",
-          "minLength": 10,
-          "maxLength": 10
+          "type": "string",
+          "group": "DateRules",
+          "rule": "recent",
+          "days": 10
         }
       },
       "total_price": {
@@ -56,28 +55,23 @@
         "type": "number",
         "minimum": 0,
         "rule": {
-          "description": "Total price of the order",
-          "type": "number",
-          "minimum": 0,
           "name": "total_price",
-          "group": "NumberRules",
-          "rule": "float",
-          "maximum": 1000,
-          "fractionDigits": 2
+          "type": "number",
+          "group": "FinanceRules",
+          "rule": "amount"
         }
       },
       "order_id": {
         "description": "Unique identifier for the order",
         "type": "string",
         "rule": {
-          "description": "Unique identifier for the order",
-          "type": "string",
           "name": "order_id",
+          "type": "string",
           "group": "StringRules",
-          "rule": "alpha",
-          "casing": "mixed",
-          "minLength": 10,
-          "maxLength": 10
+          "rule": "numeric",
+          "minLength": 5,
+          "maxLength": 5,
+          "leadingZeros": true
         }
       },
       "items": {
@@ -91,27 +85,25 @@
             "type": "integer",
             "minimum": 1,
             "rule": {
-              "description": "Quantity of the item ordered",
-              "type": "integer",
-              "minimum": 0,
               "name": "quantity",
+              "type": "integer",
               "group": "NumberRules",
               "rule": "int",
-              "maximum": 1000
+              "minimum": 1,
+              "maximum": 20
             }
           },
           "item_id": {
             "description": "Unique identifier for the item",
             "type": "string",
             "rule": {
-              "description": "Unique identifier for the item",
-              "type": "string",
               "name": "item_id",
+              "type": "string",
               "group": "StringRules",
-              "rule": "alpha",
-              "casing": "mixed",
-              "minLength": 10,
-              "maxLength": 10
+              "rule": "numeric",
+              "minLength": 3,
+              "maxLength": 3,
+              "leadingZeros": true
             }
           },
           "price": {
@@ -119,14 +111,12 @@
             "type": "number",
             "minimum": 0,
             "rule": {
-              "description": "Price per unit of the item",
-              "type": "number",
-              "minimum": 0,
               "name": "price",
-              "group": "NumberRules",
-              "rule": "float",
-              "maximum": 1000,
-              "fractionDigits": 2
+              "type": "number",
+              "group": "CommerceRules",
+              "rule": "price",
+              "minimum": 1,
+              "maximum": 999
             }
           }
         },
@@ -142,28 +132,23 @@
             "description": "Name of the customer",
             "type": "string",
             "rule": {
-              "description": "Name of the customer",
-              "type": "string",
               "name": "name",
-              "group": "StringRules",
-              "rule": "alpha",
-              "casing": "mixed",
-              "minLength": 10,
-              "maxLength": 10
+              "type": "string",
+              "group": "PersonRules",
+              "rule": "fullName"
             }
           },
           "id": {
             "description": "Unique identifier for the customer",
             "type": "string",
             "rule": {
-              "description": "Unique identifier for the customer",
-              "type": "string",
               "name": "id",
+              "type": "string",
               "group": "StringRules",
-              "rule": "alpha",
-              "casing": "mixed",
-              "minLength": 10,
-              "maxLength": 10
+              "rule": "numeric",
+              "minLength": 5,
+              "maxLength": 5,
+              "leadingZeros": true
             }
           },
           "email": {
@@ -171,15 +156,11 @@
             "description": "Email address of the customer",
             "type": "string",
             "rule": {
-              "format": "email",
-              "description": "Email address of the customer",
-              "type": "string",
               "name": "email",
+              "type": "string",
               "group": "StringRules",
-              "rule": "alpha",
-              "casing": "mixed",
-              "minLength": 10,
-              "maxLength": 10
+              "rule": "fromRegExp",
+              "pattern": "[a-zA-Z]{5,19}@[a-zA-Z0-9]{5,7}.com"
             }
           }
         },
@@ -204,12 +185,17 @@
           "cancelled"
         ],
         "rule": {
-          "description": "Status of the order",
-          "type": "string",
-          "enum": "pending,processing,shipped,delivered,cancelled",
           "name": "status",
+          "type": "string",
           "group": "StringRules",
-          "rule": "enum"
+          "rule": "enum",
+          "enum": [
+            "pending",
+            "processing",
+            "shipped",
+            "delivered",
+            "cancelled"
+          ]
         }
       }
     },
@@ -217,6 +203,23 @@
       "count": 20,
       "interval": 1,
       "delay": 0
-    }
+    },
+    "mappings": [
+      {
+        "type": "Topic Parameter",
+        "source": {
+          "type": "Payload Parameter",
+          "name": "order_id",
+          "fieldName": "order_id",
+          "fieldType": "string"
+        },
+        "target": {
+          "type": "Topic Parameter",
+          "name": "orderId",
+          "fieldName": "orderId",
+          "fieldType": "string"
+        }
+      }
+    ]
   }
 ]
