@@ -49,7 +49,12 @@
   {
     "type": "restapi_feed",
     "name": "StarWars",
-    "description": "Star Wars API for the People End Point",
+    "description": "Star Wars API for the People End Point. 
+    All the Star Wars data you've ever wanted:
+      Planets, Spaceships, Vehicles, People, Films and Species
+      From all SEVEN Star Wars films
+      Now with The Force Awakens data!
+    ",
     "img": "https://lumiere-a.akamaihd.net/v1/images/image_5c51d8fe.jpeg",
     "contributor": "Tamimi",
     "github": "TamimiGithub",
