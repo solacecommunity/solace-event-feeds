@@ -1,0 +1,230 @@
+[
+  {
+    "topic": "acmebank/solace/core/deposit/v1/{currency}/{amount}/{transactionID}",
+    "eventName": "Deposit",
+    "eventVersion": "0.1.2",
+    "messageName": "Deposit",
+    "topicParameters": {
+      "amount": {
+        "schema": {
+          "type": "string"
+        }
+      },
+      "currency": {
+        "schema": {
+          "type": "string"
+        }
+      },
+      "transactionID": {
+        "schema": {
+          "type": "string"
+        }
+      }
+    },
+    "payload": {
+      "transactionType": {
+        "description": "The transaction type.",
+        "type": "string"
+      },
+      "amount": {
+        "description": "The transaction amount.",
+        "type": "number"
+      },
+      "transactionNum": {
+        "description": "The unique identifier of the transaction.",
+        "type": "integer"
+      },
+      "accountNum": {
+        "description": "The unique identifer of an account.",
+        "type": "integer"
+      },
+      "currency": {
+        "description": "The currency of the transaction.",
+        "type": "string"
+      },
+      "timestamp": {
+        "description": "The time stamp of the event.",
+        "type": "string"
+      }
+    },
+    "consumers": [
+      {
+        "name": "acmebank.fraudDetection.deposit",
+        "topicSubscriptions": [
+          "acmebank/solace/core/deposit/v1/*/*/*"
+        ]
+      }
+    ]
+  },
+  {
+    "topic": "acmebank/solace/core/payment/creditCard/paid/v1/{currency}/{amount}/{transactionID}",
+    "eventName": "Credit Card Paid",
+    "eventVersion": "0.1.1",
+    "messageName": "Credit_Card_Paid",
+    "topicParameters": {
+      "amount": {
+        "schema": {
+          "type": "string"
+        }
+      },
+      "currency": {
+        "schema": {
+          "type": "string"
+        }
+      },
+      "transactionID": {
+        "schema": {
+          "type": "string"
+        }
+      }
+    },
+    "payload": {
+      "transactionType": {
+        "description": "The transaction type.",
+        "type": "string"
+      },
+      "amount": {
+        "description": "The transaction amount.",
+        "type": "number"
+      },
+      "transactionNum": {
+        "description": "The unique identifier of the transaction.",
+        "type": "integer"
+      },
+      "accountNum": {
+        "description": "The unique identifer of an account.",
+        "type": "integer"
+      },
+      "currency": {
+        "description": "The currency of the transaction.",
+        "type": "string"
+      },
+      "timestamp": {
+        "description": "The time stamp of the event.",
+        "type": "string"
+      }
+    },
+    "consumers": [
+      {
+        "name": "acmebank.fraudDetection.creditCard.paid",
+        "topicSubscriptions": [
+          "acmebank/solace/core/payment/creditCard/paid/v1/*/*/*"
+        ]
+      }
+    ]
+  },
+  {
+    "topic": "acmebank/solace/core/withdrawal/v1/{currency}/{amount}/{transactionID}",
+    "eventName": "Withdrawal",
+    "eventVersion": "0.1.1",
+    "messageName": "Withdrawal",
+    "topicParameters": {
+      "amount": {
+        "schema": {
+          "type": "string"
+        }
+      },
+      "currency": {
+        "schema": {
+          "type": "string"
+        }
+      },
+      "transactionID": {
+        "schema": {
+          "type": "string"
+        }
+      }
+    },
+    "payload": {
+      "transactionType": {
+        "description": "The transaction type.",
+        "type": "string"
+      },
+      "amount": {
+        "description": "The transaction amount.",
+        "type": "number"
+      },
+      "transactionNum": {
+        "description": "The unique identifier of the transaction.",
+        "type": "integer"
+      },
+      "accountNum": {
+        "description": "The unique identifer of an account.",
+        "type": "integer"
+      },
+      "currency": {
+        "description": "The currency of the transaction.",
+        "type": "string"
+      },
+      "timestamp": {
+        "description": "The time stamp of the event.",
+        "type": "string"
+      }
+    },
+    "consumers": [
+      {
+        "name": "acmebank.fraudDetection.withdrawal",
+        "topicSubscriptions": [
+          "acmebank/solace/core/withdrawal/v1/*/*/*"
+        ]
+      }
+    ]
+  },
+  {
+    "topic": "acmebank/solace/core/transfer/v1/{currency}/{amount}/{transactionID}",
+    "eventName": "Transfer",
+    "eventVersion": "0.1.1",
+    "messageName": "Transfer",
+    "topicParameters": {
+      "amount": {
+        "schema": {
+          "type": "string"
+        }
+      },
+      "currency": {
+        "schema": {
+          "type": "string"
+        }
+      },
+      "transactionID": {
+        "schema": {
+          "type": "string"
+        }
+      }
+    },
+    "payload": {
+      "transactionType": {
+        "description": "The transaction type.",
+        "type": "string"
+      },
+      "amount": {
+        "description": "The transaction amount.",
+        "type": "number"
+      },
+      "transactionNum": {
+        "description": "The unique identifier of the transaction.",
+        "type": "integer"
+      },
+      "accountNum": {
+        "description": "The unique identifer of an account.",
+        "type": "integer"
+      },
+      "currency": {
+        "description": "The currency of the transaction.",
+        "type": "string"
+      },
+      "timestamp": {
+        "description": "The time stamp of the event.",
+        "type": "string"
+      }
+    },
+    "consumers": [
+      {
+        "name": "acmebank.fraudDetection.transfer",
+        "topicSubscriptions": [
+          "acmebank/solace/core/transfer/v1/*/*/*"
+        ]
+      }
+    ]
+  }
+]
