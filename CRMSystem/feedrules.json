@@ -13,10 +13,10 @@
           "name": "custID",
           "type": "string",
           "group": "StringRules",
-          "rule": "alpha",
-          "casing": "mixed",
-          "minLength": 10,
-          "maxLength": 10
+          "rule": "numeric",
+          "minLength": 5,
+          "maxLength": 5,
+          "leadingZeros": true
         }
       },
       "version": {
@@ -25,6 +25,111 @@
         },
         "rule": {
           "name": "version",
+          "type": "string",
+          "group": "StringRules",
+          "rule": "enum",
+          "enum": [
+            "v1",
+            "v2",
+            "v3"
+          ]
+        }
+      }
+    },
+    "payload": {
+      "firstName": {
+        "description": "The person's first name.",
+        "type": "string",
+        "rule": {
+          "name": "firstName",
+          "type": "string",
+          "group": "PersonRules",
+          "rule": "firstName"
+        }
+      },
+      "lastName": {
+        "description": "The person's last name.",
+        "type": "string",
+        "rule": {
+          "name": "lastName",
+          "type": "string",
+          "group": "PersonRules",
+          "rule": "lastName"
+        }
+      },
+      "address": {
+        "description": "This is the person's Address",
+        "type": "string",
+        "rule": {
+          "name": "address",
+          "type": "string",
+          "group": "LocationRules",
+          "rule": "streetAddress"
+        }
+      },
+      "age": {
+        "description": "Age in years which must be equal to or greater than zero.",
+        "type": "integer",
+        "minimum": 0,
+        "rule": {
+          "name": "age",
+          "type": "integer",
+          "group": "NumberRules",
+          "rule": "int",
+          "minimum": 21,
+          "maximum": 56
+        }
+      }
+    },
+    "publishSettings": {
+      "count": 20,
+      "interval": 1,
+      "delay": 0
+    },
+    "mappings": []
+  },
+  {
+    "topic": "acme/retail/crm/customer/birthday/{version}/{custID}/{age}",
+    "eventName": "CustomerBirthdayEvent",
+    "eventVersion": "0.1.0",
+    "messageName": "CustomerBirthdayEvent",
+    "topicParameters": {
+      "custID": {
+        "schema": {
+          "type": "string"
+        },
+        "rule": {
+          "name": "custID",
+          "type": "string",
+          "group": "StringRules",
+          "rule": "numeric",
+          "minLength": 5,
+          "maxLength": 5,
+          "leadingZeros": true
+        }
+      },
+      "version": {
+        "schema": {
+          "type": "string"
+        },
+        "rule": {
+          "name": "version",
+          "type": "string",
+          "group": "StringRules",
+          "rule": "enum",
+          "enum": [
+            "v1",
+            "v2",
+            "v3"
+          ]
+        }
+      },
+      "age": {
+        "schema": {
+          "type": "string"
+        },
+        "rule": {
+          "name": "age",
           "type": "string",
           "group": "StringRules",
           "rule": "alpha",
@@ -41,11 +146,8 @@
         "rule": {
           "name": "firstName",
           "type": "string",
-          "group": "StringRules",
-          "rule": "alphanumeric",
-          "minLength": 10,
-          "maxLength": 100,
-          "casing": "mixed"
+          "group": "PersonRules",
+          "rule": "firstName"
         }
       },
       "lastName": {
@@ -54,9 +156,8 @@
         "rule": {
           "name": "lastName",
           "type": "string",
-          "group": "StringRules",
-          "rule": "words",
-          "count": 5
+          "group": "PersonRules",
+          "rule": "lastName"
         }
       },
       "address": {
@@ -65,11 +166,8 @@
         "rule": {
           "name": "address",
           "type": "string",
-          "group": "StringRules",
-          "rule": "numeric",
-          "minLength": 5,
-          "maxLength": 5,
-          "leadingZeros": false
+          "group": "LocationRules",
+          "rule": "streetAddress"
         }
       },
       "age": {
@@ -81,8 +179,8 @@
           "type": "integer",
           "group": "NumberRules",
           "rule": "int",
-          "minimum": 0,
-          "maximum": 1000
+          "minimum": 21,
+          "maximum": 65
         }
       }
     },
@@ -102,140 +200,12 @@
         },
         "target": {
           "type": "Topic Parameter",
-          "name": "custID",
-          "fieldName": "custID",
-          "fieldType": "string"
-        }
-      },
-      {
-        "type": "Topic Parameter",
-        "source": {
-          "type": "Payload Parameter",
           "name": "age",
           "fieldName": "age",
-          "fieldType": "integer"
-        },
-        "target": {
-          "type": "Topic Parameter",
-          "name": "version",
-          "fieldName": "version",
           "fieldType": "string"
         }
       }
     ]
-  },
-  {
-    "topic": "acme/retail/crm/customer/birthday/{version}/{custID}/{age}",
-    "eventName": "CustomerBirthdayEvent",
-    "eventVersion": "0.1.0",
-    "messageName": "CustomerBirthdayEvent",
-    "topicParameters": {
-      "custID": {
-        "schema": {
-          "type": "string"
-        },
-        "rule": {
-          "name": "custID",
-          "type": "string",
-          "group": "StringRules",
-          "rule": "alpha",
-          "casing": "mixed",
-          "minLength": 10,
-          "maxLength": 10
-        }
-      },
-      "version": {
-        "schema": {
-          "type": "string"
-        },
-        "rule": {
-          "name": "version",
-          "type": "string",
-          "group": "StringRules",
-          "rule": "alpha",
-          "casing": "mixed",
-          "minLength": 10,
-          "maxLength": 10
-        }
-      },
-      "age": {
-        "schema": {
-          "type": "string"
-        },
-        "rule": {
-          "name": "age",
-          "type": "string",
-          "group": "StringRules",
-          "rule": "alpha",
-          "casing": "mixed",
-          "minLength": 10,
-          "maxLength": 10
-        }
-      }
-    },
-    "payload": {
-      "firstName": {
-        "description": "The person's first name.",
-        "type": "string",
-        "rule": {
-          "description": "The person's first name.",
-          "type": "string",
-          "name": "firstName",
-          "group": "StringRules",
-          "rule": "alpha",
-          "casing": "mixed",
-          "minLength": 10,
-          "maxLength": 10
-        }
-      },
-      "lastName": {
-        "description": "The person's last name.",
-        "type": "string",
-        "rule": {
-          "description": "The person's last name.",
-          "type": "string",
-          "name": "lastName",
-          "group": "StringRules",
-          "rule": "alpha",
-          "casing": "mixed",
-          "minLength": 10,
-          "maxLength": 10
-        }
-      },
-      "address": {
-        "description": "This is the person's Address",
-        "type": "string",
-        "rule": {
-          "description": "This is the person's Address",
-          "type": "string",
-          "name": "address",
-          "group": "StringRules",
-          "rule": "alpha",
-          "casing": "mixed",
-          "minLength": 10,
-          "maxLength": 10
-        }
-      },
-      "age": {
-        "description": "Age in years which must be equal to or greater than zero.",
-        "type": "integer",
-        "minimum": 0,
-        "rule": {
-          "description": "Age in years which must be equal to or greater than zero.",
-          "type": "integer",
-          "minimum": 0,
-          "name": "age",
-          "group": "NumberRules",
-          "rule": "int",
-          "maximum": 1000
-        }
-      }
-    },
-    "publishSettings": {
-      "count": 20,
-      "interval": 1,
-      "delay": 0
-    }
   },
   {
     "topic": "acme/retail/crm/customer/lastNameChanged/{version}/{custID}",
@@ -251,10 +221,10 @@
           "name": "custID",
           "type": "string",
           "group": "StringRules",
-          "rule": "alpha",
-          "casing": "mixed",
-          "minLength": 10,
-          "maxLength": 10
+          "rule": "numeric",
+          "minLength": 5,
+          "maxLength": 5,
+          "leadingZeros": true
         }
       },
       "version": {
@@ -265,10 +235,12 @@
           "name": "version",
           "type": "string",
           "group": "StringRules",
-          "rule": "alpha",
-          "casing": "mixed",
-          "minLength": 10,
-          "maxLength": 10
+          "rule": "enum",
+          "enum": [
+            "v1",
+            "v2",
+            "v3"
+          ]
         }
       }
     },
@@ -277,42 +249,30 @@
         "description": "The person's first name.",
         "type": "string",
         "rule": {
-          "description": "The person's first name.",
-          "type": "string",
           "name": "firstName",
-          "group": "StringRules",
-          "rule": "alpha",
-          "casing": "mixed",
-          "minLength": 10,
-          "maxLength": 10
+          "type": "string",
+          "group": "PersonRules",
+          "rule": "firstName"
         }
       },
       "lastName": {
         "description": "The person's last name.",
         "type": "string",
         "rule": {
-          "description": "The person's last name.",
-          "type": "string",
           "name": "lastName",
-          "group": "StringRules",
-          "rule": "alpha",
-          "casing": "mixed",
-          "minLength": 10,
-          "maxLength": 10
+          "type": "string",
+          "group": "PersonRules",
+          "rule": "lastName"
         }
       },
       "address": {
         "description": "This is the person's Address",
         "type": "string",
         "rule": {
-          "description": "This is the person's Address",
-          "type": "string",
           "name": "address",
-          "group": "StringRules",
-          "rule": "alpha",
-          "casing": "mixed",
-          "minLength": 10,
-          "maxLength": 10
+          "type": "string",
+          "group": "LocationRules",
+          "rule": "streetAddress"
         }
       },
       "age": {
@@ -320,13 +280,12 @@
         "type": "integer",
         "minimum": 0,
         "rule": {
-          "description": "Age in years which must be equal to or greater than zero.",
-          "type": "integer",
-          "minimum": 0,
           "name": "age",
+          "type": "integer",
           "group": "NumberRules",
           "rule": "int",
-          "maximum": 1000
+          "minimum": 24,
+          "maximum": 67
         }
       }
     },
