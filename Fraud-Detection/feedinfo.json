@@ -1,6 +1,6 @@
 {
   "type": "asyncapi_feed",
-  "name": "Fraud Detection",
+  "name": "Fraud-Detection",
   "description": "Application which scans and detects fradulent transactions in a banking domain",
   "img": "assets/img/defaultfeed.png",
   "contributor": "Hari-Rangarajan-Solace",
