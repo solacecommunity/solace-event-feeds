@@ -1,6 +1,6 @@
 {
   "type": "restapi_feed",
-  "name": "Random User Generator",
+  "name": "Random-User-Generator",
   "description": "The random user generator provides realistic user data for testing and development purposes. The user's profile encompasses personal information such as email (kim.myre@example.com), login credentials, date of birth, and registration details. Additionally, it includes contact numbers, a unique identifier, and a set of profile pictures. The generator also specifies geographical coordinates and timezone information, offering a comprehensive, realistic user profile for various application scenarios.",
   "img": "https://xsgames.co/randomusers/assets/images/favicon.png",
   "contributor": "Giri Venkatesan",
