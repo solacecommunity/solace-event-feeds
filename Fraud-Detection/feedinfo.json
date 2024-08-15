@@ -1,12 +1,12 @@
 {
   "type": "asyncapi_feed",
   "name": "Fraud-Detection",
-  "description": "Application which scans and detects fradulent transactions in a banking domain",
+  "description": "The Fraud Detection Application enhances banking security by scanning all transactions across accounts to detect and flag potentially fraudulent activities. Utilizing advanced algorithms, the system identifies suspicious patterns in real-time and promptly publishes fraud-detected events with references to the original transactions. This proactive approach helps banks quickly respond to threats, minimizing financial losses and maintaining trust.",
   "img": "assets/img/defaultfeed.png",
   "contributor": "Hari-Rangarajan-Solace",
-  "github": "Hari-Rangarajan-Solace",
+  "github": "HariRangarajan-Solace",
   "domain": "Acme-Banking",
   "tags": "fraud detection, banking, solace broker, intelligent topics",
-  "lastUpdated": "2024-08-14T08:37:36.780Z",
+  "lastUpdated": "2024-08-15T13:06:40.427Z",
   "contributed": true
 }

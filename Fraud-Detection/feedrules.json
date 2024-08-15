@@ -58,8 +58,11 @@
           "group": "StringRules",
           "rule": "enum",
           "enum": [
-            "CREDIT",
-            "DEBIT"
+            "creditCardPaid",
+            "deposit",
+            "loanPaid",
+            "transfer",
+            "withdrawal"
           ]
         }
       },
@@ -132,7 +135,11 @@
           "group": "StringRules",
           "rule": "enum",
           "enum": [
-            "USD"
+            "USD",
+            "EUR",
+            "CAD",
+            "GBP",
+            "JPY"
           ]
         }
       },
