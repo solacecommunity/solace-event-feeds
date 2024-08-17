@@ -104,5 +104,17 @@
     "tags": "banking, transactions generator, solace broker, intelligent topics",
     "lastUpdated": "2024-08-14T12:14:30.086Z",
     "contributed": true
+  },
+  {
+    "type": "asyncapi_feed",
+    "name": "Fulfillment-Application",
+    "description": "Mobile application used by personnel in stores for fulfillment of orders (mobile, website or partner) and for restocking shelves.\n\n\n---> Added Consumer Subscription",
+    "img": "assets/img/defaultfeed.png",
+    "contributor": "",
+    "github": "solacecommunity-bot",
+    "domain": "Retail",
+    "tags": "In-store, Mobile Store",
+    "lastUpdated": "2024-08-17T07:47:59.154Z",
+    "contributed": true
   }
 ]
