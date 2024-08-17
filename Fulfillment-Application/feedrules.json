@@ -1,0 +1,693 @@
+[
+  {
+    "topic": "acmeRetail/eeg/product/{productVerb}/v1/{department}/{upcCode}",
+    "eventName": "Product",
+    "eventVersion": "0.1.2",
+    "messageName": "Product",
+    "topicParameters": {
+      "productVerb": {
+        "schema": {
+          "type": "string",
+          "enum": [
+            "added",
+            "priceUpdated",
+            "removed",
+            "tempUnavail"
+          ]
+        },
+        "rule": {
+          "name": "productVerb",
+          "type": "string",
+          "group": "StringRules",
+          "rule": "enum",
+          "enum": [
+            "added",
+            "priceUpdated",
+            "removed",
+            "tempUnavail"
+          ]
+        }
+      },
+      "department": {
+        "schema": {
+          "type": "string",
+          "enum": [
+            "100",
+            "110",
+            "120",
+            "130",
+            "200",
+            "300"
+          ]
+        },
+        "rule": {
+          "name": "department",
+          "type": "string",
+          "group": "StringRules",
+          "rule": "enum",
+          "enum": [
+            "100",
+            "110",
+            "120",
+            "130",
+            "200",
+            "300"
+          ]
+        }
+      },
+      "upcCode": {
+        "schema": {
+          "type": "string"
+        },
+        "rule": {
+          "name": "upcCode",
+          "type": "string",
+          "group": "StringRules",
+          "rule": "alpha",
+          "casing": "mixed",
+          "minLength": 10,
+          "maxLength": 10
+        }
+      }
+    },
+    "payload": {
+      "quantity": {
+        "type": "integer",
+        "rule": {
+          "name": "quantity",
+          "type": "integer",
+          "group": "StringRules",
+          "rule": "numeric",
+          "minLength": 2,
+          "maxLength": 2,
+          "leadingZeros": false
+        }
+      },
+      "price": {
+        "type": "number",
+        "rule": {
+          "name": "price",
+          "type": "number",
+          "group": "CommerceRules",
+          "rule": "price",
+          "minimum": 10,
+          "maximum": 100
+        }
+      },
+      "description": {
+        "type": "string",
+        "rule": {
+          "name": "description",
+          "type": "string",
+          "group": "CommerceRules",
+          "rule": "productDescription"
+        }
+      },
+      "currency": {
+        "type": "string",
+        "rule": {
+          "name": "currency",
+          "type": "string",
+          "group": "StringRules",
+          "rule": "enum",
+          "enum": [
+            "USD"
+          ]
+        }
+      },
+      "sku": {
+        "type": "string",
+        "rule": {
+          "name": "sku",
+          "type": "string",
+          "group": "StringRules",
+          "rule": "alphanumeric",
+          "minLength": 5,
+          "maxLength": 5,
+          "casing": "mixed"
+        }
+      }
+    },
+    "publishSettings": {
+      "count": 20,
+      "interval": 1,
+      "delay": 0
+    },
+    "mappings": [
+      {
+        "type": "Topic Parameter",
+        "source": {
+          "type": "Payload Parameter",
+          "name": "sku",
+          "fieldName": "sku",
+          "fieldType": "string"
+        },
+        "target": {
+          "type": "Topic Parameter",
+          "name": "upcCode",
+          "fieldName": "upcCode",
+          "fieldType": "string"
+        }
+      }
+    ]
+  },
+  {
+    "topic": "acmeRetail/storeOps/retailOrder/{retailOrderVerb}/v1/{storeLocation}/{customerId}/{orderId}",
+    "eventName": "Retail Order",
+    "eventVersion": "0.1.1",
+    "messageName": "Retail_Order",
+    "topicParameters": {
+      "retailOrderVerb": {
+        "schema": {
+          "type": "string",
+          "enum": [
+            "customerInitiated",
+            "customerCancelled",
+            "customerCompleted",
+            "customerPaid",
+            "onlineInitiated",
+            "onlineCancelled",
+            "onlineCompleted",
+            "onlinePaid",
+            "onlineFulfilled"
+          ]
+        },
+        "rule": {
+          "name": "retailOrderVerb",
+          "type": "string",
+          "group": "StringRules",
+          "rule": "enum",
+          "enum": [
+            "customerInitiated",
+            "customerCancelled",
+            "customerCompleted",
+            "customerPaid",
+            "onlineInitiated",
+            "onlineCancelled",
+            "onlineCompleted",
+            "onlinePaid",
+            "onlineFulfilled"
+          ]
+        }
+      },
+      "storeLocation": {
+        "schema": {
+          "type": "string",
+          "enum": [
+            "3487",
+            "3488",
+            "3489",
+            "3490",
+            "3491",
+            "3492",
+            "3493",
+            "3494",
+            "3495",
+            "3496",
+            "3497",
+            "3498",
+            "3499",
+            "3500",
+            "3501",
+            "3502",
+            "3503",
+            "3504",
+            "3505",
+            "3506",
+            "3507",
+            "3508",
+            "3509",
+            "3555",
+            "Mobile Application",
+            "Test Data Generation",
+            "Inhouse Traffic",
+            "Partner"
+          ]
+        },
+        "rule": {
+          "name": "storeLocation",
+          "type": "string",
+          "group": "StringRules",
+          "rule": "enum",
+          "enum": [
+            "3487",
+            "3488",
+            "3489",
+            "3490",
+            "3491",
+            "3492",
+            "3493",
+            "3494",
+            "3495",
+            "3496",
+            "3497",
+            "3498",
+            "3499",
+            "3500",
+            "3501",
+            "3502",
+            "3503",
+            "3504",
+            "3505",
+            "3506",
+            "3507",
+            "3508",
+            "3509",
+            "3555"
+          ]
+        }
+      },
+      "orderId": {
+        "schema": {
+          "type": "string"
+        },
+        "rule": {
+          "name": "orderId",
+          "type": "string",
+          "group": "StringRules",
+          "rule": "alpha",
+          "casing": "mixed",
+          "minLength": 10,
+          "maxLength": 10
+        }
+      },
+      "customerId": {
+        "schema": {
+          "type": "string"
+        },
+        "rule": {
+          "name": "customerId",
+          "type": "string",
+          "group": "StringRules",
+          "rule": "alpha",
+          "casing": "mixed",
+          "minLength": 10,
+          "maxLength": 10
+        }
+      }
+    },
+    "payload": {
+      "retailOrderNumber": {
+        "type": "integer",
+        "rule": {
+          "name": "retailOrderNumber",
+          "type": "integer",
+          "group": "StringRules",
+          "rule": "numeric",
+          "minLength": 5,
+          "maxLength": 5,
+          "leadingZeros": true
+        }
+      },
+      "associateId": {
+        "type": "integer",
+        "rule": {
+          "name": "associateId",
+          "type": "integer",
+          "group": "NumberRules",
+          "rule": "int",
+          "minimum": 100,
+          "maximum": 999
+        }
+      },
+      "posId": {
+        "type": "integer",
+        "rule": {
+          "name": "posId",
+          "type": "integer",
+          "group": "NumberRules",
+          "rule": "int",
+          "minimum": 100,
+          "maximum": 999
+        }
+      },
+      "billTo": {
+        "type": "object",
+        "properties": {
+          "zip": {
+            "type": "string",
+            "rule": {
+              "name": "zip",
+              "type": "string",
+              "group": "LocationRules",
+              "rule": "zipCode"
+            }
+          },
+          "address": {
+            "type": "string",
+            "rule": {
+              "name": "address",
+              "type": "string",
+              "group": "LocationRules",
+              "rule": "streetAddress"
+            }
+          },
+          "city": {
+            "type": "string",
+            "rule": {
+              "name": "city",
+              "type": "string",
+              "group": "LocationRules",
+              "rule": "city"
+            }
+          },
+          "name": {
+            "type": "string",
+            "rule": {
+              "name": "name",
+              "type": "string",
+              "group": "PersonRules",
+              "rule": "fullName"
+            }
+          },
+          "state": {
+            "type": "string",
+            "rule": {
+              "name": "state",
+              "type": "string",
+              "group": "LocationRules",
+              "rule": "state"
+            }
+          }
+        },
+        "required": [
+          "name",
+          "address",
+          "city",
+          "state",
+          "zip"
+        ],
+        "rule": {
+          "name": "billTo",
+          "type": "object"
+        }
+      },
+      "customerId": {
+        "type": "integer",
+        "rule": {
+          "name": "customerId",
+          "type": "integer",
+          "group": "StringRules",
+          "rule": "numeric",
+          "minLength": 5,
+          "maxLength": 5,
+          "leadingZeros": true
+        }
+      },
+      "storeId": {
+        "type": "integer",
+        "rule": {
+          "type": "integer",
+          "name": "storeId",
+          "group": "NumberRules",
+          "rule": "int",
+          "minimum": 0,
+          "maximum": 1000
+        }
+      },
+      "transactionState": {
+        "type": "integer",
+        "rule": {
+          "name": "transactionState",
+          "type": "integer",
+          "group": "StringRules",
+          "rule": "enum",
+          "enum": [
+            "100",
+            "101",
+            "102",
+            "103",
+            "104",
+            "105",
+            "106",
+            "107",
+            "200",
+            "999"
+          ]
+        }
+      },
+      "cardLastFour": {
+        "type": "integer",
+        "rule": {
+          "type": "integer",
+          "name": "cardLastFour",
+          "group": "NumberRules",
+          "rule": "int",
+          "minimum": 0,
+          "maximum": 1000
+        }
+      },
+      "paymentType": {
+        "type": "integer",
+        "rule": {
+          "type": "integer",
+          "name": "paymentType",
+          "group": "NumberRules",
+          "rule": "int",
+          "minimum": 0,
+          "maximum": 1000
+        }
+      },
+      "shipTo": {
+        "type": "object",
+        "properties": {
+          "zip": {
+            "type": "string",
+            "rule": {
+              "type": "string",
+              "name": "zip",
+              "group": "StringRules",
+              "rule": "alpha",
+              "casing": "mixed",
+              "minLength": 10,
+              "maxLength": 10
+            }
+          },
+          "address": {
+            "type": "string",
+            "rule": {
+              "type": "string",
+              "name": "address",
+              "group": "StringRules",
+              "rule": "alpha",
+              "casing": "mixed",
+              "minLength": 10,
+              "maxLength": 10
+            }
+          },
+          "city": {
+            "type": "string",
+            "rule": {
+              "type": "string",
+              "name": "city",
+              "group": "StringRules",
+              "rule": "alpha",
+              "casing": "mixed",
+              "minLength": 10,
+              "maxLength": 10
+            }
+          },
+          "name": {
+            "type": "string",
+            "rule": {
+              "type": "string",
+              "name": "name",
+              "group": "StringRules",
+              "rule": "alpha",
+              "casing": "mixed",
+              "minLength": 10,
+              "maxLength": 10
+            }
+          },
+          "state": {
+            "type": "string",
+            "rule": {
+              "type": "string",
+              "name": "state",
+              "group": "StringRules",
+              "rule": "alpha",
+              "casing": "mixed",
+              "minLength": 10,
+              "maxLength": 10
+            }
+          },
+          "storeId": {
+            "type": "integer",
+            "rule": {
+              "type": "integer",
+              "name": "storeId",
+              "group": "NumberRules",
+              "rule": "int",
+              "minimum": 0,
+              "maximum": 1000
+            }
+          }
+        },
+        "required": [
+          "name",
+          "address",
+          "city",
+          "state",
+          "zip",
+          "storeId"
+        ],
+        "rule": {
+          "name": "shipTo",
+          "type": "object"
+        }
+      },
+      "products": {
+        "type": "object",
+        "properties": {
+          "quantity": {
+            "type": "number",
+            "rule": {
+              "name": "quantity",
+              "type": "number",
+              "group": "NumberRules",
+              "rule": "int",
+              "minimum": 2,
+              "maximum": 33
+            }
+          },
+          "price": {
+            "type": "number",
+            "rule": {
+              "name": "price",
+              "type": "number",
+              "group": "NumberRules",
+              "rule": "float",
+              "minimum": 10,
+              "maximum": 1000,
+              "fractionDigits": 2
+            }
+          },
+          "description": {
+            "type": "string",
+            "rule": {
+              "name": "description",
+              "type": "string",
+              "group": "CommerceRules",
+              "rule": "productDescription"
+            }
+          },
+          "currency": {
+            "type": "string",
+            "rule": {
+              "name": "currency",
+              "type": "string",
+              "group": "StringRules",
+              "rule": "enum",
+              "enum": [
+                "INR"
+              ]
+            }
+          },
+          "sku": {
+            "type": "integer",
+            "rule": {
+              "name": "sku",
+              "type": "integer",
+              "group": "StringRules",
+              "rule": "numeric",
+              "minLength": 5,
+              "maxLength": 5,
+              "leadingZeros": true
+            }
+          }
+        },
+        "required": [
+          "description",
+          "sku",
+          "quantity"
+        ],
+        "rule": {
+          "name": "products",
+          "type": "object"
+        }
+      }
+    },
+    "publishSettings": {
+      "count": "5",
+      "interval": 1,
+      "delay": 0
+    },
+    "mappings": [
+      {
+        "type": "Topic Parameter",
+        "source": {
+          "type": "Payload Parameter",
+          "name": "retailOrderNumber",
+          "fieldName": "retailOrderNumber",
+          "fieldType": "integer"
+        },
+        "target": {
+          "type": "Topic Parameter",
+          "name": "orderId",
+          "fieldName": "orderId",
+          "fieldType": "string"
+        }
+      },
+      {
+        "type": "Topic Parameter",
+        "source": {
+          "type": "Payload Parameter",
+          "name": "retailOrderNumber",
+          "fieldName": "retailOrderNumber",
+          "fieldType": "integer"
+        },
+        "target": {
+          "type": "Topic Parameter",
+          "name": "orderId",
+          "fieldName": "orderId",
+          "fieldType": "string"
+        }
+      },
+      {
+        "type": "Topic Parameter",
+        "source": {
+          "type": "Payload Parameter",
+          "name": "customerId",
+          "fieldName": "customerId",
+          "fieldType": "integer"
+        },
+        "target": {
+          "type": "Topic Parameter",
+          "name": "customerId",
+          "fieldName": "customerId",
+          "fieldType": "string"
+        }
+      },
+      {
+        "type": "Payload Parameter",
+        "source": {
+          "type": "Payload Parameter",
+          "name": "billTo",
+          "fieldName": "billTo",
+          "fieldType": "object"
+        },
+        "target": {
+          "type": "Payload Parameter",
+          "name": "shipTo",
+          "fieldName": "shipTo",
+          "fieldType": "object"
+        }
+      },
+      {
+        "type": "Payload Parameter",
+        "source": {
+          "type": "Topic Parameter",
+          "name": "storeLocation",
+          "fieldName": "storeLocation",
+          "fieldType": "string"
+        },
+        "target": {
+          "type": "Payload Parameter",
+          "name": "storeId",
+          "fieldName": "storeId",
+          "fieldType": "integer"
+        }
+      }
+    ]
+  }
+]
