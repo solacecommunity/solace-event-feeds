@@ -25,41 +25,35 @@
         "description": "An action to be taken on an account.",
         "type": "string",
         "rule": {
-          "description": "An action to be taken on an account.",
-          "type": "string",
           "name": "accountAction",
+          "type": "string",
           "group": "StringRules",
-          "rule": "alpha",
-          "casing": "mixed",
-          "minLength": 10,
-          "maxLength": 10
+          "rule": "enum",
+          "enum": [
+            "Credit",
+            "Debit"
+          ]
         }
       },
       "accountNum": {
         "description": "The unique identifer of an account.",
         "type": "integer",
         "rule": {
-          "description": "The unique identifer of an account.",
-          "type": "integer",
           "name": "accountNum",
-          "group": "NumberRules",
-          "rule": "int",
-          "minimum": 0,
-          "maximum": 1000
+          "type": "integer",
+          "group": "FinanceRules",
+          "rule": "accountNumber"
         }
       },
       "timestamp": {
         "description": "The time stamp of the event.",
         "type": "string",
         "rule": {
-          "description": "The time stamp of the event.",
-          "type": "string",
           "name": "timestamp",
-          "group": "StringRules",
-          "rule": "alpha",
-          "casing": "mixed",
-          "minLength": 10,
-          "maxLength": 10
+          "type": "string",
+          "group": "DateRules",
+          "rule": "past",
+          "years": 1
         }
       }
     },
@@ -109,41 +103,35 @@
         "description": "An action to be taken on an account.",
         "type": "string",
         "rule": {
-          "description": "An action to be taken on an account.",
-          "type": "string",
           "name": "accountAction",
+          "type": "string",
           "group": "StringRules",
-          "rule": "alpha",
-          "casing": "mixed",
-          "minLength": 10,
-          "maxLength": 10
+          "rule": "enum",
+          "enum": [
+            "Credit",
+            "Debit"
+          ]
         }
       },
       "accountNum": {
         "description": "The unique identifer of an account.",
         "type": "integer",
         "rule": {
-          "description": "The unique identifer of an account.",
-          "type": "integer",
           "name": "accountNum",
-          "group": "NumberRules",
-          "rule": "int",
-          "minimum": 0,
-          "maximum": 1000
+          "type": "integer",
+          "group": "FinanceRules",
+          "rule": "accountNumber"
         }
       },
       "timestamp": {
         "description": "The time stamp of the event.",
         "type": "string",
         "rule": {
-          "description": "The time stamp of the event.",
-          "type": "string",
           "name": "timestamp",
-          "group": "StringRules",
-          "rule": "alpha",
-          "casing": "mixed",
-          "minLength": 10,
-          "maxLength": 10
+          "type": "string",
+          "group": "DateRules",
+          "rule": "past",
+          "years": 1
         }
       }
     },
