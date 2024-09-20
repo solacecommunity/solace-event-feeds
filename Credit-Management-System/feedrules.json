@@ -1,0 +1,156 @@
+[
+  {
+    "topic": "acmebank/solace/credit/account/utilisation/updated/v1/{accountID}",
+    "eventName": "Account Credit Utilisation Changed",
+    "eventVersion": "0.1.1",
+    "messageName": "Account_Credit_Utilisation_Changed",
+    "topicParameters": {
+      "accountID": {
+        "schema": {
+          "type": "string"
+        },
+        "rule": {
+          "name": "accountID",
+          "type": "string",
+          "group": "StringRules",
+          "rule": "alpha",
+          "casing": "mixed",
+          "minLength": 10,
+          "maxLength": 10
+        }
+      }
+    },
+    "payload": {
+      "accountAction": {
+        "description": "An action to be taken on an account.",
+        "type": "string",
+        "rule": {
+          "description": "An action to be taken on an account.",
+          "type": "string",
+          "name": "accountAction",
+          "group": "StringRules",
+          "rule": "alpha",
+          "casing": "mixed",
+          "minLength": 10,
+          "maxLength": 10
+        }
+      },
+      "accountNum": {
+        "description": "The unique identifer of an account.",
+        "type": "integer",
+        "rule": {
+          "description": "The unique identifer of an account.",
+          "type": "integer",
+          "name": "accountNum",
+          "group": "NumberRules",
+          "rule": "int",
+          "minimum": 0,
+          "maximum": 1000
+        }
+      },
+      "timestamp": {
+        "description": "The time stamp of the event.",
+        "type": "string",
+        "rule": {
+          "description": "The time stamp of the event.",
+          "type": "string",
+          "name": "timestamp",
+          "group": "StringRules",
+          "rule": "alpha",
+          "casing": "mixed",
+          "minLength": 10,
+          "maxLength": 10
+        }
+      }
+    },
+    "publishSettings": {
+      "count": 20,
+      "interval": 1,
+      "delay": 0
+    }
+  },
+  {
+    "topic": "acmebank/solace/credit/rating/changed/v1/{accountID}/{rating}",
+    "eventName": "Credit Rating Changed",
+    "eventVersion": "0.1.1",
+    "messageName": "Credit_Rating_Changed",
+    "topicParameters": {
+      "accountID": {
+        "schema": {
+          "type": "string"
+        },
+        "rule": {
+          "name": "accountID",
+          "type": "string",
+          "group": "StringRules",
+          "rule": "alpha",
+          "casing": "mixed",
+          "minLength": 10,
+          "maxLength": 10
+        }
+      },
+      "rating": {
+        "schema": {
+          "type": "string"
+        },
+        "rule": {
+          "name": "rating",
+          "type": "string",
+          "group": "StringRules",
+          "rule": "alpha",
+          "casing": "mixed",
+          "minLength": 10,
+          "maxLength": 10
+        }
+      }
+    },
+    "payload": {
+      "accountAction": {
+        "description": "An action to be taken on an account.",
+        "type": "string",
+        "rule": {
+          "description": "An action to be taken on an account.",
+          "type": "string",
+          "name": "accountAction",
+          "group": "StringRules",
+          "rule": "alpha",
+          "casing": "mixed",
+          "minLength": 10,
+          "maxLength": 10
+        }
+      },
+      "accountNum": {
+        "description": "The unique identifer of an account.",
+        "type": "integer",
+        "rule": {
+          "description": "The unique identifer of an account.",
+          "type": "integer",
+          "name": "accountNum",
+          "group": "NumberRules",
+          "rule": "int",
+          "minimum": 0,
+          "maximum": 1000
+        }
+      },
+      "timestamp": {
+        "description": "The time stamp of the event.",
+        "type": "string",
+        "rule": {
+          "description": "The time stamp of the event.",
+          "type": "string",
+          "name": "timestamp",
+          "group": "StringRules",
+          "rule": "alpha",
+          "casing": "mixed",
+          "minLength": 10,
+          "maxLength": 10
+        }
+      }
+    },
+    "publishSettings": {
+      "count": 20,
+      "interval": 1,
+      "delay": 0
+    }
+  }
+]
