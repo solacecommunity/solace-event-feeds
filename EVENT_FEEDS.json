@@ -104,17 +104,5 @@
     "tags": "banking, transactions generator, solace broker, intelligent topics",
     "lastUpdated": "2024-08-14T12:14:30.086Z",
     "contributed": true
-  },
-  {
-    "type": "asyncapi_feed",
-    "name": "Credit Management System",
-    "description": "Application for supporting credit card related activities. Adding support for tracking loan payment.\nv0.1.1 - Added Publishers and Consumers",
-    "img": "assets/img/defaultfeed.png",
-    "contributor": "Tamimi",
-    "github": "TamimiGithub",
-    "domain": "Banking",
-    "tags": "credit, bank, loans",
-    "lastUpdated": "2024-09-20T17:54:06.067Z",
-    "contributed": true
   }
 ]
