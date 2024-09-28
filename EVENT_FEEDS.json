@@ -104,5 +104,17 @@
     "tags": "banking, transactions generator, solace broker, intelligent topics",
     "lastUpdated": "2024-08-14T12:14:30.086Z",
     "contributed": true
+  },
+  {
+    "type": "asyncapi_feed",
+    "name": "BaristaStation",
+    "description": "Barista Station ordering coffee",
+    "img": "assets/img/defaultfeed.png",
+    "contributor": "Tamimi",
+    "github": "TamimiGithub",
+    "domain": "Coffee Shop",
+    "tags": "coffee, barrista",
+    "lastUpdated": "2024-09-28T02:02:53.819Z",
+    "contributed": true
   }
 ]
