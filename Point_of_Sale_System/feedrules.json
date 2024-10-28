@@ -1,4 +1,4 @@
-[
+  [
   {
     "topic": "acmeRetail/storeOps/retailOrder/{retailOrderVerb}/v1/{storeLocation}/{customerId}/{orderId}",
     "eventName": "Retail Order",
@@ -223,37 +223,28 @@
           "zip": {
             "type": "string",
             "rule": {
-              "type": "string",
               "name": "zip",
-              "group": "StringRules",
-              "rule": "alpha",
-              "casing": "mixed",
-              "minLength": 10,
-              "maxLength": 10
+              "type": "string",
+              "group": "LocationRules",
+              "rule": "zipCode"
             }
           },
           "address": {
             "type": "string",
             "rule": {
-              "type": "string",
               "name": "address",
-              "group": "StringRules",
-              "rule": "alpha",
-              "casing": "mixed",
-              "minLength": 10,
-              "maxLength": 10
+              "type": "string",
+              "group": "LocationRules",
+              "rule": "streetAddress"
             }
           },
           "city": {
             "type": "string",
             "rule": {
-              "type": "string",
               "name": "city",
-              "group": "StringRules",
-              "rule": "alpha",
-              "casing": "mixed",
-              "minLength": 10,
-              "maxLength": 10
+              "type": "string",
+              "group": "LocationRules",
+              "rule": "city"
             }
           },
           "name": {
