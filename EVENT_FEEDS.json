@@ -104,5 +104,17 @@
     "tags": "banking, transactions generator, solace broker, intelligent topics",
     "lastUpdated": "2024-08-14T12:14:30.086Z",
     "contributed": true
+  },
+  {
+    "type": "asyncapi_feed",
+    "name": "Oracle Goldengate Streaming or Retail Orders",
+    "description": "Simulating Oracle Goldengate CDC capture of Orders",
+    "img": "https://5.imimg.com/data5/SELLER/Default/2024/3/401041815/RB/LC/EX/15037679/oracle-goldengate-online-training-realtime-support-from-hyderabad-500x500.jpg",
+    "contributor": "Alessandro Cagnetti",
+    "github": "acagnetti",
+    "domain": "retail",
+    "tags": "oracle, goldengate, cdc, retail, insert, update, orders",
+    "lastUpdated": "2024-12-03T19:51:00.708Z",
+    "contributed": true
   }
 ]
