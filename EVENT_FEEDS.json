@@ -107,7 +107,7 @@
   },
   {
     "type": "asyncapi_feed",
-    "name": "Oracle Goldengate Streaming",
+    "name": "Oracle GoldenGate Streaming",
     "description": "Simulating Oracle Goldengate CDC capture of Orders",
     "img": "https://cdn-icons-png.flaticon.com/512/6762/6762417.png",
     "contributor": "Alessandro Cagnetti",
