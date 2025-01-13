@@ -70,7 +70,7 @@
           "name": "country",
           "type": "string",
           "group": "StringRules",
-          "rule": "static",
+          "rule": "enum",
           "static": "USA"
         }
       },
