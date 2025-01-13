@@ -1,0 +1,13 @@
+{
+  "type": "asyncapi_feed",
+  "feedView": "default",
+  "name": "BaristaStation",
+  "description": "Coffe Shop",
+  "img": "assets/img/defaultfeed.png",
+  "contributor": "Giri Venkatesan",
+  "github": "gvensan",
+  "domain": "Retail",
+  "tags": "Coffe Shop, Beverages",
+  "lastUpdated": "2025-01-13T16:54:32.797Z",
+  "contributed": true
+}
