@@ -1,0 +1,1639 @@
+{
+  "components": {
+    "schemas": {
+      "SAP_ERP_Business_Partner_change": {
+        "x-ep-schema-version": "0.1.0",
+        "x-ep-schema-state-id": "1",
+        "x-ep-schema-version-id": "yubrg61n532",
+        "businessPartner": [
+          {
+            "firstName": {
+              "type": "string"
+            },
+            "lastName": {
+              "type": "string"
+            },
+            "addressLink": [
+              {
+                "address": [
+                  {
+                    "nation": {
+                      "type": "string",
+                      "enum": [
+                        "FRANCE",
+                        "ITALY",
+                        "PORTUGAL",
+                        "SPAIN",
+                        "MALTA",
+                        "GREECE",
+                        "CYPRUS"
+                      ]
+                    },
+                    "city": {
+                      "type": "string"
+                    },
+                    "street": {
+                      "type": "string"
+                    },
+                    "postalCode": {
+                      "type": "number"
+                    },
+                    "houseNumber": {
+                      "type": "number"
+                    }
+                  }
+                ],
+                "addressNumber": {
+                  "type": "string"
+                },
+                "dateFrom": {
+                  "type": "number"
+                }
+              }
+            ],
+            "partnerId": {
+              "type": "string"
+            },
+            "businessPartnerType": {
+              "type": "string"
+            }
+          }
+        ],
+        "x-ep-schema-id": "u5qand31th9",
+        "x-ep-schema-state-name": "DRAFT",
+        "x-ep-schema-name": "SAP ERP Business Partner change",
+        "x-ep-application-domain-id": "1f7msintn6u",
+        "x-ep-schema-version-displayname": "initial version",
+        "x-ep-shared": "true",
+        "x-ep-application-domain-name": "Application Feeds"
+      },
+      "SAP_ERP_Chart_of_Accounts_change": {
+        "x-ep-schema-version": "0.1.0",
+        "x-ep-schema-state-id": "1",
+        "x-ep-schema-version-id": "cbiso6v872e",
+        "x-ep-schema-id": "d7xeeoa4dh7",
+        "x-ep-schema-state-name": "DRAFT",
+        "x-ep-schema-name": "SAP ERP Chart of Accounts change",
+        "accountHeader": [
+          {
+            "creator": {
+              "type": "string"
+            },
+            "chartOfAccounts": {
+              "type": "string"
+            },
+            "companyCodeData": [
+              {
+                "companyCode": {
+                  "type": "string",
+                  "enum": [
+                    "CC014",
+                    "CC010",
+                    "CC011",
+                    "CC012",
+                    "CC099",
+                    "CC017",
+                    "CC019"
+                  ]
+                },
+                "fieldStatusGroup": {
+                  "type": "string",
+                  "enum": [
+                    "FSG18",
+                    "FSG17",
+                    "FSG16",
+                    "FSG14",
+                    "FSG15",
+                    "FSG13",
+                    "FSG12",
+                    "FSG11"
+                  ]
+                },
+                "currency": {
+                  "type": "string",
+                  "enum": [
+                    "EUR",
+                    "USD",
+                    "GBP",
+                    "AED",
+                    "AUD",
+                    "DKK",
+                    "INR",
+                    "JPY"
+                  ]
+                },
+                "taxCode": {
+                  "type": "string",
+                  "enum": [
+                    "TAX18",
+                    "TAX17",
+                    "TAX16",
+                    "TAX14",
+                    "TAX15",
+                    "TAX13",
+                    "TAX12",
+                    "TAX11"
+                  ]
+                },
+                "financialBudgetItem": {
+                  "type": "string",
+                  "enum": [
+                    "BudgetItem14",
+                    "BudgetItem11",
+                    "BudgetItem12",
+                    "BudgetItem10",
+                    "BudgetItem19",
+                    "BudgetItem16",
+                    "BudgetItem99"
+                  ]
+                }
+              },
+              {
+                "companyCode": {
+                  "type": "string"
+                },
+                "fieldStatusGroup": {
+                  "type": "string",
+                  "enum": [
+                    "FSG18",
+                    "FSG17",
+                    "FSG16",
+                    "FSG14",
+                    "FSG15",
+                    "FSG13",
+                    "FSG12",
+                    "FSG11"
+                  ]
+                },
+                "currency": {
+                  "type": "string",
+                  "enum": [
+                    "EUR",
+                    "USD",
+                    "GBP",
+                    "AED",
+                    "AUD",
+                    "DKK",
+                    "INR",
+                    "JPY"
+                  ]
+                },
+                "taxCode": {
+                  "type": "string",
+                  "enum": [
+                    "TAX18",
+                    "TAX17",
+                    "TAX16",
+                    "TAX14",
+                    "TAX15",
+                    "TAX13",
+                    "TAX12",
+                    "TAX11"
+                  ]
+                },
+                "financialBudgetItem": {
+                  "type": "string",
+                  "enum": [
+                    "BudgetItem14",
+                    "BudgetItem11",
+                    "BudgetItem12",
+                    "BudgetItem10",
+                    "BudgetItem19",
+                    "BudgetItem16",
+                    "BudgetItem99"
+                  ]
+                }
+              }
+            ],
+            "accountNumber": {
+              "type": "string"
+            }
+          }
+        ],
+        "x-ep-application-domain-id": "1f7msintn6u",
+        "x-ep-schema-version-displayname": "initial version",
+        "x-ep-shared": "true",
+        "x-ep-application-domain-name": "Application Feeds"
+      },
+      "SAP_ERP_Material_create": {
+        "x-ep-schema-version": "0.1.0",
+        "x-ep-schema-state-id": "1",
+        "x-ep-schema-version-id": "7emgzuni14g",
+        "material": [
+          {
+            "baseUnit": {
+              "type": "string",
+              "enum": [
+                "PC",
+                "SRV"
+              ]
+            },
+            "materialClass": {
+              "type": "string",
+              "enum": [
+                "ClassA",
+                "ClassB",
+                "ClassC",
+                "ClassD"
+              ]
+            },
+            "industrySector": {
+              "type": "string",
+              "enum": [
+                "Automotive",
+                "Retail",
+                "Banking",
+                "Manufacturing"
+              ]
+            },
+            "materialNumber": {
+              "type": "string"
+            },
+            "creatorUser": {
+              "type": "string"
+            },
+            "materialType": {
+              "type": "string",
+              "enum": [
+                "HALB",
+                "HALC"
+              ]
+            },
+            "maintenanceStatusGroup": {
+              "type": "number"
+            },
+            "maintenanceStatusMaterial": {
+              "type": "string"
+            },
+            "units": [
+              {
+                "uOM": {
+                  "type": "string"
+                },
+                "ean11": {
+                  "type": "string"
+                }
+              },
+              {
+                "uOM": {
+                  "type": "string"
+                },
+                "ean11": {
+                  "type": "string"
+                }
+              }
+            ],
+            "creationDate": {
+              "type": "date"
+            },
+            "changerUser": {
+              "type": "string"
+            },
+            "deletionIndicator": {
+              "type": "string",
+              "enum": [
+                "NA",
+                "X"
+              ]
+            }
+          }
+        ],
+        "x-ep-schema-id": "ipbzgnqq7ra",
+        "x-ep-schema-state-name": "DRAFT",
+        "x-ep-schema-name": "SAP ERP Material create",
+        "x-ep-application-domain-id": "1f7msintn6u",
+        "x-ep-schema-version-displayname": "initial version",
+        "x-ep-shared": "true",
+        "x-ep-application-domain-name": "Application Feeds"
+      },
+      "SAP_ERP_Business_Partner_create": {
+        "x-ep-schema-version": "0.1.0",
+        "x-ep-schema-state-id": "1",
+        "x-ep-schema-version-id": "kxnib27lgc5",
+        "businessPartner": [
+          {
+            "firstName": "Alexander",
+            "lastName": "Wong",
+            "addressLink": [
+              {
+                "address": [
+                  {
+                    "country": "Italy",
+                    "nation": "Italy",
+                    "city": "Rome",
+                    "street": "Via del Corso",
+                    "postalCode": "00187",
+                    "houseNumber": "55"
+                  }
+                ],
+                "addressNumber": "AD1009",
+                "dateFrom": 1691107200000
+              }
+            ],
+            "partnerId": "BP1009",
+            "businessPartnerType": "Customer"
+          }
+        ],
+        "x-ep-schema-id": "1hla4tw48nd",
+        "x-ep-schema-state-name": "DRAFT",
+        "x-ep-schema-name": "SAP ERP Business Partner create",
+        "x-ep-application-domain-id": "1f7msintn6u",
+        "x-ep-schema-version-displayname": "initial version",
+        "x-ep-shared": "true",
+        "x-ep-application-domain-name": "Application Feeds"
+      },
+      "SAP_ERP_Material_change": {
+        "x-ep-schema-version": "0.1.0",
+        "x-ep-schema-state-id": "1",
+        "x-ep-schema-version-id": "bwj98e64hd4",
+        "material": [
+          {
+            "materialClass": {
+              "type": "string",
+              "enum": [
+                "ClassA",
+                "ClassB",
+                "ClassC",
+                "ClassD"
+              ]
+            },
+            "industrySector": {
+              "type": "string",
+              "enum": [
+                "Automotive",
+                "Retail",
+                "Banking",
+                "Manufacturing"
+              ]
+            },
+            "materialType": {
+              "type": "string",
+              "enum": [
+                "HALB",
+                "HALC"
+              ]
+            },
+            "maintenanceStatusGroup": {
+              "type": "number"
+            },
+            "maintenanceStatusMaterial": {
+              "type": "string"
+            },
+            "units": [
+              {
+                "uOM": {
+                  "type": "string"
+                },
+                "ean11": {
+                  "type": "string"
+                }
+              },
+              {
+                "uOM": {
+                  "type": "string"
+                },
+                "ean11": {
+                  "type": "string"
+                }
+              }
+            ],
+            "creationDate": {
+              "type": "date"
+            },
+            "changerUser": {
+              "type": "string"
+            },
+            "deletionIndicator": {
+              "type": "string",
+              "enum": [
+                "",
+                "X"
+              ]
+            },
+            "baseUnit": {
+              "type": "string",
+              "enum": [
+                "PC",
+                "SRV"
+              ]
+            },
+            "materialNumber": {
+              "type": "string"
+            },
+            "creatorUser": {
+              "type": "string"
+            },
+            "lastChange": {
+              "type": "datetime"
+            }
+          }
+        ],
+        "x-ep-schema-id": "zb7gm2ch2zn",
+        "x-ep-schema-state-name": "DRAFT",
+        "x-ep-schema-name": "SAP ERP Material change",
+        "x-ep-application-domain-id": "1f7msintn6u",
+        "x-ep-schema-version-displayname": "initial version",
+        "x-ep-shared": "true",
+        "x-ep-application-domain-name": "Application Feeds"
+      },
+      "SAP_ERP_Notification_change": {
+        "x-ep-schema-version": "0.1.0",
+        "x-ep-schema-state-id": "1",
+        "x-ep-schema-version-id": "t26ale38l4s",
+        "x-ep-schema-id": "w2af92r596i",
+        "x-ep-schema-state-name": "DRAFT",
+        "x-ep-schema-name": "SAP ERP Notification change",
+        "x-ep-application-domain-id": "1f7msintn6u",
+        "notificationHeader": [
+          {
+            "creator": {
+              "type": "string"
+            },
+            "plant": {
+              "type": "string",
+              "enum": [
+                "Plant10",
+                "Plant11",
+                "Plant13",
+                "Plant14",
+                "Plant15",
+                "Plant16",
+                "Plant17"
+              ]
+            },
+            "notificationItem": [
+              {
+                "item": {
+                  "type": "string"
+                },
+                "material": {
+                  "type": "string",
+                  "enum": [
+                    "MaterialT9",
+                    "MaterialT8",
+                    "MaterialT2",
+                    "MaterialT4",
+                    "MaterialT5",
+                    "MaterialT3",
+                    "MaterialT1"
+                  ]
+                },
+                "puchaseOrg": {
+                  "type": "string"
+                },
+                "defectClass": {
+                  "type": "string",
+                  "enum": [
+                    "ClassT1",
+                    "ClassT2",
+                    "ClassT3",
+                    "ClassT4",
+                    "ClassT5",
+                    "ClassT6",
+                    "ClassT7"
+                  ]
+                }
+              },
+              {
+                "item": {
+                  "type": "string"
+                },
+                "material": {
+                  "type": "string",
+                  "enum": [
+                    "MaterialT9",
+                    "MaterialT8",
+                    "MaterialT2",
+                    "MaterialT4",
+                    "MaterialT5",
+                    "MaterialT3",
+                    "MaterialT1"
+                  ]
+                },
+                "puchaseOrg": {
+                  "type": "string"
+                },
+                "defectClass": {
+                  "type": "string",
+                  "enum": [
+                    "ClassT1",
+                    "ClassT2",
+                    "ClassT3",
+                    "ClassT4",
+                    "ClassT5",
+                    "ClassT6",
+                    "ClassT7"
+                  ]
+                }
+              },
+              {
+                "item": {
+                  "type": "string"
+                },
+                "material": {
+                  "type": "string",
+                  "enum": [
+                    "MaterialT9",
+                    "MaterialT8",
+                    "MaterialT2",
+                    "MaterialT4",
+                    "MaterialT5",
+                    "MaterialT3",
+                    "MaterialT1"
+                  ]
+                },
+                "puchaseOrg": {
+                  "type": "string"
+                },
+                "defectClass": {
+                  "type": "string",
+                  "enum": [
+                    "ClassT1",
+                    "ClassT2",
+                    "ClassT3",
+                    "ClassT4",
+                    "ClassT5",
+                    "ClassT6",
+                    "ClassT7"
+                  ]
+                }
+              }
+            ],
+            "changer": {
+              "type": "string"
+            },
+            "notificationId": {
+              "type": "string"
+            },
+            "changedate": {
+              "type": "datetime"
+            },
+            "type": {
+              "type": "string"
+            }
+          }
+        ],
+        "x-ep-schema-version-displayname": "initial version",
+        "x-ep-shared": "true",
+        "x-ep-application-domain-name": "Application Feeds"
+      },
+      "SAP_ERP_Sales_Order_create": {
+        "x-ep-schema-version": "0.1.0",
+        "x-ep-schema-state-id": "1",
+        "x-ep-schema-version-id": "491c6qaghbb",
+        "x-ep-schema-id": "dd04azix7e4",
+        "x-ep-schema-state-name": "DRAFT",
+        "x-ep-schema-name": "SAP ERP Sales Order create",
+        "orderHeader": [
+          {
+            "date": {
+              "type": "date"
+            },
+            "salesType": {
+              "type": "string",
+              "enum": [
+                "Online",
+                "In Store",
+                "Vending Machine"
+              ]
+            },
+            "division": {
+              "type": "string",
+              "enum": [
+                "DIV14",
+                "DIV13",
+                "DIV11",
+                "DIV15",
+                "DIV16",
+                "DIV17",
+                "DIV18"
+              ]
+            },
+            "netvalue": {
+              "type": "number"
+            },
+            "creator": {
+              "type": "string"
+            },
+            "orderItem": [
+              {
+                "orderSchedule": [
+                  {
+                    "uom": {
+                      "type": "string"
+                    },
+                    "quantity": {
+                      "type": "number"
+                    },
+                    "scheduleNumber": {
+                      "type": "string"
+                    }
+                  }
+                ],
+                "item": {
+                  "type": "string"
+                },
+                "itemType": {
+                  "type": "string",
+                  "enum": [
+                    "Standard",
+                    "Non Standard"
+                  ]
+                },
+                "material": {
+                  "type": "string",
+                  "enum": [
+                    "MAT12",
+                    "MAT13",
+                    "MAT11",
+                    "MAT15",
+                    "MAT16",
+                    "MAT17",
+                    "MAT18"
+                  ]
+                },
+                "materialType": {
+                  "type": "string"
+                },
+                "itemDescription": {
+                  "type": "string"
+                }
+              }
+            ],
+            "currency": {
+              "type": "string",
+              "enum": [
+                "EUR",
+                "USD",
+                "GBP",
+                "AED",
+                "AUD",
+                "DKK",
+                "INR",
+                "JPY"
+              ]
+            },
+            "salesOrg": {
+              "type": "string"
+            },
+            "salesOrderNumber": {
+              "type": "string"
+            },
+            "distributionChannel": {
+              "type": "string",
+              "enum": [
+                "DC14",
+                "DC10",
+                "DC11",
+                "DC12",
+                "DC99",
+                "DC17",
+                "DC19"
+              ]
+            },
+            "ordertype": {
+              "type": "string",
+              "enum": [
+                "Express",
+                "Booked",
+                "delayed"
+              ]
+            },
+            "customer": [
+              {
+                "zipCode": {
+                  "type": "string"
+                },
+                "country": {
+                  "type": "string"
+                },
+                "emailAddress": [
+                  {
+                    "email": {
+                      "type": "string"
+                    }
+                  }
+                ],
+                "phone": {
+                  "type": "string"
+                },
+                "city": {
+                  "type": "string"
+                },
+                "street": {
+                  "type": "string"
+                },
+                "customerId": {
+                  "type": "string"
+                },
+                "customerName": {
+                  "type": "string"
+                }
+              }
+            ]
+          }
+        ],
+        "x-ep-application-domain-id": "1f7msintn6u",
+        "x-ep-schema-version-displayname": "initial version",
+        "x-ep-shared": "true",
+        "x-ep-application-domain-name": "Application Feeds"
+      },
+      "SAP_ERP_Sales_Order_Change": {
+        "x-ep-schema-version": "0.1.0",
+        "x-ep-schema-state-id": "1",
+        "x-ep-schema-version-id": "ts4enf7z1qc",
+        "x-ep-schema-id": "s6ccoa6a9si",
+        "x-ep-schema-state-name": "DRAFT",
+        "x-ep-schema-name": "SAP ERP Sales Order Change",
+        "orderHeader": [
+          {
+            "date": {
+              "type": "date"
+            },
+            "salesType": {
+              "type": "string",
+              "enum": [
+                "Online",
+                "In Store",
+                "Vending Machine"
+              ]
+            },
+            "division": {
+              "type": "string",
+              "enum": [
+                "DIV14",
+                "DIV13",
+                "DIV11",
+                "DIV15",
+                "DIV16",
+                "DIV17",
+                "DIV18"
+              ]
+            },
+            "netvalue": {
+              "type": "number"
+            },
+            "creator": {
+              "type": "string"
+            },
+            "orderItem": [
+              {
+                "orderSchedule": [
+                  {
+                    "uom": {
+                      "type": "string"
+                    },
+                    "quantity": {
+                      "type": "number"
+                    },
+                    "scheduleNumber": {
+                      "type": "string"
+                    }
+                  }
+                ],
+                "item": {
+                  "type": "string"
+                },
+                "itemType": {
+                  "type": "string",
+                  "enum": [
+                    "Standard",
+                    "Non Standard"
+                  ]
+                },
+                "material": {
+                  "type": "string",
+                  "enum": [
+                    "MAT12",
+                    "MAT13",
+                    "MAT11",
+                    "MAT15",
+                    "MAT16",
+                    "MAT17",
+                    "MAT18"
+                  ]
+                },
+                "materialType": {
+                  "type": "string"
+                },
+                "itemDescription": {
+                  "type": "string"
+                }
+              }
+            ],
+            "currency": {
+              "type": "string",
+              "enum": [
+                "EUR",
+                "USD",
+                "GBP",
+                "AED",
+                "AUD",
+                "DKK",
+                "INR",
+                "JPY"
+              ]
+            },
+            "salesOrg": {
+              "type": "string"
+            },
+            "salesOrderNumber": {
+              "type": "string"
+            },
+            "distributionChannel": {
+              "type": "string",
+              "enum": [
+                "DC14",
+                "DC10",
+                "DC11",
+                "DC12",
+                "DC99",
+                "DC17",
+                "DC19"
+              ]
+            },
+            "ordertype": {
+              "type": "string",
+              "enum": [
+                "Express",
+                "Booked",
+                "delayed"
+              ]
+            },
+            "customer": [
+              {
+                "zipCode": {
+                  "type": "string"
+                },
+                "country": {
+                  "type": "string"
+                },
+                "emailAddress": [
+                  {
+                    "email": {
+                      "type": "string"
+                    }
+                  }
+                ],
+                "phone": {
+                  "type": "string"
+                },
+                "city": {
+                  "type": "string"
+                },
+                "street": {
+                  "type": "string"
+                },
+                "customerId": {
+                  "type": "string"
+                },
+                "customerName": {
+                  "type": "string"
+                }
+              }
+            ]
+          }
+        ],
+        "x-ep-application-domain-id": "1f7msintn6u",
+        "x-ep-schema-version-displayname": "initial version",
+        "x-ep-shared": "true",
+        "x-ep-application-domain-name": "Application Feeds"
+      },
+      "SAP_ERP_Notification_create": {
+        "x-ep-schema-version": "0.1.0",
+        "x-ep-schema-state-id": "1",
+        "x-ep-schema-version-id": "v3ib9hav9bf",
+        "x-ep-schema-id": "lhd0s3pfa6g",
+        "x-ep-schema-state-name": "DRAFT",
+        "x-ep-schema-name": "SAP ERP Notification create",
+        "x-ep-application-domain-id": "1f7msintn6u",
+        "notificationHeader": [
+          {
+            "creator": {
+              "type": "string"
+            },
+            "plant": {
+              "type": "string",
+              "enum": [
+                "Plant10",
+                "Plant11",
+                "Plant13",
+                "Plant14",
+                "Plant15",
+                "Plant16",
+                "Plant17"
+              ]
+            },
+            "notificationItem": [
+              {
+                "item": {
+                  "type": "string"
+                },
+                "material": {
+                  "type": "string",
+                  "enum": [
+                    "MaterialT9",
+                    "MaterialT8",
+                    "MaterialT2",
+                    "MaterialT4",
+                    "MaterialT5",
+                    "MaterialT3",
+                    "MaterialT1"
+                  ]
+                },
+                "puchaseOrg": {
+                  "type": "string"
+                },
+                "defectClass": {
+                  "type": "string",
+                  "enum": [
+                    "ClassT1",
+                    "ClassT2",
+                    "ClassT3",
+                    "ClassT4",
+                    "ClassT5",
+                    "ClassT6",
+                    "ClassT7"
+                  ]
+                }
+              },
+              {
+                "item": {
+                  "type": "string"
+                },
+                "material": {
+                  "type": "string",
+                  "enum": [
+                    "MaterialT9",
+                    "MaterialT8",
+                    "MaterialT2",
+                    "MaterialT4",
+                    "MaterialT5",
+                    "MaterialT3",
+                    "MaterialT1"
+                  ]
+                },
+                "puchaseOrg": {
+                  "type": "string"
+                },
+                "defectClass": {
+                  "type": "string",
+                  "enum": [
+                    "ClassT1",
+                    "ClassT2",
+                    "ClassT3",
+                    "ClassT4",
+                    "ClassT5",
+                    "ClassT6",
+                    "ClassT7"
+                  ]
+                }
+              },
+              {
+                "item": {
+                  "type": "string"
+                },
+                "material": {
+                  "type": "string",
+                  "enum": [
+                    "MaterialT9",
+                    "MaterialT8",
+                    "MaterialT2",
+                    "MaterialT4",
+                    "MaterialT5",
+                    "MaterialT3",
+                    "MaterialT1"
+                  ]
+                },
+                "puchaseOrg": {
+                  "type": "string"
+                },
+                "defectClass": {
+                  "type": "string",
+                  "enum": [
+                    "ClassT1",
+                    "ClassT2",
+                    "ClassT3",
+                    "ClassT4",
+                    "ClassT5",
+                    "ClassT6",
+                    "ClassT7"
+                  ]
+                }
+              }
+            ],
+            "changer": {
+              "type": "string"
+            },
+            "notificationId": {
+              "type": "string"
+            },
+            "changedate": {
+              "type": "datetime"
+            },
+            "type": {
+              "type": "string"
+            }
+          }
+        ],
+        "x-ep-schema-version-displayname": "initial version",
+        "x-ep-shared": "true",
+        "x-ep-application-domain-name": "Application Feeds"
+      },
+      "SAP_ERP_Chart_of_Accounts_create": {
+        "x-ep-schema-version": "0.1.0",
+        "x-ep-schema-state-id": "1",
+        "x-ep-schema-version-id": "arb6fx32e24",
+        "x-ep-schema-id": "7a02dd4fau0",
+        "x-ep-schema-state-name": "DRAFT",
+        "x-ep-schema-name": "SAP ERP Chart of Accounts create",
+        "accountHeader": [
+          {
+            "creator": {
+              "type": "string"
+            },
+            "chartOfAccounts": {
+              "type": "string"
+            },
+            "companyCodeData": [
+              {
+                "companyCode": {
+                  "type": "string",
+                  "enum": [
+                    "CC014",
+                    "CC010",
+                    "CC011",
+                    "CC012",
+                    "CC099",
+                    "CC017",
+                    "CC019"
+                  ]
+                },
+                "fieldStatusGroup": {
+                  "type": "string",
+                  "enum": [
+                    "FSG18",
+                    "FSG17",
+                    "FSG16",
+                    "FSG14",
+                    "FSG15",
+                    "FSG13",
+                    "FSG12",
+                    "FSG11"
+                  ]
+                },
+                "currency": {
+                  "type": "string",
+                  "enum": [
+                    "EUR",
+                    "USD",
+                    "GBP",
+                    "AED",
+                    "AUD",
+                    "DKK",
+                    "INR",
+                    "JPY"
+                  ]
+                },
+                "taxCode": {
+                  "type": "string",
+                  "enum": [
+                    "TAX18",
+                    "TAX17",
+                    "TAX16",
+                    "TAX14",
+                    "TAX15",
+                    "TAX13",
+                    "TAX12",
+                    "TAX11"
+                  ]
+                },
+                "financialBudgetItem": {
+                  "type": "string",
+                  "enum": [
+                    "BudgetItem14",
+                    "BudgetItem11",
+                    "BudgetItem12",
+                    "BudgetItem10",
+                    "BudgetItem19",
+                    "BudgetItem16",
+                    "BudgetItem99"
+                  ]
+                }
+              }
+            ],
+            "accountNumber": {
+              "type": "string"
+            }
+          }
+        ],
+        "x-ep-application-domain-id": "1f7msintn6u",
+        "x-ep-schema-version-displayname": "initial version",
+        "x-ep-shared": "true",
+        "x-ep-application-domain-name": "Application Feeds"
+      }
+    },
+    "messages": {
+      "Business_Partner_Change": {
+        "x-ep-event-id": "bi4maolmg5f",
+        "x-ep-event-version-displayname": "initial version",
+        "description": "",
+        "x-ep-application-domain-id": "1f7msintn6u",
+        "schemaFormat": "application/vnd.aai.asyncapi+json;version=2.0.0",
+        "x-ep-event-state-name": "DRAFT",
+        "x-ep-shared": "true",
+        "x-ep-application-domain-name": "Application Feeds",
+        "x-ep-event-version-id": "coq40mmocyk",
+        "payload": {
+          "$ref": "#/components/schemas/SAP_ERP_Business_Partner_change"
+        },
+        "x-ep-event-version": "0.1.0",
+        "x-ep-event-name": "Business Partner Change",
+        "contentType": "application/json",
+        "x-ep-event-state-id": "1"
+      },
+      "Chart_of_Accounts_Create": {
+        "x-ep-event-id": "94xjr3ncv17",
+        "x-ep-event-version-displayname": "initial version",
+        "description": "",
+        "x-ep-application-domain-id": "1f7msintn6u",
+        "schemaFormat": "application/vnd.aai.asyncapi+json;version=2.0.0",
+        "x-ep-event-state-name": "DRAFT",
+        "x-ep-shared": "true",
+        "x-ep-application-domain-name": "Application Feeds",
+        "x-ep-event-version-id": "x7dy6w6f86x",
+        "payload": {
+          "$ref": "#/components/schemas/SAP_ERP_Chart_of_Accounts_create"
+        },
+        "x-ep-event-version": "0.1.0",
+        "x-ep-event-name": "Chart of Accounts Create",
+        "contentType": "application/json",
+        "x-ep-event-state-id": "1"
+      },
+      "Sales_Order_Change": {
+        "x-ep-event-id": "52xpjiz7en0",
+        "x-ep-event-version-displayname": "initial version",
+        "description": "",
+        "x-ep-application-domain-id": "1f7msintn6u",
+        "schemaFormat": "application/vnd.aai.asyncapi+json;version=2.0.0",
+        "x-ep-event-state-name": "DRAFT",
+        "x-ep-shared": "true",
+        "x-ep-application-domain-name": "Application Feeds",
+        "x-ep-event-version-id": "fyj4d8dn89s",
+        "payload": {
+          "$ref": "#/components/schemas/SAP_ERP_Sales_Order_Change"
+        },
+        "x-ep-event-version": "0.1.0",
+        "x-ep-event-name": "Sales Order Change",
+        "contentType": "application/json",
+        "x-ep-event-state-id": "1"
+      },
+      "Material_Master_Change": {
+        "x-ep-event-id": "e4ynca7q1rw",
+        "x-ep-event-version-displayname": "initial version",
+        "description": "",
+        "x-ep-application-domain-id": "1f7msintn6u",
+        "schemaFormat": "application/vnd.aai.asyncapi+json;version=2.0.0",
+        "x-ep-event-state-name": "DRAFT",
+        "x-ep-shared": "true",
+        "x-ep-application-domain-name": "Application Feeds",
+        "x-ep-event-version-id": "m0afdwbks6k",
+        "payload": {
+          "$ref": "#/components/schemas/SAP_ERP_Material_change"
+        },
+        "x-ep-event-version": "0.1.0",
+        "x-ep-event-name": "Material Master Change",
+        "contentType": "application/json",
+        "x-ep-event-state-id": "1"
+      },
+      "Notification_Create_event": {
+        "x-ep-event-id": "j68oqkefahv",
+        "x-ep-event-version-displayname": "initial version",
+        "description": "",
+        "x-ep-application-domain-id": "1f7msintn6u",
+        "schemaFormat": "application/vnd.aai.asyncapi+json;version=2.0.0",
+        "x-ep-event-state-name": "DRAFT",
+        "x-ep-shared": "true",
+        "x-ep-application-domain-name": "Application Feeds",
+        "x-ep-event-version-id": "jes5btaosx7",
+        "payload": {
+          "$ref": "#/components/schemas/SAP_ERP_Notification_create"
+        },
+        "x-ep-event-version": "0.1.0",
+        "x-ep-event-name": "Notification Create event",
+        "contentType": "application/json",
+        "x-ep-event-state-id": "1"
+      },
+      "Business_Partner_Create": {
+        "x-ep-event-id": "em3fo8vkg5y",
+        "x-ep-event-version-displayname": "initial version",
+        "description": "",
+        "x-ep-application-domain-id": "1f7msintn6u",
+        "schemaFormat": "application/vnd.aai.asyncapi+json;version=2.0.0",
+        "x-ep-event-state-name": "DRAFT",
+        "x-ep-shared": "true",
+        "x-ep-application-domain-name": "Application Feeds",
+        "x-ep-event-version-id": "cgk4lb2stbb",
+        "payload": {
+          "$ref": "#/components/schemas/SAP_ERP_Business_Partner_create"
+        },
+        "x-ep-event-version": "0.1.0",
+        "x-ep-event-name": "Business Partner Create",
+        "contentType": "application/json",
+        "x-ep-event-state-id": "1"
+      },
+      "Notification_Change_event": {
+        "x-ep-event-id": "ix63k05e2r1",
+        "x-ep-event-version-displayname": "initial version",
+        "description": "",
+        "x-ep-application-domain-id": "1f7msintn6u",
+        "schemaFormat": "application/vnd.aai.asyncapi+json;version=2.0.0",
+        "x-ep-event-state-name": "DRAFT",
+        "x-ep-shared": "true",
+        "x-ep-application-domain-name": "Application Feeds",
+        "x-ep-event-version-id": "1e55mdexwmv",
+        "payload": {
+          "$ref": "#/components/schemas/SAP_ERP_Notification_change"
+        },
+        "x-ep-event-version": "0.1.0",
+        "x-ep-event-name": "Notification Change event",
+        "contentType": "application/json",
+        "x-ep-event-state-id": "1"
+      },
+      "Chart_of_Accounts_Change": {
+        "x-ep-event-id": "zle1j2n05av",
+        "x-ep-event-version-displayname": "initial version",
+        "description": "",
+        "x-ep-application-domain-id": "1f7msintn6u",
+        "schemaFormat": "application/vnd.aai.asyncapi+json;version=2.0.0",
+        "x-ep-event-state-name": "DRAFT",
+        "x-ep-shared": "true",
+        "x-ep-application-domain-name": "Application Feeds",
+        "x-ep-event-version-id": "liq8md7h6sl",
+        "payload": {
+          "$ref": "#/components/schemas/SAP_ERP_Chart_of_Accounts_change"
+        },
+        "x-ep-event-version": "0.1.0",
+        "x-ep-event-name": "Chart of Accounts Change",
+        "contentType": "application/json",
+        "x-ep-event-state-id": "1"
+      },
+      "Material_Master_Create": {
+        "x-ep-event-id": "ee01mq73b6q",
+        "x-ep-event-version-displayname": "initial version",
+        "description": "",
+        "x-ep-application-domain-id": "1f7msintn6u",
+        "schemaFormat": "application/vnd.aai.asyncapi+json;version=2.0.0",
+        "x-ep-event-state-name": "DRAFT",
+        "x-ep-shared": "true",
+        "x-ep-application-domain-name": "Application Feeds",
+        "x-ep-event-version-id": "2h263p0bmmq",
+        "payload": {
+          "$ref": "#/components/schemas/SAP_ERP_Material_create"
+        },
+        "x-ep-event-version": "0.1.0",
+        "x-ep-event-name": "Material Master Create",
+        "contentType": "application/json",
+        "x-ep-event-state-id": "1"
+      },
+      "Sales_Order_Create": {
+        "x-ep-event-id": "jrawtlggmzy",
+        "x-ep-event-version-displayname": "initial version",
+        "description": "",
+        "x-ep-application-domain-id": "1f7msintn6u",
+        "schemaFormat": "application/vnd.aai.asyncapi+json;version=2.0.0",
+        "x-ep-event-state-name": "DRAFT",
+        "x-ep-shared": "true",
+        "x-ep-application-domain-name": "Application Feeds",
+        "x-ep-event-version-id": "tf5fo7mxfgf",
+        "payload": {
+          "$ref": "#/components/schemas/SAP_ERP_Sales_Order_create"
+        },
+        "x-ep-event-version": "0.1.0",
+        "x-ep-event-name": "Sales Order Create",
+        "contentType": "application/json",
+        "x-ep-event-state-id": "1"
+      }
+    }
+  },
+  "channels": {
+    "sap/erp/businesspartner/change/V1/{businessPartnerType}/{partnerId}": {
+      "subscribe": {
+        "message": {
+          "$ref": "#/components/messages/Business_Partner_Change"
+        }
+      },
+      "parameters": {
+        "partnerId": {
+          "schema": {
+            "type": "string"
+          },
+          "x-ep-parameter-name": "partnerId"
+        },
+        "businessPartnerType": {
+          "schema": {
+            "type": "string"
+          },
+          "x-ep-parameter-name": "businessPartnerType"
+        }
+      }
+    },
+    "sap/erp/salesorder/create/V1/{salesOrg}/{distributionChannel}/{division}/{customerId}": {
+      "subscribe": {
+        "message": {
+          "$ref": "#/components/messages/Sales_Order_Create"
+        }
+      },
+      "parameters": {
+        "division": {
+          "schema": {
+            "type": "string"
+          },
+          "x-ep-parameter-name": "division"
+        },
+        "customerId": {
+          "schema": {
+            "type": "string"
+          },
+          "x-ep-parameter-name": "customerId"
+        },
+        "salesOrg": {
+          "schema": {
+            "type": "string"
+          },
+          "x-ep-parameter-name": "salesOrg"
+        },
+        "distributionChannel": {
+          "schema": {
+            "type": "string"
+          },
+          "x-ep-parameter-name": "distributionChannel"
+        }
+      }
+    },
+    "sap/erp/chartofaccounts/change/V1/{chartOfAccounts}/{accountNumber}": {
+      "subscribe": {
+        "message": {
+          "$ref": "#/components/messages/Chart_of_Accounts_Change"
+        }
+      },
+      "parameters": {
+        "chartOfAccounts": {
+          "schema": {
+            "type": "string"
+          },
+          "x-ep-parameter-name": "chartOfAccounts"
+        },
+        "accountNumber": {
+          "schema": {
+            "type": "string"
+          },
+          "x-ep-parameter-name": "accountNumber"
+        }
+      }
+    },
+    "sap/erp/notification/change/V1/{item}/{plant}/{notificationId}": {
+      "subscribe": {
+        "message": {
+          "$ref": "#/components/messages/Notification_Change_event"
+        }
+      },
+      "parameters": {
+        "item": {
+          "schema": {
+            "type": "string"
+          },
+          "x-ep-parameter-name": "item"
+        },
+        "plant": {
+          "schema": {
+            "type": "string"
+          },
+          "x-ep-parameter-name": "plant"
+        },
+        "notificationId": {
+          "schema": {
+            "type": "string"
+          },
+          "x-ep-parameter-name": "notificationId"
+        }
+      }
+    },
+    "sap/erp/notification/create/V1/{type}/{plant}/{notificationId}": {
+      "subscribe": {
+        "message": {
+          "$ref": "#/components/messages/Notification_Create_event"
+        }
+      },
+      "parameters": {
+        "plant": {
+          "schema": {
+            "type": "string"
+          },
+          "x-ep-parameter-name": "plant"
+        },
+        "notificationId": {
+          "schema": {
+            "type": "string"
+          },
+          "x-ep-parameter-name": "notificationId"
+        },
+        "type": {
+          "schema": {
+            "type": "string"
+          },
+          "x-ep-parameter-name": "type"
+        }
+      }
+    },
+    "sap/erp/businesspartner/create/V1/{businessPartnerType}/{partnerId}": {
+      "subscribe": {
+        "message": {
+          "$ref": "#/components/messages/Business_Partner_Create"
+        }
+      },
+      "parameters": {
+        "partnerId": {
+          "schema": {
+            "type": "string"
+          },
+          "x-ep-parameter-name": "partnerId"
+        },
+        "businessPartnerType": {
+          "schema": {
+            "type": "string"
+          },
+          "x-ep-parameter-name": "businessPartnerType"
+        }
+      }
+    },
+    "sap/erp/chartofaccounts/create/V1/{chartOfAccounts}/{accountNumber}": {
+      "subscribe": {
+        "message": {
+          "$ref": "#/components/messages/Chart_of_Accounts_Create"
+        }
+      },
+      "parameters": {
+        "chartOfAccounts": {
+          "schema": {
+            "type": "string"
+          },
+          "x-ep-parameter-name": "chartOfAccounts"
+        },
+        "accountNumber": {
+          "schema": {
+            "type": "string"
+          },
+          "x-ep-parameter-name": "accountNumber"
+        }
+      }
+    },
+    "sap/erp/material/change/V1/{materialClass}/{industrySector}/{materialType}/{materialNumber}/{maintenanceStatusGroup}/{maintenanceStatusMaterial}/{deletionIndicator}": {
+      "subscribe": {
+        "message": {
+          "$ref": "#/components/messages/Material_Master_Change"
+        }
+      },
+      "parameters": {
+        "materialClass": {
+          "schema": {
+            "type": "string"
+          },
+          "x-ep-parameter-name": "materialClass"
+        },
+        "industrySector": {
+          "schema": {
+            "type": "string"
+          },
+          "x-ep-parameter-name": "industrySector"
+        },
+        "materialNumber": {
+          "schema": {
+            "type": "string"
+          },
+          "x-ep-parameter-name": "materialNumber"
+        },
+        "materialType": {
+          "schema": {
+            "type": "string"
+          },
+          "x-ep-parameter-name": "materialType"
+        },
+        "maintenanceStatusGroup": {
+          "schema": {
+            "type": "string"
+          },
+          "x-ep-parameter-name": "maintenanceStatusGroup"
+        },
+        "maintenanceStatusMaterial": {
+          "schema": {
+            "type": "string"
+          },
+          "x-ep-parameter-name": "maintenanceStatusMaterial"
+        },
+        "deletionIndicator": {
+          "schema": {
+            "type": "string"
+          },
+          "x-ep-parameter-name": "deletionIndicator"
+        }
+      }
+    },
+    "sap/erp/salesorder/change/V1/{salesOrg}/{distributionChannel}/{division}/{customerId}": {
+      "subscribe": {
+        "message": {
+          "$ref": "#/components/messages/Sales_Order_Change"
+        }
+      },
+      "parameters": {
+        "division": {
+          "schema": {
+            "type": "string"
+          },
+          "x-ep-parameter-name": "division"
+        },
+        "customerId": {
+          "schema": {
+            "type": "string"
+          },
+          "x-ep-parameter-name": "customerId"
+        },
+        "salesOrg": {
+          "schema": {
+            "type": "string"
+          },
+          "x-ep-parameter-name": "salesOrg"
+        },
+        "distributionChannel": {
+          "schema": {
+            "type": "string"
+          },
+          "x-ep-parameter-name": "distributionChannel"
+        }
+      }
+    },
+    "sap/erp/material/create/V1/{materialClass}/{industrySector}/{materialType}/{materialNumber}/{maintenanceStatusGroup}/{maintenanceStatusMaterial}/{deletionIndicator}": {
+      "subscribe": {
+        "message": {
+          "$ref": "#/components/messages/Material_Master_Create"
+        }
+      },
+      "parameters": {
+        "materialClass": {
+          "schema": {
+            "type": "string"
+          },
+          "x-ep-parameter-name": "materialClass"
+        },
+        "industrySector": {
+          "schema": {
+            "type": "string"
+          },
+          "x-ep-parameter-name": "industrySector"
+        },
+        "materialNumber": {
+          "schema": {
+            "type": "string"
+          },
+          "x-ep-parameter-name": "materialNumber"
+        },
+        "materialType": {
+          "schema": {
+            "type": "string"
+          },
+          "x-ep-parameter-name": "materialType"
+        },
+        "maintenanceStatusGroup": {
+          "schema": {
+            "type": "string"
+          },
+          "x-ep-parameter-name": "maintenanceStatusGroup"
+        },
+        "maintenanceStatusMaterial": {
+          "schema": {
+            "type": "string"
+          },
+          "x-ep-parameter-name": "maintenanceStatusMaterial"
+        },
+        "deletionIndicator": {
+          "schema": {
+            "type": "string"
+          },
+          "x-ep-parameter-name": "deletionIndicator"
+        }
+      }
+    }
+  },
+  "asyncapi": "2.5.0",
+  "info": {
+    "x-ep-application-version": "0.1.0",
+    "x-ep-application-version-id": "tg0be2icmn8",
+    "x-ep-application-id": "4853pg0jk43",
+    "x-ep-state-name": "DRAFT",
+    "title": "SAP ERP",
+    "x-ep-application-domain-id": "1f7msintn6u",
+    "version": "0.1.0",
+    "x-ep-state-id": "1",
+    "x-ep-application-domain-name": "Application Feeds"
+  }
+}

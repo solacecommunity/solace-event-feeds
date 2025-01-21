@@ -1,0 +1,3117 @@
+[
+  {
+    "topic": "sap/erp/businesspartner/change/V1/{businessPartnerType}/{partnerId}",
+    "topicParameters": {
+      "partnerId": {
+        "schema": {
+          "type": "string"
+        },
+        "rule": {
+          "name": "partnerId",
+          "type": "string",
+          "group": "StringRules",
+          "rule": "numeric",
+          "minLength": 3,
+          "maxLength": 3,
+          "leadingZeros": false
+        }
+      },
+      "businessPartnerType": {
+        "schema": {
+          "type": "string"
+        },
+        "rule": {
+          "name": "businessPartnerType",
+          "type": "string",
+          "group": "PersonRules",
+          "rule": "jobType"
+        }
+      }
+    },
+    "eventName": "Business Partner Change",
+    "eventVersion": "0.1.0",
+    "messageName": "Business_Partner_Change",
+    "hasPayload": true,
+    "payload": {
+      "businessPartner": {
+        "type": "object",
+        "properties": {
+          "firstName": {
+            "type": "string",
+            "rule": {
+              "name": "firstName",
+              "type": "string",
+              "group": "PersonRules",
+              "rule": "firstName"
+            }
+          },
+          "lastName": {
+            "type": "string",
+            "rule": {
+              "name": "lastName",
+              "type": "string",
+              "group": "PersonRules",
+              "rule": "lastName"
+            }
+          },
+          "addressLink": {
+            "type": "object",
+            "properties": {
+              "address": {
+                "type": "object",
+                "properties": {
+                  "nation": {
+                    "type": "string",
+                    "enum": [
+                      "FRANCE",
+                      "ITALY",
+                      "PORTUGAL",
+                      "SPAIN",
+                      "MALTA",
+                      "GREECE",
+                      "CYPRUS"
+                    ],
+                    "rule": {
+                      "name": "nation",
+                      "type": "string",
+                      "group": "LocationRules",
+                      "rule": "country"
+                    }
+                  },
+                  "city": {
+                    "type": "string",
+                    "rule": {
+                      "name": "city",
+                      "type": "string",
+                      "group": "LocationRules",
+                      "rule": "city"
+                    }
+                  },
+                  "street": {
+                    "type": "string",
+                    "rule": {
+                      "name": "street",
+                      "type": "string",
+                      "group": "LocationRules",
+                      "rule": "streetAddress"
+                    }
+                  },
+                  "postalCode": {
+                    "type": "number",
+                    "rule": {
+                      "name": "postalCode",
+                      "type": "number",
+                      "group": "LocationRules",
+                      "rule": "zipCode"
+                    }
+                  },
+                  "houseNumber": {
+                    "type": "number",
+                    "rule": {
+                      "name": "houseNumber",
+                      "type": "number",
+                      "group": "LocationRules",
+                      "rule": "buildingNumber"
+                    }
+                  }
+                }
+              },
+              "addressNumber": {
+                "type": "string",
+                "rule": {
+                  "name": "addressNumber",
+                  "type": "string",
+                  "group": "LocationRules",
+                  "rule": "buildingNumber"
+                }
+              },
+              "dateFrom": {
+                "type": "number",
+                "rule": {
+                  "name": "dateFrom",
+                  "type": "number",
+                  "group": "DateRules",
+                  "rule": "recent",
+                  "days": 3
+                }
+              }
+            }
+          },
+          "partnerId": {
+            "type": "string",
+            "rule": {
+              "name": "partnerId",
+              "type": "string",
+              "group": "NumberRules",
+              "rule": "int",
+              "minimum": 1,
+              "maximum": 100
+            }
+          },
+          "businessPartnerType": {
+            "type": "string",
+            "rule": {
+              "name": "businessPartnerType",
+              "type": "string",
+              "group": "PersonRules",
+              "rule": "jobType"
+            }
+          }
+        }
+      }
+    },
+    "publishSettings": {
+      "count": 0,
+      "interval": "100",
+      "delay": 0
+    },
+    "mappings": [
+      {
+        "type": "Payload Parameter",
+        "source": {
+          "type": "Topic Parameter",
+          "name": "partnerId",
+          "fieldName": "partnerId",
+          "fieldType": "string"
+        },
+        "target": {
+          "type": "Payload Parameter",
+          "name": "businessPartner.partnerId",
+          "fieldName": "partnerId",
+          "fieldType": "string"
+        }
+      },
+      {
+        "type": "Payload Parameter",
+        "source": {
+          "type": "Topic Parameter",
+          "name": "businessPartnerType",
+          "fieldName": "businessPartnerType",
+          "fieldType": "string"
+        },
+        "target": {
+          "type": "Payload Parameter",
+          "name": "businessPartner.businessPartnerType",
+          "fieldName": "businessPartnerType",
+          "fieldType": "string"
+        }
+      }
+    ]
+  },
+  {
+    "topic": "sap/erp/salesorder/create/V1/{salesOrg}/{distributionChannel}/{division}/{customerId}",
+    "topicParameters": {
+      "division": {
+        "schema": {
+          "type": "string"
+        },
+        "rule": {
+          "name": "division",
+          "type": "string",
+          "group": "PersonRules",
+          "rule": "jobType"
+        }
+      },
+      "customerId": {
+        "schema": {
+          "type": "string"
+        },
+        "rule": {
+          "name": "customerId",
+          "type": "string",
+          "group": "NumberRules",
+          "rule": "int",
+          "minimum": 1,
+          "maximum": 100
+        }
+      },
+      "salesOrg": {
+        "schema": {
+          "type": "string"
+        },
+        "rule": {
+          "name": "salesOrg",
+          "type": "string",
+          "group": "CommerceRules",
+          "rule": "department"
+        }
+      },
+      "distributionChannel": {
+        "schema": {
+          "type": "string"
+        },
+        "rule": {
+          "name": "distributionChannel",
+          "type": "string",
+          "group": "LoremRules",
+          "rule": "word",
+          "minimum": 3,
+          "maximum": 3
+        }
+      }
+    },
+    "eventName": "Sales Order Create",
+    "eventVersion": "0.1.0",
+    "messageName": "Sales_Order_Create",
+    "hasPayload": true,
+    "payload": {
+      "orderHeader": {
+        "type": "object",
+        "properties": {
+          "date": {
+            "type": "date",
+            "rule": {
+              "name": "date",
+              "type": "date",
+              "group": "DateRules",
+              "rule": "recent",
+              "days": 3
+            }
+          },
+          "salesType": {
+            "type": "string",
+            "enum": [
+              "Online",
+              "In Store",
+              "Vending Machine"
+            ],
+            "rule": {
+              "name": "salesType",
+              "type": "string",
+              "group": "StringRules",
+              "rule": "enum",
+              "enum": [
+                "Online",
+                "In Store",
+                "Vending Machine"
+              ]
+            }
+          },
+          "division": {
+            "type": "string",
+            "enum": [
+              "DIV14",
+              "DIV13",
+              "DIV11",
+              "DIV15",
+              "DIV16",
+              "DIV17",
+              "DIV18"
+            ],
+            "rule": {
+              "name": "division",
+              "type": "string",
+              "group": "StringRules",
+              "rule": "enum",
+              "enum": [
+                "DIV14",
+                "DIV13",
+                "DIV11",
+                "DIV15",
+                "DIV16",
+                "DIV17",
+                "DIV18"
+              ]
+            }
+          },
+          "netvalue": {
+            "type": "number",
+            "rule": {
+              "name": "netvalue",
+              "type": "number",
+              "group": "NumberRules",
+              "rule": "float",
+              "minimum": 0,
+              "maximum": 1000,
+              "fractionDigits": 2
+            }
+          },
+          "creator": {
+            "type": "string",
+            "rule": {
+              "name": "creator",
+              "type": "string",
+              "group": "PersonRules",
+              "rule": "middleName"
+            }
+          },
+          "orderItem": {
+            "type": "object",
+            "properties": {
+              "orderSchedule": {
+                "type": "object",
+                "properties": {
+                  "uom": {
+                    "type": "string",
+                    "rule": {
+                      "name": "uom",
+                      "type": "string",
+                      "group": "CommerceRules",
+                      "rule": "isbn"
+                    }
+                  },
+                  "quantity": {
+                    "type": "number",
+                    "rule": {
+                      "name": "quantity",
+                      "type": "number",
+                      "group": "NumberRules",
+                      "rule": "int",
+                      "minimum": 1,
+                      "maximum": 100
+                    }
+                  },
+                  "scheduleNumber": {
+                    "type": "string",
+                    "rule": {
+                      "name": "scheduleNumber",
+                      "type": "string",
+                      "group": "NumberRules",
+                      "rule": "int",
+                      "minimum": 1,
+                      "maximum": 100
+                    }
+                  }
+                }
+              },
+              "item": {
+                "type": "string",
+                "rule": {
+                  "name": "item",
+                  "type": "string",
+                  "group": "CommerceRules",
+                  "rule": "productName"
+                }
+              },
+              "itemType": {
+                "type": "string",
+                "enum": [
+                  "Standard",
+                  "Non Standard"
+                ],
+                "rule": {
+                  "name": "itemType",
+                  "type": "string",
+                  "group": "CommerceRules",
+                  "rule": "product"
+                }
+              },
+              "material": {
+                "type": "string",
+                "enum": [
+                  "MAT12",
+                  "MAT13",
+                  "MAT11",
+                  "MAT15",
+                  "MAT16",
+                  "MAT17",
+                  "MAT18"
+                ],
+                "rule": {
+                  "name": "material",
+                  "type": "string",
+                  "group": "StringRules",
+                  "rule": "enum",
+                  "enum": [
+                    "MAT12",
+                    "MAT13",
+                    "MAT11",
+                    "MAT15",
+                    "MAT16",
+                    "MAT17",
+                    "MAT18"
+                  ]
+                }
+              },
+              "materialType": {
+                "type": "string",
+                "rule": {
+                  "name": "materialType",
+                  "type": "string",
+                  "group": "LoremRules",
+                  "rule": "word",
+                  "minimum": 3,
+                  "maximum": 3
+                }
+              },
+              "itemDescription": {
+                "type": "string",
+                "rule": {
+                  "name": "itemDescription",
+                  "type": "string",
+                  "group": "CommerceRules",
+                  "rule": "productDescription"
+                }
+              }
+            }
+          },
+          "currency": {
+            "type": "string",
+            "enum": [
+              "EUR",
+              "USD",
+              "GBP",
+              "AED",
+              "AUD",
+              "DKK",
+              "INR",
+              "JPY"
+            ],
+            "rule": {
+              "name": "currency",
+              "type": "string",
+              "group": "StringRules",
+              "rule": "enum",
+              "enum": [
+                "EUR",
+                "USD",
+                "GBP",
+                "AED",
+                "AUD",
+                "DKK",
+                "INR",
+                "JPY"
+              ]
+            }
+          },
+          "salesOrg": {
+            "type": "string",
+            "rule": {
+              "name": "salesOrg",
+              "type": "string",
+              "group": "CommerceRules",
+              "rule": "department"
+            }
+          },
+          "salesOrderNumber": {
+            "type": "string",
+            "rule": {
+              "name": "salesOrderNumber",
+              "type": "string",
+              "group": "NumberRules",
+              "rule": "int",
+              "minimum": 1,
+              "maximum": 100
+            }
+          },
+          "distributionChannel": {
+            "type": "string",
+            "enum": [
+              "DC14",
+              "DC10",
+              "DC11",
+              "DC12",
+              "DC99",
+              "DC17",
+              "DC19"
+            ],
+            "rule": {
+              "name": "distributionChannel",
+              "type": "string",
+              "group": "StringRules",
+              "rule": "enum",
+              "enum": [
+                "DC14",
+                "DC10",
+                "DC11",
+                "DC12",
+                "DC99",
+                "DC17",
+                "DC19"
+              ]
+            }
+          },
+          "ordertype": {
+            "type": "string",
+            "enum": [
+              "Express",
+              "Booked",
+              "delayed"
+            ],
+            "rule": {
+              "name": "ordertype",
+              "type": "string",
+              "group": "StringRules",
+              "rule": "enum",
+              "enum": [
+                "Express",
+                "Booked",
+                "delayed"
+              ]
+            }
+          },
+          "customer": {
+            "type": "object",
+            "properties": {
+              "zipCode": {
+                "type": "string",
+                "rule": {
+                  "name": "zipCode",
+                  "type": "string",
+                  "group": "LocationRules",
+                  "rule": "zipCode"
+                }
+              },
+              "country": {
+                "type": "string",
+                "rule": {
+                  "name": "country",
+                  "type": "string",
+                  "group": "LocationRules",
+                  "rule": "country"
+                }
+              },
+              "emailAddress": {
+                "type": "object",
+                "properties": {
+                  "email": {
+                    "type": "string",
+                    "rule": {
+                      "name": "email",
+                      "type": "string",
+                      "group": "InternetRules",
+                      "rule": "email",
+                      "casing": "lower"
+                    }
+                  }
+                }
+              },
+              "phone": {
+                "type": "string",
+                "rule": {
+                  "name": "phone",
+                  "type": "string",
+                  "group": "StringRules",
+                  "rule": "phoneNumber"
+                }
+              },
+              "city": {
+                "type": "string",
+                "rule": {
+                  "name": "city",
+                  "type": "string",
+                  "group": "LocationRules",
+                  "rule": "city"
+                }
+              },
+              "street": {
+                "type": "string",
+                "rule": {
+                  "name": "street",
+                  "type": "string",
+                  "group": "LocationRules",
+                  "rule": "street"
+                }
+              },
+              "customerId": {
+                "type": "string",
+                "rule": {
+                  "name": "customerId",
+                  "type": "string",
+                  "group": "NumberRules",
+                  "rule": "int",
+                  "minimum": 1,
+                  "maximum": 100
+                }
+              },
+              "customerName": {
+                "type": "string",
+                "rule": {
+                  "name": "customerName",
+                  "type": "string",
+                  "group": "PersonRules",
+                  "rule": "firstName"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "publishSettings": {
+      "count": 0,
+      "interval": 1000,
+      "delay": 0
+    },
+    "mappings": [
+      {
+        "type": "Payload Parameter",
+        "source": {
+          "type": "Topic Parameter",
+          "name": "division",
+          "fieldName": "division",
+          "fieldType": "string"
+        },
+        "target": {
+          "type": "Payload Parameter",
+          "name": "orderHeader.division",
+          "fieldName": "division",
+          "fieldType": "string"
+        }
+      },
+      {
+        "type": "Payload Parameter",
+        "source": {
+          "type": "Topic Parameter",
+          "name": "customerId",
+          "fieldName": "customerId",
+          "fieldType": "string"
+        },
+        "target": {
+          "type": "Payload Parameter",
+          "name": "orderHeader.customer.customerId",
+          "fieldName": "customerId",
+          "fieldType": "string"
+        }
+      },
+      {
+        "type": "Payload Parameter",
+        "source": {
+          "type": "Topic Parameter",
+          "name": "salesOrg",
+          "fieldName": "salesOrg",
+          "fieldType": "string"
+        },
+        "target": {
+          "type": "Payload Parameter",
+          "name": "orderHeader.salesOrg",
+          "fieldName": "salesOrg",
+          "fieldType": "string"
+        }
+      },
+      {
+        "type": "Payload Parameter",
+        "source": {
+          "type": "Topic Parameter",
+          "name": "distributionChannel",
+          "fieldName": "distributionChannel",
+          "fieldType": "string"
+        },
+        "target": {
+          "type": "Payload Parameter",
+          "name": "orderHeader.distributionChannel",
+          "fieldName": "distributionChannel",
+          "fieldType": "string"
+        }
+      }
+    ]
+  },
+  {
+    "topic": "sap/erp/chartofaccounts/change/V1/{chartOfAccounts}/{accountNumber}",
+    "topicParameters": {
+      "chartOfAccounts": {
+        "schema": {
+          "type": "string"
+        },
+        "rule": {
+          "name": "chartOfAccounts",
+          "type": "string",
+          "group": "CommerceRules",
+          "rule": "department"
+        }
+      },
+      "accountNumber": {
+        "schema": {
+          "type": "string"
+        },
+        "rule": {
+          "name": "accountNumber",
+          "type": "string",
+          "group": "NumberRules",
+          "rule": "int",
+          "minimum": 1,
+          "maximum": 100
+        }
+      }
+    },
+    "eventName": "Chart of Accounts Change",
+    "eventVersion": "0.1.0",
+    "messageName": "Chart_of_Accounts_Change",
+    "hasPayload": true,
+    "payload": {
+      "accountHeader": {
+        "type": "object",
+        "properties": {
+          "creator": {
+            "type": "string",
+            "rule": {
+              "name": "creator",
+              "type": "string",
+              "group": "PersonRules",
+              "rule": "middleName"
+            }
+          },
+          "chartOfAccounts": {
+            "type": "string",
+            "rule": {
+              "name": "chartOfAccounts",
+              "type": "string",
+              "group": "CommerceRules",
+              "rule": "department"
+            }
+          },
+          "companyCodeData": {
+            "type": "object",
+            "properties": {
+              "companyCode": {
+                "type": "string",
+                "enum": [
+                  "CC014",
+                  "CC010",
+                  "CC011",
+                  "CC012",
+                  "CC099",
+                  "CC017",
+                  "CC019"
+                ],
+                "rule": {
+                  "name": "companyCode",
+                  "type": "string",
+                  "group": "StringRules",
+                  "rule": "enum",
+                  "enum": [
+                    "CC014",
+                    "CC010",
+                    "CC011",
+                    "CC012",
+                    "CC099",
+                    "CC017",
+                    "CC019"
+                  ]
+                }
+              },
+              "fieldStatusGroup": {
+                "type": "string",
+                "enum": [
+                  "FSG18",
+                  "FSG17",
+                  "FSG16",
+                  "FSG14",
+                  "FSG15",
+                  "FSG13",
+                  "FSG12",
+                  "FSG11"
+                ],
+                "rule": {
+                  "name": "fieldStatusGroup",
+                  "type": "string",
+                  "group": "StringRules",
+                  "rule": "enum",
+                  "enum": [
+                    "FSG18",
+                    "FSG17",
+                    "FSG16",
+                    "FSG14",
+                    "FSG15",
+                    "FSG13",
+                    "FSG12",
+                    "FSG11"
+                  ]
+                }
+              },
+              "currency": {
+                "type": "string",
+                "enum": [
+                  "EUR",
+                  "USD",
+                  "GBP",
+                  "AED",
+                  "AUD",
+                  "DKK",
+                  "INR",
+                  "JPY"
+                ],
+                "rule": {
+                  "name": "currency",
+                  "type": "string",
+                  "group": "StringRules",
+                  "rule": "enum",
+                  "enum": [
+                    "EUR",
+                    "USD",
+                    "GBP",
+                    "AED",
+                    "AUD",
+                    "DKK",
+                    "INR",
+                    "JPY"
+                  ]
+                }
+              },
+              "taxCode": {
+                "type": "string",
+                "enum": [
+                  "TAX18",
+                  "TAX17",
+                  "TAX16",
+                  "TAX14",
+                  "TAX15",
+                  "TAX13",
+                  "TAX12",
+                  "TAX11"
+                ],
+                "rule": {
+                  "name": "taxCode",
+                  "type": "string",
+                  "group": "StringRules",
+                  "rule": "enum",
+                  "enum": [
+                    "TAX18",
+                    "TAX17",
+                    "TAX16",
+                    "TAX14",
+                    "TAX15",
+                    "TAX13",
+                    "TAX12",
+                    "TAX11"
+                  ]
+                }
+              },
+              "financialBudgetItem": {
+                "type": "string",
+                "enum": [
+                  "BudgetItem14",
+                  "BudgetItem11",
+                  "BudgetItem12",
+                  "BudgetItem10",
+                  "BudgetItem19",
+                  "BudgetItem16",
+                  "BudgetItem99"
+                ],
+                "rule": {
+                  "name": "financialBudgetItem",
+                  "type": "string",
+                  "group": "StringRules",
+                  "rule": "enum",
+                  "enum": [
+                    "BudgetItem14",
+                    "BudgetItem11",
+                    "BudgetItem12",
+                    "BudgetItem10",
+                    "BudgetItem19",
+                    "BudgetItem16",
+                    "BudgetItem99"
+                  ]
+                }
+              }
+            },
+            "rule": {
+              "name": "companyCodeData",
+              "type": "object"
+            }
+          },
+          "accountNumber": {
+            "type": "string",
+            "rule": {
+              "name": "accountNumber",
+              "type": "string",
+              "group": "NumberRules",
+              "rule": "int",
+              "minimum": 1,
+              "maximum": 100
+            }
+          }
+        }
+      }
+    },
+    "publishSettings": {
+      "count": 0,
+      "interval": "100",
+      "delay": 0
+    },
+    "mappings": [
+      {
+        "type": "Payload Parameter",
+        "source": {
+          "type": "Topic Parameter",
+          "name": "chartOfAccounts",
+          "fieldName": "chartOfAccounts",
+          "fieldType": "string"
+        },
+        "target": {
+          "type": "Payload Parameter",
+          "name": "accountHeader.chartOfAccounts",
+          "fieldName": "chartOfAccounts",
+          "fieldType": "string"
+        }
+      },
+      {
+        "type": "Payload Parameter",
+        "source": {
+          "type": "Topic Parameter",
+          "name": "accountNumber",
+          "fieldName": "accountNumber",
+          "fieldType": "string"
+        },
+        "target": {
+          "type": "Payload Parameter",
+          "name": "accountHeader.accountNumber",
+          "fieldName": "accountNumber",
+          "fieldType": "string"
+        }
+      }
+    ]
+  },
+  {
+    "topic": "sap/erp/notification/change/V1/{item}/{plant}/{notificationId}",
+    "topicParameters": {
+      "item": {
+        "schema": {
+          "type": "string"
+        },
+        "rule": {
+          "name": "item",
+          "type": "string",
+          "group": "CommerceRules",
+          "rule": "productName"
+        }
+      },
+      "plant": {
+        "schema": {
+          "type": "string"
+        },
+        "rule": {
+          "name": "plant",
+          "type": "string",
+          "group": "CommerceRules",
+          "rule": "department"
+        }
+      },
+      "notificationId": {
+        "schema": {
+          "type": "string"
+        },
+        "rule": {
+          "name": "notificationId",
+          "type": "string",
+          "group": "NumberRules",
+          "rule": "int",
+          "minimum": 1,
+          "maximum": 100
+        }
+      }
+    },
+    "eventName": "Notification Change event",
+    "eventVersion": "0.1.0",
+    "messageName": "Notification_Change_event",
+    "hasPayload": true,
+    "payload": {
+      "notificationHeader": {
+        "type": "object",
+        "properties": {
+          "creator": {
+            "type": "string",
+            "rule": {
+              "name": "creator",
+              "type": "string",
+              "group": "PersonRules",
+              "rule": "middleName"
+            }
+          },
+          "plant": {
+            "type": "string",
+            "enum": [
+              "Plant10",
+              "Plant11",
+              "Plant13",
+              "Plant14",
+              "Plant15",
+              "Plant16",
+              "Plant17"
+            ],
+            "rule": {
+              "name": "plant",
+              "type": "string",
+              "group": "StringRules",
+              "rule": "enum",
+              "enum": [
+                "Plant10",
+                "Plant11",
+                "Plant13",
+                "Plant14",
+                "Plant15",
+                "Plant16",
+                "Plant17"
+              ]
+            }
+          },
+          "notificationItem": {
+            "type": "object",
+            "properties": {
+              "item": {
+                "type": "string",
+                "rule": {
+                  "name": "item",
+                  "type": "string",
+                  "group": "CommerceRules",
+                  "rule": "productName"
+                }
+              },
+              "material": {
+                "type": "string",
+                "enum": [
+                  "MaterialT9",
+                  "MaterialT8",
+                  "MaterialT2",
+                  "MaterialT4",
+                  "MaterialT5",
+                  "MaterialT3",
+                  "MaterialT1"
+                ],
+                "rule": {
+                  "name": "material",
+                  "type": "string",
+                  "group": "StringRules",
+                  "rule": "enum",
+                  "enum": [
+                    "MaterialT9",
+                    "MaterialT8",
+                    "MaterialT2",
+                    "MaterialT4",
+                    "MaterialT5",
+                    "MaterialT3",
+                    "MaterialT1"
+                  ]
+                }
+              },
+              "puchaseOrg": {
+                "type": "string",
+                "rule": {
+                  "name": "puchaseOrg",
+                  "type": "string",
+                  "group": "CommerceRules",
+                  "rule": "department"
+                }
+              },
+              "defectClass": {
+                "type": "string",
+                "enum": [
+                  "ClassT1",
+                  "ClassT2",
+                  "ClassT3",
+                  "ClassT4",
+                  "ClassT5",
+                  "ClassT6",
+                  "ClassT7"
+                ],
+                "rule": {
+                  "name": "defectClass",
+                  "type": "string",
+                  "group": "StringRules",
+                  "rule": "enum",
+                  "enum": [
+                    "ClassT1",
+                    "ClassT2",
+                    "ClassT3",
+                    "ClassT4",
+                    "ClassT5",
+                    "ClassT6",
+                    "ClassT7"
+                  ]
+                }
+              }
+            },
+            "rule": {
+              "name": "notificationItem",
+              "type": "object"
+            }
+          },
+          "changer": {
+            "type": "string",
+            "rule": {
+              "name": "changer",
+              "type": "string",
+              "group": "PersonRules",
+              "rule": "middleName"
+            }
+          },
+          "notificationId": {
+            "type": "string",
+            "rule": {
+              "name": "notificationId",
+              "type": "string",
+              "group": "NumberRules",
+              "rule": "int",
+              "minimum": 1,
+              "maximum": 100
+            }
+          },
+          "changedate": {
+            "type": "datetime",
+            "rule": {
+              "name": "changedate",
+              "type": "datetime",
+              "group": "DateRules",
+              "rule": "recent",
+              "days": 3
+            }
+          },
+          "type": {
+            "type": "string",
+            "rule": {
+              "name": "type",
+              "type": "string",
+              "group": "FinanceRules",
+              "rule": "transactionDescription"
+            }
+          }
+        }
+      }
+    },
+    "publishSettings": {
+      "count": 0,
+      "interval": "100",
+      "delay": 0
+    },
+    "mappings": [
+      {
+        "type": "Payload Parameter",
+        "source": {
+          "type": "Topic Parameter",
+          "name": "item",
+          "fieldName": "item",
+          "fieldType": "string"
+        },
+        "target": {
+          "type": "Payload Parameter",
+          "name": "notificationHeader.notificationItem.item",
+          "fieldName": "item",
+          "fieldType": "string"
+        }
+      },
+      {
+        "type": "Payload Parameter",
+        "source": {
+          "type": "Topic Parameter",
+          "name": "plant",
+          "fieldName": "plant",
+          "fieldType": "string"
+        },
+        "target": {
+          "type": "Payload Parameter",
+          "name": "notificationHeader.plant",
+          "fieldName": "plant",
+          "fieldType": "string"
+        }
+      },
+      {
+        "type": "Payload Parameter",
+        "source": {
+          "type": "Topic Parameter",
+          "name": "notificationId",
+          "fieldName": "notificationId",
+          "fieldType": "string"
+        },
+        "target": {
+          "type": "Payload Parameter",
+          "name": "notificationHeader.notificationId",
+          "fieldName": "notificationId",
+          "fieldType": "string"
+        }
+      }
+    ]
+  },
+  {
+    "topic": "sap/erp/notification/create/V1/{type}/{plant}/{notificationId}",
+    "topicParameters": {
+      "plant": {
+        "schema": {
+          "type": "string"
+        },
+        "rule": {
+          "name": "plant",
+          "type": "string",
+          "group": "LoremRules",
+          "rule": "word",
+          "minimum": 3,
+          "maximum": 3
+        }
+      },
+      "notificationId": {
+        "schema": {
+          "type": "string"
+        },
+        "rule": {
+          "name": "notificationId",
+          "type": "string",
+          "group": "NumberRules",
+          "rule": "int",
+          "minimum": 1,
+          "maximum": 100
+        }
+      },
+      "type": {
+        "schema": {
+          "type": "string"
+        },
+        "rule": {
+          "name": "type",
+          "type": "string",
+          "group": "FinanceRules",
+          "rule": "transactionType"
+        }
+      }
+    },
+    "eventName": "Notification Create event",
+    "eventVersion": "0.1.0",
+    "messageName": "Notification_Create_event",
+    "hasPayload": true,
+    "payload": {
+      "notificationHeader": {
+        "type": "object",
+        "properties": {
+          "creator": {
+            "type": "string",
+            "rule": {
+              "name": "creator",
+              "type": "string",
+              "group": "PersonRules",
+              "rule": "middleName"
+            }
+          },
+          "plant": {
+            "type": "string",
+            "enum": [
+              "Plant10",
+              "Plant11",
+              "Plant13",
+              "Plant14",
+              "Plant15",
+              "Plant16",
+              "Plant17"
+            ],
+            "rule": {
+              "name": "plant",
+              "type": "string",
+              "group": "StringRules",
+              "rule": "enum",
+              "enum": [
+                "Plant10",
+                "Plant11",
+                "Plant13",
+                "Plant14",
+                "Plant15",
+                "Plant16",
+                "Plant17"
+              ]
+            }
+          },
+          "notificationItem": {
+            "type": "object",
+            "properties": {
+              "item": {
+                "type": "string",
+                "rule": {
+                  "name": "item",
+                  "type": "string",
+                  "group": "StringRules",
+                  "rule": "alpha",
+                  "casing": "mixed",
+                  "minLength": 10,
+                  "maxLength": 10
+                }
+              },
+              "material": {
+                "type": "string",
+                "enum": [
+                  "MaterialT9",
+                  "MaterialT8",
+                  "MaterialT2",
+                  "MaterialT4",
+                  "MaterialT5",
+                  "MaterialT3",
+                  "MaterialT1"
+                ],
+                "rule": {
+                  "name": "material",
+                  "type": "string",
+                  "group": "StringRules",
+                  "rule": "enum",
+                  "enum": [
+                    "MaterialT9",
+                    "MaterialT8",
+                    "MaterialT2",
+                    "MaterialT4",
+                    "MaterialT5",
+                    "MaterialT3",
+                    "MaterialT1"
+                  ]
+                }
+              },
+              "puchaseOrg": {
+                "type": "string",
+                "rule": {
+                  "name": "puchaseOrg",
+                  "type": "string",
+                  "group": "StringRules",
+                  "rule": "alpha",
+                  "casing": "mixed",
+                  "minLength": 10,
+                  "maxLength": 10
+                }
+              },
+              "defectClass": {
+                "type": "string",
+                "enum": [
+                  "ClassT1",
+                  "ClassT2",
+                  "ClassT3",
+                  "ClassT4",
+                  "ClassT5",
+                  "ClassT6",
+                  "ClassT7"
+                ],
+                "rule": {
+                  "name": "defectClass",
+                  "type": "string",
+                  "group": "StringRules",
+                  "rule": "enum",
+                  "enum": [
+                    "ClassT1",
+                    "ClassT2",
+                    "ClassT3",
+                    "ClassT4",
+                    "ClassT5",
+                    "ClassT6",
+                    "ClassT7"
+                  ]
+                }
+              }
+            },
+            "rule": {
+              "name": "notificationItem",
+              "type": "object"
+            }
+          },
+          "changer": {
+            "type": "string",
+            "rule": {
+              "name": "changer",
+              "type": "string",
+              "group": "PersonRules",
+              "rule": "lastName"
+            }
+          },
+          "notificationId": {
+            "type": "string",
+            "rule": {
+              "name": "notificationId",
+              "type": "string",
+              "group": "NumberRules",
+              "rule": "int",
+              "minimum": 1,
+              "maximum": 100
+            }
+          },
+          "changedate": {
+            "type": "datetime",
+            "rule": {
+              "name": "changedate",
+              "type": "datetime",
+              "group": "DateRules",
+              "rule": "recent",
+              "days": 3
+            }
+          },
+          "type": {
+            "type": "string",
+            "rule": {
+              "name": "type",
+              "type": "string",
+              "group": "FinanceRules",
+              "rule": "transactionType"
+            }
+          }
+        }
+      }
+    },
+    "publishSettings": {
+      "count": 0,
+      "interval": 1000,
+      "delay": 0
+    },
+    "mappings": [
+      {
+        "type": "Payload Parameter",
+        "source": {
+          "type": "Topic Parameter",
+          "name": "plant",
+          "fieldName": "plant",
+          "fieldType": "string"
+        },
+        "target": {
+          "type": "Payload Parameter",
+          "name": "notificationHeader.plant",
+          "fieldName": "plant",
+          "fieldType": "string"
+        }
+      },
+      {
+        "type": "Payload Parameter",
+        "source": {
+          "type": "Topic Parameter",
+          "name": "notificationId",
+          "fieldName": "notificationId",
+          "fieldType": "string"
+        },
+        "target": {
+          "type": "Payload Parameter",
+          "name": "notificationHeader.notificationId",
+          "fieldName": "notificationId",
+          "fieldType": "string"
+        }
+      }
+    ]
+  },
+  {
+    "topic": "sap/erp/businesspartner/create/V1/{businessPartnerType}/{partnerId}",
+    "topicParameters": {
+      "partnerId": {
+        "schema": {
+          "type": "string"
+        },
+        "rule": {
+          "name": "partnerId",
+          "type": "string",
+          "group": "NumberRules",
+          "rule": "int",
+          "minimum": 1,
+          "maximum": 100
+        }
+      },
+      "businessPartnerType": {
+        "schema": {
+          "type": "string"
+        },
+        "rule": {
+          "name": "businessPartnerType",
+          "type": "string",
+          "group": "PersonRules",
+          "rule": "jobType"
+        }
+      }
+    },
+    "eventName": "Business Partner Create",
+    "eventVersion": "0.1.0",
+    "messageName": "Business_Partner_Create",
+    "hasPayload": true,
+    "payload": {
+      "businessPartner": {
+        "type": "object",
+        "properties": {
+          "firstName": {
+            "type": "string",
+            "rule": {
+              "name": "firstName",
+              "type": "string",
+              "group": "PersonRules",
+              "rule": "firstName"
+            }
+          },
+          "lastName": {
+            "type": "string",
+            "rule": {
+              "name": "lastName",
+              "type": "string",
+              "group": "PersonRules",
+              "rule": "lastName"
+            }
+          },
+          "addressLink": {
+            "type": "object",
+            "properties": {
+              "address": {
+                "type": "object",
+                "properties": {
+                  "country": {
+                    "type": "string",
+                    "rule": {
+                      "name": "country",
+                      "type": "string",
+                      "group": "LocationRules",
+                      "rule": "country"
+                    }
+                  },
+                  "nation": {
+                    "type": "string",
+                    "rule": {
+                      "name": "nation",
+                      "type": "string",
+                      "group": "LocationRules",
+                      "rule": "countryCode"
+                    }
+                  },
+                  "city": {
+                    "type": "string",
+                    "rule": {
+                      "name": "city",
+                      "type": "string",
+                      "group": "LocationRules",
+                      "rule": "city"
+                    }
+                  },
+                  "street": {
+                    "type": "string",
+                    "rule": {
+                      "name": "street",
+                      "type": "string",
+                      "group": "LocationRules",
+                      "rule": "street"
+                    }
+                  },
+                  "postalCode": {
+                    "type": "string",
+                    "rule": {
+                      "name": "postalCode",
+                      "type": "string",
+                      "group": "LocationRules",
+                      "rule": "zipCode"
+                    }
+                  },
+                  "houseNumber": {
+                    "type": "string",
+                    "rule": {
+                      "name": "houseNumber",
+                      "type": "string",
+                      "group": "LocationRules",
+                      "rule": "buildingNumber"
+                    }
+                  }
+                }
+              },
+              "addressNumber": {
+                "type": "string",
+                "rule": {
+                  "name": "addressNumber",
+                  "type": "string",
+                  "group": "LocationRules",
+                  "rule": "buildingNumber"
+                }
+              },
+              "dateFrom": {
+                "type": "number",
+                "rule": {
+                  "name": "dateFrom",
+                  "type": "number",
+                  "group": "DateRules",
+                  "rule": "recent",
+                  "days": 3
+                }
+              }
+            }
+          },
+          "partnerId": {
+            "type": "string",
+            "rule": {
+              "name": "partnerId",
+              "type": "string",
+              "group": "NumberRules",
+              "rule": "int",
+              "minimum": 1,
+              "maximum": 100
+            }
+          },
+          "businessPartnerType": {
+            "type": "string",
+            "rule": {
+              "name": "businessPartnerType",
+              "type": "string",
+              "group": "StringRules",
+              "rule": "alpha",
+              "casing": "mixed",
+              "minLength": 10,
+              "maxLength": 10
+            }
+          }
+        }
+      }
+    },
+    "publishSettings": {
+      "count": 0,
+      "interval": 1000,
+      "delay": 0
+    },
+    "mappings": [
+      {
+        "type": "Payload Parameter",
+        "source": {
+          "type": "Topic Parameter",
+          "name": "partnerId",
+          "fieldName": "partnerId",
+          "fieldType": "string"
+        },
+        "target": {
+          "type": "Payload Parameter",
+          "name": "businessPartner.partnerId",
+          "fieldName": "partnerId",
+          "fieldType": "string"
+        }
+      },
+      {
+        "type": "Payload Parameter",
+        "source": {
+          "type": "Topic Parameter",
+          "name": "businessPartnerType",
+          "fieldName": "businessPartnerType",
+          "fieldType": "string"
+        },
+        "target": {
+          "type": "Payload Parameter",
+          "name": "businessPartner.businessPartnerType",
+          "fieldName": "businessPartnerType",
+          "fieldType": "string"
+        }
+      }
+    ]
+  },
+  {
+    "topic": "sap/erp/chartofaccounts/create/V1/{chartOfAccounts}/{accountNumber}",
+    "topicParameters": {
+      "chartOfAccounts": {
+        "schema": {
+          "type": "string"
+        },
+        "rule": {
+          "name": "chartOfAccounts",
+          "type": "string",
+          "group": "FinanceRules",
+          "rule": "transactionType"
+        }
+      },
+      "accountNumber": {
+        "schema": {
+          "type": "string"
+        },
+        "rule": {
+          "name": "accountNumber",
+          "type": "string",
+          "group": "NumberRules",
+          "rule": "int",
+          "minimum": 1,
+          "maximum": 100
+        }
+      }
+    },
+    "eventName": "Chart of Accounts Create",
+    "eventVersion": "0.1.0",
+    "messageName": "Chart_of_Accounts_Create",
+    "hasPayload": true,
+    "payload": {
+      "accountHeader": {
+        "type": "object",
+        "properties": {
+          "creator": {
+            "type": "string",
+            "rule": {
+              "name": "creator",
+              "type": "string",
+              "group": "PersonRules",
+              "rule": "middleName"
+            }
+          },
+          "chartOfAccounts": {
+            "type": "string",
+            "rule": {
+              "name": "chartOfAccounts",
+              "type": "string",
+              "group": "FinanceRules",
+              "rule": "transactionType"
+            }
+          },
+          "companyCodeData": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "companyCode": {
+                  "type": "string",
+                  "enum": [
+                    "CC014",
+                    "CC010",
+                    "CC011",
+                    "CC012",
+                    "CC099",
+                    "CC017",
+                    "CC019"
+                  ],
+                  "rule": {
+                    "name": "companyCode",
+                    "type": "string",
+                    "group": "StringRules",
+                    "rule": "enum",
+                    "enum": [
+                      "CC014",
+                      "CC010",
+                      "CC011",
+                      "CC012",
+                      "CC099",
+                      "CC017",
+                      "CC019"
+                    ]
+                  }
+                },
+                "fieldStatusGroup": {
+                  "type": "string",
+                  "enum": [
+                    "FSG18",
+                    "FSG17",
+                    "FSG16",
+                    "FSG14",
+                    "FSG15",
+                    "FSG13",
+                    "FSG12",
+                    "FSG11"
+                  ],
+                  "rule": {
+                    "name": "fieldStatusGroup",
+                    "type": "string",
+                    "group": "StringRules",
+                    "rule": "enum",
+                    "enum": [
+                      "FSG18",
+                      "FSG17",
+                      "FSG16",
+                      "FSG14",
+                      "FSG15",
+                      "FSG13",
+                      "FSG12",
+                      "FSG11"
+                    ]
+                  }
+                },
+                "currency": {
+                  "type": "string",
+                  "enum": [
+                    "EUR",
+                    "USD",
+                    "GBP",
+                    "AED",
+                    "AUD",
+                    "DKK",
+                    "INR",
+                    "JPY"
+                  ],
+                  "rule": {
+                    "name": "currency",
+                    "type": "string",
+                    "group": "StringRules",
+                    "rule": "enum",
+                    "enum": [
+                      "EUR",
+                      "USD",
+                      "GBP",
+                      "AED",
+                      "AUD",
+                      "DKK",
+                      "INR",
+                      "JPY"
+                    ]
+                  }
+                },
+                "taxCode": {
+                  "type": "string",
+                  "enum": [
+                    "TAX18",
+                    "TAX17",
+                    "TAX16",
+                    "TAX14",
+                    "TAX15",
+                    "TAX13",
+                    "TAX12",
+                    "TAX11"
+                  ],
+                  "rule": {
+                    "name": "taxCode",
+                    "type": "string",
+                    "group": "StringRules",
+                    "rule": "enum",
+                    "enum": [
+                      "TAX18",
+                      "TAX17",
+                      "TAX16",
+                      "TAX14",
+                      "TAX15",
+                      "TAX13",
+                      "TAX12",
+                      "TAX11"
+                    ]
+                  }
+                },
+                "financialBudgetItem": {
+                  "type": "string",
+                  "enum": [
+                    "BudgetItem14",
+                    "BudgetItem11",
+                    "BudgetItem12",
+                    "BudgetItem10",
+                    "BudgetItem19",
+                    "BudgetItem16",
+                    "BudgetItem99"
+                  ],
+                  "rule": {
+                    "name": "financialBudgetItem",
+                    "type": "string",
+                    "group": "StringRules",
+                    "rule": "enum",
+                    "enum": [
+                      "BudgetItem14",
+                      "BudgetItem11",
+                      "BudgetItem12",
+                      "BudgetItem10",
+                      "BudgetItem19",
+                      "BudgetItem16",
+                      "BudgetItem99"
+                    ]
+                  }
+                }
+              }
+            },
+            "subType": "object",
+            "name": "companyCodeData",
+            "rule": {
+              "name": "companyCodeData",
+              "type": "object"
+            }
+          },
+          "accountNumber": {
+            "type": "string",
+            "rule": {
+              "name": "accountNumber",
+              "type": "string",
+              "group": "NumberRules",
+              "rule": "int",
+              "minimum": 1,
+              "maximum": 100
+            }
+          }
+        }
+      }
+    },
+    "publishSettings": {
+      "count": 0,
+      "interval": 1000,
+      "delay": 0
+    },
+    "mappings": [
+      {
+        "type": "Payload Parameter",
+        "source": {
+          "type": "Topic Parameter",
+          "name": "chartOfAccounts",
+          "fieldName": "chartOfAccounts",
+          "fieldType": "string"
+        },
+        "target": {
+          "type": "Payload Parameter",
+          "name": "accountHeader.chartOfAccounts",
+          "fieldName": "chartOfAccounts",
+          "fieldType": "string"
+        }
+      },
+      {
+        "type": "Payload Parameter",
+        "source": {
+          "type": "Topic Parameter",
+          "name": "accountNumber",
+          "fieldName": "accountNumber",
+          "fieldType": "string"
+        },
+        "target": {
+          "type": "Payload Parameter",
+          "name": "accountHeader.accountNumber",
+          "fieldName": "accountNumber",
+          "fieldType": "string"
+        }
+      }
+    ]
+  },
+  {
+    "topic": "sap/erp/material/change/V1/{materialClass}/{industrySector}/{materialType}/{materialNumber}/{maintenanceStatusGroup}/{maintenanceStatusMaterial}/{deletionIndicator}",
+    "topicParameters": {
+      "materialClass": {
+        "schema": {
+          "type": "string"
+        },
+        "rule": {
+          "name": "materialClass",
+          "type": "string",
+          "group": "LoremRules",
+          "rule": "word",
+          "minimum": 3,
+          "maximum": 3
+        }
+      },
+      "industrySector": {
+        "schema": {
+          "type": "string"
+        },
+        "rule": {
+          "name": "industrySector",
+          "type": "string",
+          "group": "FinanceRules",
+          "rule": "transactionType"
+        }
+      },
+      "materialNumber": {
+        "schema": {
+          "type": "string"
+        },
+        "rule": {
+          "name": "materialNumber",
+          "type": "string",
+          "group": "NumberRules",
+          "rule": "int",
+          "minimum": 1,
+          "maximum": 100
+        }
+      },
+      "materialType": {
+        "schema": {
+          "type": "string"
+        },
+        "rule": {
+          "name": "materialType",
+          "type": "string",
+          "group": "CommerceRules",
+          "rule": "product"
+        }
+      },
+      "maintenanceStatusGroup": {
+        "schema": {
+          "type": "string"
+        },
+        "rule": {
+          "name": "maintenanceStatusGroup",
+          "type": "string",
+          "group": "LoremRules",
+          "rule": "word",
+          "minimum": 3,
+          "maximum": 3
+        }
+      },
+      "maintenanceStatusMaterial": {
+        "schema": {
+          "type": "string"
+        },
+        "rule": {
+          "name": "maintenanceStatusMaterial",
+          "type": "string",
+          "group": "LoremRules",
+          "rule": "word",
+          "minimum": 5,
+          "maximum": 10
+        }
+      },
+      "deletionIndicator": {
+        "schema": {
+          "type": "string"
+        },
+        "rule": {
+          "name": "deletionIndicator",
+          "type": "string",
+          "group": "BooleanRules",
+          "rule": "boolean"
+        }
+      }
+    },
+    "eventName": "Material Master Change",
+    "eventVersion": "0.1.0",
+    "messageName": "Material_Master_Change",
+    "hasPayload": true,
+    "payload": {
+      "material": {
+        "type": "object",
+        "properties": {
+          "materialClass": {
+            "type": "string",
+            "enum": [
+              "ClassA",
+              "ClassB",
+              "ClassC",
+              "ClassD"
+            ],
+            "rule": {
+              "name": "materialClass",
+              "type": "string",
+              "group": "StringRules",
+              "rule": "enum",
+              "enum": [
+                "ClassA",
+                "ClassB",
+                "ClassC",
+                "ClassD"
+              ]
+            }
+          },
+          "industrySector": {
+            "type": "string",
+            "enum": [
+              "Automotive",
+              "Retail",
+              "Banking",
+              "Manufacturing"
+            ],
+            "rule": {
+              "name": "industrySector",
+              "type": "string",
+              "group": "StringRules",
+              "rule": "enum",
+              "enum": [
+                "Automotive",
+                "Retail",
+                "Banking",
+                "Manufacturing"
+              ]
+            }
+          },
+          "materialType": {
+            "type": "string",
+            "enum": [
+              "HALB",
+              "HALC"
+            ],
+            "rule": {
+              "name": "materialType",
+              "type": "string",
+              "group": "StringRules",
+              "rule": "enum",
+              "enum": [
+                "HALB",
+                "HALC"
+              ]
+            }
+          },
+          "maintenanceStatusGroup": {
+            "type": "number",
+            "rule": {
+              "name": "maintenanceStatusGroup",
+              "type": "number",
+              "group": "LoremRules",
+              "rule": "word",
+              "minimum": 3,
+              "maximum": 3
+            }
+          },
+          "maintenanceStatusMaterial": {
+            "type": "string",
+            "rule": {
+              "name": "maintenanceStatusMaterial",
+              "type": "string",
+              "group": "FinanceRules",
+              "rule": "transactionType"
+            }
+          },
+          "units": {
+            "type": "object",
+            "properties": {
+              "uOM": {
+                "type": "string",
+                "rule": {
+                  "name": "uOM",
+                  "type": "string",
+                  "group": "FinanceRules",
+                  "rule": "ethereumAddress"
+                }
+              },
+              "ean11": {
+                "type": "string",
+                "rule": {
+                  "name": "ean11",
+                  "type": "string",
+                  "group": "CommerceRules",
+                  "rule": "isbn"
+                }
+              }
+            },
+            "rule": {
+              "name": "units",
+              "type": "object"
+            }
+          },
+          "creationDate": {
+            "type": "date",
+            "rule": {
+              "name": "creationDate",
+              "type": "date",
+              "group": "DateRules",
+              "rule": "recent",
+              "days": 3
+            }
+          },
+          "changerUser": {
+            "type": "string",
+            "rule": {
+              "name": "changerUser",
+              "type": "string",
+              "group": "PersonRules",
+              "rule": "middleName"
+            }
+          },
+          "deletionIndicator": {
+            "type": "string",
+            "enum": [
+              "",
+              "X"
+            ],
+            "rule": {
+              "name": "deletionIndicator",
+              "type": "string",
+              "group": "BooleanRules",
+              "rule": "boolean"
+            }
+          },
+          "baseUnit": {
+            "type": "string",
+            "enum": [
+              "PC",
+              "SRV"
+            ],
+            "rule": {
+              "name": "baseUnit",
+              "type": "string",
+              "group": "StringRules",
+              "rule": "enum",
+              "enum": [
+                "PC",
+                "SRV"
+              ]
+            }
+          },
+          "materialNumber": {
+            "type": "string",
+            "rule": {
+              "name": "materialNumber",
+              "type": "string",
+              "group": "NumberRules",
+              "rule": "int",
+              "minimum": 1,
+              "maximum": 100
+            }
+          },
+          "creatorUser": {
+            "type": "string",
+            "rule": {
+              "name": "creatorUser",
+              "type": "string",
+              "group": "PersonRules",
+              "rule": "firstName"
+            }
+          },
+          "lastChange": {
+            "type": "datetime",
+            "rule": {
+              "name": "lastChange",
+              "type": "datetime",
+              "group": "DateRules",
+              "rule": "past",
+              "years": 1
+            }
+          }
+        }
+      }
+    },
+    "publishSettings": {
+      "count": 0,
+      "interval": "100",
+      "delay": 0
+    },
+    "mappings": [
+      {
+        "type": "Payload Parameter",
+        "source": {
+          "type": "Topic Parameter",
+          "name": "materialClass",
+          "fieldName": "materialClass",
+          "fieldType": "string"
+        },
+        "target": {
+          "type": "Payload Parameter",
+          "name": "material.materialClass",
+          "fieldName": "materialClass",
+          "fieldType": "string"
+        }
+      },
+      {
+        "type": "Payload Parameter",
+        "source": {
+          "type": "Topic Parameter",
+          "name": "industrySector",
+          "fieldName": "industrySector",
+          "fieldType": "string"
+        },
+        "target": {
+          "type": "Payload Parameter",
+          "name": "material.industrySector",
+          "fieldName": "industrySector",
+          "fieldType": "string"
+        }
+      },
+      {
+        "type": "Payload Parameter",
+        "source": {
+          "type": "Topic Parameter",
+          "name": "materialType",
+          "fieldName": "materialType",
+          "fieldType": "string"
+        },
+        "target": {
+          "type": "Payload Parameter",
+          "name": "material.materialType",
+          "fieldName": "materialType",
+          "fieldType": "string"
+        }
+      },
+      {
+        "type": "Payload Parameter",
+        "source": {
+          "type": "Topic Parameter",
+          "name": "deletionIndicator",
+          "fieldName": "deletionIndicator",
+          "fieldType": "string"
+        },
+        "target": {
+          "type": "Payload Parameter",
+          "name": "material.deletionIndicator",
+          "fieldName": "deletionIndicator",
+          "fieldType": "string"
+        }
+      },
+      {
+        "type": "Payload Parameter",
+        "source": {
+          "type": "Topic Parameter",
+          "name": "maintenanceStatusMaterial",
+          "fieldName": "maintenanceStatusMaterial",
+          "fieldType": "string"
+        },
+        "target": {
+          "type": "Payload Parameter",
+          "name": "material.maintenanceStatusMaterial",
+          "fieldName": "maintenanceStatusMaterial",
+          "fieldType": "string"
+        }
+      },
+      {
+        "type": "Payload Parameter",
+        "source": {
+          "type": "Topic Parameter",
+          "name": "maintenanceStatusGroup",
+          "fieldName": "maintenanceStatusGroup",
+          "fieldType": "string"
+        },
+        "target": {
+          "type": "Payload Parameter",
+          "name": "material.maintenanceStatusGroup",
+          "fieldName": "maintenanceStatusGroup",
+          "fieldType": "number"
+        }
+      },
+      {
+        "type": "Payload Parameter",
+        "source": {
+          "type": "Topic Parameter",
+          "name": "materialNumber",
+          "fieldName": "materialNumber",
+          "fieldType": "string"
+        },
+        "target": {
+          "type": "Payload Parameter",
+          "name": "material.materialNumber",
+          "fieldName": "materialNumber",
+          "fieldType": "string"
+        }
+      }
+    ]
+  },
+  {
+    "topic": "sap/erp/salesorder/change/V1/{salesOrg}/{distributionChannel}/{division}/{customerId}",
+    "topicParameters": {
+      "division": {
+        "schema": {
+          "type": "string"
+        },
+        "rule": {
+          "name": "division",
+          "type": "string",
+          "group": "PersonRules",
+          "rule": "jobType"
+        }
+      },
+      "customerId": {
+        "schema": {
+          "type": "string"
+        },
+        "rule": {
+          "name": "customerId",
+          "type": "string",
+          "group": "NumberRules",
+          "rule": "int",
+          "minimum": 1,
+          "maximum": 100
+        }
+      },
+      "salesOrg": {
+        "schema": {
+          "type": "string"
+        },
+        "rule": {
+          "name": "salesOrg",
+          "type": "string",
+          "group": "CommerceRules",
+          "rule": "department"
+        }
+      },
+      "distributionChannel": {
+        "schema": {
+          "type": "string"
+        },
+        "rule": {
+          "name": "distributionChannel",
+          "type": "string",
+          "group": "LoremRules",
+          "rule": "word",
+          "minimum": 3,
+          "maximum": 3
+        }
+      }
+    },
+    "eventName": "Sales Order Change",
+    "eventVersion": "0.1.0",
+    "messageName": "Sales_Order_Change",
+    "hasPayload": true,
+    "payload": {
+      "orderHeader": {
+        "type": "object",
+        "properties": {
+          "date": {
+            "type": "date",
+            "rule": {
+              "name": "date",
+              "type": "date",
+              "group": "DateRules",
+              "rule": "past",
+              "years": 1
+            }
+          },
+          "salesType": {
+            "type": "string",
+            "enum": [
+              "Online",
+              "In Store",
+              "Vending Machine"
+            ],
+            "rule": {
+              "name": "salesType",
+              "type": "string",
+              "group": "StringRules",
+              "rule": "enum",
+              "enum": [
+                "Online",
+                "In Store",
+                "Vending Machine"
+              ]
+            }
+          },
+          "division": {
+            "type": "string",
+            "enum": [
+              "DIV14",
+              "DIV13",
+              "DIV11",
+              "DIV15",
+              "DIV16",
+              "DIV17",
+              "DIV18"
+            ],
+            "rule": {
+              "name": "division",
+              "type": "string",
+              "group": "StringRules",
+              "rule": "enum",
+              "enum": [
+                "DIV14",
+                "DIV13",
+                "DIV11",
+                "DIV15",
+                "DIV16",
+                "DIV17",
+                "DIV18"
+              ]
+            }
+          },
+          "netvalue": {
+            "type": "number",
+            "rule": {
+              "name": "netvalue",
+              "type": "number",
+              "group": "NumberRules",
+              "rule": "float",
+              "minimum": 1,
+              "maximum": 1000,
+              "fractionDigits": 2
+            }
+          },
+          "creator": {
+            "type": "string",
+            "rule": {
+              "name": "creator",
+              "type": "string",
+              "group": "PersonRules",
+              "rule": "middleName"
+            }
+          },
+          "orderItem": {
+            "type": "object",
+            "properties": {
+              "orderSchedule": {
+                "type": "object",
+                "properties": {
+                  "uom": {
+                    "type": "string",
+                    "rule": {
+                      "name": "uom",
+                      "type": "string",
+                      "group": "CommerceRules",
+                      "rule": "isbn"
+                    }
+                  },
+                  "quantity": {
+                    "type": "number",
+                    "rule": {
+                      "name": "quantity",
+                      "type": "number",
+                      "group": "NumberRules",
+                      "rule": "int",
+                      "minimum": 1,
+                      "maximum": 1000
+                    }
+                  },
+                  "scheduleNumber": {
+                    "type": "string",
+                    "rule": {
+                      "name": "scheduleNumber",
+                      "type": "string",
+                      "group": "NumberRules",
+                      "rule": "int",
+                      "minimum": 1,
+                      "maximum": 100
+                    }
+                  }
+                }
+              },
+              "item": {
+                "type": "string",
+                "rule": {
+                  "name": "item",
+                  "type": "string",
+                  "group": "CommerceRules",
+                  "rule": "productName"
+                }
+              },
+              "itemType": {
+                "type": "string",
+                "enum": [
+                  "Standard",
+                  "Non Standard"
+                ],
+                "rule": {
+                  "name": "itemType",
+                  "type": "string",
+                  "group": "CommerceRules",
+                  "rule": "product"
+                }
+              },
+              "material": {
+                "type": "string",
+                "enum": [
+                  "MAT12",
+                  "MAT13",
+                  "MAT11",
+                  "MAT15",
+                  "MAT16",
+                  "MAT17",
+                  "MAT18"
+                ],
+                "rule": {
+                  "name": "material",
+                  "type": "string",
+                  "group": "StringRules",
+                  "rule": "enum",
+                  "enum": [
+                    "MAT12",
+                    "MAT13",
+                    "MAT11",
+                    "MAT15",
+                    "MAT16",
+                    "MAT17",
+                    "MAT18"
+                  ]
+                }
+              },
+              "materialType": {
+                "type": "string",
+                "rule": {
+                  "name": "materialType",
+                  "type": "string",
+                  "group": "CommerceRules",
+                  "rule": "department"
+                }
+              },
+              "itemDescription": {
+                "type": "string",
+                "rule": {
+                  "name": "itemDescription",
+                  "type": "string",
+                  "group": "CommerceRules",
+                  "rule": "productDescription"
+                }
+              }
+            }
+          },
+          "currency": {
+            "type": "string",
+            "enum": [
+              "EUR",
+              "USD",
+              "GBP",
+              "AED",
+              "AUD",
+              "DKK",
+              "INR",
+              "JPY"
+            ],
+            "rule": {
+              "name": "currency",
+              "type": "string",
+              "group": "StringRules",
+              "rule": "enum",
+              "enum": [
+                "EUR",
+                "USD",
+                "GBP",
+                "AED",
+                "AUD",
+                "DKK",
+                "INR",
+                "JPY"
+              ]
+            }
+          },
+          "salesOrg": {
+            "type": "string",
+            "rule": {
+              "name": "salesOrg",
+              "type": "string",
+              "group": "PersonRules",
+              "rule": "jobType"
+            }
+          },
+          "salesOrderNumber": {
+            "type": "string",
+            "rule": {
+              "name": "salesOrderNumber",
+              "type": "string",
+              "group": "NumberRules",
+              "rule": "int",
+              "minimum": 1,
+              "maximum": 100
+            }
+          },
+          "distributionChannel": {
+            "type": "string",
+            "enum": [
+              "DC14",
+              "DC10",
+              "DC11",
+              "DC12",
+              "DC99",
+              "DC17",
+              "DC19"
+            ],
+            "rule": {
+              "name": "distributionChannel",
+              "type": "string",
+              "group": "StringRules",
+              "rule": "enum",
+              "enum": [
+                "DC14",
+                "DC10",
+                "DC11",
+                "DC12",
+                "DC99",
+                "DC17",
+                "DC19"
+              ]
+            }
+          },
+          "ordertype": {
+            "type": "string",
+            "enum": [
+              "Express",
+              "Booked",
+              "delayed"
+            ],
+            "rule": {
+              "name": "ordertype",
+              "type": "string",
+              "group": "StringRules",
+              "rule": "enum",
+              "enum": [
+                "Express",
+                "Booked",
+                "delayed"
+              ]
+            }
+          },
+          "customer": {
+            "type": "object",
+            "properties": {
+              "zipCode": {
+                "type": "string",
+                "rule": {
+                  "name": "zipCode",
+                  "type": "string",
+                  "group": "LocationRules",
+                  "rule": "zipCode"
+                }
+              },
+              "country": {
+                "type": "string",
+                "rule": {
+                  "name": "country",
+                  "type": "string",
+                  "group": "LocationRules",
+                  "rule": "country"
+                }
+              },
+              "emailAddress": {
+                "type": "object",
+                "properties": {
+                  "email": {
+                    "type": "string",
+                    "rule": {
+                      "name": "email",
+                      "type": "string",
+                      "group": "InternetRules",
+                      "rule": "email",
+                      "casing": "lower"
+                    }
+                  }
+                }
+              },
+              "phone": {
+                "type": "string",
+                "rule": {
+                  "name": "phone",
+                  "type": "string",
+                  "group": "StringRules",
+                  "rule": "phoneNumber"
+                }
+              },
+              "city": {
+                "type": "string",
+                "rule": {
+                  "name": "city",
+                  "type": "string",
+                  "group": "LocationRules",
+                  "rule": "city"
+                }
+              },
+              "street": {
+                "type": "string",
+                "rule": {
+                  "name": "street",
+                  "type": "string",
+                  "group": "LocationRules",
+                  "rule": "street"
+                }
+              },
+              "customerId": {
+                "type": "string",
+                "rule": {
+                  "name": "customerId",
+                  "type": "string",
+                  "group": "NumberRules",
+                  "rule": "int",
+                  "minimum": 1,
+                  "maximum": 100
+                }
+              },
+              "customerName": {
+                "type": "string",
+                "rule": {
+                  "name": "customerName",
+                  "type": "string",
+                  "group": "PersonRules",
+                  "rule": "firstName"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "publishSettings": {
+      "count": 0,
+      "interval": "100",
+      "delay": 0
+    },
+    "mappings": [
+      {
+        "type": "Payload Parameter",
+        "source": {
+          "type": "Topic Parameter",
+          "name": "division",
+          "fieldName": "division",
+          "fieldType": "string"
+        },
+        "target": {
+          "type": "Payload Parameter",
+          "name": "orderHeader.division",
+          "fieldName": "division",
+          "fieldType": "string"
+        }
+      },
+      {
+        "type": "Payload Parameter",
+        "source": {
+          "type": "Topic Parameter",
+          "name": "customerId",
+          "fieldName": "customerId",
+          "fieldType": "string"
+        },
+        "target": {
+          "type": "Payload Parameter",
+          "name": "orderHeader.customer.customerId",
+          "fieldName": "customerId",
+          "fieldType": "string"
+        }
+      },
+      {
+        "type": "Payload Parameter",
+        "source": {
+          "type": "Topic Parameter",
+          "name": "salesOrg",
+          "fieldName": "salesOrg",
+          "fieldType": "string"
+        },
+        "target": {
+          "type": "Payload Parameter",
+          "name": "orderHeader.salesOrg",
+          "fieldName": "salesOrg",
+          "fieldType": "string"
+        }
+      },
+      {
+        "type": "Payload Parameter",
+        "source": {
+          "type": "Topic Parameter",
+          "name": "distributionChannel",
+          "fieldName": "distributionChannel",
+          "fieldType": "string"
+        },
+        "target": {
+          "type": "Payload Parameter",
+          "name": "orderHeader.distributionChannel",
+          "fieldName": "distributionChannel",
+          "fieldType": "string"
+        }
+      }
+    ]
+  },
+  {
+    "topic": "sap/erp/material/create/V1/{materialClass}/{industrySector}/{materialType}/{materialNumber}/{maintenanceStatusGroup}/{maintenanceStatusMaterial}/{deletionIndicator}",
+    "topicParameters": {
+      "materialClass": {
+        "schema": {
+          "type": "string"
+        },
+        "rule": {
+          "name": "materialClass",
+          "type": "string",
+          "group": "LoremRules",
+          "rule": "word",
+          "minimum": 3,
+          "maximum": 3
+        }
+      },
+      "industrySector": {
+        "schema": {
+          "type": "string"
+        },
+        "rule": {
+          "name": "industrySector",
+          "type": "string",
+          "group": "LoremRules",
+          "rule": "word",
+          "minimum": 5,
+          "maximum": 5
+        }
+      },
+      "materialNumber": {
+        "schema": {
+          "type": "string"
+        },
+        "rule": {
+          "name": "materialNumber",
+          "type": "string",
+          "group": "NumberRules",
+          "rule": "int",
+          "minimum": 11,
+          "maximum": 100
+        }
+      },
+      "materialType": {
+        "schema": {
+          "type": "string"
+        },
+        "rule": {
+          "name": "materialType",
+          "type": "string",
+          "group": "CommerceRules",
+          "rule": "department"
+        }
+      },
+      "maintenanceStatusGroup": {
+        "schema": {
+          "type": "string"
+        },
+        "rule": {
+          "name": "maintenanceStatusGroup",
+          "type": "string",
+          "group": "LoremRules",
+          "rule": "word",
+          "minimum": 3,
+          "maximum": 3
+        }
+      },
+      "maintenanceStatusMaterial": {
+        "schema": {
+          "type": "string"
+        },
+        "rule": {
+          "name": "maintenanceStatusMaterial",
+          "type": "string",
+          "group": "StringRules",
+          "rule": "words",
+          "count": 1
+        }
+      },
+      "deletionIndicator": {
+        "schema": {
+          "type": "string"
+        },
+        "rule": {
+          "name": "deletionIndicator",
+          "type": "string",
+          "group": "StringRules",
+          "rule": "enum",
+          "enum": [
+            "true",
+            "false"
+          ]
+        }
+      }
+    },
+    "eventName": "Material Master Create",
+    "eventVersion": "0.1.0",
+    "messageName": "Material_Master_Create",
+    "hasPayload": true,
+    "payload": {
+      "material": {
+        "type": "object",
+        "properties": {
+          "baseUnit": {
+            "type": "string",
+            "enum": [
+              "PC",
+              "SRV"
+            ],
+            "rule": {
+              "name": "baseUnit",
+              "type": "string",
+              "group": "StringRules",
+              "rule": "enum",
+              "enum": [
+                "PC",
+                "SRV"
+              ]
+            }
+          },
+          "materialClass": {
+            "type": "string",
+            "enum": [
+              "ClassA",
+              "ClassB",
+              "ClassC",
+              "ClassD"
+            ],
+            "rule": {
+              "name": "materialClass",
+              "type": "string",
+              "group": "StringRules",
+              "rule": "enum",
+              "enum": [
+                "ClassA",
+                "ClassB",
+                "ClassC",
+                "ClassD"
+              ]
+            }
+          },
+          "industrySector": {
+            "type": "string",
+            "enum": [
+              "Automotive",
+              "Retail",
+              "Banking",
+              "Manufacturing"
+            ],
+            "rule": {
+              "name": "industrySector",
+              "type": "string",
+              "group": "StringRules",
+              "rule": "enum",
+              "enum": [
+                "Automotive",
+                "Retail",
+                "Banking",
+                "Manufacturing"
+              ]
+            }
+          },
+          "materialNumber": {
+            "type": "string",
+            "rule": {
+              "name": "materialNumber",
+              "type": "string",
+              "group": "StringRules",
+              "rule": "alpha",
+              "casing": "mixed",
+              "minLength": 10,
+              "maxLength": 10
+            }
+          },
+          "creatorUser": {
+            "type": "string",
+            "rule": {
+              "name": "creatorUser",
+              "type": "string",
+              "group": "PersonRules",
+              "rule": "firstName"
+            }
+          },
+          "materialType": {
+            "type": "string",
+            "enum": [
+              "HALB",
+              "HALC"
+            ],
+            "rule": {
+              "name": "materialType",
+              "type": "string",
+              "group": "StringRules",
+              "rule": "enum",
+              "enum": [
+                "HALB",
+                "HALC"
+              ]
+            }
+          },
+          "maintenanceStatusGroup": {
+            "type": "number",
+            "rule": {
+              "name": "maintenanceStatusGroup",
+              "type": "number",
+              "group": "NumberRules",
+              "rule": "float",
+              "minimum": 0,
+              "maximum": 1000,
+              "fractionDigits": 2
+            }
+          },
+          "maintenanceStatusMaterial": {
+            "type": "string",
+            "rule": {
+              "name": "maintenanceStatusMaterial",
+              "type": "string",
+              "group": "StringRules",
+              "rule": "alpha",
+              "casing": "mixed",
+              "minLength": 10,
+              "maxLength": 10
+            }
+          },
+          "units": {
+            "type": "object",
+            "properties": {
+              "uOM": {
+                "type": "string",
+                "rule": {
+                  "name": "uOM",
+                  "type": "string",
+                  "group": "FinanceRules",
+                  "rule": "bitcoinAddress"
+                }
+              },
+              "ean11": {
+                "type": "string",
+                "rule": {
+                  "name": "ean11",
+                  "type": "string",
+                  "group": "CommerceRules",
+                  "rule": "isbn"
+                }
+              }
+            },
+            "rule": {
+              "name": "units",
+              "type": "object"
+            }
+          },
+          "creationDate": {
+            "type": "date",
+            "rule": {
+              "name": "creationDate",
+              "type": "date",
+              "group": "DateRules",
+              "rule": "recent",
+              "days": 3
+            }
+          },
+          "changerUser": {
+            "type": "string",
+            "rule": {
+              "name": "changerUser",
+              "type": "string",
+              "group": "PersonRules",
+              "rule": "middleName"
+            }
+          },
+          "deletionIndicator": {
+            "type": "string",
+            "enum": [
+              "NA",
+              "X"
+            ],
+            "rule": {
+              "name": "deletionIndicator",
+              "type": "string",
+              "group": "StringRules",
+              "rule": "enum",
+              "enum": [
+                "NA",
+                "X"
+              ]
+            }
+          }
+        }
+      }
+    },
+    "publishSettings": {
+      "count": 0,
+      "interval": 1000,
+      "delay": 0
+    }
+  }
+]
