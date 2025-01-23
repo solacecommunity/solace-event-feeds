@@ -122,7 +122,7 @@
     "feedView": "default",
     "name": "Barista Station",
     "description": "Coffee Shop",
-    "img": "assets/img/defaultfeed.png",
+    "img": "https://cdn-icons-png.flaticon.com/512/2935/2935307.png",
     "contributor": "Giri Venkatesan",
     "github": "gvensan",
     "domain": "Retail",
