@@ -1,6 +1,6 @@
 {
   "type": "asyncapi_feed",
-  "name": "Core-Banking",
+  "name": "Core Banking",
   "description": "The Core Banking Application processes all transactions across bank accounts and automatically publishes the relevant event for each transaction. It ensures seamless, real-time management of all financial activities, enhancing operational efficiency and system integration",
   "img": "assets/img/defaultfeed.png",
   "contributor": "Hari-Rangarajan-Solace",

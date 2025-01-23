@@ -1,7 +1,7 @@
 {
   "type": "asyncapi_feed",
   "feedView": "default",
-  "name": "BaristaStation",
+  "name": "Barista Station",
   "description": "Coffe Shop",
   "img": "assets/img/defaultfeed.png",
   "contributor": "Giri Venkatesan",
