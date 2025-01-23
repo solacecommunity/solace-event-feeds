@@ -1,7 +1,7 @@
 {
   "type": "asyncapi_feed",
   "feedView": "default",
-  "name": "SAP-ERP",
+  "name": "SAP ERP",
   "description": "Simulate SAP ERP Events",
   "img": "https://e7.pngegg.com/pngimages/113/132/png-clipart-sap-se-logo-sap-erp-business-sap-hybris-business-blue-text-thumbnail.png",
   "contributor": "Alessandro Cagnetti",
