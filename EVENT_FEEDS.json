@@ -134,7 +134,7 @@
     "type": "asyncapi_feed",
     "feedView": "default",
     "name": "SAP ERP",
-    "description": "Simulate SAP ERP Events",
+    "description": "SAP Enterprise Resource Planning Application Events like creation or Modification of Sales Orders, Chart Of Accounts, Notifications, Business Partners, Material Master.",
     "img": "https://e7.pngegg.com/pngimages/113/132/png-clipart-sap-se-logo-sap-erp-business-sap-hybris-business-blue-text-thumbnail.png",
     "contributor": "Alessandro Cagnetti",
     "github": "github.com/acagnetti",
