@@ -279,7 +279,7 @@
       }
     },
     "publishSettings": {
-      "count": 20,
+      "count": 0,
       "interval": 1,
       "delay": 0
     },
