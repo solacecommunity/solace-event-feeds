@@ -1,7 +1,7 @@
 {
   "type": "asyncapi_feed",
   "name": "Fraud Detection",
-  "description": "Application which scans and detects fradulent transactions in a banking domain",
+  "description": "The Fraud Detection stream provides real-time alerts when suspicious transactions are identified, helping financial institutions respond quickly to potential fraud. Each event includes details such as the transaction type, amount, and a description of the incident, enabling proactive security measures to protect customer accounts.",
   "img": "assets/img/defaultfeed.png",
   "contributor": "Hari-Rangarajan-Solace",
   "github": "Hari-Rangarajan-Solace",
