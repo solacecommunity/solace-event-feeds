@@ -2,7 +2,7 @@
   "name": "CRMSystem",
   "img": "https://cdn-icons-png.flaticon.com/512/3930/3930282.png",
   "title": "CRMSystem",
-  "description": "Mange Customer information - Address Change, Birthday, Name and other personal information change management",
+  "description": "The CRMSystem stream provides real-time updates on customer profile changes, including address updates, last name changes, and birthday events. These events help retail businesses keep customer records up-to-date, enabling personalized interactions and efficient customer relationship management.",
   "github": "gvensan",
   "contributor": "Giri Venkatesan",
   "domain": "CRM",
