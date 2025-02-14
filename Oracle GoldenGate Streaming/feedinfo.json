@@ -1,7 +1,7 @@
 {
   "type": "asyncapi_feed",
   "name": "Oracle GoldenGate Streaming",
-  "description": "Simulating Oracle Goldengate CDC capture of Orders",
+  "description": "The Oracle GoldenGate Streaming feed provides real-time updates on retail orders, including new order insertions and status changes. This stream enables seamless order tracking, ensuring timely processing and accurate inventory management across sales channels.",
   "img": "https://cdn-icons-png.flaticon.com/512/6762/6762417.png",
   "contributor": "Alessandro Cagnetti",
   "github": "acagnetti",
