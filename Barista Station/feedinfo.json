@@ -2,7 +2,7 @@
   "type": "asyncapi_feed",
   "feedView": "default",
   "name": "Barista Station",
-  "description": "Coffe Shop",
+  "description": "the Barista Station application provides real-time updates on the final status of customer orders, indicating whether they were successfully fulfilled or encountered issues like being out of stock. This feed helps baristas and store managers track order outcomes and take necessary actions to ensure smooth operations and customer satisfaction.",
   "img": "https://cdn-icons-png.flaticon.com/512/2935/2935307.png",
   "contributor": "Giri Venkatesan",
   "github": "gvensan",
