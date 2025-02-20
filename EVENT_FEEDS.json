@@ -146,7 +146,7 @@
   {
     "type": "asyncapi_feed",
     "feedView": "default",
-    "name": "EV Car Telematcs",
+    "name": "EV Car Telematics",
     "description": "Car Telematics API for EV connected car telematics system.\nHandles various events including location updates, speed monitoring, battery status, and vehicle diagnostics.",
     "img": "https://cdn-icons-png.flaticon.com/512/3085/3085330.png",
     "contributor": "Tamimi AlTamimi",
