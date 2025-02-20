@@ -1,0 +1,408 @@
+{
+  "messages": {
+    "locationUpdate": {
+      "send": [
+        {
+          "topicName": "vehicle/location/update/{vin}/{region}/{timestamp}",
+          "topicParameters": {
+            "vin": {
+              "description": "Vehicle Identification Number",
+              "schema": {
+                "type": "string",
+                "x-parser-schema-id": "vin"
+              }
+            },
+            "region": {
+              "description": "Geographic region code",
+              "schema": {
+                "type": "string",
+                "x-parser-schema-id": "region"
+              }
+            },
+            "timestamp": {
+              "description": "Event timestamp",
+              "schema": {
+                "type": "string",
+                "format": "date-time",
+                "x-parser-schema-id": "timestamp"
+              }
+            }
+          },
+          "message": {
+            "name": "locationUpdate",
+            "payload": {
+              "type": "object",
+              "properties": {
+                "latitude": {
+                  "type": "number",
+                  "format": "float",
+                  "description": "Vehicle's current latitude",
+                  "x-parser-schema-id": "<anonymous-schema-4>"
+                },
+                "longitude": {
+                  "type": "number",
+                  "format": "float",
+                  "description": "Vehicle's current longitude",
+                  "x-parser-schema-id": "<anonymous-schema-5>"
+                },
+                "altitude": {
+                  "type": "number",
+                  "format": "float",
+                  "description": "Vehicle's current altitude in meters",
+                  "x-parser-schema-id": "<anonymous-schema-6>"
+                },
+                "speed": {
+                  "type": "number",
+                  "description": "Current speed in km/h",
+                  "x-parser-schema-id": "<anonymous-schema-7>"
+                },
+                "heading": {
+                  "type": "number",
+                  "description": "Vehicle heading in degrees",
+                  "x-parser-schema-id": "<anonymous-schema-8>"
+                },
+                "accuracy": {
+                  "type": "number",
+                  "description": "GPS accuracy in meters",
+                  "x-parser-schema-id": "<anonymous-schema-9>"
+                }
+              },
+              "x-parser-schema-id": "<anonymous-schema-3>"
+            },
+            "headers": {
+              "type": "object",
+              "properties": {
+                "correlation-id": {
+                  "type": "string",
+                  "format": "uuid",
+                  "x-parser-schema-id": "<anonymous-schema-2>"
+                }
+              },
+              "x-parser-schema-id": "<anonymous-schema-1>"
+            }
+          },
+          "servers": {},
+          "bindings": {}
+        }
+      ],
+      "receive": [],
+      "hasPayload": true,
+      "schema": "<anonymous-schema-3>"
+    },
+    "speedExceed": {
+      "send": [
+        {
+          "topicName": "vehicle/speed/exceed/{vin}/{speed_limit}/{current_speed}/{location_id}/{timestamp}",
+          "topicParameters": {
+            "vin": {
+              "description": "Vehicle Identification Number",
+              "schema": {
+                "type": "string",
+                "x-parser-schema-id": "vin"
+              }
+            },
+            "speed_limit": {
+              "description": "Posted speed limit",
+              "schema": {
+                "type": "number",
+                "x-parser-schema-id": "speed_limit"
+              }
+            },
+            "current_speed": {
+              "description": "Current vehicle speed",
+              "schema": {
+                "type": "number",
+                "x-parser-schema-id": "current_speed"
+              }
+            },
+            "location_id": {
+              "description": "Location identifier where violation occurred",
+              "schema": {
+                "type": "string",
+                "x-parser-schema-id": "location_id"
+              }
+            },
+            "timestamp": {
+              "description": "Event timestamp",
+              "schema": {
+                "type": "string",
+                "format": "date-time",
+                "x-parser-schema-id": "timestamp"
+              }
+            }
+          },
+          "message": {
+            "name": "speedExceed",
+            "payload": {
+              "type": "object",
+              "properties": {
+                "duration": {
+                  "type": "number",
+                  "description": "Duration of speed limit violation in seconds",
+                  "x-parser-schema-id": "<anonymous-schema-13>"
+                },
+                "road_type": {
+                  "type": "string",
+                  "enum": [
+                    "highway",
+                    "urban",
+                    "residential",
+                    "school_zone"
+                  ],
+                  "x-parser-schema-id": "<anonymous-schema-14>"
+                },
+                "weather_conditions": {
+                  "type": "string",
+                  "x-parser-schema-id": "<anonymous-schema-15>"
+                },
+                "traffic_conditions": {
+                  "type": "string",
+                  "x-parser-schema-id": "<anonymous-schema-16>"
+                }
+              },
+              "x-parser-schema-id": "<anonymous-schema-12>"
+            },
+            "headers": {
+              "type": "object",
+              "properties": {
+                "severity": {
+                  "type": "string",
+                  "enum": [
+                    "warning",
+                    "violation"
+                  ],
+                  "x-parser-schema-id": "<anonymous-schema-11>"
+                }
+              },
+              "x-parser-schema-id": "<anonymous-schema-10>"
+            }
+          },
+          "servers": {},
+          "bindings": {}
+        }
+      ],
+      "receive": [],
+      "hasPayload": true,
+      "schema": "<anonymous-schema-12>"
+    },
+    "batteryStatus": {
+      "send": [
+        {
+          "topicName": "vehicle/battery/status/{vin}/{charging_state}/{location_id}/{timestamp}",
+          "topicParameters": {
+            "vin": {
+              "description": "Vehicle Identification Number",
+              "schema": {
+                "type": "string",
+                "x-parser-schema-id": "vin"
+              }
+            },
+            "charging_state": {
+              "description": "Current charging state",
+              "schema": {
+                "type": "string",
+                "enum": [
+                  "charging",
+                  "discharging",
+                  "idle"
+                ],
+                "x-parser-schema-id": "charging_state"
+              }
+            },
+            "location_id": {
+              "description": "Current location identifier",
+              "schema": {
+                "type": "string",
+                "x-parser-schema-id": "location_id"
+              }
+            },
+            "timestamp": {
+              "description": "Event timestamp",
+              "schema": {
+                "type": "string",
+                "format": "date-time",
+                "x-parser-schema-id": "timestamp"
+              }
+            }
+          },
+          "message": {
+            "name": "batteryStatus",
+            "payload": {
+              "type": "object",
+              "properties": {
+                "charge_level": {
+                  "type": "number",
+                  "description": "Current battery charge percentage",
+                  "x-parser-schema-id": "<anonymous-schema-20>"
+                },
+                "range_estimate": {
+                  "type": "number",
+                  "description": "Estimated range in kilometers",
+                  "x-parser-schema-id": "<anonymous-schema-21>"
+                },
+                "voltage": {
+                  "type": "number",
+                  "description": "Battery voltage",
+                  "x-parser-schema-id": "<anonymous-schema-22>"
+                },
+                "temperature": {
+                  "type": "number",
+                  "description": "Battery temperature in Celsius",
+                  "x-parser-schema-id": "<anonymous-schema-23>"
+                },
+                "charging_rate": {
+                  "type": "number",
+                  "description": "Current charging rate in kW",
+                  "x-parser-schema-id": "<anonymous-schema-24>"
+                },
+                "health_status": {
+                  "type": "string",
+                  "enum": [
+                    "optimal",
+                    "degraded",
+                    "service_required"
+                  ],
+                  "x-parser-schema-id": "<anonymous-schema-25>"
+                }
+              },
+              "x-parser-schema-id": "<anonymous-schema-19>"
+            },
+            "headers": {
+              "type": "object",
+              "properties": {
+                "priority": {
+                  "type": "string",
+                  "enum": [
+                    "normal",
+                    "high"
+                  ],
+                  "x-parser-schema-id": "<anonymous-schema-18>"
+                }
+              },
+              "x-parser-schema-id": "<anonymous-schema-17>"
+            }
+          },
+          "servers": {},
+          "bindings": {}
+        }
+      ],
+      "receive": [],
+      "hasPayload": true,
+      "schema": "<anonymous-schema-19>"
+    },
+    "diagnosticAlert": {
+      "send": [
+        {
+          "topicName": "vehicle/diagnostics/alert/{vin}/{system}/{severity}/{component_id}/{timestamp}",
+          "topicParameters": {
+            "vin": {
+              "description": "Vehicle Identification Number",
+              "schema": {
+                "type": "string",
+                "x-parser-schema-id": "vin"
+              }
+            },
+            "system": {
+              "description": "Vehicle system reporting the alert",
+              "schema": {
+                "type": "string",
+                "enum": [
+                  "powertrain",
+                  "battery",
+                  "brake",
+                  "suspension",
+                  "hvac",
+                  "infotainment"
+                ],
+                "x-parser-schema-id": "system"
+              }
+            },
+            "severity": {
+              "description": "Alert severity level",
+              "schema": {
+                "type": "string",
+                "enum": [
+                  "info",
+                  "warning",
+                  "critical"
+                ],
+                "x-parser-schema-id": "severity"
+              }
+            },
+            "component_id": {
+              "description": "Specific component identifier",
+              "schema": {
+                "type": "string",
+                "x-parser-schema-id": "component_id"
+              }
+            },
+            "timestamp": {
+              "description": "Event timestamp",
+              "schema": {
+                "type": "string",
+                "format": "date-time",
+                "x-parser-schema-id": "timestamp"
+              }
+            }
+          },
+          "message": {
+            "name": "diagnosticAlert",
+            "payload": {
+              "type": "object",
+              "properties": {
+                "error_code": {
+                  "type": "string",
+                  "x-parser-schema-id": "<anonymous-schema-29>"
+                },
+                "description": {
+                  "type": "string",
+                  "x-parser-schema-id": "<anonymous-schema-30>"
+                },
+                "recommended_action": {
+                  "type": "string",
+                  "x-parser-schema-id": "<anonymous-schema-31>"
+                },
+                "maintenance_required": {
+                  "type": "boolean",
+                  "x-parser-schema-id": "<anonymous-schema-32>"
+                },
+                "diagnostic_data": {
+                  "type": "object",
+                  "additionalProperties": true,
+                  "x-parser-schema-id": "<anonymous-schema-33>"
+                }
+              },
+              "x-parser-schema-id": "<anonymous-schema-28>"
+            },
+            "headers": {
+              "type": "object",
+              "properties": {
+                "alert_id": {
+                  "type": "string",
+                  "format": "uuid",
+                  "x-parser-schema-id": "<anonymous-schema-27>"
+                }
+              },
+              "x-parser-schema-id": "<anonymous-schema-26>"
+            }
+          },
+          "servers": {},
+          "bindings": {}
+        }
+      ],
+      "receive": [],
+      "hasPayload": true,
+      "schema": "<anonymous-schema-28>"
+    }
+  },
+  "schemas": {},
+  "servers": {},
+  "info": {
+    "title": "Car Telematics API",
+    "version": "1.0.0",
+    "description": "Car Telematics API for EV connected car telematics system.\nHandles various events including location updates, speed monitoring, battery status, and vehicle diagnostics.\n"
+  },
+  "version": "2.6.0",
+  "fileName": "car-telematics-asyncapi.yml",
+  "view": "sender"
+}
