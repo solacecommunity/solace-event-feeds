@@ -155,5 +155,18 @@
     "tags": "car, telemetics, EV, connected cars, ",
     "lastUpdated": "2025-02-20T04:00:36.319Z",
     "contributed": true
+  },
+  {
+    "type": "asyncapi_feed",
+    "feedView": "default",
+    "name": "Sentiment Analysis with AI",
+    "description": "System for analyzing customer interactions and determining sentiment scores to improve customer experience and service quality.",
+    "img": "https://cdn-icons-png.flaticon.com/512/6706/6706280.png",
+    "contributor": "Matt Mays",
+    "github": "mattmays",
+    "domain": "retail",
+    "tags": "retail, sentiment, ai",
+    "lastUpdated": "2025-02-21T17:22:31.767Z",
+    "contributed": true
   }
 ]
