@@ -8,7 +8,7 @@
   "channels": {
     "vehicle/location/update/{vin}/{region}/{timestamp}": {
       "subscribe": {
-        "summary": "Real-time vehicle location updates",
+        "description": "Real-time vehicle location updates",
         "message": {
           "name": "locationUpdate",
           "payload": {
@@ -43,7 +43,7 @@
     },
     "vehicle/speed/exceed/{vin}/{speed_limit}/{current_speed}/{location_id}/{timestamp}": {
       "subscribe": {
-        "summary": "Speed limit violation events",
+        "description": "Speed limit violation events",
         "message": {
           "name": "speedExceed",
           "payload": {
@@ -90,7 +90,7 @@
     },
     "vehicle/battery/status/{vin}/{charging_state}/{location_id}/{timestamp}": {
       "subscribe": {
-        "summary": "Battery status updates",
+        "description": "Battery status updates",
         "message": {
           "name": "batteryStatus",
           "payload": {
@@ -136,7 +136,7 @@
     },
     "vehicle/diagnostics/alert/{vin}/{system}/{severity}/{component_id}/{timestamp}": {
       "subscribe": {
-        "summary": "Vehicle diagnostic alerts",
+        "description": "Vehicle diagnostic alerts",
         "message": {
           "name": "diagnosticAlert",
           "payload": {
@@ -200,8 +200,12 @@
       "locationUpdate": {
         "name": "locationUpdate",
         "title": "Vehicle Location Update",
-        "summary": "Real-time update of vehicle location and movement data",
+        "description": "Real-time update of vehicle location and movement data",
         "contentType": "application/json",
+        "x-ep-event-name": "locationUpdate",
+        "x-ep-event-version": "1.0.0",
+        "x-ep-event-version-displayname": "1.0.0",
+        "x-ep-event-state-name": "DRAFT",
         "payload": {
           "$ref": "#/components/schemas/LocationUpdatePayload"
         },
@@ -212,8 +216,12 @@
       "speedExceed": {
         "name": "speedExceed",
         "title": "Speed Limit Violation",
-        "summary": "Event indicating vehicle has exceeded local speed limit",
+        "description": "Event indicating vehicle has exceeded local speed limit",
         "contentType": "application/json",
+        "x-ep-event-name": "speedExceed",
+        "x-ep-event-version": "1.0.0",
+        "x-ep-event-version-displayname": "1.0.0",
+        "x-ep-event-state-name": "DRAFT",
         "payload": {
           "$ref": "#/components/schemas/SpeedExceedPayload"
         },
@@ -224,8 +232,12 @@
       "batteryStatus": {
         "name": "batteryStatus",
         "title": "Battery Status Update",
-        "summary": "Current battery status and health information",
+        "description": "Current battery status and health information",
         "contentType": "application/json",
+        "x-ep-event-name": "batteryStatus",
+        "x-ep-event-version": "1.0.0",
+        "x-ep-event-version-displayname": "1.0.0",
+        "x-ep-event-state-name": "DRAFT",
         "payload": {
           "$ref": "#/components/schemas/BatteryStatusPayload"
         },
@@ -236,8 +248,12 @@
       "diagnosticAlert": {
         "name": "diagnosticAlert",
         "title": "Diagnostic Alert",
-        "summary": "Vehicle diagnostic alert for various systems",
+        "description": "Vehicle diagnostic alert for various systems",
         "contentType": "application/json",
+        "x-ep-event-name": "diagnosticAlert",
+        "x-ep-event-version": "1.0.0",
+        "x-ep-event-version-displayname": "1.0.0",
+        "x-ep-event-state-name": "DRAFT",
         "payload": {
           "$ref": "#/components/schemas/DiagnosticAlertPayload"
         },
