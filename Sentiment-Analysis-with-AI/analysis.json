@@ -1,0 +1,353 @@
+{
+  "messages": {
+    "CustomerInteraction": {
+      "send": [
+        {
+          "topicName": "acmeRetail/cx/interaction/{channel}/v1/{customerId}",
+          "topicParameters": {
+            "channel": {
+              "schema": {
+                "type": "string",
+                "enum": [
+                  "email",
+                  "phone",
+                  "chat",
+                  "social_media"
+                ],
+                "x-parser-schema-id": "channel"
+              }
+            },
+            "customerId": {
+              "schema": {
+                "type": "string",
+                "pattern": "^CUST-\\d{4}$",
+                "x-parser-schema-id": "customerId"
+              }
+            }
+          },
+          "message": {
+            "x-ep-event-name": "Customer Interaction",
+            "description": "Contains details about a customer interaction through various channels",
+            "payload": {
+              "x-ep-schema-version": "1.0.0",
+              "x-ep-schema-state-name": "RELEASED",
+              "x-ep-schema-name": "CustomerInteraction",
+              "title": "Customer Interaction",
+              "type": "object",
+              "x-ep-application-domain-name": "AcmeRetail - Customer Experience",
+              "properties": {
+                "customer_id": {
+                  "type": "string",
+                  "pattern": "^CUST-\\d{4}$",
+                  "description": "Unique identifier for the customer",
+                  "x-parser-schema-id": "<anonymous-schema-1>"
+                },
+                "interaction_timestamp": {
+                  "type": "string",
+                  "format": "date-time",
+                  "description": "ISO 8601 formatted timestamp of the interaction",
+                  "x-parser-schema-id": "<anonymous-schema-2>"
+                },
+                "channel": {
+                  "type": "string",
+                  "enum": [
+                    "email",
+                    "phone",
+                    "chat",
+                    "social_media"
+                  ],
+                  "description": "Communication channel used for the interaction",
+                  "x-parser-schema-id": "<anonymous-schema-3>"
+                },
+                "message": {
+                  "type": "string",
+                  "description": "Content of the customer's message or feedback",
+                  "minLength": 1,
+                  "maxLength": 2000,
+                  "x-parser-schema-id": "<anonymous-schema-4>"
+                }
+              },
+              "required": [
+                "customer_id",
+                "interaction_timestamp",
+                "channel",
+                "message"
+              ],
+              "x-parser-schema-id": "CustomerInteraction"
+            },
+            "x-ep-event-version": "1.0.0",
+            "contentType": "application/json",
+            "x-parser-message-name": "CustomerInteraction"
+          },
+          "servers": {},
+          "bindings": {}
+        }
+      ],
+      "receive": [],
+      "hasPayload": true,
+      "schema": "CustomerInteraction"
+    },
+    "SentimentAnalysis": {
+      "send": [],
+      "receive": [
+        {
+          "topicName": "acmeRetail/cx/sentiment/analysis/v1/{customerId}",
+          "topicParameters": {
+            "customerId": {
+              "schema": {
+                "type": "string",
+                "pattern": "^CUST-\\d{4}$",
+                "x-parser-schema-id": "customerId"
+              }
+            }
+          },
+          "message": {
+            "x-ep-event-name": "Sentiment Analysis",
+            "description": "Contains the sentiment analysis results for a customer interaction",
+            "payload": {
+              "x-ep-schema-version": "1.0.0",
+              "x-ep-schema-state-name": "RELEASED",
+              "x-ep-schema-name": "SentimentAnalysis",
+              "title": "Sentiment Analysis Result",
+              "type": "object",
+              "x-ep-application-domain-name": "AcmeRetail - Customer Experience",
+              "properties": {
+                "input_event": {
+                  "x-ep-schema-version": "1.0.0",
+                  "x-ep-schema-state-name": "RELEASED",
+                  "x-ep-schema-name": "CustomerInteraction",
+                  "title": "Customer Interaction",
+                  "type": "object",
+                  "x-ep-application-domain-name": "AcmeRetail - Customer Experience",
+                  "properties": {
+                    "customer_id": {
+                      "type": "string",
+                      "pattern": "^CUST-\\d{4}$",
+                      "description": "Unique identifier for the customer",
+                      "x-parser-schema-id": "<anonymous-schema-1>"
+                    },
+                    "interaction_timestamp": {
+                      "type": "string",
+                      "format": "date-time",
+                      "description": "ISO 8601 formatted timestamp of the interaction",
+                      "x-parser-schema-id": "<anonymous-schema-2>"
+                    },
+                    "channel": {
+                      "type": "string",
+                      "enum": [
+                        "email",
+                        "phone",
+                        "chat",
+                        "social_media",
+                        "in_person"
+                      ],
+                      "description": "Communication channel used for the interaction",
+                      "x-parser-schema-id": "<anonymous-schema-3>"
+                    },
+                    "message": {
+                      "type": "string",
+                      "description": "Content of the customer's message or feedback",
+                      "minLength": 1,
+                      "maxLength": 2000,
+                      "x-parser-schema-id": "<anonymous-schema-4>"
+                    }
+                  },
+                  "required": [
+                    "customer_id",
+                    "interaction_timestamp",
+                    "channel",
+                    "message"
+                  ],
+                  "x-parser-schema-id": "CustomerInteraction"
+                },
+                "output": {
+                  "type": "object",
+                  "properties": {
+                    "sentiment_score": {
+                      "type": "integer",
+                      "minimum": 1,
+                      "maximum": 5,
+                      "description": "Numerical score indicating sentiment (1-5 scale)",
+                      "x-parser-schema-id": "<anonymous-schema-6>"
+                    },
+                    "explanation": {
+                      "type": "string",
+                      "description": "Detailed explanation of the sentiment analysis",
+                      "minLength": 1,
+                      "maxLength": 500,
+                      "x-parser-schema-id": "<anonymous-schema-7>"
+                    }
+                  },
+                  "required": [
+                    "sentiment_score",
+                    "explanation"
+                  ],
+                  "x-parser-schema-id": "<anonymous-schema-5>"
+                }
+              },
+              "required": [
+                "input_event",
+                "output"
+              ],
+              "x-parser-schema-id": "SentimentAnalysis"
+            },
+            "x-ep-event-version": "1.0.0",
+            "contentType": "application/json",
+            "x-parser-message-name": "SentimentAnalysis"
+          },
+          "servers": {},
+          "bindings": {}
+        }
+      ],
+      "hasPayload": true,
+      "schema": "SentimentAnalysis"
+    }
+  },
+  "schemas": {
+    "CustomerInteraction": {
+      "x-ep-schema-version": "1.0.0",
+      "x-ep-schema-state-name": "RELEASED",
+      "x-ep-schema-name": "CustomerInteraction",
+      "title": "Customer Interaction",
+      "type": "object",
+      "x-ep-application-domain-name": "AcmeRetail - Customer Experience",
+      "properties": {
+        "customer_id": {
+          "type": "string",
+          "pattern": "^CUST-\\d{4}$",
+          "description": "Unique identifier for the customer",
+          "x-parser-schema-id": "<anonymous-schema-1>"
+        },
+        "interaction_timestamp": {
+          "type": "string",
+          "format": "date-time",
+          "description": "ISO 8601 formatted timestamp of the interaction",
+          "x-parser-schema-id": "<anonymous-schema-2>"
+        },
+        "channel": {
+          "type": "string",
+          "enum": [
+            "email",
+            "phone",
+            "chat",
+            "social_media",
+            "in_person"
+          ],
+          "description": "Communication channel used for the interaction",
+          "x-parser-schema-id": "<anonymous-schema-3>"
+        },
+        "message": {
+          "type": "string",
+          "description": "Content of the customer's message or feedback",
+          "minLength": 1,
+          "maxLength": 2000,
+          "x-parser-schema-id": "<anonymous-schema-4>"
+        }
+      },
+      "required": [
+        "customer_id",
+        "interaction_timestamp",
+        "channel",
+        "message"
+      ],
+      "x-parser-schema-id": "CustomerInteraction"
+    },
+    "SentimentAnalysis": {
+      "x-ep-schema-version": "1.0.0",
+      "x-ep-schema-state-name": "RELEASED",
+      "x-ep-schema-name": "SentimentAnalysis",
+      "title": "Sentiment Analysis Result",
+      "type": "object",
+      "x-ep-application-domain-name": "AcmeRetail - Customer Experience",
+      "properties": {
+        "input_event": {
+          "x-ep-schema-version": "1.0.0",
+          "x-ep-schema-state-name": "RELEASED",
+          "x-ep-schema-name": "CustomerInteraction",
+          "title": "Customer Interaction",
+          "type": "object",
+          "x-ep-application-domain-name": "AcmeRetail - Customer Experience",
+          "properties": {
+            "customer_id": {
+              "type": "string",
+              "pattern": "^CUST-\\d{4}$",
+              "description": "Unique identifier for the customer",
+              "x-parser-schema-id": "<anonymous-schema-1>"
+            },
+            "interaction_timestamp": {
+              "type": "string",
+              "format": "date-time",
+              "description": "ISO 8601 formatted timestamp of the interaction",
+              "x-parser-schema-id": "<anonymous-schema-2>"
+            },
+            "channel": {
+              "type": "string",
+              "enum": [
+                "email",
+                "phone",
+                "chat",
+                "social_media",
+                "in_person"
+              ],
+              "description": "Communication channel used for the interaction",
+              "x-parser-schema-id": "<anonymous-schema-3>"
+            },
+            "message": {
+              "type": "string",
+              "description": "Content of the customer's message or feedback",
+              "minLength": 1,
+              "maxLength": 2000,
+              "x-parser-schema-id": "<anonymous-schema-4>"
+            }
+          },
+          "required": [
+            "customer_id",
+            "interaction_timestamp",
+            "channel",
+            "message"
+          ],
+          "x-parser-schema-id": "CustomerInteraction"
+        },
+        "output": {
+          "type": "object",
+          "properties": {
+            "sentiment_score": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 5,
+              "description": "Numerical score indicating sentiment (1-5 scale)",
+              "x-parser-schema-id": "<anonymous-schema-6>"
+            },
+            "explanation": {
+              "type": "string",
+              "description": "Detailed explanation of the sentiment analysis",
+              "minLength": 1,
+              "maxLength": 500,
+              "x-parser-schema-id": "<anonymous-schema-7>"
+            }
+          },
+          "required": [
+            "sentiment_score",
+            "explanation"
+          ],
+          "x-parser-schema-id": "<anonymous-schema-5>"
+        }
+      },
+      "required": [
+        "input_event",
+        "output"
+      ],
+      "x-parser-schema-id": "SentimentAnalysis"
+    }
+  },
+  "servers": {},
+  "info": {
+    "title": "Customer Sentiment Analysis System",
+    "version": "1.0.0",
+    "description": "System for analyzing customer interactions and determining sentiment scores to improve customer experience and service quality.",
+    "x-ep-application-domain-name": "AcmeRetail - Customer Experience"
+  },
+  "version": "2.5.0",
+  "fileName": "sentiment-analysis-schema.json",
+  "view": "sender"
+}

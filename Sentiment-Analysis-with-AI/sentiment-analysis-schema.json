@@ -1,0 +1,158 @@
+{
+  "components": {
+    "schemas": {
+      "CustomerInteraction": {
+        "x-ep-schema-version": "1.0.0",
+        "x-ep-schema-state-name": "RELEASED",
+        "x-ep-schema-name": "CustomerInteraction",
+        "title": "Customer Interaction",
+        "type": "object",
+        "x-ep-application-domain-name": "AcmeRetail - Customer Experience",
+        "properties": {
+          "customer_id": {
+            "type": "string",
+            "pattern": "^CUST-\\d{4}$",
+            "description": "Unique identifier for the customer"
+          },
+          "interaction_timestamp": {
+            "type": "string",
+            "format": "date-time",
+            "description": "ISO 8601 formatted timestamp of the interaction"
+          },
+          "channel": {
+            "type": "string",
+            "enum": [
+              "email",
+              "phone",
+              "chat",
+              "social_media",
+              "in_person"
+            ],
+            "description": "Communication channel used for the interaction"
+          },
+          "message": {
+            "type": "string",
+            "description": "Content of the customer's message or feedback",
+            "minLength": 1,
+            "maxLength": 2000
+          }
+        },
+        "required": [
+          "customer_id",
+          "interaction_timestamp",
+          "channel",
+          "message"
+        ]
+      },
+      "SentimentAnalysis": {
+        "x-ep-schema-version": "1.0.0",
+        "x-ep-schema-state-name": "RELEASED",
+        "x-ep-schema-name": "SentimentAnalysis",
+        "title": "Sentiment Analysis Result",
+        "type": "object",
+        "x-ep-application-domain-name": "AcmeRetail - Customer Experience",
+        "properties": {
+          "input_event": {
+            "$ref": "#/components/schemas/CustomerInteraction"
+          },
+          "output": {
+            "type": "object",
+            "properties": {
+              "sentiment_score": {
+                "type": "integer",
+                "minimum": 1,
+                "maximum": 5,
+                "description": "Numerical score indicating sentiment (1-5 scale)"
+              },
+              "explanation": {
+                "type": "string",
+                "description": "Detailed explanation of the sentiment analysis",
+                "minLength": 1,
+                "maxLength": 500
+              }
+            },
+            "required": [
+              "sentiment_score",
+              "explanation"
+            ]
+          }
+        },
+        "required": [
+          "input_event",
+          "output"
+        ]
+      }
+    },
+    "messages": {
+      "CustomerInteraction": {
+        "x-ep-event-name": "Customer Interaction",
+        "description": "Contains details about a customer interaction through various channels",
+        "payload": {
+          "$ref": "#/components/schemas/CustomerInteraction"
+        },
+        "x-ep-event-version": "1.0.0",
+        "contentType": "application/json"
+      },
+      "SentimentAnalysis": {
+        "x-ep-event-name": "Sentiment Analysis",
+        "description": "Contains the sentiment analysis results for a customer interaction",
+        "payload": {
+          "$ref": "#/components/schemas/SentimentAnalysis"
+        },
+        "x-ep-event-version": "1.0.0",
+        "contentType": "application/json"
+      }
+    }
+  },
+  "channels": {
+    "acmeRetail/cx/interaction/{channel}/v1/{customerId}": {
+      "subscribe": {
+        "message": {
+          "$ref": "#/components/messages/CustomerInteraction"
+        }
+      },
+      "parameters": {
+        "channel": {
+          "schema": {
+            "type": "string",
+            "enum": [
+              "email",
+              "phone",
+              "chat",
+              "social_media",
+              "in_person"
+            ]
+          }
+        },
+        "customerId": {
+          "schema": {
+            "type": "string",
+            "pattern": "^CUST-\\d{4}$"
+          }
+        }
+      }
+    },
+    "acmeRetail/cx/sentiment/analysis/v1/{customerId}": {
+      "publish": {
+        "message": {
+          "$ref": "#/components/messages/SentimentAnalysis"
+        }
+      },
+      "parameters": {
+        "customerId": {
+          "schema": {
+            "type": "string",
+            "pattern": "^CUST-\\d{4}$"
+          }
+        }
+      }
+    }
+  },
+  "asyncapi": "2.5.0",
+  "info": {
+    "title": "Customer Sentiment Analysis System",
+    "version": "1.0.0",
+    "description": "System for analyzing customer interactions and determining sentiment scores to improve customer experience and service quality.",
+    "x-ep-application-domain-name": "AcmeRetail - Customer Experience"
+  }
+}

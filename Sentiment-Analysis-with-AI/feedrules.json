@@ -1,0 +1,228 @@
+[
+  {
+    "topic": "acmeRetail/cx/interaction/{channel}/v1/{customerId}",
+    "topicParameters": {
+      "channel": {
+        "schema": {
+          "type": "string",
+          "enum": [
+            "email",
+            "phone",
+            "chat",
+            "social_media"
+          ]
+        },
+        "rule": {
+          "name": "channel",
+          "type": "string",
+          "group": "StringRules",
+          "rule": "enum",
+          "enum": [
+            "email",
+            "phone",
+            "chat",
+            "social_media"
+          ]
+        }
+      },
+      "customerId": {
+        "schema": {
+          "type": "string",
+          "pattern": "^CUST-\\d{4}$"
+        },
+        "rule": {
+          "name": "customerId",
+          "type": "string",
+          "group": "StringRules",
+          "rule": "alpha",
+          "casing": "mixed",
+          "minLength": 10,
+          "maxLength": 10
+        }
+      }
+    },
+    "eventName": "Customer Interaction",
+    "eventVersion": "1.0.0",
+    "messageName": "CustomerInteraction",
+    "hasPayload": true,
+    "payload": {
+      "customer_id": {
+        "type": "string",
+        "pattern": "^CUST-\\d{4}$",
+        "description": "Unique identifier for the customer",
+        "rule": {
+          "name": "customer_id",
+          "type": "string",
+          "group": "StringRules",
+          "rule": "alpha",
+          "casing": "mixed",
+          "minLength": 10,
+          "maxLength": 10,
+          "description": "Unique identifier for the customer"
+        }
+      },
+      "interaction_timestamp": {
+        "type": "string",
+        "format": "date-time",
+        "description": "ISO 8601 formatted timestamp of the interaction",
+        "rule": {
+          "name": "interaction_timestamp",
+          "type": "string",
+          "group": "DateRules",
+          "rule": "currentDateWithTime",
+          "format": "MM-DD-YYYY HH:mm:ss",
+          "description": "ISO 8601 formatted timestamp of the interaction"
+        }
+      },
+      "channel": {
+        "type": "string",
+        "enum": [
+          "email",
+          "phone",
+          "chat",
+          "social_media"
+        ],
+        "description": "Communication channel used for the interaction",
+        "rule": {
+          "name": "channel",
+          "type": "string",
+          "group": "StringRules",
+          "rule": "enum",
+          "enum": [
+            "email",
+            "phone",
+            "chat",
+            "social_media"
+          ],
+          "description": "Communication channel used for the interaction"
+        }
+      },
+      "message": {
+        "type": "string",
+        "description": "Content of the customer's message or feedback",
+        "minLength": 1,
+        "maxLength": 2000,
+        "rule": {
+          "name": "message",
+          "type": "string",
+          "group": "StringRules",
+          "rule": "enum",
+          "enum": [
+            "I absolutely love your service! The staff went above and beyond to help me today. Thank you so much!",
+            "Very disappointed with my recent experience. Wait times were excessive and nobody seemed to care.",
+            "Product works as expected. Does what it needs to do.",
+            "Your customer service team is fantastic! Sarah was especially helpful in resolving my issue quickly.",
+            "Third time trying to get this resolved. Still no solution. Extremely frustrating!",
+            "The new features are okay, but the app is a bit slower than before.",
+            "Cannot believe how terrible this experience has been. Worst customer service ever! Never shopping here again.",
+            "Great improvement on the latest update. Everything runs smoothly now.",
+            "Requesting a refund. Product arrived damaged and support has been unhelpful.",
+            "Thanks for the quick response to my question. Really appreciate the help!",
+            "This is my second attempt to contact you. Please respond to my previous email.",
+            "Outstanding experience from start to finish. Will definitely recommend to others!",
+            "The quality has gone downhill recently. Not sure I'll continue my subscription.",
+            "Mixed feelings about the service. Some good points but needs improvement in several areas.",
+            "Your team is a pleasure to work with. Always professional and efficient.",
+            "This is ridiculous. I've been on hold for 45 minutes trying to resolve a simple issue.",
+            "Generally satisfied with the product but the price seems a bit high for what you get.",
+            "Amazing customer support! Fixed my problem in minutes. Thank you!",
+            "The website is constantly having issues. Very annoying when trying to place orders.",
+            "Decent service overall. Nothing spectacular but gets the job done.",
+            "Blown away by the attention to detail in your product. Exactly what I was looking for!",
+            "App keeps crashing every time I try to complete my purchase. Fix this!",
+            "Reasonable prices and good selection. Would shop here again.",
+            "Your delivery service is exceptional. Package arrived ahead of schedule!",
+            "Frustrated with the lack of response to my support tickets.",
+            "The new interface takes some getting used to, but it's not bad.",
+            "Completely dissatisfied. Wasted three hours trying to set this up.",
+            "Really impressed with how you handled my complaint. Thank you for listening.",
+            "The product quality is inconsistent. Sometimes great, sometimes terrible.",
+            "Pleasant experience at your store today. Staff was knowledgeable and helpful.",
+            "No response for a week now. Is anyone actually reading these messages?",
+            "Best customer service I've ever experienced! You've earned a loyal customer.",
+            "Returning my third defective unit. Quality control needs serious improvement.",
+            "Average service, average product. Nothing to complain about but nothing special either.",
+            "Your support team is incredible. Solved my problem in record time!",
+            "Absolutely useless customer service. Going to contact my credit card company for a refund.",
+            "The product is fine but installation instructions could be clearer.",
+            "Exceeded my expectations in every way. Worth every penny!",
+            "Site has been down all morning. How am I supposed to place my order?",
+            "Satisfactory resolution to my issue. Thanks for the help.",
+            "Your new rewards program is fantastic! Love the extra perks.",
+            "Been trying to cancel my subscription for days. Make this easier!",
+            "Pretty good value for money. Would recommend to others.",
+            "Shipping was lightning fast! Already enjoying my purchase.",
+            "Poor communication throughout the entire process.",
+            "The mobile app is decent but could use some improvements.",
+            "Terrible experience from start to finish. Stay away from this company!",
+            "Really happy with my purchase. Everything works perfectly.",
+            "Product arrived in poor condition. Packaging needs improvement.",
+            "Good customer service experience today. Representative was patient and helpful.",
+            "No follow-up on my complaint. Very unprofessional.",
+            "Outstanding quality and service. Exactly what I expect from your brand!",
+            "This software is full of bugs. Constant crashes and errors.",
+            "Not bad, not great. Just okay.",
+            "Incredibly impressed with your attention to customer satisfaction!",
+            "Worst online shopping experience ever. Nothing works properly.",
+            "The product meets my basic needs. No complaints.",
+            "Fantastic delivery service! On time and with care.",
+            "Having serious issues with your billing system.",
+            "The new product line is interesting but a bit pricey.",
+            "Complete disaster. Lost my order and won't respond to inquiries.",
+            "Very pleased with the quality of service provided.",
+            "Some features are good, others need work.",
+            "Perfect solution to my problem. Thank you!",
+            "Extremely slow website. Makes shopping frustrating.",
+            "Reasonable experience overall. Nothing to write home about.",
+            "Your staff is amazing! So helpful and friendly.",
+            "Don't waste your time with their customer service.",
+            "Basic functionality is fine but lacking advanced features.",
+            "Couldn't be happier with my purchase! Absolutely perfect.",
+            "Website checkout process is unnecessarily complicated.",
+            "Fair prices for what you get. No surprises.",
+            "Lightning-fast shipping and perfect packaging!",
+            "Account keeps getting locked for no reason.",
+            "The product is alright but documentation needs work.",
+            "Horrible experience. Will never use your service again.",
+            "Really satisfied with how my issue was handled.",
+            "Average performance. Room for improvement.",
+            "Exceptional service at every touchpoint!",
+            "Can't get the system to work. No help from support.",
+            "Does the job but nothing special.",
+            "Love the new features! Makes everything so much easier.",
+            "Constant technical issues. Very frustrating.",
+            "Acceptable service level but could be better.",
+            "Your team went above and beyond! Very grateful.",
+            "Tired of the endless runaround from customer service.",
+            "The interface is somewhat confusing but manageable.",
+            "Best service I've ever received! Truly outstanding!",
+            "Product keeps malfunctioning. Total waste of money.",
+            "It's okay. Gets the job done.",
+            "Brilliant customer support experience! Thank you!",
+            "System is always down during peak hours.",
+            "Decent value but room for improvement.",
+            "Absolutely delighted with the service provided!",
+            "Complete failure to address my concerns.",
+            "Middle of the road experience. Nothing memorable.",
+            "Incredible attention to detail in your service!",
+            "Numerous problems with billing and support.",
+            "Basic service meets expectations.",
+            "Outstanding experience! Will definitely return!",
+            "Disappointed with the overall quality.",
+            "Fair service for the price paid.",
+            "Excellent support team! Very knowledgeable.",
+            "Frustrated with constant technical issues.",
+            "Standard service, nothing special.",
+            "Perfect from start to finish! Highly recommend!"
+          ],
+          "description": "Content of the customer's message or feedback"
+        }
+      }
+    },
+    "publishSettings": {
+      "count": 0,
+      "interval": 2000,
+      "delay": 0
+    }
+  }
+]
