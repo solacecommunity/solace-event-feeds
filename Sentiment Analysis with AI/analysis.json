@@ -348,6 +348,6 @@
     "x-ep-application-domain-name": "AcmeRetail - Customer Experience"
   },
   "version": "2.5.0",
-  "fileName": "sentiment-analysis-schema.json",
+  "fileName": "_sentiment-analysis-schema.json",
   "view": "sender"
 }

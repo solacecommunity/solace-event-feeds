@@ -403,6 +403,6 @@
     "description": "Car Telematics API for EV connected car telematics system.\nHandles various events including location updates, speed monitoring, battery status, and vehicle diagnostics.\n"
   },
   "version": "2.6.0",
-  "fileName": "car-telematics-asyncapi.yml",
+  "fileName": "_car-telematics-asyncapi.json",
   "view": "sender"
 }

@@ -2850,6 +2850,6 @@
     "x-ep-application-domain-name": "Application Feeds"
   },
   "version": "2.5.0",
-  "fileName": "SAP-ERP-0.1.0.yaml",
+  "fileName": "SAP-ERP-0.1.0.json",
   "view": "sender"
 }
