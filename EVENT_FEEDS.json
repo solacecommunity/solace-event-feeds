@@ -47,17 +47,6 @@
     "lastUpdated": "2024-06-09T16:31:36.870Z"
   },
   {
-    "type": "restapi_feed",
-    "name": "StarWars",
-    "description": "Star Wars API for the People End Point. All the Star Wars data you've ever wanted: Planets, Spaceships, Vehicles, People, Films and Species -  From all SEVEN Star Wars films, Now with The Force Awakens data!",
-    "img": "https://lumiere-a.akamaihd.net/v1/images/image_5c51d8fe.jpeg",
-    "contributor": "Tamimi",
-    "github": "TamimiGithub",
-    "domain": "StarWars",
-    "tags": "starwars, fiction, movie, TV",
-    "lastUpdated": "2024-08-01T12:55:54.776Z"
-  },
-  {
     "type": "asyncapi_feed",
     "name": "Fraud Detection",
     "description": "Application which scans and detects fradulent transactions in a banking domain",
@@ -79,18 +68,6 @@
     "domain": "Shipping",
     "tags": "shipping, delivery, tracking",
     "lastUpdated": "2024-08-14T09:11:25.554Z",
-    "contributed": true
-  },
-  {
-    "type": "restapi_feed",
-    "name": "Random-User-Generator",
-    "description": "The random user generator provides realistic user data for testing and development purposes. The user's profile encompasses personal information such as email (kim.myre@example.com), login credentials, date of birth, and registration details. Additionally, it includes contact numbers, a unique identifier, and a set of profile pictures. The generator also specifies geographical coordinates and timezone information, offering a comprehensive, realistic user profile for various application scenarios.",
-    "img": "https://xsgames.co/randomusers/assets/images/favicon.png",
-    "contributor": "Giri Venkatesan",
-    "github": "gvensan",
-    "domain": "Random Data",
-    "tags": "random user, fake data, fake profile",
-    "lastUpdated": "2024-08-14T09:51:47.345Z",
     "contributed": true
   },
   {

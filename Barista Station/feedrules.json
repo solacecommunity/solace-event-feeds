@@ -1,21 +1,7 @@
 [
   {
-    "topic": "coffeeshop/order/status/v1/completed/{source}/{country}/{storeId}/{orderId}",
+    "topic": "acmeCoffeeShop/orderManagement/order/created/v1/{orderId}/{customerId}",
     "topicParameters": {
-      "country": {
-        "schema": {
-          "type": "string"
-        },
-        "rule": {
-          "name": "country",
-          "type": "string",
-          "group": "StringRules",
-          "rule": "alpha",
-          "casing": "mixed",
-          "minLength": 10,
-          "maxLength": 10
-        }
-      },
       "orderId": {
         "schema": {
           "type": "string"
@@ -30,26 +16,12 @@
           "maxLength": 10
         }
       },
-      "source": {
+      "customerId": {
         "schema": {
           "type": "string"
         },
         "rule": {
-          "name": "source",
-          "type": "string",
-          "group": "StringRules",
-          "rule": "alpha",
-          "casing": "mixed",
-          "minLength": 10,
-          "maxLength": 10
-        }
-      },
-      "storeId": {
-        "schema": {
-          "type": "string"
-        },
-        "rule": {
-          "name": "storeId",
+          "name": "customerId",
           "type": "string",
           "group": "StringRules",
           "rule": "alpha",
@@ -59,71 +31,286 @@
         }
       }
     },
-    "eventName": "BS-Order Completed",
-    "eventVersion": "0.1.0",
-    "messageName": "BS-Order_Completed",
+    "eventName": "OrderCreated",
+    "eventVersion": "0.0.1",
+    "messageName": "OrderCreated",
     "hasPayload": true,
     "payload": {
-      "country": {
-        "type": "string",
-        "rule": {
-          "name": "country",
-          "type": "string",
-          "group": "StringRules",
-          "rule": "enum",
-          "enum": [
-            "USA"
-          ]
-        }
-      },
       "orderId": {
-        "type": "number",
+        "type": "string",
         "rule": {
           "name": "orderId",
-          "type": "number",
+          "type": "string",
           "group": "NumberRules",
           "rule": "countUp",
-          "start": 100001,
+          "start": 10000,
           "change": 1
         }
       },
-      "requestId": {
+      "totalPrice": {
         "type": "number",
         "rule": {
-          "name": "requestId",
+          "name": "totalPrice",
           "type": "number",
           "group": "NumberRules",
-          "rule": "countUp",
-          "start": 82882,
-          "change": 1
+          "rule": "float",
+          "minimum": 3,
+          "maximum": 15,
+          "fractionDigits": 2
         }
       },
-      "source": {
+      "customerId": {
         "type": "string",
         "rule": {
-          "name": "source",
+          "name": "customerId",
+          "type": "string",
+          "group": "NumberRules",
+          "rule": "countUp",
+          "start": 3232,
+          "change": 12
+        }
+      },
+      "items": {
+        "type": "object",
+        "properties": {
+          "itemId": {
+            "type": "string",
+            "rule": {
+              "name": "itemId",
+              "type": "string",
+              "group": "StringRules",
+              "rule": "enum",
+              "enum": [
+                "1001",
+                "1002",
+                "1004",
+                "1005",
+                "1006"
+              ]
+            }
+          },
+          "quantity": {
+            "type": "number",
+            "rule": {
+              "name": "quantity",
+              "type": "number",
+              "group": "StringRules",
+              "rule": "enum",
+              "enum": [
+                "1",
+                "2",
+                "3"
+              ]
+            }
+          },
+          "name": {
+            "type": "string",
+            "rule": {
+              "name": "name",
+              "type": "string",
+              "group": "StringRules",
+              "rule": "enum",
+              "enum": [
+                "Java Chip Frappuccino",
+                "Double Chocolate Chip Frappuccino",
+                "Cappuccino",
+                "Caffe Americano",
+                "Cold coffee",
+                "Pink Drink",
+                "Gingerbread Latte",
+                "Vienna Creamy Latte",
+                "Hazelnut Oat Cortado",
+                "Iced Salted Pretzel Caramel Latte"
+              ]
+            }
+          }
+        }
+      },
+      "paymentStatus": {
+        "type": "string",
+        "rule": {
+          "name": "paymentStatus",
           "type": "string",
           "group": "StringRules",
           "rule": "enum",
           "enum": [
-            "WEB",
-            "APP",
-            "CALL"
+            "Completed",
+            "Pending"
           ]
         }
       },
-      "storeId": {
-        "type": "number",
+      "timestamp": {
+        "type": "string",
         "rule": {
-          "name": "storeId",
-          "type": "number",
+          "name": "timestamp",
+          "type": "string",
+          "group": "DateRules",
+          "rule": "currentDateWithTime",
+          "format": "MM-DD-YYYY hh:mm:ss a"
+        }
+      }
+    },
+    "publishSettings": {
+      "count": 0,
+      "interval": 1000,
+      "delay": 0
+    },
+    "mappings": [
+      {
+        "type": "Topic Parameter",
+        "source": {
+          "type": "Payload Parameter",
+          "name": "orderId",
+          "fieldName": "orderId",
+          "fieldType": "string"
+        },
+        "target": {
+          "type": "Topic Parameter",
+          "name": "orderId",
+          "fieldName": "orderId",
+          "fieldType": "string"
+        }
+      },
+      {
+        "type": "Topic Parameter",
+        "source": {
+          "type": "Payload Parameter",
+          "name": "customerId",
+          "fieldName": "customerId",
+          "fieldType": "string"
+        },
+        "target": {
+          "type": "Topic Parameter",
+          "name": "customerId",
+          "fieldName": "customerId",
+          "fieldType": "string"
+        }
+      }
+    ]
+  },
+  {
+    "topic": "acmeCoffeeShop/orderManagement/order/{status}/v1/{orderId}",
+    "topicParameters": {
+      "orderId": {
+        "schema": {
+          "type": "string"
+        },
+        "rule": {
+          "name": "orderId",
+          "type": "string",
           "group": "StringRules",
-          "rule": "enum",
-          "enum": [
-            "345",
-            "436",
-            "999"
-          ]
+          "rule": "alpha",
+          "casing": "mixed",
+          "minLength": 10,
+          "maxLength": 10
+        }
+      },
+      "status": {
+        "schema": {
+          "type": "string"
+        },
+        "rule": {
+          "name": "status",
+          "type": "string",
+          "group": "StringRules",
+          "rule": "alpha",
+          "casing": "mixed",
+          "minLength": 10,
+          "maxLength": 10
+        }
+      }
+    },
+    "eventName": "OrderProcessed",
+    "eventVersion": "0.0.1",
+    "messageName": "OrderProcessed",
+    "hasPayload": true,
+    "payload": {
+      "orderId": {
+        "type": "string",
+        "rule": {
+          "name": "orderId",
+          "type": "string",
+          "group": "NumberRules",
+          "rule": "countUp",
+          "start": 1000,
+          "change": 1
+        }
+      },
+      "customerId": {
+        "type": "string",
+        "rule": {
+          "name": "customerId",
+          "type": "string",
+          "group": "NumberRules",
+          "rule": "countUp",
+          "start": 32344,
+          "change": 31
+        }
+      },
+      "items": {
+        "type": "object",
+        "properties": {
+          "itemId": {
+            "type": "string",
+            "rule": {
+              "name": "itemId",
+              "type": "string",
+              "group": "StringRules",
+              "rule": "enum",
+              "enum": [
+                "1001",
+                "1002",
+                "1004",
+                "1005",
+                "1006"
+              ]
+            }
+          },
+          "quantity": {
+            "type": "number",
+            "rule": {
+              "name": "quantity",
+              "type": "number",
+              "group": "StringRules",
+              "rule": "enum",
+              "enum": [
+                "1",
+                "2",
+                "3"
+              ]
+            }
+          },
+          "name": {
+            "type": "string",
+            "rule": {
+              "name": "name",
+              "type": "string",
+              "group": "StringRules",
+              "rule": "enum",
+              "enum": [
+                "Java Chip Frappuccino",
+                "Double Chocolate Chip Frappuccino",
+                "Cappuccino",
+                "Caffe Americano",
+                "Cold coffee",
+                "Pink Drink",
+                "Gingerbread Latte",
+                "Vienna Creamy Latte",
+                "Hazelnut Oat Cortado",
+                "Iced Salted Pretzel Caramel Latte"
+              ]
+            }
+          }
+        }
+      },
+      "timestamp": {
+        "type": "string",
+        "rule": {
+          "name": "timestamp",
+          "type": "string",
+          "group": "DateRules",
+          "rule": "currentDateWithTime",
+          "format": "MM-DD-YYYY hh:mm:ss a"
         }
       },
       "status": {
@@ -134,9 +321,12 @@
           "group": "StringRules",
           "rule": "enum",
           "enum": [
-            "COMPLETED",
-            "DELAYED",
-            "OUT_OF_STOCK"
+            "PENDING",
+            "PROCESSING",
+            "OUT_FOR_DELIVERY",
+            "DELIVERED",
+            "ON_HOLD",
+            "CANCELED"
           ]
         }
       }
@@ -151,24 +341,9 @@
         "type": "Topic Parameter",
         "source": {
           "type": "Payload Parameter",
-          "name": "country",
-          "fieldName": "country",
-          "fieldType": "string"
-        },
-        "target": {
-          "type": "Topic Parameter",
-          "name": "country",
-          "fieldName": "country",
-          "fieldType": "string"
-        }
-      },
-      {
-        "type": "Topic Parameter",
-        "source": {
-          "type": "Payload Parameter",
           "name": "orderId",
           "fieldName": "orderId",
-          "fieldType": "number"
+          "fieldType": "string"
         },
         "target": {
           "type": "Topic Parameter",
@@ -181,29 +356,14 @@
         "type": "Topic Parameter",
         "source": {
           "type": "Payload Parameter",
-          "name": "source",
-          "fieldName": "source",
+          "name": "status",
+          "fieldName": "status",
           "fieldType": "string"
         },
         "target": {
           "type": "Topic Parameter",
-          "name": "source",
-          "fieldName": "source",
-          "fieldType": "string"
-        }
-      },
-      {
-        "type": "Topic Parameter",
-        "source": {
-          "type": "Payload Parameter",
-          "name": "storeId",
-          "fieldName": "storeId",
-          "fieldType": "number"
-        },
-        "target": {
-          "type": "Topic Parameter",
-          "name": "storeId",
-          "fieldName": "storeId",
+          "name": "status",
+          "fieldName": "status",
           "fieldType": "string"
         }
       }
