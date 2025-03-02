@@ -145,5 +145,18 @@
     "tags": "retail, sentiment, ai",
     "lastUpdated": "2025-02-21T17:22:31.767Z",
     "contributed": true
+  },
+  {
+    "type": "asyncapi_feed",
+    "feedView": "default",
+    "name": "F1 Telematics",
+    "description": "This application is responsible for collecting real-time data from the car's sensors. It publishes events such as location updates, speed exceedances, battery status, and diagnostic alerts. The application ensures the continuous flow of data to the team's monitoring systems, allowing for quick response to any issues.",
+    "img": "https://cdn-icons-png.flaticon.com/512/683/683084.png",
+    "contributor": "Tamimi AlTamimi",
+    "github": "TamimiGithub",
+    "domain": "Automotive",
+    "tags": "f1, formula1, automotive",
+    "lastUpdated": "2025-03-02T21:52:43.764Z",
+    "contributed": true
   }
 ]
