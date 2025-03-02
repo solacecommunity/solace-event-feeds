@@ -1,0 +1,1287 @@
+{
+  "components": {
+    "schemas": {
+      "Speed": {
+        "x-ep-schema-version": "0.1.0",
+        "x-ep-schema-version-id": "q0n6z9bos9t",
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "description": "Schema for Speed event in F1 car telemetry",
+        "x-ep-schema-state-name": "DRAFT",
+        "x-ep-schema-name": "Speed",
+        "title": "Speed",
+        "type": "object",
+        "x-ep-application-domain-id": "mc6qcx5wtss",
+        "required": [
+          "carID",
+          "speed",
+          "timestamp",
+          "speedUnit",
+          "sessionType",
+          "trackSector",
+          "drsActive"
+        ],
+        "x-ep-schema-version-displayname": "",
+        "x-ep-shared": "true",
+        "x-ep-application-domain-name": "F1-Car Telematics",
+        "x-ep-schema-state-id": "1",
+        "x-ep-schema-id": "5tdqu7g7szl",
+        "properties": {
+          "speedUnit": {
+            "default": "KPH",
+            "description": "Unit of speed measurement",
+            "type": "string",
+            "enum": [
+              "KPH",
+              "MPH"
+            ]
+          },
+          "trackSector": {
+            "description": "Current sector of the track",
+            "type": "integer",
+            "enum": [
+              1,
+              2,
+              3
+            ]
+          },
+          "driverID": {
+            "description": "Driver identifier",
+            "type": "string"
+          },
+          "teamID": {
+            "description": "Team identifier",
+            "type": "string"
+          },
+          "sessionType": {
+            "description": "Type of racing session",
+            "type": "string",
+            "enum": [
+              "PRACTICE",
+              "QUALIFYING",
+              "RACE"
+            ]
+          },
+          "drsActive": {
+            "description": "Whether Drag Reduction System is currently active",
+            "type": "boolean"
+          },
+          "lapNumber": {
+            "description": "Current lap number",
+            "type": "integer",
+            "minimum": 1
+          },
+          "speedTrap": {
+            "description": "Whether this reading is from an official speed trap",
+            "type": "boolean"
+          },
+          "speed": {
+            "maximum": 400,
+            "description": "Current speed of the F1 car",
+            "type": "number",
+            "minimum": 0
+          },
+          "carID": {
+            "pattern": "^CAR-[0-9]{2}$",
+            "description": "Unique identifier for the F1 car",
+            "type": "string"
+          },
+          "timestamp": {
+            "format": "date-time",
+            "description": "ISO 8601 timestamp when the speed was recorded",
+            "type": "string"
+          }
+        }
+      },
+      "EngineRPM": {
+        "x-ep-schema-version": "0.1.0",
+        "x-ep-schema-version-id": "78b3u7domla",
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "description": "Schema for Engine RPM event in F1 car telemetry",
+        "x-ep-schema-state-name": "DRAFT",
+        "x-ep-schema-name": "EngineRPM",
+        "title": "EngineRPM",
+        "type": "object",
+        "x-ep-application-domain-id": "mc6qcx5wtss",
+        "required": [
+          "carID",
+          "rpm",
+          "timestamp",
+          "engineMode",
+          "gear"
+        ],
+        "x-ep-schema-version-displayname": "",
+        "x-ep-shared": "true",
+        "x-ep-application-domain-name": "F1-Car Telematics",
+        "x-ep-schema-state-id": "1",
+        "x-ep-schema-id": "5u26wo5y8xc",
+        "properties": {
+          "engineMode": {
+            "description": "Current engine mode setting",
+            "type": "string",
+            "enum": [
+              "ECO",
+              "STANDARD",
+              "PERFORMANCE",
+              "QUALIFYING",
+              "ATTACK"
+            ]
+          },
+          "throttlePosition": {
+            "maximum": 100,
+            "description": "Current throttle position as percentage",
+            "type": "number",
+            "minimum": 0
+          },
+          "driverID": {
+            "description": "Driver identifier",
+            "type": "string"
+          },
+          "teamID": {
+            "description": "Team identifier",
+            "type": "string"
+          },
+          "engineTemperature": {
+            "maximum": 150,
+            "description": "Current engine temperature in Celsius",
+            "type": "number",
+            "minimum": 0
+          },
+          "sessionType": {
+            "description": "Type of racing session",
+            "type": "string",
+            "enum": [
+              "PRACTICE",
+              "QUALIFYING",
+              "RACE"
+            ]
+          },
+          "revLimiterActive": {
+            "description": "Whether the rev limiter is currently active",
+            "type": "boolean"
+          },
+          "rpm": {
+            "maximum": 15000,
+            "description": "Current RPM of the F1 car engine",
+            "type": "integer",
+            "minimum": 0
+          },
+          "carID": {
+            "pattern": "^CAR-[0-9]{2}$",
+            "description": "Unique identifier for the F1 car",
+            "type": "string"
+          },
+          "timestamp": {
+            "format": "date-time",
+            "description": "ISO 8601 timestamp when the RPM was recorded",
+            "type": "string"
+          },
+          "gear": {
+            "description": "Current gear (0 for neutral)",
+            "type": "integer",
+            "enum": [
+              0,
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8
+            ]
+          }
+        }
+      },
+      "DiagnosticAlert": {
+        "x-ep-schema-version": "0.1.0",
+        "x-ep-schema-version-id": "88tb79wj97z",
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "description": "Schema for Diagnostic Alert event in F1 car telemetry",
+        "x-ep-schema-state-name": "DRAFT",
+        "x-ep-schema-name": "DiagnosticAlert",
+        "title": "DiagnosticAlert",
+        "type": "object",
+        "x-ep-application-domain-id": "mc6qcx5wtss",
+        "required": [
+          "carID",
+          "timestamp",
+          "alertID",
+          "alertType",
+          "severity",
+          "component",
+          "description"
+        ],
+        "x-ep-schema-version-displayname": "",
+        "x-ep-shared": "true",
+        "x-ep-application-domain-name": "F1-Car Telematics",
+        "x-ep-schema-state-id": "1",
+        "x-ep-schema-id": "6hil5u8k8a0",
+        "properties": {
+          "severity": {
+            "description": "Severity level (1-lowest, 5-highest)",
+            "type": "integer",
+            "enum": [
+              1,
+              2,
+              3,
+              4,
+              5
+            ]
+          },
+          "alertType": {
+            "description": "Type of the diagnostic alert",
+            "type": "string",
+            "enum": [
+              "WARNING",
+              "CRITICAL",
+              "INFORMATION",
+              "ERROR"
+            ]
+          },
+          "telemetrySnapshot": {
+            "description": "Snapshot of relevant telemetry data at the time of the alert",
+            "type": "object",
+            "properties": {
+              "temperature": {
+                "description": "Temperature of the affected component in Celsius",
+                "type": "number"
+              },
+              "speed": {
+                "description": "Speed at time of alert in KPH",
+                "type": "number"
+              },
+              "rpm": {
+                "description": "Engine RPM at time of alert",
+                "type": "integer"
+              }
+            }
+          },
+          "description": {
+            "description": "Detailed description of the alert",
+            "type": "string"
+          },
+          "lapNumber": {
+            "description": "Current lap number",
+            "type": "integer",
+            "minimum": 1
+          },
+          "carID": {
+            "pattern": "^CAR-[0-9]{2}$",
+            "description": "Unique identifier for the F1 car",
+            "type": "string"
+          },
+          "recommendedAction": {
+            "description": "Recommended action to address the alert",
+            "type": "string"
+          },
+          "estimatedTimeToFailure": {
+            "description": "Estimated time to component failure in seconds, if applicable",
+            "type": "integer"
+          },
+          "component": {
+            "description": "Car component that triggered the alert",
+            "type": "string",
+            "enum": [
+              "ENGINE",
+              "GEARBOX",
+              "BRAKES",
+              "SUSPENSION",
+              "ELECTRICAL",
+              "HYDRAULICS",
+              "COOLING",
+              "ERS",
+              "DRS",
+              "FUEL_SYSTEM",
+              "TURBO",
+              "TIRES"
+            ]
+          },
+          "impactOnPerformance": {
+            "description": "Estimated impact on car performance",
+            "type": "string",
+            "enum": [
+              "NONE",
+              "LOW",
+              "MEDIUM",
+              "HIGH",
+              "CRITICAL"
+            ]
+          },
+          "driverID": {
+            "description": "Driver identifier",
+            "type": "string"
+          },
+          "teamID": {
+            "description": "Team identifier",
+            "type": "string"
+          },
+          "alertID": {
+            "pattern": "^ALT-[0-9a-f]{8}$",
+            "description": "Unique identifier for the alert",
+            "type": "string"
+          },
+          "timestamp": {
+            "format": "date-time",
+            "description": "ISO 8601 timestamp when the alert was generated",
+            "type": "string"
+          }
+        }
+      },
+      "LocationUpdates": {
+        "x-ep-schema-version": "0.1.0",
+        "x-ep-schema-version-id": "h0t4nu98d4s",
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "description": "Schema for Location Update event in F1 car telemetry",
+        "x-ep-schema-state-name": "DRAFT",
+        "x-ep-schema-name": "LocationUpdates",
+        "title": "LocationUpdate",
+        "type": "object",
+        "x-ep-application-domain-id": "mc6qcx5wtss",
+        "required": [
+          "carID",
+          "timestamp",
+          "latitude",
+          "longitude",
+          "speed",
+          "heading",
+          "trackPosition"
+        ],
+        "x-ep-schema-version-displayname": "",
+        "x-ep-shared": "true",
+        "x-ep-application-domain-name": "F1-Car Telematics",
+        "x-ep-schema-state-id": "1",
+        "x-ep-schema-id": "ftwza797xd9",
+        "properties": {
+          "altitude": {
+            "description": "Current altitude in meters above sea level",
+            "type": "number"
+          },
+          "trackPosition": {
+            "description": "Position on the track",
+            "type": "object",
+            "properties": {
+              "lapPercentage": {
+                "maximum": 100,
+                "description": "Percentage through current lap",
+                "type": "number",
+                "minimum": 0
+              },
+              "corner": {
+                "description": "Name or number of current corner (if applicable)",
+                "type": "string"
+              },
+              "straightName": {
+                "description": "Name of current straight (if applicable)",
+                "type": "string"
+              },
+              "sectorPercentage": {
+                "maximum": 100,
+                "description": "Percentage through current sector",
+                "type": "number",
+                "minimum": 0
+              },
+              "trackName": {
+                "description": "Name of the current track",
+                "type": "string"
+              },
+              "sector": {
+                "description": "Current sector number",
+                "type": "integer",
+                "enum": [
+                  1,
+                  2,
+                  3
+                ]
+              }
+            }
+          },
+          "heading": {
+            "maximum": 360,
+            "description": "Current heading in degrees (0-360)",
+            "type": "number",
+            "minimum": 0
+          },
+          "latitude": {
+            "maximum": 90,
+            "description": "Current latitude coordinate",
+            "type": "number",
+            "minimum": -90
+          },
+          "drsAvailable": {
+            "description": "Whether DRS is available at the current track position",
+            "type": "boolean"
+          },
+          "drsActive": {
+            "description": "Whether DRS is currently active",
+            "type": "boolean"
+          },
+          "lapNumber": {
+            "description": "Current lap number",
+            "type": "integer",
+            "minimum": 1
+          },
+          "speed": {
+            "description": "Current speed in KPH",
+            "type": "number",
+            "minimum": 0
+          },
+          "carID": {
+            "pattern": "^CAR-[0-9]{2}$",
+            "description": "Unique identifier for the F1 car",
+            "type": "string"
+          },
+          "weatherConditions": {
+            "description": "Current weather conditions at this location",
+            "type": "object",
+            "properties": {
+              "trackTemperature": {
+                "description": "Track temperature in Celsius",
+                "type": "number"
+              },
+              "condition": {
+                "description": "Current weather condition",
+                "type": "string",
+                "enum": [
+                  "CLEAR",
+                  "PARTLY_CLOUDY",
+                  "CLOUDY",
+                  "LIGHT_RAIN",
+                  "HEAVY_RAIN"
+                ]
+              },
+              "airTemperature": {
+                "description": "Air temperature in Celsius",
+                "type": "number"
+              },
+              "humidity": {
+                "maximum": 100,
+                "description": "Humidity percentage",
+                "type": "number",
+                "minimum": 0
+              },
+              "windDirection": {
+                "maximum": 360,
+                "description": "Wind direction in degrees",
+                "type": "number",
+                "minimum": 0
+              },
+              "windSpeed": {
+                "description": "Wind speed in km/h",
+                "type": "number"
+              }
+            }
+          },
+          "lapTime": {
+            "description": "Current lap timing information",
+            "type": "object",
+            "properties": {
+              "sector2Time": {
+                "description": "Sector 2 time in format SS.mmm",
+                "type": "string"
+              },
+              "sector1Time": {
+                "description": "Sector 1 time in format SS.mmm",
+                "type": "string"
+              },
+              "lastLapTime": {
+                "description": "Last lap time in format MM:SS.mmm",
+                "type": "string"
+              },
+              "bestLapTime": {
+                "description": "Best lap time in format MM:SS.mmm",
+                "type": "string"
+              },
+              "currentLapTime": {
+                "description": "Current lap time in format MM:SS.mmm",
+                "type": "string"
+              },
+              "sector3Time": {
+                "description": "Sector 3 time in format SS.mmm",
+                "type": "string"
+              }
+            }
+          },
+          "driverID": {
+            "description": "Driver identifier",
+            "type": "string"
+          },
+          "gForce": {
+            "description": "G-forces being experienced",
+            "type": "object",
+            "properties": {
+              "vertical": {
+                "description": "Vertical G-force",
+                "type": "number"
+              },
+              "longitudinal": {
+                "description": "Longitudinal G-force",
+                "type": "number"
+              },
+              "lateral": {
+                "description": "Lateral G-force",
+                "type": "number"
+              }
+            }
+          },
+          "teamID": {
+            "description": "Team identifier",
+            "type": "string"
+          },
+          "trackStatus": {
+            "description": "Current track status flag",
+            "type": "string",
+            "enum": [
+              "GREEN",
+              "YELLOW",
+              "RED",
+              "SAFETY_CAR",
+              "VIRTUAL_SAFETY_CAR"
+            ]
+          },
+          "sessionType": {
+            "description": "Type of racing session",
+            "type": "string",
+            "enum": [
+              "PRACTICE",
+              "QUALIFYING",
+              "RACE"
+            ]
+          },
+          "positionInRace": {
+            "description": "Current position in the race",
+            "type": "integer",
+            "minimum": 1
+          },
+          "timestamp": {
+            "format": "date-time",
+            "description": "ISO 8601 timestamp when the location was recorded",
+            "type": "string"
+          },
+          "longitude": {
+            "maximum": 180,
+            "description": "Current longitude coordinate",
+            "type": "number",
+            "minimum": -180
+          }
+        }
+      },
+      "BatteryStatus": {
+        "x-ep-schema-version": "0.1.0",
+        "x-ep-schema-version-id": "j04byfddnm8",
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "description": "Schema for Battery Status event in F1 car telemetry",
+        "x-ep-schema-state-name": "DRAFT",
+        "x-ep-schema-name": "BatteryStatus",
+        "title": "BatteryStatus",
+        "type": "object",
+        "x-ep-application-domain-id": "mc6qcx5wtss",
+        "required": [
+          "carID",
+          "timestamp",
+          "chargeLevel",
+          "ersMode",
+          "harvestingStatus"
+        ],
+        "x-ep-schema-version-displayname": "",
+        "x-ep-shared": "true",
+        "x-ep-application-domain-name": "F1-Car Telematics",
+        "x-ep-schema-state-id": "1",
+        "x-ep-schema-id": "rxi2b5hw6lo",
+        "properties": {
+          "harvestingStatus": {
+            "description": "Current energy harvesting status",
+            "type": "string",
+            "enum": [
+              "INACTIVE",
+              "MGU-K",
+              "MGU-H",
+              "FULL"
+            ]
+          },
+          "mgukHarvesting": {
+            "maximum": 100,
+            "description": "Percentage of MGU-K harvesting capacity currently being used",
+            "type": "number",
+            "minimum": 0
+          },
+          "chargeLevel": {
+            "maximum": 100,
+            "description": "Current charge level of the battery as a percentage",
+            "type": "number",
+            "minimum": 0
+          },
+          "deploymentRate": {
+            "maximum": 100,
+            "description": "Current rate of energy deployment as a percentage",
+            "type": "number",
+            "minimum": 0
+          },
+          "temperatureStatus": {
+            "description": "Temperature status of the battery",
+            "type": "string",
+            "enum": [
+              "OPTIMAL",
+              "WARNING",
+              "CRITICAL"
+            ]
+          },
+          "lapNumber": {
+            "description": "Current lap number",
+            "type": "integer",
+            "minimum": 1
+          },
+          "carID": {
+            "pattern": "^CAR-[0-9]{2}$",
+            "description": "Unique identifier for the F1 car",
+            "type": "string"
+          },
+          "driverID": {
+            "description": "Driver identifier",
+            "type": "string"
+          },
+          "lapsSinceRecharge": {
+            "description": "Number of laps since full recharge",
+            "type": "integer",
+            "minimum": 0
+          },
+          "teamID": {
+            "description": "Team identifier",
+            "type": "string"
+          },
+          "mguhHarvesting": {
+            "maximum": 100,
+            "description": "Percentage of MGU-H harvesting capacity currently being used",
+            "type": "number",
+            "minimum": 0
+          },
+          "storeHealth": {
+            "maximum": 100,
+            "description": "Health of the energy store as a percentage",
+            "type": "number",
+            "minimum": 0
+          },
+          "sessionType": {
+            "description": "Type of racing session",
+            "type": "string",
+            "enum": [
+              "PRACTICE",
+              "QUALIFYING",
+              "RACE"
+            ]
+          },
+          "ersMode": {
+            "description": "Current Energy Recovery System deployment mode",
+            "type": "string",
+            "enum": [
+              "OFF",
+              "LOW",
+              "MEDIUM",
+              "HIGH",
+              "OVERTAKE"
+            ]
+          },
+          "timestamp": {
+            "format": "date-time",
+            "description": "ISO 8601 timestamp when the battery status was recorded",
+            "type": "string"
+          }
+        }
+      },
+      "FuelFlowRate": {
+        "x-ep-schema-version": "0.1.0",
+        "x-ep-schema-version-id": "x689tafc52x",
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "description": "Schema for Fuel Flow Rate event in F1 car telemetry",
+        "x-ep-schema-state-name": "DRAFT",
+        "x-ep-schema-name": "FuelFlowRate",
+        "title": "FuelFlowRate",
+        "type": "object",
+        "x-ep-application-domain-id": "mc6qcx5wtss",
+        "required": [
+          "carID",
+          "timestamp",
+          "flowRate",
+          "fuelRemainingPercent",
+          "engineMode"
+        ],
+        "x-ep-schema-version-displayname": "",
+        "x-ep-shared": "true",
+        "x-ep-application-domain-name": "F1-Car Telematics",
+        "x-ep-schema-state-id": "1",
+        "x-ep-schema-id": "hhxvujn8b07",
+        "properties": {
+          "estimatedLapsRemaining": {
+            "description": "Estimated number of laps possible with remaining fuel",
+            "type": "number"
+          },
+          "fuelTargetDelta": {
+            "description": "Delta to target fuel usage (negative means under target)",
+            "type": "number"
+          },
+          "fuelRemainingKg": {
+            "description": "Amount of fuel remaining in kg",
+            "type": "number",
+            "minimum": 0
+          },
+          "lapNumber": {
+            "description": "Current lap number",
+            "type": "integer",
+            "minimum": 1
+          },
+          "carID": {
+            "pattern": "^CAR-[0-9]{2}$",
+            "description": "Unique identifier for the F1 car",
+            "type": "string"
+          },
+          "fuelEfficiency": {
+            "description": "Current fuel efficiency assessment",
+            "type": "string",
+            "enum": [
+              "POOR",
+              "BELOW_AVERAGE",
+              "AVERAGE",
+              "GOOD",
+              "EXCELLENT"
+            ]
+          },
+          "engineMode": {
+            "description": "Current engine mode setting",
+            "type": "string",
+            "enum": [
+              "ECO",
+              "STANDARD",
+              "PERFORMANCE",
+              "QUALIFYING",
+              "ATTACK"
+            ]
+          },
+          "driverID": {
+            "description": "Driver identifier",
+            "type": "string"
+          },
+          "fuelPressure": {
+            "description": "Current fuel pressure in bar",
+            "type": "number",
+            "minimum": 0
+          },
+          "fuelRemainingPercent": {
+            "maximum": 100,
+            "description": "Percentage of fuel remaining in the tank",
+            "type": "number",
+            "minimum": 0
+          },
+          "teamID": {
+            "description": "Team identifier",
+            "type": "string"
+          },
+          "raceStrategy": {
+            "description": "Current race fuel strategy",
+            "type": "string",
+            "enum": [
+              "AGGRESSIVE",
+              "BALANCED",
+              "CONSERVATIVE",
+              "ULTRA_CONSERVATIVE"
+            ]
+          },
+          "flowRate": {
+            "maximum": 110,
+            "description": "Current fuel flow rate in kg/h",
+            "type": "number",
+            "minimum": 0
+          },
+          "sessionType": {
+            "description": "Type of racing session",
+            "type": "string",
+            "enum": [
+              "PRACTICE",
+              "QUALIFYING",
+              "RACE"
+            ]
+          },
+          "fuelConsumptionRate": {
+            "description": "Current fuel consumption rate in kg per lap",
+            "type": "number"
+          },
+          "fuelTemperature": {
+            "description": "Current fuel temperature in Celsius",
+            "type": "number"
+          },
+          "timestamp": {
+            "format": "date-time",
+            "description": "ISO 8601 timestamp when the fuel flow rate was recorded",
+            "type": "string"
+          }
+        }
+      },
+      "TirePressure": {
+        "x-ep-schema-version": "0.1.0",
+        "x-ep-schema-version-id": "txopiyi0avt",
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "description": "Schema for Tire Pressures event in F1 car telemetry",
+        "x-ep-schema-state-name": "DRAFT",
+        "x-ep-schema-name": "TirePressure",
+        "title": "TirePressures",
+        "type": "object",
+        "x-ep-application-domain-id": "mc6qcx5wtss",
+        "required": [
+          "carID",
+          "timestamp",
+          "frontLeft",
+          "frontRight",
+          "rearLeft",
+          "rearRight",
+          "tireCompound"
+        ],
+        "x-ep-schema-version-displayname": "",
+        "x-ep-shared": "true",
+        "x-ep-application-domain-name": "F1-Car Telematics",
+        "x-ep-schema-state-id": "1",
+        "x-ep-schema-id": "k0bfp2iby4p",
+        "properties": {
+          "frontRight": {
+            "maximum": 50,
+            "description": "Front right tire pressure in PSI",
+            "type": "number",
+            "minimum": 10
+          },
+          "rearLeft": {
+            "maximum": 50,
+            "description": "Rear left tire pressure in PSI",
+            "type": "number",
+            "minimum": 10
+          },
+          "tireAge": {
+            "description": "Age of tires in laps",
+            "type": "object",
+            "properties": {
+              "frontRight": {
+                "description": "Age of front right tire in laps",
+                "type": "integer",
+                "minimum": 0
+              },
+              "rearLeft": {
+                "description": "Age of rear left tire in laps",
+                "type": "integer",
+                "minimum": 0
+              },
+              "rearRight": {
+                "description": "Age of rear right tire in laps",
+                "type": "integer",
+                "minimum": 0
+              },
+              "frontLeft": {
+                "description": "Age of front left tire in laps",
+                "type": "integer",
+                "minimum": 0
+              }
+            }
+          },
+          "tireTemperatures": {
+            "description": "Temperatures of tires in Celsius",
+            "type": "object",
+            "properties": {
+              "frontRight": {
+                "maximum": 150,
+                "description": "Temperature of front right tire in Celsius",
+                "type": "number",
+                "minimum": 0
+              },
+              "rearLeft": {
+                "maximum": 150,
+                "description": "Temperature of rear left tire in Celsius",
+                "type": "number",
+                "minimum": 0
+              },
+              "rearRight": {
+                "maximum": 150,
+                "description": "Temperature of rear right tire in Celsius",
+                "type": "number",
+                "minimum": 0
+              },
+              "frontLeft": {
+                "maximum": 150,
+                "description": "Temperature of front left tire in Celsius",
+                "type": "number",
+                "minimum": 0
+              }
+            }
+          },
+          "wearPercentage": {
+            "description": "Wear percentage of tires",
+            "type": "object",
+            "properties": {
+              "frontRight": {
+                "maximum": 100,
+                "description": "Wear percentage of front right tire",
+                "type": "number",
+                "minimum": 0
+              },
+              "rearLeft": {
+                "maximum": 100,
+                "description": "Wear percentage of rear left tire",
+                "type": "number",
+                "minimum": 0
+              },
+              "rearRight": {
+                "maximum": 100,
+                "description": "Wear percentage of rear right tire",
+                "type": "number",
+                "minimum": 0
+              },
+              "frontLeft": {
+                "maximum": 100,
+                "description": "Wear percentage of front left tire",
+                "type": "number",
+                "minimum": 0
+              }
+            }
+          },
+          "frontLeft": {
+            "maximum": 50,
+            "description": "Front left tire pressure in PSI",
+            "type": "number",
+            "minimum": 10
+          },
+          "lapNumber": {
+            "description": "Current lap number",
+            "type": "integer",
+            "minimum": 1
+          },
+          "carID": {
+            "pattern": "^CAR-[0-9]{2}$",
+            "description": "Unique identifier for the F1 car",
+            "type": "string"
+          },
+          "trackTemperature": {
+            "description": "Current track temperature in Celsius",
+            "type": "number"
+          },
+          "rearRight": {
+            "maximum": 50,
+            "description": "Rear right tire pressure in PSI",
+            "type": "number",
+            "minimum": 10
+          },
+          "tireCompound": {
+            "description": "Current tire compound in use",
+            "type": "string",
+            "enum": [
+              "SOFT",
+              "MEDIUM",
+              "HARD",
+              "INTERMEDIATE",
+              "WET"
+            ]
+          },
+          "driverID": {
+            "description": "Driver identifier",
+            "type": "string"
+          },
+          "trackCondition": {
+            "description": "Current track condition",
+            "type": "string",
+            "enum": [
+              "DRY",
+              "DAMP",
+              "WET",
+              "VERY_WET"
+            ]
+          },
+          "teamID": {
+            "description": "Team identifier",
+            "type": "string"
+          },
+          "timestamp": {
+            "format": "date-time",
+            "description": "ISO 8601 timestamp when the tire pressures were recorded",
+            "type": "string"
+          }
+        }
+      }
+    },
+    "messages": {
+      "Speed": {
+        "x-ep-event-id": "8u0zppiogj6",
+        "description": "Speed of the car",
+        "x-ep-application-domain-id": "mc6qcx5wtss",
+        "schemaFormat": "application/vnd.aai.asyncapi+json;version=2.5.0",
+        "x-ep-event-state-name": "DRAFT",
+        "x-ep-shared": "true",
+        "x-ep-application-domain-name": "F1-Car Telematics",
+        "x-ep-event-version-id": "9v06wuf5r4i",
+        "payload": {
+          "$ref": "#/components/schemas/Speed"
+        },
+        "x-ep-event-version": "0.0.1",
+        "x-ep-event-name": "Speed",
+        "contentType": "application/json",
+        "x-ep-event-state-id": "1"
+      },
+      "EngineRPM": {
+        "x-ep-event-id": "x8jcpg935xc",
+        "description": "The event publishes the current engine RPM readings, allowing for performance analysis and monitoring.",
+        "x-ep-application-domain-id": "mc6qcx5wtss",
+        "schemaFormat": "application/vnd.aai.asyncapi+json;version=2.5.0",
+        "x-ep-event-state-name": "DRAFT",
+        "x-ep-shared": "true",
+        "x-ep-application-domain-name": "F1-Car Telematics",
+        "x-ep-event-version-id": "f2vbyksq8ga",
+        "payload": {
+          "$ref": "#/components/schemas/EngineRPM"
+        },
+        "x-ep-event-version": "0.0.1",
+        "x-ep-event-name": "EngineRPM",
+        "contentType": "application/json",
+        "x-ep-event-state-id": "1"
+      },
+      "DiagnosticAlert": {
+        "x-ep-event-id": "ha2mrmofhfm",
+        "description": "An event that signals a diagnostic alert when an issue is detected in the car's systems, requiring attention.",
+        "x-ep-application-domain-id": "mc6qcx5wtss",
+        "schemaFormat": "application/vnd.aai.asyncapi+json;version=2.5.0",
+        "x-ep-event-state-name": "DRAFT",
+        "x-ep-shared": "true",
+        "x-ep-application-domain-name": "F1-Car Telematics",
+        "x-ep-event-version-id": "1um3ejezr74",
+        "payload": {
+          "$ref": "#/components/schemas/DiagnosticAlert"
+        },
+        "x-ep-event-version": "0.0.1",
+        "x-ep-event-name": "DiagnosticAlert",
+        "contentType": "application/json",
+        "x-ep-event-state-id": "1"
+      },
+      "BatteryStatus": {
+        "x-ep-event-id": "yms7lxid9sw",
+        "description": "This event provides updates on the car's battery status, including charge level and health indicators.",
+        "x-ep-application-domain-id": "mc6qcx5wtss",
+        "schemaFormat": "application/vnd.aai.asyncapi+json;version=2.5.0",
+        "x-ep-event-state-name": "DRAFT",
+        "x-ep-shared": "true",
+        "x-ep-application-domain-name": "F1-Car Telematics",
+        "x-ep-event-version-id": "ihlgqkq05no",
+        "payload": {
+          "$ref": "#/components/schemas/BatteryStatus"
+        },
+        "x-ep-event-version": "0.0.1",
+        "x-ep-event-name": "BatteryStatus",
+        "contentType": "application/json",
+        "x-ep-event-state-id": "1"
+      },
+      "TirePressures": {
+        "x-ep-event-id": "1is68gkwhrb",
+        "description": "An event that broadcasts the current pressure readings of the car's tires, essential for performance and safety.",
+        "x-ep-application-domain-id": "mc6qcx5wtss",
+        "schemaFormat": "application/vnd.aai.asyncapi+json;version=2.5.0",
+        "x-ep-event-state-name": "DRAFT",
+        "x-ep-shared": "true",
+        "x-ep-application-domain-name": "F1-Car Telematics",
+        "x-ep-event-version-id": "80w0z6qq3db",
+        "payload": {
+          "$ref": "#/components/schemas/TirePressure"
+        },
+        "x-ep-event-version": "0.0.1",
+        "x-ep-event-name": "TirePressures",
+        "contentType": "application/json",
+        "x-ep-event-state-id": "1"
+      },
+      "FuelFlowRate": {
+        "x-ep-event-id": "vrgc6pi8h8e",
+        "description": "This event provides data on the car's fuel flow rate, which is critical for assessing fuel efficiency and planning.",
+        "x-ep-application-domain-id": "mc6qcx5wtss",
+        "schemaFormat": "application/vnd.aai.asyncapi+json;version=2.5.0",
+        "x-ep-event-state-name": "DRAFT",
+        "x-ep-shared": "true",
+        "x-ep-application-domain-name": "F1-Car Telematics",
+        "x-ep-event-version-id": "wjdk3coeatc",
+        "payload": {
+          "$ref": "#/components/schemas/FuelFlowRate"
+        },
+        "x-ep-event-version": "0.0.1",
+        "x-ep-event-name": "FuelFlowRate",
+        "contentType": "application/json",
+        "x-ep-event-state-id": "1"
+      },
+      "LocationUpdate": {
+        "x-ep-event-id": "3g7qb62go4w",
+        "description": "The event is triggered whenever there is a change in the car's location, providing real-time GPS updates.",
+        "x-ep-application-domain-id": "mc6qcx5wtss",
+        "schemaFormat": "application/vnd.aai.asyncapi+json;version=2.5.0",
+        "x-ep-event-state-name": "DRAFT",
+        "x-ep-shared": "true",
+        "x-ep-application-domain-name": "F1-Car Telematics",
+        "x-ep-event-version-id": "9ieueg6obt4",
+        "payload": {
+          "$ref": "#/components/schemas/LocationUpdates"
+        },
+        "x-ep-event-version": "0.0.1",
+        "x-ep-event-name": "LocationUpdate",
+        "contentType": "application/json",
+        "x-ep-event-state-id": "1"
+      }
+    }
+  },
+  "channels": {
+    "f1/telematics/car/fuelFlowRate/v1/{carID}/{flowRate}": {
+      "subscribe": {
+        "message": {
+          "$ref": "#/components/messages/FuelFlowRate"
+        }
+      },
+      "parameters": {
+        "flowRate": {
+          "schema": {
+            "type": "string"
+          },
+          "x-ep-parameter-name": "flowRate"
+        },
+        "carID": {
+          "schema": {
+            "type": "string"
+          },
+          "x-ep-parameter-name": "carID"
+        }
+      }
+    },
+    "f1/telematics/car/batteryStatus/v1/{carID}/{batteryLevel}": {
+      "subscribe": {
+        "message": {
+          "$ref": "#/components/messages/BatteryStatus"
+        }
+      },
+      "parameters": {
+        "carID": {
+          "schema": {
+            "type": "string"
+          },
+          "x-ep-parameter-name": "carID"
+        },
+        "batteryLevel": {
+          "schema": {
+            "type": "string"
+          },
+          "x-ep-parameter-name": "batteryLevel"
+        }
+      }
+    },
+    "f1/telematics/car/speedExceed/v1/{cardID}/{speed}": {
+      "subscribe": {
+        "message": {
+          "$ref": "#/components/messages/Speed"
+        }
+      },
+      "parameters": {
+        "cardID": {
+          "schema": {
+            "type": "string"
+          },
+          "x-ep-parameter-name": "cardID"
+        },
+        "speed": {
+          "schema": {
+            "type": "string"
+          },
+          "x-ep-parameter-name": "speed"
+        }
+      }
+    },
+    "f1/telematics/car/tirePressures/v1/{carID}/{pressure}": {
+      "subscribe": {
+        "message": {
+          "$ref": "#/components/messages/TirePressures"
+        }
+      },
+      "parameters": {
+        "pressure": {
+          "schema": {
+            "type": "string"
+          },
+          "x-ep-parameter-name": "pressure"
+        },
+        "carID": {
+          "schema": {
+            "type": "string"
+          },
+          "x-ep-parameter-name": "carID"
+        }
+      }
+    },
+    "f1/telematics/car/engineRPM/v1/{carID}/{rpm}": {
+      "subscribe": {
+        "message": {
+          "$ref": "#/components/messages/EngineRPM"
+        }
+      },
+      "parameters": {
+        "rpm": {
+          "schema": {
+            "type": "string"
+          },
+          "x-ep-parameter-name": "rpm"
+        },
+        "carID": {
+          "schema": {
+            "type": "string"
+          },
+          "x-ep-parameter-name": "carID"
+        }
+      }
+    },
+    "f1/telematics/car/locationUpdate/v1/{carID}/{latitude}/{longitude}": {
+      "subscribe": {
+        "message": {
+          "$ref": "#/components/messages/LocationUpdate"
+        }
+      },
+      "parameters": {
+        "latitude": {
+          "schema": {
+            "type": "string"
+          },
+          "x-ep-parameter-name": "latitude"
+        },
+        "carID": {
+          "schema": {
+            "type": "string"
+          },
+          "x-ep-parameter-name": "carID"
+        },
+        "longitude": {
+          "schema": {
+            "type": "string"
+          },
+          "x-ep-parameter-name": "longitude"
+        }
+      }
+    },
+    "f1/telematics/car/diagnosticAlert/v1/{carID}": {
+      "subscribe": {
+        "message": {
+          "$ref": "#/components/messages/DiagnosticAlert"
+        }
+      },
+      "parameters": {
+        "carID": {
+          "schema": {
+            "type": "string"
+          },
+          "x-ep-parameter-name": "carID"
+        }
+      }
+    }
+  },
+  "asyncapi": "2.5.0",
+  "info": {
+    "x-ep-application-version": "0.0.1",
+    "x-ep-application-version-id": "50iu37qo6xf",
+    "x-ep-application-id": "zuclg2s0a39",
+    "description": "This application is responsible for collecting real-time data from the car's sensors. It publishes events such as location updates, speed exceedances, battery status, and diagnostic alerts. The application ensures the continuous flow of data to the team's monitoring systems, allowing for quick response to any issues.",
+    "x-ep-state-name": "DRAFT",
+    "title": "TelematicsEmitter",
+    "x-ep-application-domain-id": "mc6qcx5wtss",
+    "version": "0.0.1",
+    "x-ep-state-id": "1",
+    "x-ep-application-domain-name": "F1-Car Telematics"
+  }
+}

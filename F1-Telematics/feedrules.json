@@ -1,0 +1,2755 @@
+[
+  {
+    "topic": "f1/telematics/car/fuelFlowRate/v1/{carID}/{flowRate}",
+    "topicParameters": {
+      "flowRate": {
+        "schema": {
+          "type": "string"
+        },
+        "rule": {
+          "name": "flowRate",
+          "type": "string",
+          "group": "NumberRules",
+          "rule": "int",
+          "minimum": 60,
+          "maximum": 100
+        }
+      },
+      "carID": {
+        "schema": {
+          "type": "string"
+        },
+        "rule": {
+          "name": "carID",
+          "type": "string",
+          "group": "StringRules",
+          "rule": "enum",
+          "enum": [
+            "Mercedes_Hamilton",
+            "Mercedes_Russell",
+            "RedBull_Verstappen",
+            "RedBull_Perez",
+            "Ferrari_Leclerc",
+            "Ferrari_Sainz",
+            "AstonMartin_Alonso",
+            "AstonMartin_Stroll",
+            "McLaren_Norris",
+            "McLaren_Piastri",
+            "Alpine_Gasly",
+            "Alpine_Ocon",
+            "Williams_Bottas",
+            "Williams_Zhou",
+            "RacingBulls_Tsunoda",
+            "RacingBulls_Ricciardo",
+            "Sauber_Hulkenberg",
+            "Sauber_Magnussen",
+            "Haas_Bearman",
+            "Haas_Lawson"
+          ]
+        }
+      }
+    },
+    "eventName": "FuelFlowRate",
+    "eventVersion": "0.0.1",
+    "messageName": "FuelFlowRate",
+    "hasPayload": true,
+    "payload": {
+      "estimatedLapsRemaining": {
+        "description": "Estimated number of laps possible with remaining fuel",
+        "type": "number",
+        "rule": {
+          "name": "estimatedLapsRemaining",
+          "type": "number",
+          "group": "NumberRules",
+          "rule": "int",
+          "minimum": 0,
+          "maximum": 5
+        }
+      },
+      "fuelTargetDelta": {
+        "description": "Delta to target fuel usage (negative means under target)",
+        "type": "number",
+        "rule": {
+          "name": "fuelTargetDelta",
+          "type": "number",
+          "group": "NumberRules",
+          "rule": "int",
+          "minimum": -5,
+          "maximum": 100
+        }
+      },
+      "fuelRemainingKg": {
+        "description": "Amount of fuel remaining in kg",
+        "type": "number",
+        "minimum": 0,
+        "rule": {
+          "name": "fuelRemainingKg",
+          "type": "number",
+          "group": "NumberRules",
+          "rule": "int",
+          "minimum": 10,
+          "maximum": 110
+        }
+      },
+      "lapNumber": {
+        "description": "Current lap number",
+        "type": "integer",
+        "minimum": 1,
+        "rule": {
+          "name": "lapNumber",
+          "type": "integer",
+          "group": "NumberRules",
+          "rule": "int",
+          "minimum": 1,
+          "maximum": 80
+        }
+      },
+      "carID": {
+        "pattern": "^CAR-[0-9]{2}$",
+        "description": "Unique identifier for the F1 car",
+        "type": "string",
+        "rule": {
+          "name": "carID",
+          "type": "string",
+          "group": "StringRules",
+          "rule": "alpha",
+          "casing": "mixed",
+          "minLength": 10,
+          "maxLength": 10,
+          "description": "Unique identifier for the F1 car"
+        }
+      },
+      "fuelEfficiency": {
+        "description": "Current fuel efficiency assessment",
+        "type": "string",
+        "enum": [
+          "POOR",
+          "BELOW_AVERAGE",
+          "AVERAGE",
+          "GOOD",
+          "EXCELLENT"
+        ],
+        "rule": {
+          "name": "fuelEfficiency",
+          "type": "string",
+          "group": "StringRules",
+          "rule": "enum",
+          "enum": [
+            "POOR",
+            "BELOW_AVERAGE",
+            "AVERAGE",
+            "GOOD",
+            "EXCELLENT"
+          ],
+          "description": "Current fuel efficiency assessment"
+        }
+      },
+      "engineMode": {
+        "description": "Current engine mode setting",
+        "type": "string",
+        "enum": [
+          "ECO",
+          "STANDARD",
+          "PERFORMANCE",
+          "QUALIFYING",
+          "ATTACK"
+        ],
+        "rule": {
+          "name": "engineMode",
+          "type": "string",
+          "group": "StringRules",
+          "rule": "enum",
+          "enum": [
+            "ECO",
+            "STANDARD",
+            "PERFORMANCE",
+            "QUALIFYING",
+            "ATTACK"
+          ],
+          "description": "Current engine mode setting"
+        }
+      },
+      "driverID": {
+        "description": "Driver identifier",
+        "type": "string",
+        "rule": {
+          "name": "driverID",
+          "type": "string",
+          "group": "StringRules",
+          "rule": "uuid"
+        }
+      },
+      "fuelPressure": {
+        "description": "Current fuel pressure in bar",
+        "type": "number",
+        "minimum": 0,
+        "rule": {
+          "name": "fuelPressure",
+          "type": "number",
+          "group": "NumberRules",
+          "rule": "float",
+          "minimum": 0,
+          "maximum": 1000,
+          "fractionDigits": 2,
+          "description": "Current fuel pressure in bar"
+        }
+      },
+      "fuelRemainingPercent": {
+        "maximum": 100,
+        "description": "Percentage of fuel remaining in the tank",
+        "type": "number",
+        "minimum": 0,
+        "rule": {
+          "name": "fuelRemainingPercent",
+          "type": "number",
+          "group": "NumberRules",
+          "rule": "int",
+          "minimum": 0,
+          "maximum": 100
+        }
+      },
+      "teamID": {
+        "description": "Team identifier",
+        "type": "string",
+        "rule": {
+          "name": "teamID",
+          "type": "string",
+          "group": "StringRules",
+          "rule": "uuid"
+        }
+      },
+      "raceStrategy": {
+        "description": "Current race fuel strategy",
+        "type": "string",
+        "enum": [
+          "AGGRESSIVE",
+          "BALANCED",
+          "CONSERVATIVE",
+          "ULTRA_CONSERVATIVE"
+        ],
+        "rule": {
+          "name": "raceStrategy",
+          "type": "string",
+          "group": "StringRules",
+          "rule": "enum",
+          "enum": [
+            "AGGRESSIVE",
+            "BALANCED",
+            "CONSERVATIVE",
+            "ULTRA_CONSERVATIVE"
+          ],
+          "description": "Current race fuel strategy"
+        }
+      },
+      "flowRate": {
+        "maximum": 110,
+        "description": "Current fuel flow rate in kg/h",
+        "type": "number",
+        "minimum": 0,
+        "rule": {
+          "name": "flowRate",
+          "type": "number",
+          "group": "NumberRules",
+          "rule": "float",
+          "minimum": 0,
+          "maximum": 110,
+          "fractionDigits": 2,
+          "description": "Current fuel flow rate in kg/h"
+        }
+      },
+      "sessionType": {
+        "description": "Type of racing session",
+        "type": "string",
+        "enum": [
+          "PRACTICE",
+          "QUALIFYING",
+          "RACE"
+        ],
+        "rule": {
+          "name": "sessionType",
+          "type": "string",
+          "group": "StringRules",
+          "rule": "enum",
+          "enum": [
+            "PRACTICE",
+            "QUALIFYING",
+            "RACE"
+          ],
+          "description": "Type of racing session"
+        }
+      },
+      "fuelConsumptionRate": {
+        "description": "Current fuel consumption rate in kg per lap",
+        "type": "number",
+        "rule": {
+          "name": "fuelConsumptionRate",
+          "type": "number",
+          "group": "NumberRules",
+          "rule": "float",
+          "minimum": 0,
+          "maximum": 1000,
+          "fractionDigits": 2,
+          "description": "Current fuel consumption rate in kg per lap"
+        }
+      },
+      "fuelTemperature": {
+        "description": "Current fuel temperature in Celsius",
+        "type": "number",
+        "rule": {
+          "name": "fuelTemperature",
+          "type": "number",
+          "group": "NumberRules",
+          "rule": "int",
+          "minimum": 30,
+          "maximum": 100
+        }
+      },
+      "timestamp": {
+        "format": "date-time",
+        "description": "ISO 8601 timestamp when the fuel flow rate was recorded",
+        "type": "string",
+        "rule": {
+          "name": "timestamp",
+          "type": "string",
+          "group": "DateRules",
+          "rule": "currentDateWithTime",
+          "format": "MM-DD-YYYY HH:mm:ss",
+          "description": "ISO 8601 timestamp when the fuel flow rate was recorded"
+        }
+      }
+    },
+    "publishSettings": {
+      "count": 0,
+      "interval": 1000,
+      "delay": 0
+    },
+    "mappings": [
+      {
+        "type": "Payload Parameter",
+        "source": {
+          "type": "Topic Parameter",
+          "name": "carID",
+          "fieldName": "carID",
+          "fieldType": "string"
+        },
+        "target": {
+          "type": "Payload Parameter",
+          "name": "carID",
+          "fieldName": "carID",
+          "fieldType": "string"
+        }
+      }
+    ]
+  },
+  {
+    "topic": "f1/telematics/car/batteryStatus/v1/{carID}/{batteryLevel}",
+    "topicParameters": {
+      "carID": {
+        "schema": {
+          "type": "string"
+        },
+        "rule": {
+          "name": "carID",
+          "type": "string",
+          "group": "StringRules",
+          "rule": "enum",
+          "enum": [
+            "Mercedes_Hamilton",
+            "Mercedes_Russell",
+            "RedBull_Verstappen",
+            "RedBull_Perez",
+            "Ferrari_Leclerc",
+            "Ferrari_Sainz",
+            "AstonMartin_Alonso",
+            "AstonMartin_Stroll",
+            "McLaren_Norris",
+            "McLaren_Piastri",
+            "Alpine_Gasly",
+            "Alpine_Ocon",
+            "Williams_Bottas",
+            "Williams_Zhou",
+            "RacingBulls_Tsunoda",
+            "RacingBulls_Ricciardo",
+            "Sauber_Hulkenberg",
+            "Sauber_Magnussen",
+            "Haas_Bearman",
+            "Haas_Lawson"
+          ]
+        }
+      },
+      "batteryLevel": {
+        "schema": {
+          "type": "string"
+        },
+        "rule": {
+          "name": "batteryLevel",
+          "type": "string",
+          "group": "NumberRules",
+          "rule": "int",
+          "minimum": 0,
+          "maximum": 100
+        }
+      }
+    },
+    "eventName": "BatteryStatus",
+    "eventVersion": "0.0.1",
+    "messageName": "BatteryStatus",
+    "hasPayload": true,
+    "payload": {
+      "harvestingStatus": {
+        "description": "Current energy harvesting status",
+        "type": "string",
+        "enum": [
+          "INACTIVE",
+          "MGU-K",
+          "MGU-H",
+          "FULL"
+        ],
+        "rule": {
+          "name": "harvestingStatus",
+          "type": "string",
+          "group": "StringRules",
+          "rule": "enum",
+          "enum": [
+            "INACTIVE",
+            "MGU-K",
+            "MGU-H",
+            "FULL"
+          ],
+          "description": "Current energy harvesting status"
+        }
+      },
+      "mgukHarvesting": {
+        "maximum": 100,
+        "description": "Percentage of MGU-K harvesting capacity currently being used",
+        "type": "number",
+        "minimum": 0,
+        "rule": {
+          "name": "mgukHarvesting",
+          "type": "number",
+          "group": "NumberRules",
+          "rule": "float",
+          "minimum": 0,
+          "maximum": 100,
+          "fractionDigits": 2,
+          "description": "Percentage of MGU-K harvesting capacity currently being used"
+        }
+      },
+      "chargeLevel": {
+        "maximum": 100,
+        "description": "Current charge level of the battery as a percentage",
+        "type": "number",
+        "minimum": 0,
+        "rule": {
+          "name": "chargeLevel",
+          "type": "number",
+          "group": "NumberRules",
+          "rule": "float",
+          "minimum": 0,
+          "maximum": 100,
+          "fractionDigits": 2,
+          "description": "Current charge level of the battery as a percentage"
+        }
+      },
+      "deploymentRate": {
+        "maximum": 100,
+        "description": "Current rate of energy deployment as a percentage",
+        "type": "number",
+        "minimum": 0,
+        "rule": {
+          "name": "deploymentRate",
+          "type": "number",
+          "group": "NumberRules",
+          "rule": "float",
+          "minimum": 0,
+          "maximum": 100,
+          "fractionDigits": 2,
+          "description": "Current rate of energy deployment as a percentage"
+        }
+      },
+      "temperatureStatus": {
+        "description": "Temperature status of the battery",
+        "type": "string",
+        "enum": [
+          "OPTIMAL",
+          "WARNING",
+          "CRITICAL"
+        ],
+        "rule": {
+          "name": "temperatureStatus",
+          "type": "string",
+          "group": "StringRules",
+          "rule": "enum",
+          "enum": [
+            "OPTIMAL",
+            "WARNING",
+            "CRITICAL"
+          ],
+          "description": "Temperature status of the battery"
+        }
+      },
+      "lapNumber": {
+        "description": "Current lap number",
+        "type": "integer",
+        "minimum": 1,
+        "rule": {
+          "name": "lapNumber",
+          "type": "integer",
+          "group": "NumberRules",
+          "rule": "int",
+          "minimum": 1,
+          "maximum": 80
+        }
+      },
+      "carID": {
+        "pattern": "^CAR-[0-9]{2}$",
+        "description": "Unique identifier for the F1 car",
+        "type": "string",
+        "rule": {
+          "name": "carID",
+          "type": "string",
+          "group": "StringRules",
+          "rule": "alpha",
+          "casing": "mixed",
+          "minLength": 10,
+          "maxLength": 10,
+          "description": "Unique identifier for the F1 car"
+        }
+      },
+      "driverID": {
+        "description": "Driver identifier",
+        "type": "string",
+        "rule": {
+          "name": "driverID",
+          "type": "string",
+          "group": "StringRules",
+          "rule": "alpha",
+          "casing": "mixed",
+          "minLength": 10,
+          "maxLength": 10,
+          "description": "Driver identifier"
+        }
+      },
+      "lapsSinceRecharge": {
+        "description": "Number of laps since full recharge",
+        "type": "integer",
+        "minimum": 0,
+        "rule": {
+          "name": "lapsSinceRecharge",
+          "type": "integer",
+          "group": "NumberRules",
+          "rule": "int",
+          "minimum": 0,
+          "maximum": 80
+        }
+      },
+      "teamID": {
+        "description": "Team identifier",
+        "type": "string",
+        "rule": {
+          "name": "teamID",
+          "type": "string",
+          "group": "StringRules",
+          "rule": "alpha",
+          "casing": "mixed",
+          "minLength": 10,
+          "maxLength": 10,
+          "description": "Team identifier"
+        }
+      },
+      "mguhHarvesting": {
+        "maximum": 100,
+        "description": "Percentage of MGU-H harvesting capacity currently being used",
+        "type": "number",
+        "minimum": 0,
+        "rule": {
+          "name": "mguhHarvesting",
+          "type": "number",
+          "group": "NumberRules",
+          "rule": "float",
+          "minimum": 0,
+          "maximum": 100,
+          "fractionDigits": 2,
+          "description": "Percentage of MGU-H harvesting capacity currently being used"
+        }
+      },
+      "storeHealth": {
+        "maximum": 100,
+        "description": "Health of the energy store as a percentage",
+        "type": "number",
+        "minimum": 0,
+        "rule": {
+          "name": "storeHealth",
+          "type": "number",
+          "group": "NumberRules",
+          "rule": "float",
+          "minimum": 0,
+          "maximum": 100,
+          "fractionDigits": 2,
+          "description": "Health of the energy store as a percentage"
+        }
+      },
+      "sessionType": {
+        "description": "Type of racing session",
+        "type": "string",
+        "enum": [
+          "PRACTICE",
+          "QUALIFYING",
+          "RACE"
+        ],
+        "rule": {
+          "name": "sessionType",
+          "type": "string",
+          "group": "StringRules",
+          "rule": "enum",
+          "enum": [
+            "PRACTICE",
+            "QUALIFYING",
+            "RACE"
+          ],
+          "description": "Type of racing session"
+        }
+      },
+      "ersMode": {
+        "description": "Current Energy Recovery System deployment mode",
+        "type": "string",
+        "enum": [
+          "OFF",
+          "LOW",
+          "MEDIUM",
+          "HIGH",
+          "OVERTAKE"
+        ],
+        "rule": {
+          "name": "ersMode",
+          "type": "string",
+          "group": "StringRules",
+          "rule": "enum",
+          "enum": [
+            "OFF",
+            "LOW",
+            "MEDIUM",
+            "HIGH",
+            "OVERTAKE"
+          ],
+          "description": "Current Energy Recovery System deployment mode"
+        }
+      },
+      "timestamp": {
+        "format": "date-time",
+        "description": "ISO 8601 timestamp when the battery status was recorded",
+        "type": "string",
+        "rule": {
+          "name": "timestamp",
+          "type": "string",
+          "group": "DateRules",
+          "rule": "currentDateWithTime",
+          "format": "MM-DD-YYYY HH:mm:ss",
+          "description": "ISO 8601 timestamp when the battery status was recorded"
+        }
+      }
+    },
+    "publishSettings": {
+      "count": 0,
+      "interval": 1000,
+      "delay": 0
+    },
+    "mappings": [
+      {
+        "type": "Payload Parameter",
+        "source": {
+          "type": "Topic Parameter",
+          "name": "carID",
+          "fieldName": "carID",
+          "fieldType": "string"
+        },
+        "target": {
+          "type": "Payload Parameter",
+          "name": "carID",
+          "fieldName": "carID",
+          "fieldType": "string"
+        }
+      }
+    ]
+  },
+  {
+    "topic": "f1/telematics/car/speedExceed/v1/{cardID}/{speed}",
+    "topicParameters": {
+      "cardID": {
+        "schema": {
+          "type": "string"
+        },
+        "rule": {
+          "name": "cardID",
+          "type": "string",
+          "group": "StringRules",
+          "rule": "enum",
+          "enum": [
+            "Mercedes_Hamilton",
+            "Mercedes_Russell",
+            "RedBull_Verstappen",
+            "RedBull_Perez",
+            "Ferrari_Leclerc",
+            "Ferrari_Sainz",
+            "AstonMartin_Alonso",
+            "AstonMartin_Stroll",
+            "McLaren_Norris",
+            "McLaren_Piastri",
+            "Alpine_Gasly",
+            "Alpine_Ocon",
+            "Williams_Bottas",
+            "Williams_Zhou",
+            "RacingBulls_Tsunoda",
+            "RacingBulls_Ricciardo",
+            "Sauber_Hulkenberg",
+            "Sauber_Magnussen",
+            "Haas_Bearman",
+            "Haas_Lawson"
+          ]
+        }
+      },
+      "speed": {
+        "schema": {
+          "type": "string"
+        },
+        "rule": {
+          "name": "speed",
+          "type": "string",
+          "group": "NumberRules",
+          "rule": "int",
+          "minimum": 60,
+          "maximum": 370
+        }
+      }
+    },
+    "eventName": "Speed",
+    "eventVersion": "0.0.1",
+    "messageName": "Speed",
+    "hasPayload": true,
+    "payload": {
+      "speedUnit": {
+        "default": "KPH",
+        "description": "Unit of speed measurement",
+        "type": "string",
+        "enum": [
+          "KPH",
+          "MPH"
+        ],
+        "rule": {
+          "name": "speedUnit",
+          "type": "string",
+          "group": "StringRules",
+          "rule": "enum",
+          "enum": [
+            "KPH",
+            "MPH"
+          ],
+          "description": "Unit of speed measurement"
+        }
+      },
+      "trackSector": {
+        "description": "Current sector of the track",
+        "type": "integer",
+        "enum": [
+          1,
+          2,
+          3
+        ],
+        "rule": {
+          "name": "trackSector",
+          "type": "integer",
+          "group": "NumberRules",
+          "rule": "enum",
+          "enum": [
+            1,
+            2,
+            3
+          ],
+          "description": "Current sector of the track"
+        }
+      },
+      "driverID": {
+        "description": "Driver identifier",
+        "type": "string",
+        "rule": {
+          "name": "driverID",
+          "type": "string",
+          "group": "StringRules",
+          "rule": "alpha",
+          "casing": "mixed",
+          "minLength": 10,
+          "maxLength": 10,
+          "description": "Driver identifier"
+        }
+      },
+      "teamID": {
+        "description": "Team identifier",
+        "type": "string",
+        "rule": {
+          "name": "teamID",
+          "type": "string",
+          "group": "StringRules",
+          "rule": "alpha",
+          "casing": "mixed",
+          "minLength": 10,
+          "maxLength": 10,
+          "description": "Team identifier"
+        }
+      },
+      "sessionType": {
+        "description": "Type of racing session",
+        "type": "string",
+        "enum": [
+          "PRACTICE",
+          "QUALIFYING",
+          "RACE"
+        ],
+        "rule": {
+          "name": "sessionType",
+          "type": "string",
+          "group": "StringRules",
+          "rule": "enum",
+          "enum": [
+            "PRACTICE",
+            "QUALIFYING",
+            "RACE"
+          ],
+          "description": "Type of racing session"
+        }
+      },
+      "drsActive": {
+        "description": "Whether Drag Reduction System is currently active",
+        "type": "boolean",
+        "rule": {
+          "name": "drsActive",
+          "type": "boolean",
+          "group": "BooleanRules",
+          "rule": "boolean",
+          "description": "Whether Drag Reduction System is currently active"
+        }
+      },
+      "lapNumber": {
+        "description": "Current lap number",
+        "type": "integer",
+        "minimum": 1,
+        "rule": {
+          "name": "lapNumber",
+          "type": "integer",
+          "group": "NumberRules",
+          "rule": "int",
+          "minimum": 1,
+          "maximum": 80
+        }
+      },
+      "speedTrap": {
+        "description": "Whether this reading is from an official speed trap",
+        "type": "boolean",
+        "rule": {
+          "name": "speedTrap",
+          "type": "boolean",
+          "group": "BooleanRules",
+          "rule": "boolean",
+          "description": "Whether this reading is from an official speed trap"
+        }
+      },
+      "speed": {
+        "maximum": 400,
+        "description": "Current speed of the F1 car",
+        "type": "number",
+        "minimum": 0,
+        "rule": {
+          "name": "speed",
+          "type": "number",
+          "group": "NumberRules",
+          "rule": "float",
+          "minimum": 0,
+          "maximum": 400,
+          "fractionDigits": 2,
+          "description": "Current speed of the F1 car"
+        }
+      },
+      "carID": {
+        "pattern": "^CAR-[0-9]{2}$",
+        "description": "Unique identifier for the F1 car",
+        "type": "string",
+        "rule": {
+          "name": "carID",
+          "type": "string",
+          "group": "StringRules",
+          "rule": "alpha",
+          "casing": "mixed",
+          "minLength": 10,
+          "maxLength": 10,
+          "description": "Unique identifier for the F1 car"
+        }
+      },
+      "timestamp": {
+        "format": "date-time",
+        "description": "ISO 8601 timestamp when the speed was recorded",
+        "type": "string",
+        "rule": {
+          "name": "timestamp",
+          "type": "string",
+          "group": "DateRules",
+          "rule": "currentDateWithTime",
+          "format": "MM-DD-YYYY HH:mm:ss",
+          "description": "ISO 8601 timestamp when the speed was recorded"
+        }
+      }
+    },
+    "publishSettings": {
+      "count": 0,
+      "interval": 1000,
+      "delay": 0
+    },
+    "mappings": [
+      {
+        "type": "Payload Parameter",
+        "source": {
+          "type": "Topic Parameter",
+          "name": "cardID",
+          "fieldName": "cardID",
+          "fieldType": "string"
+        },
+        "target": {
+          "type": "Payload Parameter",
+          "name": "carID",
+          "fieldName": "carID",
+          "fieldType": "string"
+        }
+      },
+      {
+        "type": "Payload Parameter",
+        "source": {
+          "type": "Topic Parameter",
+          "name": "speed",
+          "fieldName": "speed",
+          "fieldType": "string"
+        },
+        "target": {
+          "type": "Payload Parameter",
+          "name": "speed",
+          "fieldName": "speed",
+          "fieldType": "number"
+        }
+      }
+    ]
+  },
+  {
+    "topic": "f1/telematics/car/tirePressures/v1/{carID}/{pressure}",
+    "topicParameters": {
+      "pressure": {
+        "schema": {
+          "type": "string"
+        },
+        "rule": {
+          "name": "pressure",
+          "type": "string",
+          "group": "StringRules",
+          "rule": "enum",
+          "enum": [
+            "pressure"
+          ]
+        }
+      },
+      "carID": {
+        "schema": {
+          "type": "string"
+        },
+        "rule": {
+          "name": "carID",
+          "type": "string",
+          "group": "StringRules",
+          "rule": "enum",
+          "enum": [
+            "Mercedes_Hamilton",
+            "Mercedes_Russell",
+            "RedBull_Verstappen",
+            "RedBull_Perez",
+            "Ferrari_Leclerc",
+            "Ferrari_Sainz",
+            "AstonMartin_Alonso",
+            "AstonMartin_Stroll",
+            "McLaren_Norris",
+            "McLaren_Piastri",
+            "Alpine_Gasly",
+            "Alpine_Ocon",
+            "Williams_Bottas",
+            "Williams_Zhou",
+            "RacingBulls_Tsunoda",
+            "RacingBulls_Ricciardo",
+            "Sauber_Hulkenberg",
+            "Sauber_Magnussen",
+            "Haas_Bearman",
+            "Haas_Lawson"
+          ]
+        }
+      }
+    },
+    "eventName": "TirePressures",
+    "eventVersion": "0.0.1",
+    "messageName": "TirePressures",
+    "hasPayload": true,
+    "payload": {
+      "frontRight": {
+        "maximum": 50,
+        "description": "Front right tire pressure in PSI",
+        "type": "number",
+        "minimum": 10,
+        "rule": {
+          "name": "frontRight",
+          "type": "number",
+          "group": "NumberRules",
+          "rule": "float",
+          "minimum": 10,
+          "maximum": 50,
+          "fractionDigits": 2,
+          "description": "Front right tire pressure in PSI"
+        }
+      },
+      "rearLeft": {
+        "maximum": 50,
+        "description": "Rear left tire pressure in PSI",
+        "type": "number",
+        "minimum": 10,
+        "rule": {
+          "name": "rearLeft",
+          "type": "number",
+          "group": "NumberRules",
+          "rule": "float",
+          "minimum": 10,
+          "maximum": 50,
+          "fractionDigits": 2,
+          "description": "Rear left tire pressure in PSI"
+        }
+      },
+      "tireAge": {
+        "description": "Age of tires in laps",
+        "type": "object",
+        "properties": {
+          "frontRight": {
+            "description": "Age of front right tire in laps",
+            "type": "integer",
+            "minimum": 0,
+            "rule": {
+              "name": "frontRight",
+              "type": "integer",
+              "group": "NumberRules",
+              "rule": "int",
+              "minimum": 1,
+              "maximum": 50
+            }
+          },
+          "rearLeft": {
+            "description": "Age of rear left tire in laps",
+            "type": "integer",
+            "minimum": 0,
+            "rule": {
+              "name": "rearLeft",
+              "type": "integer",
+              "group": "NumberRules",
+              "rule": "int",
+              "minimum": 0,
+              "maximum": 50
+            }
+          },
+          "rearRight": {
+            "description": "Age of rear right tire in laps",
+            "type": "integer",
+            "minimum": 0,
+            "rule": {
+              "name": "rearRight",
+              "type": "integer",
+              "group": "NumberRules",
+              "rule": "int",
+              "minimum": 0,
+              "maximum": 50
+            }
+          },
+          "frontLeft": {
+            "description": "Age of front left tire in laps",
+            "type": "integer",
+            "minimum": 0,
+            "rule": {
+              "name": "frontLeft",
+              "type": "integer",
+              "group": "NumberRules",
+              "rule": "int",
+              "minimum": 0,
+              "maximum": 50
+            }
+          }
+        },
+        "rule": {
+          "name": "tireAge",
+          "type": "object"
+        }
+      },
+      "tireTemperatures": {
+        "description": "Temperatures of tires in Celsius",
+        "type": "object",
+        "properties": {
+          "frontRight": {
+            "maximum": 150,
+            "description": "Temperature of front right tire in Celsius",
+            "type": "number",
+            "minimum": 0,
+            "rule": {
+              "name": "frontRight",
+              "type": "number",
+              "group": "NumberRules",
+              "rule": "float",
+              "minimum": 0,
+              "maximum": 150,
+              "fractionDigits": 2,
+              "description": "Temperature of front right tire in Celsius"
+            }
+          },
+          "rearLeft": {
+            "maximum": 150,
+            "description": "Temperature of rear left tire in Celsius",
+            "type": "number",
+            "minimum": 0,
+            "rule": {
+              "name": "rearLeft",
+              "type": "number",
+              "group": "NumberRules",
+              "rule": "float",
+              "minimum": 0,
+              "maximum": 150,
+              "fractionDigits": 2,
+              "description": "Temperature of rear left tire in Celsius"
+            }
+          },
+          "rearRight": {
+            "maximum": 150,
+            "description": "Temperature of rear right tire in Celsius",
+            "type": "number",
+            "minimum": 0,
+            "rule": {
+              "name": "rearRight",
+              "type": "number",
+              "group": "NumberRules",
+              "rule": "float",
+              "minimum": 0,
+              "maximum": 150,
+              "fractionDigits": 2,
+              "description": "Temperature of rear right tire in Celsius"
+            }
+          },
+          "frontLeft": {
+            "maximum": 150,
+            "description": "Temperature of front left tire in Celsius",
+            "type": "number",
+            "minimum": 0,
+            "rule": {
+              "name": "frontLeft",
+              "type": "number",
+              "group": "NumberRules",
+              "rule": "float",
+              "minimum": 0,
+              "maximum": 150,
+              "fractionDigits": 2,
+              "description": "Temperature of front left tire in Celsius"
+            }
+          }
+        },
+        "rule": {
+          "name": "tireTemperatures",
+          "type": "object"
+        }
+      },
+      "wearPercentage": {
+        "description": "Wear percentage of tires",
+        "type": "object",
+        "properties": {
+          "frontRight": {
+            "maximum": 100,
+            "description": "Wear percentage of front right tire",
+            "type": "number",
+            "minimum": 0,
+            "rule": {
+              "name": "frontRight",
+              "type": "number",
+              "group": "NumberRules",
+              "rule": "float",
+              "minimum": 0,
+              "maximum": 100,
+              "fractionDigits": 2,
+              "description": "Wear percentage of front right tire"
+            }
+          },
+          "rearLeft": {
+            "maximum": 100,
+            "description": "Wear percentage of rear left tire",
+            "type": "number",
+            "minimum": 0,
+            "rule": {
+              "name": "rearLeft",
+              "type": "number",
+              "group": "NumberRules",
+              "rule": "float",
+              "minimum": 0,
+              "maximum": 100,
+              "fractionDigits": 2,
+              "description": "Wear percentage of rear left tire"
+            }
+          },
+          "rearRight": {
+            "maximum": 100,
+            "description": "Wear percentage of rear right tire",
+            "type": "number",
+            "minimum": 0,
+            "rule": {
+              "name": "rearRight",
+              "type": "number",
+              "group": "NumberRules",
+              "rule": "float",
+              "minimum": 0,
+              "maximum": 100,
+              "fractionDigits": 2,
+              "description": "Wear percentage of rear right tire"
+            }
+          },
+          "frontLeft": {
+            "maximum": 100,
+            "description": "Wear percentage of front left tire",
+            "type": "number",
+            "minimum": 0,
+            "rule": {
+              "name": "frontLeft",
+              "type": "number",
+              "group": "NumberRules",
+              "rule": "float",
+              "minimum": 0,
+              "maximum": 100,
+              "fractionDigits": 2,
+              "description": "Wear percentage of front left tire"
+            }
+          }
+        },
+        "rule": {
+          "name": "wearPercentage",
+          "type": "object"
+        }
+      },
+      "frontLeft": {
+        "maximum": 50,
+        "description": "Front left tire pressure in PSI",
+        "type": "number",
+        "minimum": 10,
+        "rule": {
+          "name": "frontLeft",
+          "type": "number",
+          "group": "NumberRules",
+          "rule": "float",
+          "minimum": 10,
+          "maximum": 50,
+          "fractionDigits": 2,
+          "description": "Front left tire pressure in PSI"
+        }
+      },
+      "lapNumber": {
+        "description": "Current lap number",
+        "type": "integer",
+        "minimum": 1,
+        "rule": {
+          "name": "lapNumber",
+          "type": "integer",
+          "group": "NumberRules",
+          "rule": "int",
+          "minimum": 1,
+          "maximum": 80
+        }
+      },
+      "carID": {
+        "pattern": "^CAR-[0-9]{2}$",
+        "description": "Unique identifier for the F1 car",
+        "type": "string",
+        "rule": {
+          "name": "carID",
+          "type": "string",
+          "group": "StringRules",
+          "rule": "alpha",
+          "casing": "mixed",
+          "minLength": 10,
+          "maxLength": 10,
+          "description": "Unique identifier for the F1 car"
+        }
+      },
+      "trackTemperature": {
+        "description": "Current track temperature in Celsius",
+        "type": "number",
+        "rule": {
+          "name": "trackTemperature",
+          "type": "number",
+          "group": "NumberRules",
+          "rule": "float",
+          "minimum": 0,
+          "maximum": 1000,
+          "fractionDigits": 2,
+          "description": "Current track temperature in Celsius"
+        }
+      },
+      "rearRight": {
+        "maximum": 50,
+        "description": "Rear right tire pressure in PSI",
+        "type": "number",
+        "minimum": 10,
+        "rule": {
+          "name": "rearRight",
+          "type": "number",
+          "group": "NumberRules",
+          "rule": "float",
+          "minimum": 10,
+          "maximum": 50,
+          "fractionDigits": 2,
+          "description": "Rear right tire pressure in PSI"
+        }
+      },
+      "tireCompound": {
+        "description": "Current tire compound in use",
+        "type": "string",
+        "enum": [
+          "SOFT",
+          "MEDIUM",
+          "HARD",
+          "INTERMEDIATE",
+          "WET"
+        ],
+        "rule": {
+          "name": "tireCompound",
+          "type": "string",
+          "group": "StringRules",
+          "rule": "enum",
+          "enum": [
+            "SOFT",
+            "MEDIUM",
+            "HARD",
+            "INTERMEDIATE",
+            "WET"
+          ],
+          "description": "Current tire compound in use"
+        }
+      },
+      "driverID": {
+        "description": "Driver identifier",
+        "type": "string",
+        "rule": {
+          "name": "driverID",
+          "type": "string",
+          "group": "StringRules",
+          "rule": "alpha",
+          "casing": "mixed",
+          "minLength": 10,
+          "maxLength": 10,
+          "description": "Driver identifier"
+        }
+      },
+      "trackCondition": {
+        "description": "Current track condition",
+        "type": "string",
+        "enum": [
+          "DRY",
+          "DAMP",
+          "WET",
+          "VERY_WET"
+        ],
+        "rule": {
+          "name": "trackCondition",
+          "type": "string",
+          "group": "StringRules",
+          "rule": "enum",
+          "enum": [
+            "DRY",
+            "DAMP",
+            "WET",
+            "VERY_WET"
+          ],
+          "description": "Current track condition"
+        }
+      },
+      "teamID": {
+        "description": "Team identifier",
+        "type": "string",
+        "rule": {
+          "name": "teamID",
+          "type": "string",
+          "group": "StringRules",
+          "rule": "alpha",
+          "casing": "mixed",
+          "minLength": 10,
+          "maxLength": 10,
+          "description": "Team identifier"
+        }
+      },
+      "timestamp": {
+        "format": "date-time",
+        "description": "ISO 8601 timestamp when the tire pressures were recorded",
+        "type": "string",
+        "rule": {
+          "name": "timestamp",
+          "type": "string",
+          "group": "DateRules",
+          "rule": "currentDateWithTime",
+          "format": "MM-DD-YYYY HH:mm:ss",
+          "description": "ISO 8601 timestamp when the tire pressures were recorded"
+        }
+      }
+    },
+    "publishSettings": {
+      "count": 0,
+      "interval": 1000,
+      "delay": 0
+    }
+  },
+  {
+    "topic": "f1/telematics/car/engineRPM/v1/{carID}/{rpm}",
+    "topicParameters": {
+      "rpm": {
+        "schema": {
+          "type": "string"
+        },
+        "rule": {
+          "name": "rpm",
+          "type": "string",
+          "group": "StringRules",
+          "rule": "enum",
+          "enum": [
+            "rpm"
+          ]
+        }
+      },
+      "carID": {
+        "schema": {
+          "type": "string"
+        },
+        "rule": {
+          "name": "carID",
+          "type": "string",
+          "group": "StringRules",
+          "rule": "enum",
+          "enum": [
+            "Mercedes_Hamilton",
+            "Mercedes_Russell",
+            "RedBull_Verstappen",
+            "RedBull_Perez",
+            "Ferrari_Leclerc",
+            "Ferrari_Sainz",
+            "AstonMartin_Alonso",
+            "AstonMartin_Stroll",
+            "McLaren_Norris",
+            "McLaren_Piastri",
+            "Alpine_Gasly",
+            "Alpine_Ocon",
+            "Williams_Bottas",
+            "Williams_Zhou",
+            "RacingBulls_Tsunoda",
+            "RacingBulls_Ricciardo",
+            "Sauber_Hulkenberg",
+            "Sauber_Magnussen",
+            "Haas_Bearman",
+            "Haas_Lawson"
+          ]
+        }
+      }
+    },
+    "eventName": "EngineRPM",
+    "eventVersion": "0.0.1",
+    "messageName": "EngineRPM",
+    "hasPayload": true,
+    "payload": {
+      "engineMode": {
+        "description": "Current engine mode setting",
+        "type": "string",
+        "enum": [
+          "ECO",
+          "STANDARD",
+          "PERFORMANCE",
+          "QUALIFYING",
+          "ATTACK"
+        ],
+        "rule": {
+          "name": "engineMode",
+          "type": "string",
+          "group": "StringRules",
+          "rule": "enum",
+          "enum": [
+            "ECO",
+            "STANDARD",
+            "PERFORMANCE",
+            "QUALIFYING",
+            "ATTACK"
+          ],
+          "description": "Current engine mode setting"
+        }
+      },
+      "throttlePosition": {
+        "maximum": 100,
+        "description": "Current throttle position as percentage",
+        "type": "number",
+        "minimum": 0,
+        "rule": {
+          "name": "throttlePosition",
+          "type": "number",
+          "group": "NumberRules",
+          "rule": "float",
+          "minimum": 0,
+          "maximum": 100,
+          "fractionDigits": 2,
+          "description": "Current throttle position as percentage"
+        }
+      },
+      "driverID": {
+        "description": "Driver identifier",
+        "type": "string",
+        "rule": {
+          "name": "driverID",
+          "type": "string",
+          "group": "StringRules",
+          "rule": "alpha",
+          "casing": "mixed",
+          "minLength": 10,
+          "maxLength": 10,
+          "description": "Driver identifier"
+        }
+      },
+      "teamID": {
+        "description": "Team identifier",
+        "type": "string",
+        "rule": {
+          "name": "teamID",
+          "type": "string",
+          "group": "StringRules",
+          "rule": "alpha",
+          "casing": "mixed",
+          "minLength": 10,
+          "maxLength": 10,
+          "description": "Team identifier"
+        }
+      },
+      "engineTemperature": {
+        "maximum": 150,
+        "description": "Current engine temperature in Celsius",
+        "type": "number",
+        "minimum": 0,
+        "rule": {
+          "name": "engineTemperature",
+          "type": "number",
+          "group": "NumberRules",
+          "rule": "float",
+          "minimum": 0,
+          "maximum": 150,
+          "fractionDigits": 2,
+          "description": "Current engine temperature in Celsius"
+        }
+      },
+      "sessionType": {
+        "description": "Type of racing session",
+        "type": "string",
+        "enum": [
+          "PRACTICE",
+          "QUALIFYING",
+          "RACE"
+        ],
+        "rule": {
+          "name": "sessionType",
+          "type": "string",
+          "group": "StringRules",
+          "rule": "enum",
+          "enum": [
+            "PRACTICE",
+            "QUALIFYING",
+            "RACE"
+          ],
+          "description": "Type of racing session"
+        }
+      },
+      "revLimiterActive": {
+        "description": "Whether the rev limiter is currently active",
+        "type": "boolean",
+        "rule": {
+          "name": "revLimiterActive",
+          "type": "boolean",
+          "group": "BooleanRules",
+          "rule": "boolean",
+          "description": "Whether the rev limiter is currently active"
+        }
+      },
+      "rpm": {
+        "maximum": 15000,
+        "description": "Current RPM of the F1 car engine",
+        "type": "integer",
+        "minimum": 0,
+        "rule": {
+          "name": "rpm",
+          "type": "integer",
+          "group": "NumberRules",
+          "rule": "int",
+          "minimum": 0,
+          "maximum": 15000,
+          "description": "Current RPM of the F1 car engine"
+        }
+      },
+      "carID": {
+        "pattern": "^CAR-[0-9]{2}$",
+        "description": "Unique identifier for the F1 car",
+        "type": "string",
+        "rule": {
+          "name": "carID",
+          "type": "string",
+          "group": "StringRules",
+          "rule": "alpha",
+          "casing": "mixed",
+          "minLength": 10,
+          "maxLength": 10,
+          "description": "Unique identifier for the F1 car"
+        }
+      },
+      "timestamp": {
+        "format": "date-time",
+        "description": "ISO 8601 timestamp when the RPM was recorded",
+        "type": "string",
+        "rule": {
+          "name": "timestamp",
+          "type": "string",
+          "group": "DateRules",
+          "rule": "currentDateWithTime",
+          "format": "MM-DD-YYYY HH:mm:ss",
+          "description": "ISO 8601 timestamp when the RPM was recorded"
+        }
+      },
+      "gear": {
+        "description": "Current gear (0 for neutral)",
+        "type": "integer",
+        "enum": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8
+        ],
+        "rule": {
+          "name": "gear",
+          "type": "integer",
+          "group": "NumberRules",
+          "rule": "enum",
+          "enum": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8
+          ],
+          "description": "Current gear (0 for neutral)"
+        }
+      }
+    },
+    "publishSettings": {
+      "count": 0,
+      "interval": 1000,
+      "delay": 0
+    },
+    "mappings": [
+      {
+        "type": "Payload Parameter",
+        "source": {
+          "type": "Topic Parameter",
+          "name": "carID",
+          "fieldName": "carID",
+          "fieldType": "string"
+        },
+        "target": {
+          "type": "Payload Parameter",
+          "name": "carID",
+          "fieldName": "carID",
+          "fieldType": "string"
+        }
+      },
+      {
+        "type": "Topic Parameter",
+        "source": {
+          "type": "Payload Parameter",
+          "name": "rpm",
+          "fieldName": "rpm",
+          "fieldType": "integer"
+        },
+        "target": {
+          "type": "Topic Parameter",
+          "name": "rpm",
+          "fieldName": "rpm",
+          "fieldType": "string"
+        }
+      }
+    ]
+  },
+  {
+    "topic": "f1/telematics/car/locationUpdate/v1/{carID}/{latitude}/{longitude}",
+    "topicParameters": {
+      "latitude": {
+        "schema": {
+          "type": "string"
+        },
+        "rule": {
+          "name": "latitude",
+          "type": "string",
+          "group": "NumberRules",
+          "rule": "float",
+          "minimum": 24.463,
+          "maximum": 24.474,
+          "fractionDigits": 4
+        }
+      },
+      "carID": {
+        "schema": {
+          "type": "string"
+        },
+        "rule": {
+          "name": "carID",
+          "type": "string",
+          "group": "StringRules",
+          "rule": "enum",
+          "enum": [
+            "Mercedes_Hamilton",
+            "Mercedes_Russell",
+            "RedBull_Verstappen",
+            "RedBull_Perez",
+            "Ferrari_Leclerc",
+            "Ferrari_Sainz",
+            "AstonMartin_Alonso",
+            "AstonMartin_Stroll",
+            "McLaren_Norris",
+            "McLaren_Piastri",
+            "Alpine_Gasly",
+            "Alpine_Ocon",
+            "Williams_Bottas",
+            "Williams_Zhou",
+            "RacingBulls_Tsunoda",
+            "RacingBulls_Ricciardo",
+            "Sauber_Hulkenberg",
+            "Sauber_Magnussen",
+            "Haas_Bearman",
+            "Haas_Lawson"
+          ]
+        }
+      },
+      "longitude": {
+        "schema": {
+          "type": "string"
+        },
+        "rule": {
+          "name": "longitude",
+          "type": "string",
+          "group": "NumberRules",
+          "rule": "float",
+          "minimum": 54.603,
+          "maximum": 54.617,
+          "fractionDigits": 4
+        }
+      }
+    },
+    "eventName": "LocationUpdate",
+    "eventVersion": "0.0.1",
+    "messageName": "LocationUpdate",
+    "hasPayload": true,
+    "payload": {
+      "altitude": {
+        "description": "Current altitude in meters above sea level",
+        "type": "number",
+        "rule": {
+          "name": "altitude",
+          "type": "number",
+          "group": "NumberRules",
+          "rule": "float",
+          "minimum": 0,
+          "maximum": 1000,
+          "fractionDigits": 2,
+          "description": "Current altitude in meters above sea level"
+        }
+      },
+      "trackPosition": {
+        "description": "Position on the track",
+        "type": "object",
+        "properties": {
+          "lapPercentage": {
+            "maximum": 100,
+            "description": "Percentage through current lap",
+            "type": "number",
+            "minimum": 0,
+            "rule": {
+              "name": "lapPercentage",
+              "type": "number",
+              "group": "NumberRules",
+              "rule": "float",
+              "minimum": 0,
+              "maximum": 100,
+              "fractionDigits": 2,
+              "description": "Percentage through current lap"
+            }
+          },
+          "corner": {
+            "description": "Name or number of current corner (if applicable)",
+            "type": "string",
+            "rule": {
+              "name": "corner",
+              "type": "string",
+              "group": "StringRules",
+              "rule": "alpha",
+              "casing": "mixed",
+              "minLength": 10,
+              "maxLength": 10,
+              "description": "Name or number of current corner (if applicable)"
+            }
+          },
+          "straightName": {
+            "description": "Name of current straight (if applicable)",
+            "type": "string",
+            "rule": {
+              "name": "straightName",
+              "type": "string",
+              "group": "StringRules",
+              "rule": "alpha",
+              "casing": "mixed",
+              "minLength": 10,
+              "maxLength": 10,
+              "description": "Name of current straight (if applicable)"
+            }
+          },
+          "sectorPercentage": {
+            "maximum": 100,
+            "description": "Percentage through current sector",
+            "type": "number",
+            "minimum": 0,
+            "rule": {
+              "name": "sectorPercentage",
+              "type": "number",
+              "group": "NumberRules",
+              "rule": "float",
+              "minimum": 0,
+              "maximum": 100,
+              "fractionDigits": 2,
+              "description": "Percentage through current sector"
+            }
+          },
+          "trackName": {
+            "description": "Name of the current track",
+            "type": "string",
+            "rule": {
+              "name": "trackName",
+              "type": "string",
+              "group": "StringRules",
+              "rule": "enum",
+              "enum": [
+                "Yas Marina Circuit"
+              ]
+            }
+          },
+          "sector": {
+            "description": "Current sector number",
+            "type": "integer",
+            "enum": [
+              1,
+              2,
+              3
+            ],
+            "rule": {
+              "name": "sector",
+              "type": "integer",
+              "group": "NumberRules",
+              "rule": "enum",
+              "enum": [
+                1,
+                2,
+                3
+              ],
+              "description": "Current sector number"
+            }
+          }
+        },
+        "rule": {
+          "name": "trackPosition",
+          "type": "object"
+        }
+      },
+      "heading": {
+        "maximum": 360,
+        "description": "Current heading in degrees (0-360)",
+        "type": "number",
+        "minimum": 0,
+        "rule": {
+          "name": "heading",
+          "type": "number",
+          "group": "NumberRules",
+          "rule": "float",
+          "minimum": 0,
+          "maximum": 360,
+          "fractionDigits": 2,
+          "description": "Current heading in degrees (0-360)"
+        }
+      },
+      "latitude": {
+        "maximum": 90,
+        "description": "Current latitude coordinate",
+        "type": "number",
+        "minimum": -90,
+        "rule": {
+          "name": "latitude",
+          "type": "number",
+          "group": "NumberRules",
+          "rule": "float",
+          "minimum": 1,
+          "maximum": 90,
+          "fractionDigits": 2,
+          "description": "Current latitude coordinate"
+        }
+      },
+      "drsAvailable": {
+        "description": "Whether DRS is available at the current track position",
+        "type": "boolean",
+        "rule": {
+          "name": "drsAvailable",
+          "type": "boolean",
+          "group": "BooleanRules",
+          "rule": "boolean",
+          "description": "Whether DRS is available at the current track position"
+        }
+      },
+      "drsActive": {
+        "description": "Whether DRS is currently active",
+        "type": "boolean",
+        "rule": {
+          "name": "drsActive",
+          "type": "boolean",
+          "group": "BooleanRules",
+          "rule": "boolean",
+          "description": "Whether DRS is currently active"
+        }
+      },
+      "lapNumber": {
+        "description": "Current lap number",
+        "type": "integer",
+        "minimum": 1,
+        "rule": {
+          "name": "lapNumber",
+          "type": "integer",
+          "group": "NumberRules",
+          "rule": "int",
+          "minimum": 1,
+          "maximum": 80
+        }
+      },
+      "speed": {
+        "description": "Current speed in KPH",
+        "type": "number",
+        "minimum": 0,
+        "rule": {
+          "name": "speed",
+          "type": "number",
+          "group": "NumberRules",
+          "rule": "int",
+          "minimum": 60,
+          "maximum": 370
+        }
+      },
+      "carID": {
+        "pattern": "^CAR-[0-9]{2}$",
+        "description": "Unique identifier for the F1 car",
+        "type": "string",
+        "rule": {
+          "name": "carID",
+          "type": "string",
+          "group": "StringRules",
+          "rule": "alpha",
+          "casing": "mixed",
+          "minLength": 10,
+          "maxLength": 10,
+          "description": "Unique identifier for the F1 car"
+        }
+      },
+      "weatherConditions": {
+        "description": "Current weather conditions at this location",
+        "type": "object",
+        "properties": {
+          "trackTemperature": {
+            "description": "Track temperature in Celsius",
+            "type": "number",
+            "rule": {
+              "name": "trackTemperature",
+              "type": "number",
+              "group": "NumberRules",
+              "rule": "float",
+              "minimum": 0,
+              "maximum": 1000,
+              "fractionDigits": 2,
+              "description": "Track temperature in Celsius"
+            }
+          },
+          "condition": {
+            "description": "Current weather condition",
+            "type": "string",
+            "enum": [
+              "CLEAR",
+              "PARTLY_CLOUDY",
+              "CLOUDY",
+              "LIGHT_RAIN",
+              "HEAVY_RAIN"
+            ],
+            "rule": {
+              "name": "condition",
+              "type": "string",
+              "group": "StringRules",
+              "rule": "enum",
+              "enum": [
+                "CLEAR",
+                "PARTLY_CLOUDY",
+                "CLOUDY",
+                "LIGHT_RAIN",
+                "HEAVY_RAIN"
+              ],
+              "description": "Current weather condition"
+            }
+          },
+          "airTemperature": {
+            "description": "Air temperature in Celsius",
+            "type": "number",
+            "rule": {
+              "name": "airTemperature",
+              "type": "number",
+              "group": "NumberRules",
+              "rule": "float",
+              "minimum": 30,
+              "maximum": 50,
+              "fractionDigits": 2
+            }
+          },
+          "humidity": {
+            "maximum": 100,
+            "description": "Humidity percentage",
+            "type": "number",
+            "minimum": 0,
+            "rule": {
+              "name": "humidity",
+              "type": "number",
+              "group": "NumberRules",
+              "rule": "float",
+              "minimum": 0,
+              "maximum": 100,
+              "fractionDigits": 2,
+              "description": "Humidity percentage"
+            }
+          },
+          "windDirection": {
+            "maximum": 360,
+            "description": "Wind direction in degrees",
+            "type": "number",
+            "minimum": 0,
+            "rule": {
+              "name": "windDirection",
+              "type": "number",
+              "group": "NumberRules",
+              "rule": "float",
+              "minimum": 0,
+              "maximum": 360,
+              "fractionDigits": 2,
+              "description": "Wind direction in degrees"
+            }
+          },
+          "windSpeed": {
+            "description": "Wind speed in km/h",
+            "type": "number",
+            "rule": {
+              "name": "windSpeed",
+              "type": "number",
+              "group": "NumberRules",
+              "rule": "float",
+              "minimum": 0,
+              "maximum": 1000,
+              "fractionDigits": 2,
+              "description": "Wind speed in km/h"
+            }
+          }
+        },
+        "rule": {
+          "name": "weatherConditions",
+          "type": "object"
+        }
+      },
+      "lapTime": {
+        "description": "Current lap timing information",
+        "type": "object",
+        "properties": {
+          "sector2Time": {
+            "description": "Sector 2 time in format SS.mmm",
+            "type": "string",
+            "rule": {
+              "name": "sector2Time",
+              "type": "string",
+              "group": "StringRules",
+              "rule": "alpha",
+              "casing": "mixed",
+              "minLength": 10,
+              "maxLength": 10,
+              "description": "Sector 2 time in format SS.mmm"
+            }
+          },
+          "sector1Time": {
+            "description": "Sector 1 time in format SS.mmm",
+            "type": "string",
+            "rule": {
+              "name": "sector1Time",
+              "type": "string",
+              "group": "StringRules",
+              "rule": "alpha",
+              "casing": "mixed",
+              "minLength": 10,
+              "maxLength": 10,
+              "description": "Sector 1 time in format SS.mmm"
+            }
+          },
+          "lastLapTime": {
+            "description": "Last lap time in format MM:SS.mmm",
+            "type": "string",
+            "rule": {
+              "name": "lastLapTime",
+              "type": "string",
+              "group": "StringRules",
+              "rule": "alpha",
+              "casing": "mixed",
+              "minLength": 10,
+              "maxLength": 10,
+              "description": "Last lap time in format MM:SS.mmm"
+            }
+          },
+          "bestLapTime": {
+            "description": "Best lap time in format MM:SS.mmm",
+            "type": "string",
+            "rule": {
+              "name": "bestLapTime",
+              "type": "string",
+              "group": "StringRules",
+              "rule": "alpha",
+              "casing": "mixed",
+              "minLength": 10,
+              "maxLength": 10,
+              "description": "Best lap time in format MM:SS.mmm"
+            }
+          },
+          "currentLapTime": {
+            "description": "Current lap time in format MM:SS.mmm",
+            "type": "string",
+            "rule": {
+              "name": "currentLapTime",
+              "type": "string",
+              "group": "StringRules",
+              "rule": "alpha",
+              "casing": "mixed",
+              "minLength": 10,
+              "maxLength": 10,
+              "description": "Current lap time in format MM:SS.mmm"
+            }
+          },
+          "sector3Time": {
+            "description": "Sector 3 time in format SS.mmm",
+            "type": "string",
+            "rule": {
+              "name": "sector3Time",
+              "type": "string",
+              "group": "StringRules",
+              "rule": "alpha",
+              "casing": "mixed",
+              "minLength": 10,
+              "maxLength": 10,
+              "description": "Sector 3 time in format SS.mmm"
+            }
+          }
+        },
+        "rule": {
+          "name": "lapTime",
+          "type": "object"
+        }
+      },
+      "driverID": {
+        "description": "Driver identifier",
+        "type": "string",
+        "rule": {
+          "name": "driverID",
+          "type": "string",
+          "group": "StringRules",
+          "rule": "alpha",
+          "casing": "mixed",
+          "minLength": 10,
+          "maxLength": 10,
+          "description": "Driver identifier"
+        }
+      },
+      "gForce": {
+        "description": "G-forces being experienced",
+        "type": "object",
+        "properties": {
+          "vertical": {
+            "description": "Vertical G-force",
+            "type": "number",
+            "rule": {
+              "name": "vertical",
+              "type": "number",
+              "group": "NumberRules",
+              "rule": "float",
+              "minimum": 0,
+              "maximum": 1000,
+              "fractionDigits": 2,
+              "description": "Vertical G-force"
+            }
+          },
+          "longitudinal": {
+            "description": "Longitudinal G-force",
+            "type": "number",
+            "rule": {
+              "name": "longitudinal",
+              "type": "number",
+              "group": "NumberRules",
+              "rule": "float",
+              "minimum": 0,
+              "maximum": 1000,
+              "fractionDigits": 2,
+              "description": "Longitudinal G-force"
+            }
+          },
+          "lateral": {
+            "description": "Lateral G-force",
+            "type": "number",
+            "rule": {
+              "name": "lateral",
+              "type": "number",
+              "group": "NumberRules",
+              "rule": "float",
+              "minimum": 0,
+              "maximum": 1000,
+              "fractionDigits": 2,
+              "description": "Lateral G-force"
+            }
+          }
+        },
+        "rule": {
+          "name": "gForce",
+          "type": "object"
+        }
+      },
+      "teamID": {
+        "description": "Team identifier",
+        "type": "string",
+        "rule": {
+          "name": "teamID",
+          "type": "string",
+          "group": "StringRules",
+          "rule": "alpha",
+          "casing": "mixed",
+          "minLength": 10,
+          "maxLength": 10,
+          "description": "Team identifier"
+        }
+      },
+      "trackStatus": {
+        "description": "Current track status flag",
+        "type": "string",
+        "enum": [
+          "GREEN",
+          "YELLOW",
+          "RED",
+          "SAFETY_CAR",
+          "VIRTUAL_SAFETY_CAR"
+        ],
+        "rule": {
+          "name": "trackStatus",
+          "type": "string",
+          "group": "StringRules",
+          "rule": "enum",
+          "enum": [
+            "GREEN",
+            "YELLOW",
+            "RED",
+            "SAFETY_CAR",
+            "VIRTUAL_SAFETY_CAR"
+          ],
+          "description": "Current track status flag"
+        }
+      },
+      "sessionType": {
+        "description": "Type of racing session",
+        "type": "string",
+        "enum": [
+          "PRACTICE",
+          "QUALIFYING",
+          "RACE"
+        ],
+        "rule": {
+          "name": "sessionType",
+          "type": "string",
+          "group": "StringRules",
+          "rule": "enum",
+          "enum": [
+            "PRACTICE",
+            "QUALIFYING",
+            "RACE"
+          ],
+          "description": "Type of racing session"
+        }
+      },
+      "positionInRace": {
+        "description": "Current position in the race",
+        "type": "integer",
+        "minimum": 1,
+        "rule": {
+          "name": "positionInRace",
+          "type": "integer",
+          "group": "NumberRules",
+          "rule": "int",
+          "minimum": 1,
+          "maximum": 20
+        }
+      },
+      "timestamp": {
+        "format": "date-time",
+        "description": "ISO 8601 timestamp when the location was recorded",
+        "type": "string",
+        "rule": {
+          "name": "timestamp",
+          "type": "string",
+          "group": "DateRules",
+          "rule": "currentDateWithTime",
+          "format": "MM-DD-YYYY HH:mm:ss",
+          "description": "ISO 8601 timestamp when the location was recorded"
+        }
+      },
+      "longitude": {
+        "maximum": 180,
+        "description": "Current longitude coordinate",
+        "type": "number",
+        "minimum": -180,
+        "rule": {
+          "name": "longitude",
+          "type": "number",
+          "group": "NumberRules",
+          "rule": "float",
+          "minimum": 1,
+          "maximum": 180,
+          "fractionDigits": 2,
+          "description": "Current longitude coordinate"
+        }
+      }
+    },
+    "publishSettings": {
+      "count": 0,
+      "interval": 1000,
+      "delay": 0
+    },
+    "mappings": [
+      {
+        "type": "Payload Parameter",
+        "source": {
+          "type": "Topic Parameter",
+          "name": "latitude",
+          "fieldName": "latitude",
+          "fieldType": "string"
+        },
+        "target": {
+          "type": "Payload Parameter",
+          "name": "latitude",
+          "fieldName": "latitude",
+          "fieldType": "number"
+        }
+      },
+      {
+        "type": "Payload Parameter",
+        "source": {
+          "type": "Topic Parameter",
+          "name": "carID",
+          "fieldName": "carID",
+          "fieldType": "string"
+        },
+        "target": {
+          "type": "Payload Parameter",
+          "name": "carID",
+          "fieldName": "carID",
+          "fieldType": "string"
+        }
+      },
+      {
+        "type": "Payload Parameter",
+        "source": {
+          "type": "Topic Parameter",
+          "name": "longitude",
+          "fieldName": "longitude",
+          "fieldType": "string"
+        },
+        "target": {
+          "type": "Payload Parameter",
+          "name": "longitude",
+          "fieldName": "longitude",
+          "fieldType": "number"
+        }
+      }
+    ]
+  },
+  {
+    "topic": "f1/telematics/car/diagnosticAlert/v1/{carID}",
+    "topicParameters": {
+      "carID": {
+        "schema": {
+          "type": "string"
+        },
+        "rule": {
+          "name": "carID",
+          "type": "string",
+          "group": "StringRules",
+          "rule": "enum",
+          "enum": [
+            "Mercedes_Hamilton",
+            "Mercedes_Russell",
+            "RedBull_Verstappen",
+            "RedBull_Perez",
+            "Ferrari_Leclerc",
+            "Ferrari_Sainz",
+            "AstonMartin_Alonso",
+            "AstonMartin_Stroll",
+            "McLaren_Norris",
+            "McLaren_Piastri",
+            "Alpine_Gasly",
+            "Alpine_Ocon",
+            "Williams_Bottas",
+            "Williams_Zhou",
+            "RacingBulls_Tsunoda",
+            "RacingBulls_Ricciardo",
+            "Sauber_Hulkenberg",
+            "Sauber_Magnussen",
+            "Haas_Bearman",
+            "Haas_Lawson"
+          ]
+        }
+      }
+    },
+    "eventName": "DiagnosticAlert",
+    "eventVersion": "0.0.1",
+    "messageName": "DiagnosticAlert",
+    "hasPayload": true,
+    "payload": {
+      "severity": {
+        "description": "Severity level (1-lowest, 5-highest)",
+        "type": "integer",
+        "enum": [
+          1,
+          2,
+          3,
+          4,
+          5
+        ],
+        "rule": {
+          "name": "severity",
+          "type": "integer",
+          "group": "NumberRules",
+          "rule": "enum",
+          "enum": [
+            1,
+            2,
+            3,
+            4,
+            5
+          ],
+          "description": "Severity level (1-lowest, 5-highest)"
+        }
+      },
+      "alertType": {
+        "description": "Type of the diagnostic alert",
+        "type": "string",
+        "enum": [
+          "WARNING",
+          "CRITICAL",
+          "INFORMATION",
+          "ERROR"
+        ],
+        "rule": {
+          "name": "alertType",
+          "type": "string",
+          "group": "StringRules",
+          "rule": "enum",
+          "enum": [
+            "WARNING",
+            "CRITICAL",
+            "INFORMATION",
+            "ERROR"
+          ],
+          "description": "Type of the diagnostic alert"
+        }
+      },
+      "telemetrySnapshot": {
+        "description": "Snapshot of relevant telemetry data at the time of the alert",
+        "type": "object",
+        "properties": {
+          "temperature": {
+            "description": "Temperature of the affected component in Celsius",
+            "type": "number",
+            "rule": {
+              "name": "temperature",
+              "type": "number",
+              "group": "NumberRules",
+              "rule": "float",
+              "minimum": 0,
+              "maximum": 1000,
+              "fractionDigits": 2,
+              "description": "Temperature of the affected component in Celsius"
+            }
+          },
+          "speed": {
+            "description": "Speed at time of alert in KPH",
+            "type": "number",
+            "rule": {
+              "name": "speed",
+              "type": "number",
+              "group": "NumberRules",
+              "rule": "int",
+              "minimum": 60,
+              "maximum": 370
+            }
+          },
+          "rpm": {
+            "description": "Engine RPM at time of alert",
+            "type": "integer",
+            "rule": {
+              "name": "rpm",
+              "type": "integer",
+              "group": "NumberRules",
+              "rule": "int",
+              "minimum": 0,
+              "maximum": 1000,
+              "description": "Engine RPM at time of alert"
+            }
+          }
+        },
+        "rule": {
+          "name": "telemetrySnapshot",
+          "type": "object"
+        }
+      },
+      "description": {
+        "description": "Detailed description of the alert",
+        "type": "string",
+        "rule": {
+          "name": "description",
+          "type": "string",
+          "group": "StringRules",
+          "rule": "enum",
+          "enum": [
+            "Power Unit Overheating – Engine temperature exceeds safe limits",
+            "potential risk of failure",
+            "ERS Malfunction – Energy recovery system is not delivering expected power output",
+            "Oil Pressure Drop – Critical oil pressure loss detected",
+            "engine damage risk",
+            "Gearbox Sync Issue – Delayed or failed gear shifts detected",
+            "potential transmission failure",
+            "Brake Temperature Critical – Front/rear brake temps too high",
+            "reduced braking efficiency",
+            "Fuel Pressure Instability – Inconsistent fuel delivery detected",
+            "possible misfire or power loss",
+            "Hydraulic System Failure – Loss of hydraulic pressure affecting steering and shifting",
+            "Sensor Calibration Error – Inconsistent readings from tire pressure or aero sensors",
+            "Differential Slippage Detected – Unusual rear-wheel slip",
+            "potential differential issue",
+            "Wheel Speed Sensor Failure – Inaccurate wheel speed data",
+            "affecting traction control"
+          ]
+        }
+      },
+      "lapNumber": {
+        "description": "Current lap number",
+        "type": "integer",
+        "minimum": 1,
+        "rule": {
+          "name": "lapNumber",
+          "type": "integer",
+          "group": "NumberRules",
+          "rule": "int",
+          "minimum": 1,
+          "maximum": 80
+        }
+      },
+      "carID": {
+        "pattern": "^CAR-[0-9]{2}$",
+        "description": "Unique identifier for the F1 car",
+        "type": "string",
+        "rule": {
+          "name": "carID",
+          "type": "string",
+          "group": "StringRules",
+          "rule": "alpha",
+          "casing": "mixed",
+          "minLength": 10,
+          "maxLength": 10,
+          "description": "Unique identifier for the F1 car"
+        }
+      },
+      "recommendedAction": {
+        "description": "Recommended action to address the alert",
+        "type": "string",
+        "rule": {
+          "name": "recommendedAction",
+          "type": "string",
+          "group": "StringRules",
+          "rule": "enum",
+          "enum": [
+            "Reset MGU settings if possible",
+            "Reduce engine load immediately",
+            "Adjust brake balance",
+            "Avoid sudden steering inputs",
+            "Adjust differential settings on the steering wheel",
+            "pit for sensor replacement"
+          ]
+        }
+      },
+      "estimatedTimeToFailure": {
+        "description": "Estimated time to component failure in seconds, if applicable",
+        "type": "integer",
+        "rule": {
+          "name": "estimatedTimeToFailure",
+          "type": "integer",
+          "group": "NumberRules",
+          "rule": "int",
+          "minimum": 0,
+          "maximum": 1000,
+          "description": "Estimated time to component failure in seconds, if applicable"
+        }
+      },
+      "component": {
+        "description": "Car component that triggered the alert",
+        "type": "string",
+        "enum": [
+          "ENGINE",
+          "GEARBOX",
+          "BRAKES",
+          "SUSPENSION",
+          "ELECTRICAL",
+          "HYDRAULICS",
+          "COOLING",
+          "ERS",
+          "DRS",
+          "FUEL_SYSTEM",
+          "TURBO",
+          "TIRES"
+        ],
+        "rule": {
+          "name": "component",
+          "type": "string",
+          "group": "StringRules",
+          "rule": "enum",
+          "enum": [
+            "ENGINE",
+            "GEARBOX",
+            "BRAKES",
+            "SUSPENSION",
+            "ELECTRICAL",
+            "HYDRAULICS",
+            "COOLING",
+            "ERS",
+            "DRS",
+            "FUEL_SYSTEM",
+            "TURBO",
+            "TIRES"
+          ],
+          "description": "Car component that triggered the alert"
+        }
+      },
+      "impactOnPerformance": {
+        "description": "Estimated impact on car performance",
+        "type": "string",
+        "enum": [
+          "NONE",
+          "LOW",
+          "MEDIUM",
+          "HIGH",
+          "CRITICAL"
+        ],
+        "rule": {
+          "name": "impactOnPerformance",
+          "type": "string",
+          "group": "StringRules",
+          "rule": "enum",
+          "enum": [
+            "NONE",
+            "LOW",
+            "MEDIUM",
+            "HIGH",
+            "CRITICAL"
+          ],
+          "description": "Estimated impact on car performance"
+        }
+      },
+      "driverID": {
+        "description": "Driver identifier",
+        "type": "string",
+        "rule": {
+          "name": "driverID",
+          "type": "string",
+          "group": "StringRules",
+          "rule": "alpha",
+          "casing": "mixed",
+          "minLength": 10,
+          "maxLength": 10,
+          "description": "Driver identifier"
+        }
+      },
+      "teamID": {
+        "description": "Team identifier",
+        "type": "string",
+        "rule": {
+          "name": "teamID",
+          "type": "string",
+          "group": "StringRules",
+          "rule": "alpha",
+          "casing": "mixed",
+          "minLength": 10,
+          "maxLength": 10,
+          "description": "Team identifier"
+        }
+      },
+      "alertID": {
+        "pattern": "^ALT-[0-9a-f]{8}$",
+        "description": "Unique identifier for the alert",
+        "type": "string",
+        "rule": {
+          "name": "alertID",
+          "type": "string",
+          "group": "StringRules",
+          "rule": "alpha",
+          "casing": "mixed",
+          "minLength": 10,
+          "maxLength": 10,
+          "description": "Unique identifier for the alert"
+        }
+      },
+      "timestamp": {
+        "format": "date-time",
+        "description": "ISO 8601 timestamp when the alert was generated",
+        "type": "string",
+        "rule": {
+          "name": "timestamp",
+          "type": "string",
+          "group": "DateRules",
+          "rule": "currentDateWithTime",
+          "format": "MM-DD-YYYY HH:mm:ss",
+          "description": "ISO 8601 timestamp when the alert was generated"
+        }
+      }
+    },
+    "publishSettings": {
+      "count": 0,
+      "interval": 1000,
+      "delay": 0
+    }
+  }
+]
