@@ -123,19 +123,6 @@
   {
     "type": "asyncapi_feed",
     "feedView": "default",
-    "name": "EV Car Telematics",
-    "description": "Car Telematics API for EV connected car telematics system.\nHandles various events including location updates, speed monitoring, battery status, and vehicle diagnostics.",
-    "img": "https://cdn-icons-png.flaticon.com/512/3085/3085330.png",
-    "contributor": "Tamimi AlTamimi",
-    "github": "TamimiGithub",
-    "domain": "Automotive",
-    "tags": "car, telemetics, EV, connected cars, ",
-    "lastUpdated": "2025-02-20T04:00:36.319Z",
-    "contributed": true
-  },
-  {
-    "type": "asyncapi_feed",
-    "feedView": "default",
     "name": "Sentiment Analysis with AI",
     "description": "System for analyzing customer interactions and determining sentiment scores to improve customer experience and service quality.",
     "img": "https://cdn-icons-png.flaticon.com/512/2282/2282387.png",
