@@ -1,0 +1,694 @@
+{
+  "defaultContentType": "application/json",
+  "id": "htt://4711:8080/0815",
+  "tags": [
+    {
+      "name": "retail"
+    },
+    {
+      "name": "omnichannel"
+    }
+  ],
+  "components": {
+    "schemas": {
+      "StockLevelUpdate": {
+        "x-ep-schema-version": "0.1.0",
+        "x-ep-schema-version-id": "hz8h13paokb",
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "x-ep-schema-state-name": "RELEASED",
+        "x-ep-schema-name": "StockLevelUpdate",
+        "type": "object",
+        "x-ep-application-domain-id": "vage5remvcm",
+        "required": [
+          "metaInfo",
+          "minStockLevel",
+          "productId",
+          "productName",
+          "retailStoreId",
+          "retailStoreName",
+          "stockLevel"
+        ],
+        "x-ep-shared": "true",
+        "x-ep-application-domain-name": "Retail",
+        "x-ep-schema-state-id": "2",
+        "x-ep-schema-id": "cabdi59xe4h",
+        "properties": {
+          "createdAt": {
+            "format": "date-time",
+            "type": "string"
+          },
+          "metaInfo": {
+            "type": "object",
+            "properties": {
+              "messageTypeVersion": {
+                "type": "string"
+              },
+              "messageType": {
+                "type": "string"
+              }
+            }
+          },
+          "productId": {
+            "minLength": 1,
+            "type": "string",
+            "maxLength": 255
+          },
+          "retailStoreId": {
+            "minLength": 1,
+            "type": "string",
+            "maxLength": 255
+          },
+          "minStockLevel": {
+            "format": "int64",
+            "maximum": 999999999,
+            "type": "integer",
+            "minimum": 0
+          },
+          "productName": {
+            "minLength": 1,
+            "type": "string",
+            "maxLength": 255
+          },
+          "stockLevel": {
+            "format": "int64",
+            "maximum": 999999999,
+            "type": "integer",
+            "minimum": 0
+          },
+          "retailStoreName": {
+            "minLength": 1,
+            "type": "string",
+            "maxLength": 255
+          }
+        }
+      },
+      "pick_to_collect_customer_new_order": {
+        "x-ep-schema-version": "0.1.0",
+        "x-ep-schema-version-id": "vzo38359ba7",
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "x-ep-schema-state-name": "RELEASED",
+        "x-ep-schema-name": "pick_to_collect_customer_new_order",
+        "type": "object",
+        "x-ep-application-domain-id": "vage5remvcm",
+        "required": [
+          "customerId",
+          "customerName",
+          "id",
+          "metaInfo",
+          "selectedItems",
+          "storeId",
+          "storeName",
+          "version"
+        ],
+        "x-ep-shared": "true",
+        "x-ep-application-domain-name": "Retail",
+        "x-ep-schema-state-id": "2",
+        "x-ep-schema-id": "4qe9ya2xir4",
+        "properties": {
+          "createdAt": {
+            "format": "date-time",
+            "type": "string"
+          },
+          "metaInfo": {
+            "type": "object",
+            "properties": {
+              "messageTypeVersion": {
+                "type": "string"
+              },
+              "messageType": {
+                "type": "string"
+              }
+            }
+          },
+          "customerId": {
+            "minLength": 1,
+            "type": "string",
+            "maxLength": 255
+          },
+          "storeName": {
+            "minLength": 1,
+            "type": "string",
+            "maxLength": 255
+          },
+          "id": {
+            "minLength": 1,
+            "type": "string",
+            "maxLength": 255
+          },
+          "storeId": {
+            "minLength": 1,
+            "type": "string",
+            "maxLength": 255
+          },
+          "version": {
+            "format": "int64",
+            "type": "integer"
+          },
+          "customerName": {
+            "minLength": 1,
+            "type": "string",
+            "maxLength": 255
+          },
+          "selectedItems": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "quantity": {
+                  "format": "int64",
+                  "maximum": 999999999,
+                  "type": "integer",
+                  "minimum": 0
+                },
+                "id": {
+                  "minLength": 1,
+                  "type": "string",
+                  "maxLength": 255
+                },
+                "productName": {
+                  "minLength": 1,
+                  "type": "string",
+                  "maxLength": 255
+                }
+              },
+              "required": [
+                "id",
+                "productName",
+                "quantity"
+              ]
+            }
+          }
+        }
+      },
+      "stock_level_retail_store_out_of_stock": {
+        "x-ep-schema-version": "0.1.0",
+        "x-ep-schema-version-id": "7kx4bb8303h",
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "x-ep-schema-state-name": "RELEASED",
+        "x-ep-schema-name": "stock_level_retail_store_out_of_stock",
+        "type": "object",
+        "x-ep-application-domain-id": "vage5remvcm",
+        "required": [
+          "metaInfo",
+          "minStockLevel",
+          "productId",
+          "productName",
+          "retailStoreId",
+          "retailStoreName",
+          "stockLevel"
+        ],
+        "x-ep-shared": "true",
+        "x-ep-application-domain-name": "Retail",
+        "x-ep-schema-state-id": "2",
+        "x-ep-schema-id": "ufm8vqgesgo",
+        "properties": {
+          "createdAt": {
+            "format": "date-time",
+            "type": "string"
+          },
+          "metaInfo": {
+            "type": "object",
+            "properties": {
+              "messageTypeVersion": {
+                "type": "string"
+              },
+              "messageType": {
+                "type": "string"
+              }
+            }
+          },
+          "productId": {
+            "minLength": 1,
+            "type": "string",
+            "maxLength": 255
+          },
+          "retailStoreId": {
+            "minLength": 1,
+            "type": "string",
+            "maxLength": 255
+          },
+          "minStockLevel": {
+            "format": "int64",
+            "maximum": 999999999,
+            "type": "integer",
+            "minimum": 0
+          },
+          "productName": {
+            "minLength": 1,
+            "type": "string",
+            "maxLength": 255
+          },
+          "stockLevel": {
+            "format": "int64",
+            "maximum": 999999999,
+            "type": "integer",
+            "minimum": 0
+          },
+          "retailStoreName": {
+            "minLength": 1,
+            "type": "string",
+            "maxLength": 255
+          }
+        }
+      },
+      "pick_to_collect_customer_order_status_update": {
+        "x-ep-schema-version": "0.1.0",
+        "x-ep-schema-version-id": "xu0ycnxyzel",
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "x-ep-schema-state-name": "RELEASED",
+        "x-ep-schema-name": "pick_to_collect_customer_order_status_update",
+        "type": "object",
+        "x-ep-application-domain-id": "vage5remvcm",
+        "required": [
+          "customerId",
+          "customerName",
+          "metaInfo",
+          "orderId",
+          "status",
+          "storeId"
+        ],
+        "x-ep-shared": "true",
+        "x-ep-application-domain-name": "Retail",
+        "x-ep-schema-state-id": "2",
+        "x-ep-schema-id": "4lgrhjsap0p",
+        "properties": {
+          "createdAt": {
+            "format": "date-time",
+            "type": "string"
+          },
+          "metaInfo": {
+            "type": "object",
+            "properties": {
+              "messageTypeVersion": {
+                "type": "string"
+              },
+              "messageType": {
+                "type": "string"
+              }
+            }
+          },
+          "orderId": {
+            "minLength": 1,
+            "type": "string",
+            "maxLength": 255
+          },
+          "customerId": {
+            "minLength": 1,
+            "type": "string",
+            "maxLength": 255
+          },
+          "storeId": {
+            "minLength": 1,
+            "type": "string",
+            "maxLength": 255
+          },
+          "customerName": {
+            "minLength": 1,
+            "type": "string",
+            "maxLength": 255
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "ORDER_RECEIVED",
+              "QUEUED_IN_STORE",
+              "PICKING_IN_PROGRESS",
+              "READY_FOR_COLLECTING",
+              "COLLECTED",
+              "CANCELED"
+            ]
+          }
+        }
+      },
+      "stock_level_retail_store_back_in_stock": {
+        "x-ep-schema-version": "0.1.0",
+        "x-ep-schema-version-id": "91d8gbteyl2",
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "x-ep-schema-state-name": "RELEASED",
+        "x-ep-schema-name": "stock_level_retail_store_back_in_stock",
+        "type": "object",
+        "x-ep-application-domain-id": "vage5remvcm",
+        "required": [
+          "metaInfo",
+          "minStockLevel",
+          "productId",
+          "productName",
+          "retailStoreId",
+          "retailStoreName",
+          "stockLevel"
+        ],
+        "x-ep-shared": "true",
+        "x-ep-application-domain-name": "Retail",
+        "x-ep-schema-state-id": "2",
+        "x-ep-schema-id": "9deihdaa60d",
+        "properties": {
+          "createdAt": {
+            "format": "date-time",
+            "type": "string"
+          },
+          "metaInfo": {
+            "type": "object",
+            "properties": {
+              "messageTypeVersion": {
+                "type": "string"
+              },
+              "messageType": {
+                "type": "string"
+              }
+            }
+          },
+          "productId": {
+            "minLength": 1,
+            "type": "string",
+            "maxLength": 255
+          },
+          "retailStoreId": {
+            "minLength": 1,
+            "type": "string",
+            "maxLength": 255
+          },
+          "minStockLevel": {
+            "format": "int64",
+            "maximum": 999999999,
+            "type": "integer",
+            "minimum": 0
+          },
+          "productName": {
+            "minLength": 1,
+            "type": "string",
+            "maxLength": 255
+          },
+          "stockLevel": {
+            "format": "int64",
+            "maximum": 999999999,
+            "type": "integer",
+            "minimum": 0
+          },
+          "retailStoreName": {
+            "minLength": 1,
+            "type": "string",
+            "maxLength": 255
+          }
+        }
+      }
+    },
+    "messages": {
+      "pick_to_collect_customer_new_order": {
+        "x-ep-event-id": "badk4f6ofgt",
+        "x-ep-application-domain-id": "vage5remvcm",
+        "schemaFormat": "application/vnd.aai.asyncapi+json;version=2.0.0",
+        "x-ep-event-state-name": "RELEASED",
+        "x-ep-shared": "true",
+        "x-ep-application-domain-name": "Retail",
+        "x-ep-event-version-id": "w6lt8nd894a",
+        "payload": {
+          "$ref": "#/components/schemas/pick_to_collect_customer_new_order"
+        },
+        "x-ep-event-version": "0.1.0",
+        "x-ep-event-name": "pick_to_collect_customer_new_order",
+        "contentType": "application/json",
+        "x-ep-event-state-id": "2"
+      },
+      "stock_level_retail_store_out_of_stock": {
+        "x-ep-event-id": "gqice3k6rns",
+        "x-ep-application-domain-id": "vage5remvcm",
+        "schemaFormat": "application/vnd.aai.asyncapi+json;version=2.0.0",
+        "x-ep-event-state-name": "RELEASED",
+        "x-ep-shared": "true",
+        "x-ep-application-domain-name": "Retail",
+        "x-ep-event-version-id": "kek0kz16flo",
+        "payload": {
+          "$ref": "#/components/schemas/stock_level_retail_store_out_of_stock"
+        },
+        "x-ep-event-version": "0.1.0",
+        "x-ep-event-name": "stock_level_retail_store_out_of_stock",
+        "contentType": "application/json",
+        "x-ep-event-state-id": "2"
+      },
+      "stock_level_retail_store_update": {
+        "x-ep-event-id": "ab9v3062w7h",
+        "x-ep-application-domain-id": "vage5remvcm",
+        "schemaFormat": "application/vnd.aai.asyncapi+json;version=2.0.0",
+        "x-ep-event-state-name": "RELEASED",
+        "x-ep-shared": "true",
+        "x-ep-application-domain-name": "Retail",
+        "x-ep-event-version-id": "35oziyslx7d",
+        "payload": {
+          "$ref": "#/components/schemas/StockLevelUpdate"
+        },
+        "x-ep-event-version": "0.1.0",
+        "x-ep-event-name": "stock_level_retail_store_update",
+        "contentType": "application/json",
+        "x-ep-event-state-id": "2"
+      },
+      "pick_to_collect_customer_order_status_update": {
+        "x-ep-event-id": "30yc6as3en6",
+        "description": "Bricks and Mortar retails store pick to collect order update for a specific order and customer",
+        "x-ep-application-domain-id": "vage5remvcm",
+        "schemaFormat": "application/vnd.aai.asyncapi+json;version=2.0.0",
+        "x-ep-event-state-name": "RELEASED",
+        "x-ep-shared": "true",
+        "x-ep-application-domain-name": "Retail",
+        "x-ep-event-version-id": "spcdphphbc6",
+        "payload": {
+          "$ref": "#/components/schemas/pick_to_collect_customer_order_status_update"
+        },
+        "x-ep-event-version": "0.1.0",
+        "x-ep-event-name": "pick_to_collect_customer_order_status_update",
+        "contentType": "application/json",
+        "x-ep-event-state-id": "2"
+      },
+      "stock_level_retail_store_back_in_stock": {
+        "x-ep-event-id": "eb55ajz3bof",
+        "x-ep-application-domain-id": "vage5remvcm",
+        "schemaFormat": "application/vnd.aai.asyncapi+json;version=2.0.0",
+        "x-ep-event-state-name": "RELEASED",
+        "x-ep-shared": "true",
+        "x-ep-application-domain-name": "Retail",
+        "x-ep-event-version-id": "4bt8xuts1eq",
+        "payload": {
+          "$ref": "#/components/schemas/stock_level_retail_store_back_in_stock"
+        },
+        "x-ep-event-version": "0.1.0",
+        "x-ep-event-name": "stock_level_retail_store_back_in_stock",
+        "contentType": "application/json",
+        "x-ep-event-state-id": "2"
+      }
+    }
+  },
+  "servers": {
+    "apim-gw-2-secure-mqtt": {
+      "protocol": "secure-mqtt",
+      "variables": {
+        "port": {
+          "enum": [
+            "8883"
+          ]
+        }
+      },
+      "protocolVersion": "3.1.1",
+      "url": "ssl://mr-connection-t0hwgcn7uny.messaging.solace.cloud:8883"
+    },
+    "apim-gw-2-amqps": {
+      "protocol": "amqps",
+      "variables": {
+        "port": {
+          "enum": [
+            "5671"
+          ]
+        }
+      },
+      "protocolVersion": "1.0.0",
+      "url": "amqps://mr-connection-t0hwgcn7uny.messaging.solace.cloud:5671"
+    },
+    "apim-gw-2-secure-mqttws": {
+      "protocol": "secure-mqttws",
+      "variables": {
+        "port": {
+          "enum": [
+            "8443"
+          ]
+        }
+      },
+      "protocolVersion": "3.1.1",
+      "url": "wss://mr-connection-t0hwgcn7uny.messaging.solace.cloud:8443"
+    }
+  },
+  "channels": {
+    "showcase/bricksandmortar/v1/retailstores/{store_id}/stock/outofstock/{product_id}": {
+      "subscribe": {
+        "bindings": {
+          "mqtt": {
+            "qos": 1,
+            "bindingVersion": "0.1.0"
+          }
+        },
+        "message": {
+          "$ref": "#/components/messages/stock_level_retail_store_out_of_stock"
+        }
+      },
+      "parameters": {
+        "store_id": {
+          "schema": {
+            "type": "string"
+          },
+          "x-ep-parameter-name": "store_id"
+        },
+        "product_id": {
+          "schema": {
+            "type": "string"
+          },
+          "x-ep-parameter-name": "product_id"
+        }
+      }
+    },
+    "showcase/bricksandmortar/v1/customers/{customer_id}/picktocollect/orders/{order_id}": {
+      "subscribe": {
+        "bindings": {
+          "mqtt": {
+            "qos": 1,
+            "bindingVersion": "0.1.0"
+          }
+        },
+        "message": {
+          "$ref": "#/components/messages/pick_to_collect_customer_new_order"
+        }
+      },
+      "parameters": {
+        "customer_id": {
+          "schema": {
+            "type": "string"
+          },
+          "x-ep-parameter-name": "customer_id"
+        },
+        "order_id": {
+          "schema": {
+            "type": "string"
+          },
+          "x-ep-parameter-name": "order_id"
+        }
+      }
+    },
+    "showcase/bricksandmortar/v1/customers/{customer_id}/picktocollect/orders/{order_id}/status/{status_name}": {
+      "subscribe": {
+        "bindings": {
+          "mqtt": {
+            "qos": 1,
+            "bindingVersion": "0.1.0"
+          }
+        },
+        "message": {
+          "$ref": "#/components/messages/pick_to_collect_customer_order_status_update"
+        }
+      },
+      "parameters": {
+        "status_name": {
+          "schema": {
+            "type": "string",
+            "enum": [
+              "order_received",
+              "queued_in_store",
+              "picking_in_progress",
+              "ready_for_collecting",
+              "canceled"
+            ]
+          },
+          "x-ep-enum-state-name": "RELEASED",
+          "x-ep-enum-version": "0.1.0",
+          "x-ep-enum-name": "status_name",
+          "x-ep-enum-state-id": "2",
+          "x-ep-application-domain-id": "vage5remvcm",
+          "x-ep-enum-version-id": "5821g297y2x",
+          "x-ep-enum-id": "vxndepl2o6i",
+          "x-ep-shared": "true",
+          "x-ep-parameter-name": "status_name",
+          "x-ep-application-domain-name": "Retail"
+        },
+        "customer_id": {
+          "schema": {
+            "type": "string"
+          },
+          "x-ep-parameter-name": "customer_id"
+        },
+        "order_id": {
+          "schema": {
+            "type": "string"
+          },
+          "x-ep-parameter-name": "order_id"
+        }
+      }
+    },
+    "showcase/bricksandmortar/v1/retailstores/{store_id}/stock/level/{product_id}": {
+      "subscribe": {
+        "bindings": {
+          "mqtt": {
+            "qos": 1,
+            "bindingVersion": "0.1.0"
+          }
+        },
+        "message": {
+          "$ref": "#/components/messages/stock_level_retail_store_update"
+        }
+      },
+      "parameters": {
+        "store_id": {
+          "schema": {
+            "type": "string"
+          },
+          "x-ep-parameter-name": "store_id"
+        },
+        "product_id": {
+          "schema": {
+            "type": "string"
+          },
+          "x-ep-parameter-name": "product_id"
+        }
+      }
+    },
+    "showcase/bricksandmortar/v1/retailstores/{store_id}/stock/backinstock/{product_id}": {
+      "subscribe": {
+        "bindings": {
+          "mqtt": {
+            "qos": 1,
+            "bindingVersion": "0.1.0"
+          }
+        },
+        "message": {
+          "$ref": "#/components/messages/stock_level_retail_store_back_in_stock"
+        }
+      },
+      "parameters": {
+        "store_id": {
+          "schema": {
+            "type": "string"
+          },
+          "x-ep-parameter-name": "store_id"
+        },
+        "product_id": {
+          "schema": {
+            "type": "string"
+          },
+          "x-ep-parameter-name": "product_id"
+        }
+      }
+    }
+  },
+  "asyncapi": "2.5.0",
+  "info": {
+    "x-ep-event-api-product-version-id": "89o4eyngc9t",
+    "x-ep-event-api-id": "jf4h8mf0eb8",
+    "x-ep-event-api-product-version": "0.1.1",
+    "description": "All stock level and order events relevant for Omni Channel use cases.",
+    "x-ep-state-name": "RELEASED",
+    "title": "Omni Channel API",
+    "x-ep-application-domain-id": "vage5remvcm",
+    "version": "0.1.0",
+    "x-ep-event-api-product-id": "4vfj0h7r0m1",
+    "x-ep-event-api-version-id": "yrhi0r542qy",
+    "x-ep-application-domain-name": "Retail",
+    "x-ep-shared": "true",
+    "x-ep-event-api-version": "0.1.0",
+    "x-ep-event-api-product-name": "Omni Channel Event API",
+    "x-ep-state-id": "2"
+  }
+}

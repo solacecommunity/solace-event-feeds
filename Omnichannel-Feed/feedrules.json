@@ -1,0 +1,1124 @@
+[
+  {
+    "topic": "showcase/bricksandmortar/v1/retailstores/{store_id}/stock/outofstock/{product_id}",
+    "eventName": "stock_level_retail_store_out_of_stock",
+    "eventVersion": "0.1.0",
+    "messageName": "stock_level_retail_store_out_of_stock",
+    "topicParameters": {
+      "store_id": {
+        "schema": {
+          "type": "string"
+        },
+        "rule": {
+          "name": "store_id",
+          "type": "string",
+          "group": "StringRules",
+          "rule": "numeric",
+          "minLength": 2,
+          "maxLength": 2,
+          "leadingZeros": true
+        }
+      },
+      "product_id": {
+        "schema": {
+          "type": "string"
+        },
+        "rule": {
+          "name": "product_id",
+          "type": "string",
+          "group": "StringRules",
+          "rule": "numeric",
+          "minLength": 8,
+          "maxLength": 8,
+          "leadingZeros": true
+        }
+      }
+    },
+    "payload": {
+      "createdAt": {
+        "format": "date-time",
+        "type": "string",
+        "rule": {
+          "name": "createdAt",
+          "type": "string",
+          "group": "DateRules",
+          "rule": "recent",
+          "days": 1
+        }
+      },
+      "metaInfo": {
+        "type": "object",
+        "properties": {
+          "messageTypeVersion": {
+            "type": "string",
+            "rule": {
+              "name": "messageTypeVersion",
+              "type": "string",
+              "group": "StringRules",
+              "rule": "numeric",
+              "minLength": 1,
+              "maxLength": 1,
+              "leadingZeros": false
+            }
+          },
+          "messageType": {
+            "type": "string",
+            "rule": {
+              "name": "messageType",
+              "type": "string",
+              "group": "StringRules",
+              "rule": "enum",
+              "enum": [
+                "stock_level_retail_store_out_of_stock"
+              ]
+            }
+          }
+        },
+        "rule": {
+          "name": "metaInfo",
+          "type": "object"
+        }
+      },
+      "productId": {
+        "minLength": 1,
+        "type": "string",
+        "maxLength": 255,
+        "rule": {
+          "name": "productId",
+          "type": "string",
+          "group": "StringRules",
+          "rule": "numeric",
+          "minLength": 8,
+          "maxLength": 8,
+          "leadingZeros": true
+        }
+      },
+      "retailStoreId": {
+        "minLength": 1,
+        "type": "string",
+        "maxLength": 255,
+        "rule": {
+          "name": "retailStoreId",
+          "type": "string",
+          "group": "StringRules",
+          "rule": "numeric",
+          "minLength": 2,
+          "maxLength": 2,
+          "leadingZeros": true
+        }
+      },
+      "minStockLevel": {
+        "format": "int64",
+        "maximum": 999999999,
+        "type": "integer",
+        "minimum": 0,
+        "rule": {
+          "name": "minStockLevel",
+          "type": "integer",
+          "group": "NumberRules",
+          "rule": "int",
+          "minimum": 0,
+          "maximum": 100
+        }
+      },
+      "productName": {
+        "minLength": 1,
+        "type": "string",
+        "maxLength": 255,
+        "rule": {
+          "name": "productName",
+          "type": "string",
+          "group": "StringRules",
+          "rule": "enum",
+          "enum": [
+            "Dulux Easycare Washable & Tough Matt Emulsion Paint - Egyptian Cotton - 2.5L",
+            "Dulux Matt Emulsion Paint - Natural Hessian - 2.5L",
+            "Dulux Matt Emulsion Paint - Egyptian Cotton - 2.5L",
+            "Dulux Matt Emulsion Paint - Sapphire Salute - 2.5L"
+          ]
+        }
+      },
+      "stockLevel": {
+        "format": "int64",
+        "maximum": 999999999,
+        "type": "integer",
+        "minimum": 0,
+        "rule": {
+          "format": "int64",
+          "maximum": 1000,
+          "type": "integer",
+          "minimum": 0,
+          "name": "stockLevel",
+          "group": "NumberRules",
+          "rule": "int"
+        }
+      },
+      "retailStoreName": {
+        "minLength": 1,
+        "type": "string",
+        "maxLength": 255,
+        "rule": {
+          "name": "retailStoreName",
+          "type": "string",
+          "group": "StringRules",
+          "rule": "enum",
+          "enum": [
+            "Staines",
+            "Wokingham",
+            "Guildford",
+            "London",
+            "Bracknell"
+          ]
+        }
+      }
+    },
+    "publishSettings": {
+      "count": 0,
+      "interval": "100",
+      "delay": 0
+    },
+    "mappings": [
+      {
+        "type": "Payload Parameter",
+        "source": {
+          "type": "Topic Parameter",
+          "name": "product_id",
+          "fieldName": "product_id",
+          "fieldType": "string"
+        },
+        "target": {
+          "type": "Payload Parameter",
+          "name": "productId",
+          "fieldName": "productId",
+          "fieldType": "string"
+        }
+      },
+      {
+        "type": "Payload Parameter",
+        "source": {
+          "type": "Topic Parameter",
+          "name": "store_id",
+          "fieldName": "store_id",
+          "fieldType": "string"
+        },
+        "target": {
+          "type": "Payload Parameter",
+          "name": "retailStoreId",
+          "fieldName": "retailStoreId",
+          "fieldType": "string"
+        }
+      }
+    ]
+  },
+  {
+    "topic": "showcase/bricksandmortar/v1/customers/{customer_id}/picktocollect/orders/{order_id}",
+    "eventName": "pick_to_collect_customer_new_order",
+    "eventVersion": "0.1.0",
+    "messageName": "pick_to_collect_customer_new_order",
+    "topicParameters": {
+      "customer_id": {
+        "schema": {
+          "type": "string"
+        },
+        "rule": {
+          "name": "customer_id",
+          "type": "string",
+          "group": "StringRules",
+          "rule": "numeric",
+          "minLength": 10,
+          "maxLength": 10,
+          "leadingZeros": true
+        }
+      },
+      "order_id": {
+        "schema": {
+          "type": "string"
+        },
+        "rule": {
+          "name": "order_id",
+          "type": "string",
+          "group": "StringRules",
+          "rule": "uuid"
+        }
+      }
+    },
+    "payload": {
+      "createdAt": {
+        "format": "date-time",
+        "type": "string",
+        "rule": {
+          "name": "createdAt",
+          "type": "string",
+          "group": "DateRules",
+          "rule": "recent",
+          "days": 1
+        }
+      },
+      "metaInfo": {
+        "type": "object",
+        "properties": {
+          "messageTypeVersion": {
+            "type": "string",
+            "rule": {
+              "name": "messageTypeVersion",
+              "type": "string",
+              "group": "StringRules",
+              "rule": "numeric",
+              "minLength": 1,
+              "maxLength": 1,
+              "leadingZeros": false
+            }
+          },
+          "messageType": {
+            "type": "string",
+            "rule": {
+              "name": "messageType",
+              "type": "string",
+              "group": "StringRules",
+              "rule": "enum",
+              "enum": [
+                "pick_to_collect_customer_new_order"
+              ]
+            }
+          }
+        },
+        "rule": {
+          "name": "metaInfo",
+          "type": "object"
+        }
+      },
+      "customerId": {
+        "minLength": 1,
+        "type": "string",
+        "maxLength": 255,
+        "rule": {
+          "name": "customerId",
+          "type": "string",
+          "group": "StringRules",
+          "rule": "numeric",
+          "minLength": 10,
+          "maxLength": 10,
+          "leadingZeros": true
+        }
+      },
+      "storeName": {
+        "minLength": 1,
+        "type": "string",
+        "maxLength": 255,
+        "rule": {
+          "name": "storeName",
+          "type": "string",
+          "group": "StringRules",
+          "rule": "enum",
+          "enum": [
+            "Staines",
+            "Wokingham",
+            "Guildford",
+            "London",
+            "Bracknell"
+          ]
+        }
+      },
+      "id": {
+        "minLength": 1,
+        "type": "string",
+        "maxLength": 255,
+        "rule": {
+          "name": "id",
+          "type": "string",
+          "group": "StringRules",
+          "rule": "uuid"
+        }
+      },
+      "storeId": {
+        "minLength": 1,
+        "type": "string",
+        "maxLength": 255,
+        "rule": {
+          "name": "storeId",
+          "type": "string",
+          "group": "StringRules",
+          "rule": "numeric",
+          "minLength": 5,
+          "maxLength": 5,
+          "leadingZeros": true
+        }
+      },
+      "version": {
+        "format": "int64",
+        "type": "integer",
+        "rule": {
+          "name": "version",
+          "type": "integer",
+          "group": "NumberRules",
+          "rule": "int",
+          "minimum": 0,
+          "maximum": 5
+        }
+      },
+      "customerName": {
+        "minLength": 1,
+        "type": "string",
+        "maxLength": 255,
+        "rule": {
+          "minLength": 10,
+          "type": "string",
+          "maxLength": 10,
+          "name": "customerName",
+          "group": "StringRules",
+          "rule": "alpha",
+          "casing": "mixed"
+        }
+      },
+      "selectedItems": {
+        "type": "array",
+        "subType": "object",
+        "name": "selectedItems",
+        "properties": {
+          "quantity": {
+            "format": "int64",
+            "maximum": 999999999,
+            "type": "integer",
+            "minimum": 0,
+            "rule": {
+              "name": "quantity",
+              "type": "integer",
+              "group": "NumberRules",
+              "rule": "int",
+              "minimum": 1,
+              "maximum": 10
+            }
+          },
+          "id": {
+            "minLength": 1,
+            "type": "string",
+            "maxLength": 255,
+            "rule": {
+              "name": "id",
+              "type": "string",
+              "group": "StringRules",
+              "rule": "numeric",
+              "minLength": 8,
+              "maxLength": 8,
+              "leadingZeros": true
+            }
+          },
+          "productName": {
+            "minLength": 1,
+            "type": "string",
+            "maxLength": 255,
+            "rule": {
+              "name": "productName",
+              "type": "string",
+              "group": "StringRules",
+              "rule": "enum",
+              "enum": [
+                "Dulux Easycare Washable & Tough Matt Emulsion Paint - Egyptian Cotton - 2.5L",
+                "Dulux Matt Emulsion Paint - Natural Hessian - 2.5L",
+                "Dulux Matt Emulsion Paint - Egyptian Cotton - 2.5L",
+                "Dulux Matt Emulsion Paint - Sapphire Salute - 2.5L"
+              ]
+            }
+          }
+        },
+        "rule": {
+          "name": "selectedItems",
+          "type": "object"
+        }
+      }
+    },
+    "publishSettings": {
+      "count": 0,
+      "interval": "250",
+      "delay": 0
+    },
+    "mappings": [
+      {
+        "type": "Payload Parameter",
+        "source": {
+          "type": "Topic Parameter",
+          "name": "customer_id",
+          "fieldName": "customer_id",
+          "fieldType": "string"
+        },
+        "target": {
+          "type": "Payload Parameter",
+          "name": "customerId",
+          "fieldName": "customerId",
+          "fieldType": "string"
+        }
+      },
+      {
+        "type": "Payload Parameter",
+        "source": {
+          "type": "Topic Parameter",
+          "name": "order_id",
+          "fieldName": "order_id",
+          "fieldType": "string"
+        },
+        "target": {
+          "type": "Payload Parameter",
+          "name": "id",
+          "fieldName": "id",
+          "fieldType": "string"
+        }
+      }
+    ]
+  },
+  {
+    "topic": "showcase/bricksandmortar/v1/customers/{customer_id}/picktocollect/orders/{order_id}/status/{status_name}",
+    "eventName": "pick_to_collect_customer_order_status_update",
+    "eventVersion": "0.1.0",
+    "messageName": "pick_to_collect_customer_order_status_update",
+    "topicParameters": {
+      "status_name": {
+        "schema": {
+          "type": "string",
+          "enum": [
+            "order_received",
+            "queued_in_store",
+            "picking_in_progress",
+            "ready_for_collecting",
+            "canceled"
+          ]
+        },
+        "rule": {
+          "name": "status_name",
+          "type": "string",
+          "group": "StringRules",
+          "rule": "enum",
+          "enum": [
+            "order_received",
+            "queued_in_store",
+            "picking_in_progress",
+            "ready_for_collecting",
+            "canceled"
+          ]
+        }
+      },
+      "customer_id": {
+        "schema": {
+          "type": "string"
+        },
+        "rule": {
+          "name": "customer_id",
+          "type": "string",
+          "group": "StringRules",
+          "rule": "numeric",
+          "minLength": 5,
+          "maxLength": 5,
+          "leadingZeros": true
+        }
+      },
+      "order_id": {
+        "schema": {
+          "type": "string"
+        },
+        "rule": {
+          "name": "order_id",
+          "type": "string",
+          "group": "StringRules",
+          "rule": "uuid"
+        }
+      }
+    },
+    "payload": {
+      "createdAt": {
+        "format": "date-time",
+        "type": "string",
+        "rule": {
+          "name": "createdAt",
+          "type": "string",
+          "group": "DateRules",
+          "rule": "recent",
+          "days": 1
+        }
+      },
+      "metaInfo": {
+        "type": "object",
+        "properties": {
+          "messageTypeVersion": {
+            "type": "string",
+            "rule": {
+              "name": "messageTypeVersion",
+              "type": "string",
+              "group": "StringRules",
+              "rule": "numeric",
+              "minLength": 1,
+              "maxLength": 1,
+              "leadingZeros": false
+            }
+          },
+          "messageType": {
+            "type": "string",
+            "rule": {
+              "name": "messageType",
+              "type": "string",
+              "group": "StringRules",
+              "rule": "enum",
+              "enum": [
+                "pick_to_collect_customer_order_status_update"
+              ]
+            }
+          }
+        },
+        "rule": {
+          "name": "metaInfo",
+          "type": "object"
+        }
+      },
+      "orderId": {
+        "minLength": 1,
+        "type": "string",
+        "maxLength": 255,
+        "rule": {
+          "name": "orderId",
+          "type": "string",
+          "group": "StringRules",
+          "rule": "uuid"
+        }
+      },
+      "customerId": {
+        "minLength": 1,
+        "type": "string",
+        "maxLength": 255,
+        "rule": {
+          "name": "customerId",
+          "type": "string",
+          "group": "StringRules",
+          "rule": "numeric",
+          "minLength": 10,
+          "maxLength": 10,
+          "leadingZeros": true
+        }
+      },
+      "storeId": {
+        "minLength": 1,
+        "type": "string",
+        "maxLength": 255,
+        "rule": {
+          "name": "storeId",
+          "type": "string",
+          "group": "StringRules",
+          "rule": "numeric",
+          "minLength": 2,
+          "maxLength": 2,
+          "leadingZeros": true
+        }
+      },
+      "customerName": {
+        "minLength": 1,
+        "type": "string",
+        "maxLength": 255,
+        "rule": {
+          "minLength": 10,
+          "type": "string",
+          "maxLength": 10,
+          "name": "customerName",
+          "group": "StringRules",
+          "rule": "alpha",
+          "casing": "mixed"
+        }
+      },
+      "status": {
+        "type": "string",
+        "enum": [
+          "ORDER_RECEIVED",
+          "QUEUED_IN_STORE",
+          "PICKING_IN_PROGRESS",
+          "READY_FOR_COLLECTING",
+          "COLLECTED",
+          "CANCELED"
+        ],
+        "rule": {
+          "type": "string",
+          "enum": [
+            "ORDER_RECEIVED",
+            "QUEUED_IN_STORE",
+            "PICKING_IN_PROGRESS",
+            "READY_FOR_COLLECTING",
+            "COLLECTED",
+            "CANCELED"
+          ],
+          "name": "status",
+          "group": "StringRules",
+          "rule": "enum"
+        }
+      }
+    },
+    "publishSettings": {
+      "count": 0,
+      "interval": "350",
+      "delay": 0
+    },
+    "mappings": [
+      {
+        "type": "Payload Parameter",
+        "source": {
+          "type": "Topic Parameter",
+          "name": "customer_id",
+          "fieldName": "customer_id",
+          "fieldType": "string"
+        },
+        "target": {
+          "type": "Payload Parameter",
+          "name": "customerId",
+          "fieldName": "customerId",
+          "fieldType": "string"
+        }
+      },
+      {
+        "type": "Payload Parameter",
+        "source": {
+          "type": "Topic Parameter",
+          "name": "order_id",
+          "fieldName": "order_id",
+          "fieldType": "string"
+        },
+        "target": {
+          "type": "Payload Parameter",
+          "name": "orderId",
+          "fieldName": "orderId",
+          "fieldType": "string"
+        }
+      },
+      {
+        "type": "Payload Parameter",
+        "source": {
+          "type": "Topic Parameter",
+          "name": "status_name",
+          "fieldName": "status_name",
+          "fieldType": "string"
+        },
+        "target": {
+          "type": "Payload Parameter",
+          "name": "status",
+          "fieldName": "status",
+          "fieldType": "string"
+        }
+      }
+    ]
+  },
+  {
+    "topic": "showcase/bricksandmortar/v1/retailstores/{store_id}/stock/level/{product_id}",
+    "eventName": "stock_level_retail_store_update",
+    "eventVersion": "0.1.0",
+    "messageName": "stock_level_retail_store_update",
+    "topicParameters": {
+      "store_id": {
+        "schema": {
+          "type": "string"
+        },
+        "rule": {
+          "name": "store_id",
+          "type": "string",
+          "group": "StringRules",
+          "rule": "numeric",
+          "minLength": 2,
+          "maxLength": 2,
+          "leadingZeros": true
+        }
+      },
+      "product_id": {
+        "schema": {
+          "type": "string"
+        },
+        "rule": {
+          "name": "product_id",
+          "type": "string",
+          "group": "StringRules",
+          "rule": "numeric",
+          "minLength": 8,
+          "maxLength": 8,
+          "leadingZeros": true
+        }
+      }
+    },
+    "payload": {
+      "createdAt": {
+        "format": "date-time",
+        "type": "string",
+        "rule": {
+          "name": "createdAt",
+          "type": "string",
+          "group": "DateRules",
+          "rule": "recent",
+          "days": 1
+        }
+      },
+      "metaInfo": {
+        "type": "object",
+        "properties": {
+          "messageTypeVersion": {
+            "type": "string",
+            "rule": {
+              "name": "messageTypeVersion",
+              "type": "string",
+              "group": "StringRules",
+              "rule": "numeric",
+              "minLength": 1,
+              "maxLength": 1,
+              "leadingZeros": false
+            }
+          },
+          "messageType": {
+            "type": "string",
+            "rule": {
+              "name": "messageType",
+              "type": "string",
+              "group": "StringRules",
+              "rule": "enum",
+              "enum": [
+                "stock_level_retail_store_update"
+              ]
+            }
+          }
+        },
+        "rule": {
+          "name": "metaInfo",
+          "type": "object"
+        }
+      },
+      "productId": {
+        "minLength": 1,
+        "type": "string",
+        "maxLength": 255,
+        "rule": {
+          "name": "productId",
+          "type": "string",
+          "group": "StringRules",
+          "rule": "numeric",
+          "minLength": 8,
+          "maxLength": 8,
+          "leadingZeros": true
+        }
+      },
+      "retailStoreId": {
+        "minLength": 1,
+        "type": "string",
+        "maxLength": 255,
+        "rule": {
+          "name": "retailStoreId",
+          "type": "string",
+          "group": "StringRules",
+          "rule": "numeric",
+          "minLength": 2,
+          "maxLength": 2,
+          "leadingZeros": true
+        }
+      },
+      "minStockLevel": {
+        "format": "int64",
+        "maximum": 999999999,
+        "type": "integer",
+        "minimum": 0,
+        "rule": {
+          "name": "minStockLevel",
+          "type": "integer",
+          "group": "NumberRules",
+          "rule": "int",
+          "minimum": 0,
+          "maximum": 100
+        }
+      },
+      "productName": {
+        "minLength": 1,
+        "type": "string",
+        "maxLength": 255,
+        "rule": {
+          "name": "productName",
+          "type": "string",
+          "group": "StringRules",
+          "rule": "enum",
+          "enum": [
+            "Dulux Easycare Washable & Tough Matt Emulsion Paint - Egyptian Cotton - 2.5L",
+            "Dulux Matt Emulsion Paint - Natural Hessian - 2.5L",
+            "Dulux Matt Emulsion Paint - Egyptian Cotton - 2.5L",
+            "Dulux Matt Emulsion Paint - Sapphire Salute - 2.5L"
+          ]
+        }
+      },
+      "stockLevel": {
+        "format": "int64",
+        "maximum": 999999999,
+        "type": "integer",
+        "minimum": 0,
+        "rule": {
+          "format": "int64",
+          "maximum": 1000,
+          "type": "integer",
+          "minimum": 0,
+          "name": "stockLevel",
+          "group": "NumberRules",
+          "rule": "int"
+        }
+      },
+      "retailStoreName": {
+        "minLength": 1,
+        "type": "string",
+        "maxLength": 255,
+        "rule": {
+          "name": "retailStoreName",
+          "type": "string",
+          "group": "StringRules",
+          "rule": "enum",
+          "enum": [
+            "Staines",
+            "Wokingham",
+            "Guildford",
+            "London",
+            "Bracknell"
+          ]
+        }
+      }
+    },
+    "publishSettings": {
+      "count": 0,
+      "interval": "50",
+      "delay": 0
+    },
+    "mappings": [
+      {
+        "type": "Payload Parameter",
+        "source": {
+          "type": "Topic Parameter",
+          "name": "store_id",
+          "fieldName": "store_id",
+          "fieldType": "string"
+        },
+        "target": {
+          "type": "Payload Parameter",
+          "name": "retailStoreId",
+          "fieldName": "retailStoreId",
+          "fieldType": "string"
+        }
+      },
+      {
+        "type": "Payload Parameter",
+        "source": {
+          "type": "Topic Parameter",
+          "name": "product_id",
+          "fieldName": "product_id",
+          "fieldType": "string"
+        },
+        "target": {
+          "type": "Payload Parameter",
+          "name": "productId",
+          "fieldName": "productId",
+          "fieldType": "string"
+        }
+      }
+    ]
+  },
+  {
+    "topic": "showcase/bricksandmortar/v1/retailstores/{store_id}/stock/backinstock/{product_id}",
+    "eventName": "stock_level_retail_store_back_in_stock",
+    "eventVersion": "0.1.0",
+    "messageName": "stock_level_retail_store_back_in_stock",
+    "topicParameters": {
+      "store_id": {
+        "schema": {
+          "type": "string"
+        },
+        "rule": {
+          "name": "store_id",
+          "type": "string",
+          "group": "StringRules",
+          "rule": "numeric",
+          "minLength": 2,
+          "maxLength": 2,
+          "leadingZeros": true
+        }
+      },
+      "product_id": {
+        "schema": {
+          "type": "string"
+        },
+        "rule": {
+          "name": "product_id",
+          "type": "string",
+          "group": "StringRules",
+          "rule": "numeric",
+          "minLength": 8,
+          "maxLength": 8,
+          "leadingZeros": true
+        }
+      }
+    },
+    "payload": {
+      "createdAt": {
+        "format": "date-time",
+        "type": "string",
+        "rule": {
+          "name": "createdAt",
+          "type": "string",
+          "group": "DateRules",
+          "rule": "recent",
+          "days": 1
+        }
+      },
+      "metaInfo": {
+        "type": "object",
+        "properties": {
+          "messageTypeVersion": {
+            "type": "string",
+            "rule": {
+              "name": "messageTypeVersion",
+              "type": "string",
+              "group": "StringRules",
+              "rule": "numeric",
+              "minLength": 1,
+              "maxLength": 1,
+              "leadingZeros": false
+            }
+          },
+          "messageType": {
+            "type": "string",
+            "rule": {
+              "name": "messageType",
+              "type": "string",
+              "group": "StringRules",
+              "rule": "enum",
+              "enum": [
+                "stock_level_retail_store_back_in_stock"
+              ]
+            }
+          }
+        },
+        "rule": {
+          "name": "metaInfo",
+          "type": "object"
+        }
+      },
+      "productId": {
+        "minLength": 1,
+        "type": "string",
+        "maxLength": 255,
+        "rule": {
+          "name": "productId",
+          "type": "string",
+          "group": "StringRules",
+          "rule": "numeric",
+          "minLength": 8,
+          "maxLength": 8,
+          "leadingZeros": true
+        }
+      },
+      "retailStoreId": {
+        "minLength": 1,
+        "type": "string",
+        "maxLength": 255,
+        "rule": {
+          "name": "retailStoreId",
+          "type": "string",
+          "group": "StringRules",
+          "rule": "numeric",
+          "minLength": 2,
+          "maxLength": 2,
+          "leadingZeros": true
+        }
+      },
+      "minStockLevel": {
+        "format": "int64",
+        "maximum": 999999999,
+        "type": "integer",
+        "minimum": 0,
+        "rule": {
+          "name": "minStockLevel",
+          "type": "integer",
+          "group": "NumberRules",
+          "rule": "int",
+          "minimum": 0,
+          "maximum": 100
+        }
+      },
+      "productName": {
+        "minLength": 1,
+        "type": "string",
+        "maxLength": 255,
+        "rule": {
+          "name": "productName",
+          "type": "string",
+          "group": "StringRules",
+          "rule": "enum",
+          "enum": [
+            "Dulux Easycare Washable & Tough Matt Emulsion Paint - Egyptian Cotton - 2.5L",
+            "Dulux Matt Emulsion Paint - Natural Hessian - 2.5L",
+            "Dulux Matt Emulsion Paint - Egyptian Cotton - 2.5L",
+            "Dulux Matt Emulsion Paint - Sapphire Salute - 2.5L"
+          ]
+        }
+      },
+      "stockLevel": {
+        "format": "int64",
+        "maximum": 999999999,
+        "type": "integer",
+        "minimum": 0,
+        "rule": {
+          "format": "int64",
+          "maximum": 1000,
+          "type": "integer",
+          "minimum": 0,
+          "name": "stockLevel",
+          "group": "NumberRules",
+          "rule": "int"
+        }
+      },
+      "retailStoreName": {
+        "minLength": 1,
+        "type": "string",
+        "maxLength": 255,
+        "rule": {
+          "name": "retailStoreName",
+          "type": "string",
+          "group": "StringRules",
+          "rule": "enum",
+          "enum": [
+            "Staines",
+            "Wokingham",
+            "Guildford",
+            "London",
+            "Bracknell"
+          ]
+        }
+      }
+    },
+    "publishSettings": {
+      "count": 0,
+      "interval": "100",
+      "delay": 0
+    },
+    "mappings": [
+      {
+        "type": "Payload Parameter",
+        "source": {
+          "type": "Topic Parameter",
+          "name": "store_id",
+          "fieldName": "store_id",
+          "fieldType": "string"
+        },
+        "target": {
+          "type": "Payload Parameter",
+          "name": "retailStoreId",
+          "fieldName": "retailStoreId",
+          "fieldType": "string"
+        }
+      },
+      {
+        "type": "Payload Parameter",
+        "source": {
+          "type": "Topic Parameter",
+          "name": "product_id",
+          "fieldName": "product_id",
+          "fieldType": "string"
+        },
+        "target": {
+          "type": "Payload Parameter",
+          "name": "productId",
+          "fieldName": "productId",
+          "fieldType": "string"
+        }
+      }
+    ]
+  }
+]
