@@ -3,7 +3,7 @@
   "name": "omnichannel-feed",
   "description": "Simulates stock level events form stores and order events relevant for Omni Channel use cases such as 'click and collect'",
   "img": "assets/img/defaultfeed.png",
-  "contributor": ",Swen@Solace",
+  "contributor": "Swen@Solace",
   "github": "195858",
   "domain": "Retail",
   "tags": "retail, omnichannel, click, collect",
