@@ -148,7 +148,7 @@
   },
   {
     "type": "asyncapi_feed",
-    "name": "omnichannel-feed",
+    "name": "Omnichannel-Feed",
     "description": "Simulates stock level events form stores and order events relevant for Omni Channel use cases such as 'click and collect'",
     "img": "assets/img/defaultfeed.png",
     "contributor": "Swen@Solace",
