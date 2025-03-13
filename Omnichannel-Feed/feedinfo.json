@@ -1,0 +1,12 @@
+{
+  "type": "asyncapi_feed",
+  "name": "Omnichannel-Feed",
+  "description": "Simulates stock level events form stores and order events relevant for Omni Channel use cases such as 'click and collect'",
+  "img": "https://cdn-icons-png.flaticon.com/512/2525/2525024.png",
+  "contributor": "Swen@Solace",
+  "github": "195858",
+  "domain": "Retail",
+  "tags": "retail, omnichannel, click, collect",
+  "lastUpdated": "2025-03-07T12:33:14.760Z",
+  "contributed": true
+}

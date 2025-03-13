@@ -145,5 +145,17 @@
     "tags": "f1, formula1, automotive",
     "lastUpdated": "2025-03-02T21:52:43.764Z",
     "contributed": true
+  },
+  {
+    "type": "asyncapi_feed",
+    "name": "Omnichannel-Feed",
+    "description": "Simulates stock level events form stores and order events relevant for Omni Channel use cases such as 'click and collect'",
+    "img": "https://cdn-icons-png.flaticon.com/512/2525/2525024.png",
+    "contributor": "Swen@Solace",
+    "github": "195858",
+    "domain": "Retail",
+    "tags": "retial, omnichannel, click, collect",
+    "lastUpdated": "2025-03-07T12:33:14.760Z",
+    "contributed": true
   }
 ]
