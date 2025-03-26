@@ -1,0 +1,1467 @@
+{
+  "components": {
+    "schemas": {
+      "Maintenance_": {
+        "x-ep-schema-version": "0.1.0",
+        "x-ep-schema-version-id": "voia0ri8i18",
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "x-ep-schema-state-name": "DRAFT",
+        "x-ep-schema-name": "Maintenance ",
+        "type": "object",
+        "title": "Maintenance Event Schema",
+        "x-ep-application-domain-id": "ia2kue1af7p",
+        "required": [
+          "timestamp",
+          "status",
+          "details"
+        ],
+        "x-ep-schema-version-displayname": "",
+        "x-ep-shared": "false",
+        "x-ep-application-domain-name": "Manufacturing",
+        "x-ep-schema-state-id": "1",
+        "x-ep-schema-id": "nse3nyv7bmj",
+        "properties": {
+          "details": {
+            "type": "object",
+            "properties": {
+              "duration": {
+                "type": "object",
+                "properties": {
+                  "actual": {
+                    "description": "Actual maintenance duration in minutes",
+                    "type": "number"
+                  },
+                  "planned": {
+                    "description": "Planned maintenance duration in minutes",
+                    "type": "number"
+                  }
+                }
+              },
+              "components": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "condition": {
+                      "type": "string",
+                      "enum": [
+                        "good",
+                        "worn",
+                        "needs-replacement",
+                        "critical-failure"
+                      ]
+                    },
+                    "serialNumber": {
+                      "type": "string"
+                    },
+                    "name": {
+                      "type": "string"
+                    },
+                    "replacementPerformed": {
+                      "type": "boolean"
+                    }
+                  },
+                  "required": [
+                    "name",
+                    "condition"
+                  ]
+                }
+              },
+              "technician": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string"
+                  },
+                  "id": {
+                    "type": "string"
+                  },
+                  "department": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "id"
+                ]
+              },
+              "maintenanceType": {
+                "description": "Classification of maintenance activity",
+                "type": "string",
+                "enum": [
+                  "preventive",
+                  "corrective",
+                  "predictive",
+                  "breakdown"
+                ]
+              },
+              "issues": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "severity": {
+                      "type": "string",
+                      "enum": [
+                        "low",
+                        "medium",
+                        "high",
+                        "critical"
+                      ]
+                    },
+                    "description": {
+                      "type": "string"
+                    },
+                    "resolution": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "description",
+                    "severity"
+                  ]
+                }
+              }
+            },
+            "required": [
+              "maintenanceType"
+            ]
+          },
+          "nextScheduledMaintenance": {
+            "format": "date-time",
+            "description": "Timestamp for the next scheduled maintenance",
+            "type": "string"
+          },
+          "timestamp": {
+            "format": "date-time",
+            "description": "ISO 8601 formatted timestamp of the maintenance event",
+            "type": "string"
+          },
+          "status": {
+            "description": "Current status of the maintenance operation",
+            "type": "string",
+            "enum": [
+              "scheduled",
+              "in-progress",
+              "completed",
+              "failed",
+              "urgent",
+              "routine"
+            ]
+          }
+        }
+      },
+      "Quality": {
+        "x-ep-schema-version": "0.1.0",
+        "x-ep-schema-version-id": "xebi9see6jx",
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "x-ep-schema-state-name": "DRAFT",
+        "x-ep-schema-name": "Quality",
+        "type": "object",
+        "x-ep-application-domain-id": "ia2kue1af7p",
+        "required": [
+          "product_id",
+          "inspection_stage",
+          "inspection_status",
+          "timestamp"
+        ],
+        "x-ep-schema-version-displayname": "",
+        "x-ep-shared": "false",
+        "x-ep-application-domain-name": "Manufacturing",
+        "x-ep-schema-state-id": "1",
+        "x-ep-schema-id": "acae89gvidk",
+        "properties": {
+          "inspection_stage": {
+            "type": "string"
+          },
+          "product_id": {
+            "type": "string"
+          },
+          "inspection_status": {
+            "type": "string"
+          },
+          "timestamp": {
+            "format": "date-time",
+            "type": "string"
+          }
+        }
+      },
+      "Production": {
+        "x-ep-schema-version": "0.1.0",
+        "x-ep-schema-version-id": "b2gvfe0keuy",
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "x-ep-schema-state-name": "DRAFT",
+        "x-ep-schema-name": "Production",
+        "type": "object",
+        "x-ep-application-domain-id": "ia2kue1af7p",
+        "required": [
+          "product_id",
+          "production_status",
+          "batch_number",
+          "timestamp"
+        ],
+        "x-ep-schema-version-displayname": "",
+        "x-ep-shared": "false",
+        "x-ep-application-domain-name": "Manufacturing",
+        "x-ep-schema-state-id": "1",
+        "x-ep-schema-id": "05jo1oisrsf",
+        "properties": {
+          "production_status": {
+            "type": "string"
+          },
+          "batch_number": {
+            "type": "string"
+          },
+          "product_id": {
+            "type": "string"
+          },
+          "timestamp": {
+            "format": "date-time",
+            "type": "string"
+          }
+        }
+      },
+      "HR": {
+        "x-ep-schema-version": "0.1.0",
+        "x-ep-schema-version-id": "igdo9lax5ax",
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "x-ep-schema-state-name": "DRAFT",
+        "x-ep-schema-name": "HR",
+        "type": "object",
+        "title": "HR Access Event Schema",
+        "x-ep-application-domain-id": "ia2kue1af7p",
+        "required": [
+          "timestamp",
+          "accessStatus",
+          "securityLevel"
+        ],
+        "x-ep-schema-version-displayname": "",
+        "x-ep-shared": "false",
+        "x-ep-application-domain-name": "Manufacturing",
+        "x-ep-schema-state-id": "1",
+        "x-ep-schema-id": "vytaa3iddom",
+        "properties": {
+          "securityLevel": {
+            "description": "Security clearance level associated with the access event",
+            "type": "string",
+            "enum": [
+              "restricted",
+              "standard",
+              "confidential",
+              "public"
+            ]
+          },
+          "accessStatus": {
+            "description": "Status of access authorization",
+            "type": "string",
+            "enum": [
+              "granted",
+              "denied",
+              "pending",
+              "revoked"
+            ]
+          },
+          "timestamp": {
+            "format": "date-time",
+            "description": "ISO 8601 formatted timestamp of the access event",
+            "type": "string"
+          }
+        }
+      },
+      "Shipping": {
+        "x-ep-schema-version": "0.1.0",
+        "x-ep-schema-version-id": "j7jz95mvg7n",
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "x-ep-schema-state-name": "DRAFT",
+        "x-ep-schema-name": "Shipping",
+        "type": "object",
+        "x-ep-application-domain-id": "ia2kue1af7p",
+        "required": [
+          "shipment_id",
+          "product_id",
+          "quantity",
+          "transport_status",
+          "carrier",
+          "timestamp"
+        ],
+        "x-ep-schema-version-displayname": "",
+        "x-ep-shared": "false",
+        "x-ep-application-domain-name": "Manufacturing",
+        "x-ep-schema-state-id": "1",
+        "x-ep-schema-id": "0vv9uuxphqy",
+        "properties": {
+          "carrier": {
+            "type": "string"
+          },
+          "quantity": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "product_id": {
+            "type": "string"
+          },
+          "actual_departure": {
+            "format": "date-time",
+            "type": "string"
+          },
+          "estimated_delivery": {
+            "format": "date-time",
+            "type": "string"
+          },
+          "shipment_id": {
+            "format": "uuid",
+            "type": "string"
+          },
+          "transport_status": {
+            "type": "string"
+          },
+          "current_location": {
+            "type": "string"
+          },
+          "timestamp": {
+            "format": "date-time",
+            "type": "string"
+          }
+        }
+      },
+      "Inventory": {
+        "x-ep-schema-version": "0.1.0",
+        "x-ep-schema-version-id": "3jf0jqkoa1x",
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "x-ep-schema-state-name": "DRAFT",
+        "x-ep-schema-name": "Inventory",
+        "type": "object",
+        "title": "Inventory Event Schema",
+        "x-ep-application-domain-id": "ia2kue1af7p",
+        "required": [
+          "timestamp",
+          "quantity",
+          "status"
+        ],
+        "x-ep-schema-version-displayname": "",
+        "x-ep-shared": "false",
+        "x-ep-application-domain-name": "Manufacturing",
+        "x-ep-schema-state-id": "1",
+        "x-ep-schema-id": "f1uah5ydhrx",
+        "properties": {
+          "quantity": {
+            "description": "Current quantity of the material in stock",
+            "type": "number",
+            "minimum": 0
+          },
+          "action": {
+            "description": "Type of inventory transaction",
+            "type": "string",
+            "enum": [
+              "received",
+              "used",
+              "transferred",
+              "disposed"
+            ]
+          },
+          "timestamp": {
+            "format": "date-time",
+            "description": "ISO 8601 formatted timestamp of the inventory event",
+            "type": "string"
+          },
+          "status": {
+            "description": "Current inventory status of the material",
+            "type": "string",
+            "enum": [
+              "in-stock",
+              "low-stock",
+              "out-of-stock",
+              "overstock"
+            ]
+          }
+        }
+      },
+      "Sensor": {
+        "x-ep-schema-version": "0.1.0",
+        "x-ep-schema-version-id": "wdeepakf1q0",
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "x-ep-schema-state-name": "DRAFT",
+        "x-ep-schema-name": "Sensor",
+        "type": "object",
+        "x-ep-application-domain-id": "ia2kue1af7p",
+        "required": [
+          "timestamp"
+        ],
+        "x-ep-schema-version-displayname": "",
+        "x-ep-shared": "false",
+        "x-ep-application-domain-name": "Manufacturing",
+        "x-ep-schema-state-id": "1",
+        "x-ep-schema-id": "kcicitpy2qu",
+        "properties": {
+          "timestamp": {
+            "format": "date-time",
+            "type": "string"
+          }
+        }
+      }
+    },
+    "messages": {
+      "Maintainance": {
+        "x-ep-event-id": "pd5an7u3l4d",
+        "description": "Reports machine maintenance activities, tracking status and necessary servicing.",
+        "x-ep-application-domain-id": "ia2kue1af7p",
+        "schemaFormat": "application/vnd.aai.asyncapi+json;version=2.5.0",
+        "x-ep-event-state-name": "DRAFT",
+        "x-ep-shared": "false",
+        "x-ep-application-domain-name": "Manufacturing",
+        "x-ep-event-version-id": "d3vxi3a5v20",
+        "payload": {
+          "$ref": "#/components/schemas/Maintenance_"
+        },
+        "x-ep-event-version": "0.1.0",
+        "x-ep-event-name": "Maintainance",
+        "contentType": "application/json",
+        "x-ep-event-state-id": "1"
+      },
+      "Quality": {
+        "x-ep-event-id": "m4p7l0q0v2k",
+        "description": "Records inspection results at various production stages to ensure product quality.",
+        "x-ep-application-domain-id": "ia2kue1af7p",
+        "schemaFormat": "application/vnd.aai.asyncapi+json;version=2.5.0",
+        "x-ep-event-state-name": "DRAFT",
+        "x-ep-shared": "false",
+        "x-ep-application-domain-name": "Manufacturing",
+        "x-ep-event-version-id": "98kbatdcj6n",
+        "payload": {
+          "$ref": "#/components/schemas/Quality"
+        },
+        "x-ep-event-version": "0.1.0",
+        "x-ep-event-name": "Quality",
+        "contentType": "application/json",
+        "x-ep-event-state-id": "1"
+      },
+      "Production": {
+        "x-ep-event-id": "cqyai2g4g28",
+        "description": "Monitors the production lifecycle of products, from assembly to completion.",
+        "x-ep-application-domain-id": "ia2kue1af7p",
+        "schemaFormat": "application/vnd.aai.asyncapi+json;version=2.5.0",
+        "x-ep-event-state-name": "DRAFT",
+        "x-ep-shared": "false",
+        "x-ep-application-domain-name": "Manufacturing",
+        "x-ep-event-version-id": "aowdj246lxd",
+        "payload": {
+          "$ref": "#/components/schemas/Production"
+        },
+        "x-ep-event-version": "0.1.0",
+        "x-ep-event-name": "Production",
+        "contentType": "application/json",
+        "x-ep-event-state-id": "1"
+      },
+      "HR": {
+        "x-ep-event-id": "5843mxqhied",
+        "description": "Logs employee access control, tracking entry, exit, and card status within the lab.",
+        "x-ep-application-domain-id": "ia2kue1af7p",
+        "schemaFormat": "application/vnd.aai.asyncapi+json;version=2.5.0",
+        "x-ep-event-state-name": "DRAFT",
+        "x-ep-shared": "false",
+        "x-ep-application-domain-name": "Manufacturing",
+        "x-ep-event-version-id": "2m5rf02nq2g",
+        "payload": {
+          "$ref": "#/components/schemas/HR"
+        },
+        "x-ep-event-version": "0.1.0",
+        "x-ep-event-name": "HR",
+        "contentType": "application/json",
+        "x-ep-event-state-id": "1"
+      },
+      "Shipping": {
+        "x-ep-event-id": "vttmzrtmfo4",
+        "description": "Tracks the transport status of manufactured products, including destination and delivery updates",
+        "x-ep-application-domain-id": "ia2kue1af7p",
+        "schemaFormat": "application/vnd.aai.asyncapi+json;version=2.5.0",
+        "x-ep-event-state-name": "DRAFT",
+        "x-ep-shared": "false",
+        "x-ep-application-domain-name": "Manufacturing",
+        "x-ep-event-version-id": "8otzpg3jvyj",
+        "payload": {
+          "$ref": "#/components/schemas/Shipping"
+        },
+        "x-ep-event-version": "0.1.0",
+        "x-ep-event-name": "Shipping",
+        "contentType": "application/json",
+        "x-ep-event-state-id": "1"
+      },
+      "Inventory": {
+        "x-ep-event-id": "zlu2b9ccgbx",
+        "description": "Manages material stock levels, tracking supplier information and inventory status",
+        "x-ep-application-domain-id": "ia2kue1af7p",
+        "schemaFormat": "application/vnd.aai.asyncapi+json;version=2.5.0",
+        "x-ep-event-state-name": "DRAFT",
+        "x-ep-shared": "false",
+        "x-ep-application-domain-name": "Manufacturing",
+        "x-ep-event-version-id": "0l9y3bp3dgv",
+        "payload": {
+          "$ref": "#/components/schemas/Inventory"
+        },
+        "x-ep-event-version": "0.1.0",
+        "x-ep-event-name": "Inventory",
+        "contentType": "application/json",
+        "x-ep-event-state-id": "1"
+      },
+      "Sensor": {
+        "x-ep-event-id": "04xico8smve",
+        "description": "Captures real-time sensor readings for environmental, operational, and safety monitoring.",
+        "x-ep-application-domain-id": "ia2kue1af7p",
+        "schemaFormat": "application/vnd.aai.asyncapi+json;version=2.5.0",
+        "x-ep-event-state-name": "DRAFT",
+        "x-ep-shared": "false",
+        "x-ep-application-domain-name": "Manufacturing",
+        "x-ep-event-version-id": "r227oseo3kq",
+        "payload": {
+          "$ref": "#/components/schemas/Sensor"
+        },
+        "x-ep-event-version": "0.1.0",
+        "x-ep-event-name": "Sensor",
+        "contentType": "application/json",
+        "x-ep-event-state-id": "1"
+      }
+    }
+  },
+  "channels": {
+    "fab/v1/{geo}/{region}/{lab_ID}/hr/{employee_ID}/{card_status}/{room}": {
+      "subscribe": {
+        "message": {
+          "$ref": "#/components/messages/HR"
+        }
+      },
+      "parameters": {
+        "geo": {
+          "schema": {
+            "type": "string",
+            "enum": [
+              "US",
+              "CA",
+              "EU",
+              "APAC"
+            ]
+          },
+          "x-ep-enum-state-name": "DRAFT",
+          "x-ep-enum-version-displayname": "",
+          "x-ep-enum-version": "0.1.0",
+          "x-ep-enum-name": "Geos",
+          "x-ep-enum-state-id": "1",
+          "x-ep-application-domain-id": "ia2kue1af7p",
+          "x-ep-enum-version-id": "t97u4txba3j",
+          "x-ep-enum-id": "k7kzscugy6l",
+          "x-ep-shared": "false",
+          "x-ep-parameter-name": "geo",
+          "x-ep-application-domain-name": "Manufacturing"
+        },
+        "card_status": {
+          "schema": {
+            "type": "string",
+            "enum": [
+              "Active",
+              "Suspended",
+              "Expired"
+            ]
+          },
+          "x-ep-enum-state-name": "DRAFT",
+          "x-ep-enum-version-displayname": "",
+          "x-ep-enum-version": "0.1.0",
+          "x-ep-enum-name": "CardStatus",
+          "x-ep-enum-state-id": "1",
+          "x-ep-application-domain-id": "ia2kue1af7p",
+          "x-ep-enum-version-id": "n5ixxeafm46",
+          "x-ep-enum-id": "z1thhepqev6",
+          "x-ep-shared": "false",
+          "x-ep-parameter-name": "card_status",
+          "x-ep-application-domain-name": "Manufacturing"
+        },
+        "employee_ID": {
+          "schema": {
+            "type": "string"
+          },
+          "x-ep-parameter-name": "employee_ID"
+        },
+        "region": {
+          "schema": {
+            "type": "string",
+            "enum": [
+              "west",
+              "east",
+              "centeral"
+            ]
+          },
+          "x-ep-enum-state-name": "DRAFT",
+          "x-ep-enum-version-displayname": "",
+          "x-ep-enum-version": "0.1.0",
+          "x-ep-enum-name": "Region",
+          "x-ep-enum-state-id": "1",
+          "x-ep-application-domain-id": "ia2kue1af7p",
+          "x-ep-enum-version-id": "0nzzhexp5mp",
+          "x-ep-enum-id": "5b0byvuazh1",
+          "x-ep-shared": "false",
+          "x-ep-parameter-name": "region",
+          "x-ep-application-domain-name": "Manufacturing"
+        },
+        "lab_ID": {
+          "schema": {
+            "type": "string",
+            "enum": [
+              "001",
+              "002",
+              "003"
+            ]
+          },
+          "x-ep-enum-state-name": "DRAFT",
+          "x-ep-enum-version-displayname": "",
+          "x-ep-enum-version": "0.1.0",
+          "x-ep-enum-name": "LabID",
+          "x-ep-enum-state-id": "1",
+          "x-ep-application-domain-id": "ia2kue1af7p",
+          "x-ep-enum-version-id": "1q4clf88gje",
+          "x-ep-enum-id": "oxoy496ig4x",
+          "x-ep-shared": "false",
+          "x-ep-parameter-name": "lab_ID",
+          "x-ep-application-domain-name": "Manufacturing"
+        },
+        "room": {
+          "schema": {
+            "type": "string",
+            "enum": [
+              "MainLab",
+              "CleanRoom",
+              "Storage",
+              "Workshop"
+            ]
+          },
+          "x-ep-enum-state-name": "DRAFT",
+          "x-ep-enum-version-displayname": "",
+          "x-ep-enum-version": "0.1.0",
+          "x-ep-enum-name": "Rooms",
+          "x-ep-enum-state-id": "1",
+          "x-ep-application-domain-id": "ia2kue1af7p",
+          "x-ep-enum-version-id": "6bo4u8chxyg",
+          "x-ep-enum-id": "sjbeorgzfh3",
+          "x-ep-shared": "false",
+          "x-ep-parameter-name": "room",
+          "x-ep-application-domain-name": "Manufacturing"
+        }
+      }
+    },
+    "fab/v1/{geo}/{region}/{lab_ID}/inventory/{material_type}/{material_ID}/{inventory_status}/{supplier}": {
+      "subscribe": {
+        "message": {
+          "$ref": "#/components/messages/Inventory"
+        }
+      },
+      "parameters": {
+        "geo": {
+          "schema": {
+            "type": "string",
+            "enum": [
+              "US",
+              "CA",
+              "EU",
+              "APAC"
+            ]
+          },
+          "x-ep-enum-state-name": "DRAFT",
+          "x-ep-enum-version-displayname": "",
+          "x-ep-enum-version": "0.1.0",
+          "x-ep-enum-name": "Geos",
+          "x-ep-enum-state-id": "1",
+          "x-ep-application-domain-id": "ia2kue1af7p",
+          "x-ep-enum-version-id": "t97u4txba3j",
+          "x-ep-enum-id": "k7kzscugy6l",
+          "x-ep-shared": "false",
+          "x-ep-parameter-name": "geo",
+          "x-ep-application-domain-name": "Manufacturing"
+        },
+        "material_type": {
+          "schema": {
+            "type": "string",
+            "enum": [
+              "Electronics",
+              "Plastics",
+              "Metals",
+              "Composites",
+              "Raw",
+              "Processed",
+              "Consumables",
+              "Packaging"
+            ]
+          },
+          "x-ep-enum-state-name": "DRAFT",
+          "x-ep-enum-version-displayname": "",
+          "x-ep-enum-version": "0.1.0",
+          "x-ep-enum-name": "MaterialType",
+          "x-ep-enum-state-id": "1",
+          "x-ep-application-domain-id": "ia2kue1af7p",
+          "x-ep-enum-version-id": "fm5b5y1acc7",
+          "x-ep-enum-id": "jao3m47z3ei",
+          "x-ep-shared": "false",
+          "x-ep-parameter-name": "material_type",
+          "x-ep-application-domain-name": "Manufacturing"
+        },
+        "supplier": {
+          "schema": {
+            "type": "string",
+            "enum": [
+              "TechPro",
+              "GlobalMfg",
+              "InnoSource",
+              "QuickSupply",
+              "EcoMaterial",
+              "PrecisionParts",
+              "JustInTime",
+              "WorldWide"
+            ]
+          },
+          "x-ep-enum-state-name": "DRAFT",
+          "x-ep-enum-version-displayname": "",
+          "x-ep-enum-version": "0.1.0",
+          "x-ep-enum-name": "Suppliers",
+          "x-ep-enum-state-id": "1",
+          "x-ep-application-domain-id": "ia2kue1af7p",
+          "x-ep-enum-version-id": "2jktz47gdj3",
+          "x-ep-enum-id": "inbw7nynczj",
+          "x-ep-shared": "false",
+          "x-ep-parameter-name": "supplier",
+          "x-ep-application-domain-name": "Manufacturing"
+        },
+        "material_ID": {
+          "schema": {
+            "type": "string"
+          },
+          "x-ep-parameter-name": "material_ID"
+        },
+        "region": {
+          "schema": {
+            "type": "string",
+            "enum": [
+              "west",
+              "east",
+              "centeral"
+            ]
+          },
+          "x-ep-enum-state-name": "DRAFT",
+          "x-ep-enum-version-displayname": "",
+          "x-ep-enum-version": "0.1.0",
+          "x-ep-enum-name": "Region",
+          "x-ep-enum-state-id": "1",
+          "x-ep-application-domain-id": "ia2kue1af7p",
+          "x-ep-enum-version-id": "0nzzhexp5mp",
+          "x-ep-enum-id": "5b0byvuazh1",
+          "x-ep-shared": "false",
+          "x-ep-parameter-name": "region",
+          "x-ep-application-domain-name": "Manufacturing"
+        },
+        "lab_ID": {
+          "schema": {
+            "type": "string",
+            "enum": [
+              "001",
+              "002",
+              "003"
+            ]
+          },
+          "x-ep-enum-state-name": "DRAFT",
+          "x-ep-enum-version-displayname": "",
+          "x-ep-enum-version": "0.1.0",
+          "x-ep-enum-name": "LabID",
+          "x-ep-enum-state-id": "1",
+          "x-ep-application-domain-id": "ia2kue1af7p",
+          "x-ep-enum-version-id": "1q4clf88gje",
+          "x-ep-enum-id": "oxoy496ig4x",
+          "x-ep-shared": "false",
+          "x-ep-parameter-name": "lab_ID",
+          "x-ep-application-domain-name": "Manufacturing"
+        },
+        "inventory_status": {
+          "schema": {
+            "type": "string",
+            "enum": [
+              "InStock",
+              "LowStock",
+              "OutOfStock"
+            ]
+          },
+          "x-ep-enum-state-name": "DRAFT",
+          "x-ep-enum-version-displayname": "",
+          "x-ep-enum-version": "0.1.0",
+          "x-ep-enum-name": "InventoryStatus",
+          "x-ep-enum-state-id": "1",
+          "x-ep-application-domain-id": "ia2kue1af7p",
+          "x-ep-enum-version-id": "df0k2ta0br4",
+          "x-ep-enum-id": "wdp2di0i2cb",
+          "x-ep-shared": "false",
+          "x-ep-parameter-name": "inventory_status",
+          "x-ep-application-domain-name": "Manufacturing"
+        }
+      }
+    },
+    "fab/v1/{geo}/{region}/{lab_ID}/maintenance/{machine_type}/{machine_ID}/{maintenance_status}": {
+      "subscribe": {
+        "message": {
+          "$ref": "#/components/messages/Maintainance"
+        }
+      },
+      "parameters": {
+        "geo": {
+          "schema": {
+            "type": "string",
+            "enum": [
+              "US",
+              "CA",
+              "EU",
+              "APAC"
+            ]
+          },
+          "x-ep-enum-state-name": "DRAFT",
+          "x-ep-enum-version-displayname": "",
+          "x-ep-enum-version": "0.1.0",
+          "x-ep-enum-name": "Geos",
+          "x-ep-enum-state-id": "1",
+          "x-ep-application-domain-id": "ia2kue1af7p",
+          "x-ep-enum-version-id": "t97u4txba3j",
+          "x-ep-enum-id": "k7kzscugy6l",
+          "x-ep-shared": "false",
+          "x-ep-parameter-name": "geo",
+          "x-ep-application-domain-name": "Manufacturing"
+        },
+        "machine_type": {
+          "schema": {
+            "type": "string",
+            "enum": [
+              "Assembler",
+              "CNC",
+              "Printer",
+              "Lathe",
+              "Mixer",
+              "Furnace",
+              "Robotic",
+              "Conveyor"
+            ]
+          },
+          "x-ep-enum-state-name": "DRAFT",
+          "x-ep-enum-version-displayname": "",
+          "x-ep-enum-version": "0.1.0",
+          "x-ep-enum-name": "Machines",
+          "x-ep-enum-state-id": "1",
+          "x-ep-application-domain-id": "ia2kue1af7p",
+          "x-ep-enum-version-id": "7yfrqz6pllw",
+          "x-ep-enum-id": "gsl26e3tm27",
+          "x-ep-shared": "false",
+          "x-ep-parameter-name": "machine_type",
+          "x-ep-application-domain-name": "Manufacturing"
+        },
+        "maintenance_status": {
+          "schema": {
+            "type": "string",
+            "enum": [
+              "Scheduled",
+              "InProgress",
+              "Completed",
+              "Failed"
+            ]
+          },
+          "x-ep-enum-state-name": "DRAFT",
+          "x-ep-enum-version-displayname": "",
+          "x-ep-enum-version": "0.1.0",
+          "x-ep-enum-name": "MachineStatus",
+          "x-ep-enum-state-id": "1",
+          "x-ep-application-domain-id": "ia2kue1af7p",
+          "x-ep-enum-version-id": "5gqy3pskt2v",
+          "x-ep-enum-id": "5xzk70771gc",
+          "x-ep-shared": "false",
+          "x-ep-parameter-name": "maintenance_status",
+          "x-ep-application-domain-name": "Manufacturing"
+        },
+        "machine_ID": {
+          "schema": {
+            "type": "string"
+          },
+          "x-ep-parameter-name": "machine_ID"
+        },
+        "region": {
+          "schema": {
+            "type": "string",
+            "enum": [
+              "west",
+              "east",
+              "centeral"
+            ]
+          },
+          "x-ep-enum-state-name": "DRAFT",
+          "x-ep-enum-version-displayname": "",
+          "x-ep-enum-version": "0.1.0",
+          "x-ep-enum-name": "Region",
+          "x-ep-enum-state-id": "1",
+          "x-ep-application-domain-id": "ia2kue1af7p",
+          "x-ep-enum-version-id": "0nzzhexp5mp",
+          "x-ep-enum-id": "5b0byvuazh1",
+          "x-ep-shared": "false",
+          "x-ep-parameter-name": "region",
+          "x-ep-application-domain-name": "Manufacturing"
+        },
+        "lab_ID": {
+          "schema": {
+            "type": "string",
+            "enum": [
+              "001",
+              "002",
+              "003"
+            ]
+          },
+          "x-ep-enum-state-name": "DRAFT",
+          "x-ep-enum-version-displayname": "",
+          "x-ep-enum-version": "0.1.0",
+          "x-ep-enum-name": "LabID",
+          "x-ep-enum-state-id": "1",
+          "x-ep-application-domain-id": "ia2kue1af7p",
+          "x-ep-enum-version-id": "1q4clf88gje",
+          "x-ep-enum-id": "oxoy496ig4x",
+          "x-ep-shared": "false",
+          "x-ep-parameter-name": "lab_ID",
+          "x-ep-application-domain-name": "Manufacturing"
+        }
+      }
+    },
+    "fab/v1/{geo}/{region}/{lab_ID}/sensor/{sensor_type}/{sensor_ID}/{reading}": {
+      "subscribe": {
+        "message": {
+          "$ref": "#/components/messages/Sensor"
+        }
+      },
+      "parameters": {
+        "geo": {
+          "schema": {
+            "type": "string",
+            "enum": [
+              "US",
+              "CA",
+              "EU",
+              "APAC"
+            ]
+          },
+          "x-ep-enum-state-name": "DRAFT",
+          "x-ep-enum-version-displayname": "",
+          "x-ep-enum-version": "0.1.0",
+          "x-ep-enum-name": "Geos",
+          "x-ep-enum-state-id": "1",
+          "x-ep-application-domain-id": "ia2kue1af7p",
+          "x-ep-enum-version-id": "t97u4txba3j",
+          "x-ep-enum-id": "k7kzscugy6l",
+          "x-ep-shared": "false",
+          "x-ep-parameter-name": "geo",
+          "x-ep-application-domain-name": "Manufacturing"
+        },
+        "sensor_ID": {
+          "schema": {
+            "type": "string"
+          },
+          "x-ep-parameter-name": "sensor_ID"
+        },
+        "reading": {
+          "schema": {
+            "type": "string"
+          },
+          "x-ep-parameter-name": "reading"
+        },
+        "region": {
+          "schema": {
+            "type": "string",
+            "enum": [
+              "west",
+              "east",
+              "centeral"
+            ]
+          },
+          "x-ep-enum-state-name": "DRAFT",
+          "x-ep-enum-version-displayname": "",
+          "x-ep-enum-version": "0.1.0",
+          "x-ep-enum-name": "Region",
+          "x-ep-enum-state-id": "1",
+          "x-ep-application-domain-id": "ia2kue1af7p",
+          "x-ep-enum-version-id": "0nzzhexp5mp",
+          "x-ep-enum-id": "5b0byvuazh1",
+          "x-ep-shared": "false",
+          "x-ep-parameter-name": "region",
+          "x-ep-application-domain-name": "Manufacturing"
+        },
+        "lab_ID": {
+          "schema": {
+            "type": "string",
+            "enum": [
+              "001",
+              "002",
+              "003"
+            ]
+          },
+          "x-ep-enum-state-name": "DRAFT",
+          "x-ep-enum-version-displayname": "",
+          "x-ep-enum-version": "0.1.0",
+          "x-ep-enum-name": "LabID",
+          "x-ep-enum-state-id": "1",
+          "x-ep-application-domain-id": "ia2kue1af7p",
+          "x-ep-enum-version-id": "1q4clf88gje",
+          "x-ep-enum-id": "oxoy496ig4x",
+          "x-ep-shared": "false",
+          "x-ep-parameter-name": "lab_ID",
+          "x-ep-application-domain-name": "Manufacturing"
+        },
+        "sensor_type": {
+          "schema": {
+            "type": "string",
+            "enum": [
+              "Temperature",
+              "Pressure",
+              "Humidity",
+              "Vibration",
+              "AirFlow",
+              "Particle",
+              "Radiation",
+              "Acoustic"
+            ]
+          },
+          "x-ep-enum-state-name": "DRAFT",
+          "x-ep-enum-version-displayname": "",
+          "x-ep-enum-version": "0.1.0",
+          "x-ep-enum-name": "Sensors",
+          "x-ep-enum-state-id": "1",
+          "x-ep-application-domain-id": "ia2kue1af7p",
+          "x-ep-enum-version-id": "hl8mmof43j6",
+          "x-ep-enum-id": "5zs8967jh3t",
+          "x-ep-shared": "false",
+          "x-ep-parameter-name": "sensor_type",
+          "x-ep-application-domain-name": "Manufacturing"
+        }
+      }
+    },
+    "fab/v1/{geo}/{region}/{lab_ID}/production/{product_family}/{uuid}/{production_status}": {
+      "subscribe": {
+        "message": {
+          "$ref": "#/components/messages/Production"
+        }
+      },
+      "parameters": {
+        "geo": {
+          "schema": {
+            "type": "string",
+            "enum": [
+              "US",
+              "CA",
+              "EU",
+              "APAC"
+            ]
+          },
+          "x-ep-enum-state-name": "DRAFT",
+          "x-ep-enum-version-displayname": "",
+          "x-ep-enum-version": "0.1.0",
+          "x-ep-enum-name": "Geos",
+          "x-ep-enum-state-id": "1",
+          "x-ep-application-domain-id": "ia2kue1af7p",
+          "x-ep-enum-version-id": "t97u4txba3j",
+          "x-ep-enum-id": "k7kzscugy6l",
+          "x-ep-shared": "false",
+          "x-ep-parameter-name": "geo",
+          "x-ep-application-domain-name": "Manufacturing"
+        },
+        "product_family": {
+          "schema": {
+            "type": "string",
+            "enum": [
+              "iPhone",
+              "iPad",
+              "MacBook",
+              "iMac",
+              "AirPods",
+              "Apple TV",
+              "Watch",
+              "Mac Mini"
+            ]
+          },
+          "x-ep-enum-state-name": "DRAFT",
+          "x-ep-enum-version-displayname": "",
+          "x-ep-enum-version": "0.1.0",
+          "x-ep-enum-name": "ProductFamily",
+          "x-ep-enum-state-id": "1",
+          "x-ep-application-domain-id": "ia2kue1af7p",
+          "x-ep-enum-version-id": "jnhmjcpe8do",
+          "x-ep-enum-id": "gtgbpi8kl9k",
+          "x-ep-shared": "false",
+          "x-ep-parameter-name": "product_family",
+          "x-ep-application-domain-name": "Manufacturing"
+        },
+        "production_status": {
+          "schema": {
+            "type": "string",
+            "enum": [
+              "Queued",
+              "InProcess",
+              "Completed",
+              "Halted",
+              "Rework",
+              "Testing",
+              "Blocked",
+              "Scrapped"
+            ]
+          },
+          "x-ep-enum-state-name": "DRAFT",
+          "x-ep-enum-version-displayname": "",
+          "x-ep-enum-version": "0.1.0",
+          "x-ep-enum-name": "ProductionStatus",
+          "x-ep-enum-state-id": "1",
+          "x-ep-application-domain-id": "ia2kue1af7p",
+          "x-ep-enum-version-id": "z95810fzvm2",
+          "x-ep-enum-id": "w9bhvrjgyhn",
+          "x-ep-shared": "false",
+          "x-ep-parameter-name": "production_status",
+          "x-ep-application-domain-name": "Manufacturing"
+        },
+        "region": {
+          "schema": {
+            "type": "string",
+            "enum": [
+              "west",
+              "east",
+              "centeral"
+            ]
+          },
+          "x-ep-enum-state-name": "DRAFT",
+          "x-ep-enum-version-displayname": "",
+          "x-ep-enum-version": "0.1.0",
+          "x-ep-enum-name": "Region",
+          "x-ep-enum-state-id": "1",
+          "x-ep-application-domain-id": "ia2kue1af7p",
+          "x-ep-enum-version-id": "0nzzhexp5mp",
+          "x-ep-enum-id": "5b0byvuazh1",
+          "x-ep-shared": "false",
+          "x-ep-parameter-name": "region",
+          "x-ep-application-domain-name": "Manufacturing"
+        },
+        "lab_ID": {
+          "schema": {
+            "type": "string",
+            "enum": [
+              "001",
+              "002",
+              "003"
+            ]
+          },
+          "x-ep-enum-state-name": "DRAFT",
+          "x-ep-enum-version-displayname": "",
+          "x-ep-enum-version": "0.1.0",
+          "x-ep-enum-name": "LabID",
+          "x-ep-enum-state-id": "1",
+          "x-ep-application-domain-id": "ia2kue1af7p",
+          "x-ep-enum-version-id": "1q4clf88gje",
+          "x-ep-enum-id": "oxoy496ig4x",
+          "x-ep-shared": "false",
+          "x-ep-parameter-name": "lab_ID",
+          "x-ep-application-domain-name": "Manufacturing"
+        },
+        "uuid": {
+          "schema": {
+            "type": "string"
+          },
+          "x-ep-parameter-name": "uuid"
+        }
+      }
+    },
+    "fab/v1/{geo}/{region}/{lab_ID}/quality/{product_family}/{uuid}/{inspection_stage}/{inspection_status}": {
+      "subscribe": {
+        "message": {
+          "$ref": "#/components/messages/Quality"
+        }
+      },
+      "parameters": {
+        "geo": {
+          "schema": {
+            "type": "string",
+            "enum": [
+              "US",
+              "CA",
+              "EU",
+              "APAC"
+            ]
+          },
+          "x-ep-enum-state-name": "DRAFT",
+          "x-ep-enum-version-displayname": "",
+          "x-ep-enum-version": "0.1.0",
+          "x-ep-enum-name": "Geos",
+          "x-ep-enum-state-id": "1",
+          "x-ep-application-domain-id": "ia2kue1af7p",
+          "x-ep-enum-version-id": "t97u4txba3j",
+          "x-ep-enum-id": "k7kzscugy6l",
+          "x-ep-shared": "false",
+          "x-ep-parameter-name": "geo",
+          "x-ep-application-domain-name": "Manufacturing"
+        },
+        "product_family": {
+          "schema": {
+            "type": "string",
+            "enum": [
+              "iPhone",
+              "iPad",
+              "MacBook",
+              "iMac",
+              "AirPods",
+              "Apple TV",
+              "Watch",
+              "Mac Mini"
+            ]
+          },
+          "x-ep-enum-state-name": "DRAFT",
+          "x-ep-enum-version-displayname": "",
+          "x-ep-enum-version": "0.1.0",
+          "x-ep-enum-name": "ProductFamily",
+          "x-ep-enum-state-id": "1",
+          "x-ep-application-domain-id": "ia2kue1af7p",
+          "x-ep-enum-version-id": "jnhmjcpe8do",
+          "x-ep-enum-id": "gtgbpi8kl9k",
+          "x-ep-shared": "false",
+          "x-ep-parameter-name": "product_family",
+          "x-ep-application-domain-name": "Manufacturing"
+        },
+        "inspection_stage": {
+          "schema": {
+            "type": "string",
+            "enum": [
+              "Initial",
+              "InProcess",
+              "Final",
+              "PreShip"
+            ]
+          },
+          "x-ep-enum-state-name": "DRAFT",
+          "x-ep-enum-version-displayname": "",
+          "x-ep-enum-version": "0.1.0",
+          "x-ep-enum-name": "InspectionStage",
+          "x-ep-enum-state-id": "1",
+          "x-ep-application-domain-id": "ia2kue1af7p",
+          "x-ep-enum-version-id": "5w2nayrag8c",
+          "x-ep-enum-id": "9n44z08d8y4",
+          "x-ep-shared": "false",
+          "x-ep-parameter-name": "inspection_stage",
+          "x-ep-application-domain-name": "Manufacturing"
+        },
+        "region": {
+          "schema": {
+            "type": "string",
+            "enum": [
+              "west",
+              "east",
+              "centeral"
+            ]
+          },
+          "x-ep-enum-state-name": "DRAFT",
+          "x-ep-enum-version-displayname": "",
+          "x-ep-enum-version": "0.1.0",
+          "x-ep-enum-name": "Region",
+          "x-ep-enum-state-id": "1",
+          "x-ep-application-domain-id": "ia2kue1af7p",
+          "x-ep-enum-version-id": "0nzzhexp5mp",
+          "x-ep-enum-id": "5b0byvuazh1",
+          "x-ep-shared": "false",
+          "x-ep-parameter-name": "region",
+          "x-ep-application-domain-name": "Manufacturing"
+        },
+        "lab_ID": {
+          "schema": {
+            "type": "string",
+            "enum": [
+              "001",
+              "002",
+              "003"
+            ]
+          },
+          "x-ep-enum-state-name": "DRAFT",
+          "x-ep-enum-version-displayname": "",
+          "x-ep-enum-version": "0.1.0",
+          "x-ep-enum-name": "LabID",
+          "x-ep-enum-state-id": "1",
+          "x-ep-application-domain-id": "ia2kue1af7p",
+          "x-ep-enum-version-id": "1q4clf88gje",
+          "x-ep-enum-id": "oxoy496ig4x",
+          "x-ep-shared": "false",
+          "x-ep-parameter-name": "lab_ID",
+          "x-ep-application-domain-name": "Manufacturing"
+        },
+        "uuid": {
+          "schema": {
+            "type": "string"
+          },
+          "x-ep-parameter-name": "uuid"
+        },
+        "inspection_status": {
+          "schema": {
+            "type": "string",
+            "enum": [
+              "Passed",
+              "Failed",
+              "Pending"
+            ]
+          },
+          "x-ep-enum-state-name": "DRAFT",
+          "x-ep-enum-version-displayname": "",
+          "x-ep-enum-version": "0.1.0",
+          "x-ep-enum-name": "InspectionStatus",
+          "x-ep-enum-state-id": "1",
+          "x-ep-application-domain-id": "ia2kue1af7p",
+          "x-ep-enum-version-id": "ejg44mnakid",
+          "x-ep-enum-id": "y7vdbg1z7hd",
+          "x-ep-shared": "false",
+          "x-ep-parameter-name": "inspection_status",
+          "x-ep-application-domain-name": "Manufacturing"
+        }
+      }
+    },
+    "fab/v1/{geo}/{region}/{lab_ID}/shipping/{product_family}/{uuid}/{transport_status}/{destination}": {
+      "subscribe": {
+        "message": {
+          "$ref": "#/components/messages/Shipping"
+        }
+      },
+      "parameters": {
+        "geo": {
+          "schema": {
+            "type": "string",
+            "enum": [
+              "US",
+              "CA",
+              "EU",
+              "APAC"
+            ]
+          },
+          "x-ep-enum-state-name": "DRAFT",
+          "x-ep-enum-version-displayname": "",
+          "x-ep-enum-version": "0.1.0",
+          "x-ep-enum-name": "Geos",
+          "x-ep-enum-state-id": "1",
+          "x-ep-application-domain-id": "ia2kue1af7p",
+          "x-ep-enum-version-id": "t97u4txba3j",
+          "x-ep-enum-id": "k7kzscugy6l",
+          "x-ep-shared": "false",
+          "x-ep-parameter-name": "geo",
+          "x-ep-application-domain-name": "Manufacturing"
+        },
+        "product_family": {
+          "schema": {
+            "type": "string",
+            "enum": [
+              "iPhone",
+              "iPad",
+              "MacBook",
+              "iMac",
+              "AirPods",
+              "Apple TV",
+              "Watch",
+              "Mac Mini"
+            ]
+          },
+          "x-ep-enum-state-name": "DRAFT",
+          "x-ep-enum-version-displayname": "",
+          "x-ep-enum-version": "0.1.0",
+          "x-ep-enum-name": "ProductFamily",
+          "x-ep-enum-state-id": "1",
+          "x-ep-application-domain-id": "ia2kue1af7p",
+          "x-ep-enum-version-id": "jnhmjcpe8do",
+          "x-ep-enum-id": "gtgbpi8kl9k",
+          "x-ep-shared": "false",
+          "x-ep-parameter-name": "product_family",
+          "x-ep-application-domain-name": "Manufacturing"
+        },
+        "destination": {
+          "schema": {
+            "type": "string"
+          },
+          "x-ep-parameter-name": "destination"
+        },
+        "region": {
+          "schema": {
+            "type": "string",
+            "enum": [
+              "west",
+              "east",
+              "centeral"
+            ]
+          },
+          "x-ep-enum-state-name": "DRAFT",
+          "x-ep-enum-version-displayname": "",
+          "x-ep-enum-version": "0.1.0",
+          "x-ep-enum-name": "Region",
+          "x-ep-enum-state-id": "1",
+          "x-ep-application-domain-id": "ia2kue1af7p",
+          "x-ep-enum-version-id": "0nzzhexp5mp",
+          "x-ep-enum-id": "5b0byvuazh1",
+          "x-ep-shared": "false",
+          "x-ep-parameter-name": "region",
+          "x-ep-application-domain-name": "Manufacturing"
+        },
+        "lab_ID": {
+          "schema": {
+            "type": "string",
+            "enum": [
+              "001",
+              "002",
+              "003"
+            ]
+          },
+          "x-ep-enum-state-name": "DRAFT",
+          "x-ep-enum-version-displayname": "",
+          "x-ep-enum-version": "0.1.0",
+          "x-ep-enum-name": "LabID",
+          "x-ep-enum-state-id": "1",
+          "x-ep-application-domain-id": "ia2kue1af7p",
+          "x-ep-enum-version-id": "1q4clf88gje",
+          "x-ep-enum-id": "oxoy496ig4x",
+          "x-ep-shared": "false",
+          "x-ep-parameter-name": "lab_ID",
+          "x-ep-application-domain-name": "Manufacturing"
+        },
+        "uuid": {
+          "schema": {
+            "type": "string"
+          },
+          "x-ep-parameter-name": "uuid"
+        },
+        "transport_status": {
+          "schema": {
+            "type": "string",
+            "enum": [
+              "Pending",
+              "InTransit",
+              "Delivered",
+              "Delayed",
+              "Returned",
+              "Cancelled",
+              "Processing",
+              "Lost"
+            ]
+          },
+          "x-ep-enum-state-name": "DRAFT",
+          "x-ep-enum-version-displayname": "",
+          "x-ep-enum-version": "0.1.0",
+          "x-ep-enum-name": "TransportStaus",
+          "x-ep-enum-state-id": "1",
+          "x-ep-application-domain-id": "ia2kue1af7p",
+          "x-ep-enum-version-id": "d27205a7989",
+          "x-ep-enum-id": "zfsia6abidl",
+          "x-ep-shared": "false",
+          "x-ep-parameter-name": "transport_status",
+          "x-ep-application-domain-name": "Manufacturing"
+        }
+      }
+    }
+  },
+  "asyncapi": "2.5.0",
+  "info": {
+    "x-ep-application-version": "0.1.0",
+    "x-ep-application-version-id": "etywfiqj8ry",
+    "x-ep-application-id": "gext2reh0cw",
+    "description": "The **Fabrication Lab Event Publisher** is a critical application in the manufacturing ecosystem, responsible for streaming real-time events related to production, shipping, maintenance, quality control, inventory, HR, and sensor monitoring. It provides a structured event-driven architecture that enables seamless tracking of product lifecycle stages, employee access, machine health, material availability, and environmental conditions within a fabrication lab. By publishing standardized events, the system enhances operational visibility, ensures timely decision-making, and facilitates automation across multiple manufacturing sites, optimizing efficiency and reducing downtime.",
+    "x-ep-state-name": "DRAFT",
+    "title": "FabricationLab",
+    "x-ep-application-domain-id": "ia2kue1af7p",
+    "version": "0.1.0",
+    "x-ep-state-id": "1",
+    "x-ep-application-domain-name": "Manufacturing"
+  }
+}

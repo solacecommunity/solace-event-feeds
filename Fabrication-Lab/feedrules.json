@@ -1,0 +1,1861 @@
+[
+  {
+    "topic": "fab/v1/{geo}/{region}/{lab_ID}/hr/{employee_ID}/{card_status}/{room}",
+    "topicParameters": {
+      "geo": {
+        "schema": {
+          "type": "string",
+          "enum": [
+            "US",
+            "CA",
+            "EU",
+            "APAC"
+          ]
+        },
+        "rule": {
+          "name": "geo",
+          "type": "string",
+          "group": "StringRules",
+          "rule": "enum",
+          "enum": [
+            "US",
+            "CA",
+            "EU",
+            "APAC"
+          ]
+        }
+      },
+      "card_status": {
+        "schema": {
+          "type": "string",
+          "enum": [
+            "Active",
+            "Suspended",
+            "Expired"
+          ]
+        },
+        "rule": {
+          "name": "card_status",
+          "type": "string",
+          "group": "StringRules",
+          "rule": "enum",
+          "enum": [
+            "Active",
+            "Suspended",
+            "Expired"
+          ]
+        }
+      },
+      "employee_ID": {
+        "schema": {
+          "type": "string"
+        },
+        "rule": {
+          "name": "employee_ID",
+          "type": "string",
+          "group": "StringRules",
+          "rule": "uuid"
+        }
+      },
+      "region": {
+        "schema": {
+          "type": "string",
+          "enum": [
+            "west",
+            "east",
+            "centeral"
+          ]
+        },
+        "rule": {
+          "name": "region",
+          "type": "string",
+          "group": "StringRules",
+          "rule": "enum",
+          "enum": [
+            "west",
+            "east",
+            "centeral"
+          ]
+        }
+      },
+      "lab_ID": {
+        "schema": {
+          "type": "string",
+          "enum": [
+            "001",
+            "002",
+            "003"
+          ]
+        },
+        "rule": {
+          "name": "lab_ID",
+          "type": "string",
+          "group": "StringRules",
+          "rule": "enum",
+          "enum": [
+            "001",
+            "002",
+            "003"
+          ]
+        }
+      },
+      "room": {
+        "schema": {
+          "type": "string",
+          "enum": [
+            "MainLab",
+            "CleanRoom",
+            "Storage",
+            "Workshop"
+          ]
+        },
+        "rule": {
+          "name": "room",
+          "type": "string",
+          "group": "StringRules",
+          "rule": "enum",
+          "enum": [
+            "MainLab",
+            "CleanRoom",
+            "Storage",
+            "Workshop"
+          ]
+        }
+      }
+    },
+    "eventName": "HR",
+    "eventVersion": "0.1.0",
+    "messageName": "HR",
+    "hasPayload": true,
+    "payload": {
+      "securityLevel": {
+        "description": "Security clearance level associated with the access event",
+        "type": "string",
+        "enum": [
+          "restricted",
+          "standard",
+          "confidential",
+          "public"
+        ],
+        "rule": {
+          "name": "securityLevel",
+          "type": "string",
+          "group": "StringRules",
+          "rule": "enum",
+          "enum": [
+            "restricted",
+            "standard",
+            "confidential",
+            "public"
+          ],
+          "description": "Security clearance level associated with the access event"
+        }
+      },
+      "accessStatus": {
+        "description": "Status of access authorization",
+        "type": "string",
+        "enum": [
+          "granted",
+          "denied",
+          "pending",
+          "revoked"
+        ],
+        "rule": {
+          "name": "accessStatus",
+          "type": "string",
+          "group": "StringRules",
+          "rule": "enum",
+          "enum": [
+            "granted",
+            "denied",
+            "pending",
+            "revoked"
+          ],
+          "description": "Status of access authorization"
+        }
+      },
+      "timestamp": {
+        "format": "date-time",
+        "description": "ISO 8601 formatted timestamp of the access event",
+        "type": "string",
+        "rule": {
+          "name": "timestamp",
+          "type": "string",
+          "group": "DateRules",
+          "rule": "currentDateWithTime",
+          "format": "MM-DD-YYYY HH:mm:ss",
+          "description": "ISO 8601 formatted timestamp of the access event"
+        }
+      }
+    },
+    "publishSettings": {
+      "count": 0,
+      "interval": 1000,
+      "delay": 0
+    }
+  },
+  {
+    "topic": "fab/v1/{geo}/{region}/{lab_ID}/inventory/{material_type}/{material_ID}/{inventory_status}/{supplier}",
+    "topicParameters": {
+      "geo": {
+        "schema": {
+          "type": "string",
+          "enum": [
+            "US",
+            "CA",
+            "EU",
+            "APAC"
+          ]
+        },
+        "rule": {
+          "name": "geo",
+          "type": "string",
+          "group": "StringRules",
+          "rule": "enum",
+          "enum": [
+            "US",
+            "CA",
+            "EU",
+            "APAC"
+          ]
+        }
+      },
+      "material_type": {
+        "schema": {
+          "type": "string",
+          "enum": [
+            "Electronics",
+            "Plastics",
+            "Metals",
+            "Composites",
+            "Raw",
+            "Processed",
+            "Consumables",
+            "Packaging"
+          ]
+        },
+        "rule": {
+          "name": "material_type",
+          "type": "string",
+          "group": "StringRules",
+          "rule": "enum",
+          "enum": [
+            "Electronics",
+            "Plastics",
+            "Metals",
+            "Composites",
+            "Raw",
+            "Processed",
+            "Consumables",
+            "Packaging"
+          ]
+        }
+      },
+      "supplier": {
+        "schema": {
+          "type": "string",
+          "enum": [
+            "TechPro",
+            "GlobalMfg",
+            "InnoSource",
+            "QuickSupply",
+            "EcoMaterial",
+            "PrecisionParts",
+            "JustInTime",
+            "WorldWide"
+          ]
+        },
+        "rule": {
+          "name": "supplier",
+          "type": "string",
+          "group": "StringRules",
+          "rule": "enum",
+          "enum": [
+            "TechPro",
+            "GlobalMfg",
+            "InnoSource",
+            "QuickSupply",
+            "EcoMaterial",
+            "PrecisionParts",
+            "JustInTime",
+            "WorldWide"
+          ]
+        }
+      },
+      "material_ID": {
+        "schema": {
+          "type": "string"
+        },
+        "rule": {
+          "name": "material_ID",
+          "type": "string",
+          "group": "StringRules",
+          "rule": "uuid"
+        }
+      },
+      "region": {
+        "schema": {
+          "type": "string",
+          "enum": [
+            "west",
+            "east",
+            "centeral"
+          ]
+        },
+        "rule": {
+          "name": "region",
+          "type": "string",
+          "group": "StringRules",
+          "rule": "enum",
+          "enum": [
+            "west",
+            "east",
+            "centeral"
+          ]
+        }
+      },
+      "lab_ID": {
+        "schema": {
+          "type": "string",
+          "enum": [
+            "001",
+            "002",
+            "003"
+          ]
+        },
+        "rule": {
+          "name": "lab_ID",
+          "type": "string",
+          "group": "StringRules",
+          "rule": "enum",
+          "enum": [
+            "001",
+            "002",
+            "003"
+          ]
+        }
+      },
+      "inventory_status": {
+        "schema": {
+          "type": "string",
+          "enum": [
+            "InStock",
+            "LowStock",
+            "OutOfStock"
+          ]
+        },
+        "rule": {
+          "name": "inventory_status",
+          "type": "string",
+          "group": "StringRules",
+          "rule": "enum",
+          "enum": [
+            "InStock",
+            "LowStock",
+            "OutOfStock"
+          ]
+        }
+      }
+    },
+    "eventName": "Inventory",
+    "eventVersion": "0.1.0",
+    "messageName": "Inventory",
+    "hasPayload": true,
+    "payload": {
+      "quantity": {
+        "description": "Current quantity of the material in stock",
+        "type": "number",
+        "minimum": 0,
+        "rule": {
+          "name": "quantity",
+          "type": "number",
+          "group": "NumberRules",
+          "rule": "float",
+          "minimum": 0,
+          "maximum": 1000,
+          "fractionDigits": 2,
+          "description": "Current quantity of the material in stock"
+        }
+      },
+      "action": {
+        "description": "Type of inventory transaction",
+        "type": "string",
+        "enum": [
+          "received",
+          "used",
+          "transferred",
+          "disposed"
+        ],
+        "rule": {
+          "name": "action",
+          "type": "string",
+          "group": "StringRules",
+          "rule": "enum",
+          "enum": [
+            "received",
+            "used",
+            "transferred",
+            "disposed"
+          ],
+          "description": "Type of inventory transaction"
+        }
+      },
+      "timestamp": {
+        "format": "date-time",
+        "description": "ISO 8601 formatted timestamp of the inventory event",
+        "type": "string",
+        "rule": {
+          "name": "timestamp",
+          "type": "string",
+          "group": "DateRules",
+          "rule": "currentDateWithTime",
+          "format": "MM-DD-YYYY HH:mm:ss",
+          "description": "ISO 8601 formatted timestamp of the inventory event"
+        }
+      },
+      "status": {
+        "description": "Current inventory status of the material",
+        "type": "string",
+        "enum": [
+          "in-stock",
+          "low-stock",
+          "out-of-stock",
+          "overstock"
+        ],
+        "rule": {
+          "name": "status",
+          "type": "string",
+          "group": "StringRules",
+          "rule": "enum",
+          "enum": [
+            "in-stock",
+            "low-stock",
+            "out-of-stock",
+            "overstock"
+          ],
+          "description": "Current inventory status of the material"
+        }
+      }
+    },
+    "publishSettings": {
+      "count": 0,
+      "interval": 1000,
+      "delay": 0
+    },
+    "mappings": [
+      {
+        "type": "Payload Parameter",
+        "source": {
+          "type": "Topic Parameter",
+          "name": "inventory_status",
+          "fieldName": "inventory_status",
+          "fieldType": "string"
+        },
+        "target": {
+          "type": "Payload Parameter",
+          "name": "status",
+          "fieldName": "status",
+          "fieldType": "string"
+        }
+      }
+    ]
+  },
+  {
+    "topic": "fab/v1/{geo}/{region}/{lab_ID}/maintenance/{machine_type}/{machine_ID}/{maintenance_status}",
+    "topicParameters": {
+      "geo": {
+        "schema": {
+          "type": "string",
+          "enum": [
+            "US",
+            "CA",
+            "EU",
+            "APAC"
+          ]
+        },
+        "rule": {
+          "name": "geo",
+          "type": "string",
+          "group": "StringRules",
+          "rule": "enum",
+          "enum": [
+            "US",
+            "CA",
+            "EU",
+            "APAC"
+          ]
+        }
+      },
+      "machine_type": {
+        "schema": {
+          "type": "string",
+          "enum": [
+            "Assembler",
+            "CNC",
+            "Printer",
+            "Lathe",
+            "Mixer",
+            "Furnace",
+            "Robotic",
+            "Conveyor"
+          ]
+        },
+        "rule": {
+          "name": "machine_type",
+          "type": "string",
+          "group": "StringRules",
+          "rule": "enum",
+          "enum": [
+            "Assembler",
+            "CNC",
+            "Printer",
+            "Lathe",
+            "Mixer",
+            "Furnace",
+            "Robotic",
+            "Conveyor"
+          ]
+        }
+      },
+      "maintenance_status": {
+        "schema": {
+          "type": "string",
+          "enum": [
+            "Scheduled",
+            "InProgress",
+            "Completed",
+            "Failed"
+          ]
+        },
+        "rule": {
+          "name": "maintenance_status",
+          "type": "string",
+          "group": "StringRules",
+          "rule": "enum",
+          "enum": [
+            "Scheduled",
+            "InProgress",
+            "Completed",
+            "Failed"
+          ]
+        }
+      },
+      "machine_ID": {
+        "schema": {
+          "type": "string"
+        },
+        "rule": {
+          "name": "machine_ID",
+          "type": "string",
+          "group": "StringRules",
+          "rule": "uuid"
+        }
+      },
+      "region": {
+        "schema": {
+          "type": "string",
+          "enum": [
+            "west",
+            "east",
+            "centeral"
+          ]
+        },
+        "rule": {
+          "name": "region",
+          "type": "string",
+          "group": "StringRules",
+          "rule": "enum",
+          "enum": [
+            "west",
+            "east",
+            "centeral"
+          ]
+        }
+      },
+      "lab_ID": {
+        "schema": {
+          "type": "string",
+          "enum": [
+            "001",
+            "002",
+            "003"
+          ]
+        },
+        "rule": {
+          "name": "lab_ID",
+          "type": "string",
+          "group": "StringRules",
+          "rule": "enum",
+          "enum": [
+            "001",
+            "002",
+            "003"
+          ]
+        }
+      }
+    },
+    "eventName": "Maintainance",
+    "eventVersion": "0.1.0",
+    "messageName": "Maintainance",
+    "hasPayload": true,
+    "payload": {
+      "details": {
+        "type": "object",
+        "properties": {
+          "duration": {
+            "type": "object",
+            "properties": {
+              "actual": {
+                "description": "Actual maintenance duration in minutes",
+                "type": "number",
+                "rule": {
+                  "name": "actual",
+                  "type": "number",
+                  "group": "NumberRules",
+                  "rule": "float",
+                  "minimum": 0,
+                  "maximum": 1000,
+                  "fractionDigits": 2,
+                  "description": "Actual maintenance duration in minutes"
+                }
+              },
+              "planned": {
+                "description": "Planned maintenance duration in minutes",
+                "type": "number",
+                "rule": {
+                  "name": "planned",
+                  "type": "number",
+                  "group": "NumberRules",
+                  "rule": "float",
+                  "minimum": 0,
+                  "maximum": 1000,
+                  "fractionDigits": 2,
+                  "description": "Planned maintenance duration in minutes"
+                }
+              }
+            },
+            "rule": {
+              "name": "duration",
+              "type": "object"
+            }
+          },
+          "components": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "condition": {
+                  "type": "string",
+                  "enum": [
+                    "good",
+                    "worn",
+                    "needs-replacement",
+                    "critical-failure"
+                  ],
+                  "rule": {
+                    "name": "condition",
+                    "type": "string",
+                    "group": "StringRules",
+                    "rule": "enum",
+                    "enum": [
+                      "good",
+                      "worn",
+                      "needs-replacement",
+                      "critical-failure"
+                    ]
+                  }
+                },
+                "serialNumber": {
+                  "type": "string",
+                  "rule": {
+                    "name": "serialNumber",
+                    "type": "string",
+                    "group": "StringRules",
+                    "rule": "alpha",
+                    "casing": "mixed",
+                    "minLength": 10,
+                    "maxLength": 10
+                  }
+                },
+                "name": {
+                  "type": "string",
+                  "rule": {
+                    "name": "name",
+                    "type": "string",
+                    "group": "StringRules",
+                    "rule": "alpha",
+                    "casing": "mixed",
+                    "minLength": 10,
+                    "maxLength": 10
+                  }
+                },
+                "replacementPerformed": {
+                  "type": "boolean",
+                  "rule": {
+                    "name": "replacementPerformed",
+                    "type": "boolean",
+                    "group": "BooleanRules",
+                    "rule": "boolean"
+                  }
+                }
+              },
+              "required": [
+                "name",
+                "condition"
+              ]
+            },
+            "subType": "object",
+            "name": "components",
+            "rule": {
+              "name": "components",
+              "type": "object"
+            }
+          },
+          "technician": {
+            "type": "object",
+            "properties": {
+              "name": {
+                "type": "string",
+                "rule": {
+                  "name": "name",
+                  "type": "string",
+                  "group": "StringRules",
+                  "rule": "alpha",
+                  "casing": "mixed",
+                  "minLength": 10,
+                  "maxLength": 10
+                }
+              },
+              "id": {
+                "type": "string",
+                "rule": {
+                  "name": "id",
+                  "type": "string",
+                  "group": "StringRules",
+                  "rule": "alpha",
+                  "casing": "mixed",
+                  "minLength": 10,
+                  "maxLength": 10
+                }
+              },
+              "department": {
+                "type": "string",
+                "rule": {
+                  "name": "department",
+                  "type": "string",
+                  "group": "StringRules",
+                  "rule": "alpha",
+                  "casing": "mixed",
+                  "minLength": 10,
+                  "maxLength": 10
+                }
+              }
+            },
+            "required": [
+              "id"
+            ],
+            "rule": {
+              "name": "technician",
+              "type": "object"
+            }
+          },
+          "maintenanceType": {
+            "description": "Classification of maintenance activity",
+            "type": "string",
+            "enum": [
+              "preventive",
+              "corrective",
+              "predictive",
+              "breakdown"
+            ],
+            "rule": {
+              "name": "maintenanceType",
+              "type": "string",
+              "group": "StringRules",
+              "rule": "enum",
+              "enum": [
+                "preventive",
+                "corrective",
+                "predictive",
+                "breakdown"
+              ],
+              "description": "Classification of maintenance activity"
+            }
+          },
+          "issues": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "severity": {
+                  "type": "string",
+                  "enum": [
+                    "low",
+                    "medium",
+                    "high",
+                    "critical"
+                  ],
+                  "rule": {
+                    "name": "severity",
+                    "type": "string",
+                    "group": "StringRules",
+                    "rule": "enum",
+                    "enum": [
+                      "low",
+                      "medium",
+                      "high",
+                      "critical"
+                    ]
+                  }
+                },
+                "description": {
+                  "type": "string",
+                  "rule": {
+                    "name": "description",
+                    "type": "string",
+                    "group": "StringRules",
+                    "rule": "alpha",
+                    "casing": "mixed",
+                    "minLength": 10,
+                    "maxLength": 10
+                  }
+                },
+                "resolution": {
+                  "type": "string",
+                  "rule": {
+                    "name": "resolution",
+                    "type": "string",
+                    "group": "StringRules",
+                    "rule": "alpha",
+                    "casing": "mixed",
+                    "minLength": 10,
+                    "maxLength": 10
+                  }
+                }
+              },
+              "required": [
+                "description",
+                "severity"
+              ]
+            },
+            "subType": "object",
+            "name": "issues",
+            "rule": {
+              "name": "issues",
+              "type": "object"
+            }
+          }
+        },
+        "required": [
+          "maintenanceType"
+        ],
+        "rule": {
+          "name": "details",
+          "type": "object"
+        }
+      },
+      "nextScheduledMaintenance": {
+        "format": "date-time",
+        "description": "Timestamp for the next scheduled maintenance",
+        "type": "string",
+        "rule": {
+          "name": "nextScheduledMaintenance",
+          "type": "string",
+          "group": "DateRules",
+          "rule": "currentDateWithTime",
+          "format": "MM-DD-YYYY HH:mm:ss",
+          "description": "Timestamp for the next scheduled maintenance"
+        }
+      },
+      "timestamp": {
+        "format": "date-time",
+        "description": "ISO 8601 formatted timestamp of the maintenance event",
+        "type": "string",
+        "rule": {
+          "name": "timestamp",
+          "type": "string",
+          "group": "DateRules",
+          "rule": "currentDateWithTime",
+          "format": "MM-DD-YYYY HH:mm:ss",
+          "description": "ISO 8601 formatted timestamp of the maintenance event"
+        }
+      },
+      "status": {
+        "description": "Current status of the maintenance operation",
+        "type": "string",
+        "enum": [
+          "scheduled",
+          "in-progress",
+          "completed",
+          "failed",
+          "urgent",
+          "routine"
+        ],
+        "rule": {
+          "name": "status",
+          "type": "string",
+          "group": "StringRules",
+          "rule": "enum",
+          "enum": [
+            "scheduled",
+            "in-progress",
+            "completed",
+            "failed",
+            "urgent",
+            "routine"
+          ],
+          "description": "Current status of the maintenance operation"
+        }
+      }
+    },
+    "publishSettings": {
+      "count": 0,
+      "interval": 1000,
+      "delay": 0
+    }
+  },
+  {
+    "topic": "fab/v1/{geo}/{region}/{lab_ID}/sensor/{sensor_type}/{sensor_ID}/{reading}",
+    "topicParameters": {
+      "geo": {
+        "schema": {
+          "type": "string",
+          "enum": [
+            "US",
+            "CA",
+            "EU",
+            "APAC"
+          ]
+        },
+        "rule": {
+          "name": "geo",
+          "type": "string",
+          "group": "StringRules",
+          "rule": "enum",
+          "enum": [
+            "US",
+            "CA",
+            "EU",
+            "APAC"
+          ]
+        }
+      },
+      "sensor_ID": {
+        "schema": {
+          "type": "string"
+        },
+        "rule": {
+          "name": "sensor_ID",
+          "type": "string",
+          "group": "StringRules",
+          "rule": "uuid"
+        }
+      },
+      "reading": {
+        "schema": {
+          "type": "string"
+        },
+        "rule": {
+          "name": "reading",
+          "type": "string",
+          "group": "NumberRules",
+          "rule": "float",
+          "minimum": 0,
+          "maximum": 100,
+          "fractionDigits": 2
+        }
+      },
+      "region": {
+        "schema": {
+          "type": "string",
+          "enum": [
+            "west",
+            "east",
+            "centeral"
+          ]
+        },
+        "rule": {
+          "name": "region",
+          "type": "string",
+          "group": "StringRules",
+          "rule": "enum",
+          "enum": [
+            "west",
+            "east",
+            "centeral"
+          ]
+        }
+      },
+      "lab_ID": {
+        "schema": {
+          "type": "string",
+          "enum": [
+            "001",
+            "002",
+            "003"
+          ]
+        },
+        "rule": {
+          "name": "lab_ID",
+          "type": "string",
+          "group": "StringRules",
+          "rule": "enum",
+          "enum": [
+            "001",
+            "002",
+            "003"
+          ]
+        }
+      },
+      "sensor_type": {
+        "schema": {
+          "type": "string",
+          "enum": [
+            "Temperature",
+            "Pressure",
+            "Humidity",
+            "Vibration",
+            "AirFlow",
+            "Particle",
+            "Radiation",
+            "Acoustic"
+          ]
+        },
+        "rule": {
+          "name": "sensor_type",
+          "type": "string",
+          "group": "StringRules",
+          "rule": "enum",
+          "enum": [
+            "Temperature",
+            "Pressure",
+            "Humidity",
+            "Vibration",
+            "AirFlow",
+            "Particle",
+            "Radiation",
+            "Acoustic"
+          ]
+        }
+      }
+    },
+    "eventName": "Sensor",
+    "eventVersion": "0.1.0",
+    "messageName": "Sensor",
+    "hasPayload": true,
+    "payload": {
+      "timestamp": {
+        "format": "date-time",
+        "type": "string",
+        "rule": {
+          "name": "timestamp",
+          "type": "string",
+          "group": "DateRules",
+          "rule": "currentDateWithTime",
+          "format": "MM-DD-YYYY HH:mm:ss"
+        }
+      }
+    },
+    "publishSettings": {
+      "count": 0,
+      "interval": 1000,
+      "delay": 0
+    }
+  },
+  {
+    "topic": "fab/v1/{geo}/{region}/{lab_ID}/production/{product_family}/{uuid}/{production_status}",
+    "topicParameters": {
+      "geo": {
+        "schema": {
+          "type": "string",
+          "enum": [
+            "US",
+            "CA",
+            "EU",
+            "APAC"
+          ]
+        },
+        "rule": {
+          "name": "geo",
+          "type": "string",
+          "group": "StringRules",
+          "rule": "enum",
+          "enum": [
+            "US",
+            "CA",
+            "EU",
+            "APAC"
+          ]
+        }
+      },
+      "product_family": {
+        "schema": {
+          "type": "string",
+          "enum": [
+            "iPhone",
+            "iPad",
+            "MacBook",
+            "iMac",
+            "AirPods",
+            "Apple TV",
+            "Watch",
+            "Mac Mini"
+          ]
+        },
+        "rule": {
+          "name": "product_family",
+          "type": "string",
+          "group": "StringRules",
+          "rule": "enum",
+          "enum": [
+            "iPhone",
+            "iPad",
+            "MacBook",
+            "iMac",
+            "AirPods",
+            "AppleTV",
+            "Watch",
+            "Mac Mini"
+          ]
+        }
+      },
+      "production_status": {
+        "schema": {
+          "type": "string",
+          "enum": [
+            "Queued",
+            "InProcess",
+            "Completed",
+            "Halted",
+            "Rework",
+            "Testing",
+            "Blocked",
+            "Scrapped"
+          ]
+        },
+        "rule": {
+          "name": "production_status",
+          "type": "string",
+          "group": "StringRules",
+          "rule": "enum",
+          "enum": [
+            "Queued",
+            "InProcess",
+            "Completed",
+            "Halted",
+            "Rework",
+            "Testing",
+            "Blocked",
+            "Scrapped"
+          ]
+        }
+      },
+      "region": {
+        "schema": {
+          "type": "string",
+          "enum": [
+            "west",
+            "east",
+            "centeral"
+          ]
+        },
+        "rule": {
+          "name": "region",
+          "type": "string",
+          "group": "StringRules",
+          "rule": "enum",
+          "enum": [
+            "west",
+            "east",
+            "centeral"
+          ]
+        }
+      },
+      "lab_ID": {
+        "schema": {
+          "type": "string",
+          "enum": [
+            "001",
+            "002",
+            "003"
+          ]
+        },
+        "rule": {
+          "name": "lab_ID",
+          "type": "string",
+          "group": "StringRules",
+          "rule": "enum",
+          "enum": [
+            "001",
+            "002",
+            "003"
+          ]
+        }
+      },
+      "uuid": {
+        "schema": {
+          "type": "string"
+        },
+        "rule": {
+          "name": "uuid",
+          "type": "string",
+          "group": "StringRules",
+          "rule": "uuid"
+        }
+      }
+    },
+    "eventName": "Production",
+    "eventVersion": "0.1.0",
+    "messageName": "Production",
+    "hasPayload": true,
+    "payload": {
+      "production_status": {
+        "type": "string",
+        "rule": {
+          "name": "production_status",
+          "type": "string",
+          "group": "StringRules",
+          "rule": "alpha",
+          "casing": "mixed",
+          "minLength": 10,
+          "maxLength": 10
+        }
+      },
+      "batch_number": {
+        "type": "string",
+        "rule": {
+          "name": "batch_number",
+          "type": "string",
+          "group": "StringRules",
+          "rule": "alpha",
+          "casing": "mixed",
+          "minLength": 10,
+          "maxLength": 10
+        }
+      },
+      "product_id": {
+        "type": "string",
+        "rule": {
+          "name": "product_id",
+          "type": "string",
+          "group": "StringRules",
+          "rule": "alpha",
+          "casing": "mixed",
+          "minLength": 10,
+          "maxLength": 10
+        }
+      },
+      "timestamp": {
+        "format": "date-time",
+        "type": "string",
+        "rule": {
+          "name": "timestamp",
+          "type": "string",
+          "group": "DateRules",
+          "rule": "currentDateWithTime",
+          "format": "MM-DD-YYYY HH:mm:ss"
+        }
+      }
+    },
+    "publishSettings": {
+      "count": 0,
+      "interval": 1000,
+      "delay": 0
+    },
+    "mappings": [
+      {
+        "type": "Payload Parameter",
+        "source": {
+          "type": "Topic Parameter",
+          "name": "uuid",
+          "fieldName": "uuid",
+          "fieldType": "string"
+        },
+        "target": {
+          "type": "Payload Parameter",
+          "name": "product_id",
+          "fieldName": "product_id",
+          "fieldType": "string"
+        }
+      },
+      {
+        "type": "Payload Parameter",
+        "source": {
+          "type": "Topic Parameter",
+          "name": "production_status",
+          "fieldName": "production_status",
+          "fieldType": "string"
+        },
+        "target": {
+          "type": "Payload Parameter",
+          "name": "production_status",
+          "fieldName": "production_status",
+          "fieldType": "string"
+        }
+      }
+    ]
+  },
+  {
+    "topic": "fab/v1/{geo}/{region}/{lab_ID}/quality/{product_family}/{uuid}/{inspection_stage}/{inspection_status}",
+    "topicParameters": {
+      "geo": {
+        "schema": {
+          "type": "string",
+          "enum": [
+            "US",
+            "CA",
+            "EU",
+            "APAC"
+          ]
+        },
+        "rule": {
+          "name": "geo",
+          "type": "string",
+          "group": "StringRules",
+          "rule": "enum",
+          "enum": [
+            "US",
+            "CA",
+            "EU",
+            "APAC"
+          ]
+        }
+      },
+      "product_family": {
+        "schema": {
+          "type": "string",
+          "enum": [
+            "iPhone",
+            "iPad",
+            "MacBook",
+            "iMac",
+            "AirPods",
+            "Apple TV",
+            "Watch",
+            "Mac Mini"
+          ]
+        },
+        "rule": {
+          "name": "product_family",
+          "type": "string",
+          "group": "StringRules",
+          "rule": "enum",
+          "enum": [
+            "iPhone",
+            "iPad",
+            "MacBook",
+            "iMac",
+            "AirPods",
+            "AppleTV",
+            "Watch",
+            "Mac Mini"
+          ]
+        }
+      },
+      "inspection_stage": {
+        "schema": {
+          "type": "string",
+          "enum": [
+            "Initial",
+            "InProcess",
+            "Final",
+            "PreShip"
+          ]
+        },
+        "rule": {
+          "name": "inspection_stage",
+          "type": "string",
+          "group": "StringRules",
+          "rule": "enum",
+          "enum": [
+            "Initial",
+            "InProcess",
+            "Final",
+            "PreShip"
+          ]
+        }
+      },
+      "region": {
+        "schema": {
+          "type": "string",
+          "enum": [
+            "west",
+            "east",
+            "centeral"
+          ]
+        },
+        "rule": {
+          "name": "region",
+          "type": "string",
+          "group": "StringRules",
+          "rule": "enum",
+          "enum": [
+            "west",
+            "east",
+            "centeral"
+          ]
+        }
+      },
+      "lab_ID": {
+        "schema": {
+          "type": "string",
+          "enum": [
+            "001",
+            "002",
+            "003"
+          ]
+        },
+        "rule": {
+          "name": "lab_ID",
+          "type": "string",
+          "group": "StringRules",
+          "rule": "enum",
+          "enum": [
+            "001",
+            "002",
+            "003"
+          ]
+        }
+      },
+      "uuid": {
+        "schema": {
+          "type": "string"
+        },
+        "rule": {
+          "name": "uuid",
+          "type": "string",
+          "group": "StringRules",
+          "rule": "uuid"
+        }
+      },
+      "inspection_status": {
+        "schema": {
+          "type": "string",
+          "enum": [
+            "Passed",
+            "Failed",
+            "Pending"
+          ]
+        },
+        "rule": {
+          "name": "inspection_status",
+          "type": "string",
+          "group": "StringRules",
+          "rule": "enum",
+          "enum": [
+            "Passed",
+            "Failed",
+            "Pending"
+          ]
+        }
+      }
+    },
+    "eventName": "Quality",
+    "eventVersion": "0.1.0",
+    "messageName": "Quality",
+    "hasPayload": true,
+    "payload": {
+      "inspection_stage": {
+        "type": "string",
+        "rule": {
+          "name": "inspection_stage",
+          "type": "string",
+          "group": "StringRules",
+          "rule": "alpha",
+          "casing": "mixed",
+          "minLength": 10,
+          "maxLength": 10
+        }
+      },
+      "product_id": {
+        "type": "string",
+        "rule": {
+          "name": "product_id",
+          "type": "string",
+          "group": "StringRules",
+          "rule": "alpha",
+          "casing": "mixed",
+          "minLength": 10,
+          "maxLength": 10
+        }
+      },
+      "inspection_status": {
+        "type": "string",
+        "rule": {
+          "name": "inspection_status",
+          "type": "string",
+          "group": "StringRules",
+          "rule": "alpha",
+          "casing": "mixed",
+          "minLength": 10,
+          "maxLength": 10
+        }
+      },
+      "timestamp": {
+        "format": "date-time",
+        "type": "string",
+        "rule": {
+          "name": "timestamp",
+          "type": "string",
+          "group": "DateRules",
+          "rule": "currentDateWithTime",
+          "format": "MM-DD-YYYY HH:mm:ss"
+        }
+      }
+    },
+    "publishSettings": {
+      "count": 0,
+      "interval": 1000,
+      "delay": 0
+    },
+    "mappings": [
+      {
+        "type": "Payload Parameter",
+        "source": {
+          "type": "Topic Parameter",
+          "name": "uuid",
+          "fieldName": "uuid",
+          "fieldType": "string"
+        },
+        "target": {
+          "type": "Payload Parameter",
+          "name": "product_id",
+          "fieldName": "product_id",
+          "fieldType": "string"
+        }
+      },
+      {
+        "type": "Payload Parameter",
+        "source": {
+          "type": "Topic Parameter",
+          "name": "inspection_stage",
+          "fieldName": "inspection_stage",
+          "fieldType": "string"
+        },
+        "target": {
+          "type": "Payload Parameter",
+          "name": "inspection_stage",
+          "fieldName": "inspection_stage",
+          "fieldType": "string"
+        }
+      },
+      {
+        "type": "Payload Parameter",
+        "source": {
+          "type": "Topic Parameter",
+          "name": "inspection_status",
+          "fieldName": "inspection_status",
+          "fieldType": "string"
+        },
+        "target": {
+          "type": "Payload Parameter",
+          "name": "inspection_status",
+          "fieldName": "inspection_status",
+          "fieldType": "string"
+        }
+      }
+    ]
+  },
+  {
+    "topic": "fab/v1/{geo}/{region}/{lab_ID}/shipping/{product_family}/{uuid}/{transport_status}/{destination}",
+    "topicParameters": {
+      "geo": {
+        "schema": {
+          "type": "string",
+          "enum": [
+            "US",
+            "CA",
+            "EU",
+            "APAC"
+          ]
+        },
+        "rule": {
+          "name": "geo",
+          "type": "string",
+          "group": "StringRules",
+          "rule": "enum",
+          "enum": [
+            "US",
+            "CA",
+            "EU",
+            "APAC"
+          ]
+        }
+      },
+      "product_family": {
+        "schema": {
+          "type": "string",
+          "enum": [
+            "iPhone",
+            "iPad",
+            "MacBook",
+            "iMac",
+            "AirPods",
+            "Apple TV",
+            "Watch",
+            "Mac Mini"
+          ]
+        },
+        "rule": {
+          "name": "product_family",
+          "type": "string",
+          "group": "StringRules",
+          "rule": "enum",
+          "enum": [
+            "iPhone",
+            "iPad",
+            "MacBook",
+            "iMac",
+            "AirPods",
+            "AppleTV",
+            "Watch",
+            "Mac Mini"
+          ]
+        }
+      },
+      "destination": {
+        "schema": {
+          "type": "string"
+        },
+        "rule": {
+          "name": "destination",
+          "type": "string",
+          "group": "LocationRules",
+          "rule": "countryCode"
+        }
+      },
+      "region": {
+        "schema": {
+          "type": "string",
+          "enum": [
+            "west",
+            "east",
+            "centeral"
+          ]
+        },
+        "rule": {
+          "name": "region",
+          "type": "string",
+          "group": "StringRules",
+          "rule": "enum",
+          "enum": [
+            "west",
+            "east",
+            "centeral"
+          ]
+        }
+      },
+      "lab_ID": {
+        "schema": {
+          "type": "string",
+          "enum": [
+            "001",
+            "002",
+            "003"
+          ]
+        },
+        "rule": {
+          "name": "lab_ID",
+          "type": "string",
+          "group": "StringRules",
+          "rule": "enum",
+          "enum": [
+            "001",
+            "002",
+            "003"
+          ]
+        }
+      },
+      "uuid": {
+        "schema": {
+          "type": "string"
+        },
+        "rule": {
+          "name": "uuid",
+          "type": "string",
+          "group": "StringRules",
+          "rule": "uuid"
+        }
+      },
+      "transport_status": {
+        "schema": {
+          "type": "string",
+          "enum": [
+            "Pending",
+            "InTransit",
+            "Delivered",
+            "Delayed",
+            "Returned",
+            "Cancelled",
+            "Processing",
+            "Lost"
+          ]
+        },
+        "rule": {
+          "name": "transport_status",
+          "type": "string",
+          "group": "StringRules",
+          "rule": "enum",
+          "enum": [
+            "Pending",
+            "InTransit",
+            "Delivered",
+            "Delayed",
+            "Returned",
+            "Cancelled",
+            "Processing",
+            "Lost"
+          ]
+        }
+      }
+    },
+    "eventName": "Shipping",
+    "eventVersion": "0.1.0",
+    "messageName": "Shipping",
+    "hasPayload": true,
+    "payload": {
+      "carrier": {
+        "type": "string",
+        "rule": {
+          "name": "carrier",
+          "type": "string",
+          "group": "StringRules",
+          "rule": "alpha",
+          "casing": "mixed",
+          "minLength": 10,
+          "maxLength": 10
+        }
+      },
+      "quantity": {
+        "type": "integer",
+        "minimum": 1,
+        "rule": {
+          "name": "quantity",
+          "type": "integer",
+          "group": "NumberRules",
+          "rule": "int",
+          "minimum": 1,
+          "maximum": 1000
+        }
+      },
+      "product_id": {
+        "type": "string",
+        "rule": {
+          "name": "product_id",
+          "type": "string",
+          "group": "StringRules",
+          "rule": "alpha",
+          "casing": "mixed",
+          "minLength": 10,
+          "maxLength": 10
+        }
+      },
+      "actual_departure": {
+        "format": "date-time",
+        "type": "string",
+        "rule": {
+          "name": "actual_departure",
+          "type": "string",
+          "group": "DateRules",
+          "rule": "currentDateWithTime",
+          "format": "MM-DD-YYYY HH:mm:ss"
+        }
+      },
+      "estimated_delivery": {
+        "format": "date-time",
+        "type": "string",
+        "rule": {
+          "name": "estimated_delivery",
+          "type": "string",
+          "group": "DateRules",
+          "rule": "currentDateWithTime",
+          "format": "MM-DD-YYYY HH:mm:ss"
+        }
+      },
+      "shipment_id": {
+        "format": "uuid",
+        "type": "string",
+        "rule": {
+          "name": "shipment_id",
+          "type": "string",
+          "group": "StringRules",
+          "rule": "uuid",
+          "casing": "mixed",
+          "format": "uuid"
+        }
+      },
+      "transport_status": {
+        "type": "string",
+        "rule": {
+          "name": "transport_status",
+          "type": "string",
+          "group": "StringRules",
+          "rule": "alpha",
+          "casing": "mixed",
+          "minLength": 10,
+          "maxLength": 10
+        }
+      },
+      "current_location": {
+        "type": "string",
+        "rule": {
+          "name": "current_location",
+          "type": "string",
+          "group": "StringRules",
+          "rule": "alpha",
+          "casing": "mixed",
+          "minLength": 10,
+          "maxLength": 10
+        }
+      },
+      "timestamp": {
+        "format": "date-time",
+        "type": "string",
+        "rule": {
+          "name": "timestamp",
+          "type": "string",
+          "group": "DateRules",
+          "rule": "currentDateWithTime",
+          "format": "MM-DD-YYYY HH:mm:ss"
+        }
+      }
+    },
+    "publishSettings": {
+      "count": 0,
+      "interval": 1000,
+      "delay": 0
+    },
+    "mappings": [
+      {
+        "type": "Payload Parameter",
+        "source": {
+          "type": "Topic Parameter",
+          "name": "transport_status",
+          "fieldName": "transport_status",
+          "fieldType": "string"
+        },
+        "target": {
+          "type": "Payload Parameter",
+          "name": "transport_status",
+          "fieldName": "transport_status",
+          "fieldType": "string"
+        }
+      },
+      {
+        "type": "Payload Parameter",
+        "source": {
+          "type": "Topic Parameter",
+          "name": "uuid",
+          "fieldName": "uuid",
+          "fieldType": "string"
+        },
+        "target": {
+          "type": "Payload Parameter",
+          "name": "product_id",
+          "fieldName": "product_id",
+          "fieldType": "string"
+        }
+      }
+    ]
+  }
+]
