@@ -157,5 +157,20 @@
     "tags": "retial, omnichannel, click, collect",
     "lastUpdated": "2025-03-07T12:33:14.760Z",
     "contributed": true
+  },
+  {
+    "version": "1.0",
+    "feedType": "asyncapi_feed",
+    "type": "asyncapi_feed",
+    "feedView": "default",
+    "name": "Fabrication Lab",
+    "description": "The **Fabrication Lab Event Publisher** is a critical application in the manufacturing ecosystem, responsible for streaming real-time events related to production, shipping, maintenance, quality control, inventory, HR, and sensor monitoring. It provides a structured event-driven architecture that enables seamless tracking of product lifecycle stages, employee access, machine health, material availability, and environmental conditions within a fabrication lab. By publishing standardized events, the system enhances operational visibility, ensures timely decision-making, and facilitates automation across multiple manufacturing sites, optimizing efficiency and reducing downtime.",
+    "img": "https://cdn-icons-png.flaticon.com/512/2299/2299224.png",
+    "contributor": "Tamimi",
+    "github": "TamimiGithub",
+    "domain": "Manufacturing",
+    "tags": "manufacturing",
+    "lastUpdated": "2025-03-26T03:54:03.049Z",
+    "contributed": true
   }
 ]
