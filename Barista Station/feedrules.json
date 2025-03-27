@@ -71,59 +71,75 @@
         }
       },
       "items": {
-        "type": "object",
-        "properties": {
-          "itemId": {
-            "type": "string",
-            "rule": {
-              "name": "itemId",
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "itemId": {
               "type": "string",
-              "group": "StringRules",
-              "rule": "enum",
-              "enum": [
-                "1001",
-                "1002",
-                "1004",
-                "1005",
-                "1006"
-              ]
-            }
-          },
-          "quantity": {
-            "type": "number",
-            "rule": {
-              "name": "quantity",
+              "rule": {
+                "name": "itemId",
+                "type": "string",
+                "group": "StringRules",
+                "rule": "enum",
+                "enum": [
+                  "10001",
+                  "10002",
+                  "10004",
+                  "10005",
+                  "10006"
+                ]
+              }
+            },
+            "quantity": {
               "type": "number",
-              "group": "StringRules",
-              "rule": "enum",
-              "enum": [
-                "1",
-                "2",
-                "3"
-              ]
+              "rule": {
+                "name": "quantity",
+                "type": "number",
+                "group": "StringRules",
+                "rule": "enum",
+                "enum": [
+                  "1",
+                  "2",
+                  "3",
+                  "4"
+                ]
+              }
+            },
+            "name": {
+              "type": "string",
+              "rule": {
+                "name": "name",
+                "type": "string",
+                "group": "StringRules",
+                "rule": "enum",
+                "enum": [
+                  "Java Chip Frappuccino",
+                  "Double Chocolate Chip Frappuccino",
+                  "Cappuccino",
+                  "Caffe Americano",
+                  "Cold coffee",
+                  "Pink Drink",
+                  "Gingerbread Latte",
+                  "Vienna Creamy aLatte",
+                  "Hazelnut Oat Cortado",
+                  "Iced Salted Pretzel Caramel Latte"
+                ]
+              }
             }
           },
-          "name": {
-            "type": "string",
-            "rule": {
-              "name": "name",
-              "type": "string",
-              "group": "StringRules",
-              "rule": "enum",
-              "enum": [
-                "Java Chip Frappuccino",
-                "Double Chocolate Chip Frappuccino",
-                "Cappuccino",
-                "Caffe Americano",
-                "Cold coffee",
-                "Pink Drink",
-                "Gingerbread Latte",
-                "Vienna Creamy Latte",
-                "Hazelnut Oat Cortado",
-                "Iced Salted Pretzel Caramel Latte"
-              ]
-            }
-          }
+          "required": [
+            "itemId",
+            "name",
+            "quantity"
+          ]
+        },
+        "subType": "object",
+        "name": "items",
+        "rule": {
+          "name": "items",
+          "type": "object",
+          "count": 2
         }
       },
       "paymentStatus": {
@@ -134,8 +150,8 @@
           "group": "StringRules",
           "rule": "enum",
           "enum": [
-            "Completed",
-            "Pending"
+            "COMPLETED",
+            "PENDING"
           ]
         }
       },
@@ -248,59 +264,75 @@
         }
       },
       "items": {
-        "type": "object",
-        "properties": {
-          "itemId": {
-            "type": "string",
-            "rule": {
-              "name": "itemId",
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "itemId": {
               "type": "string",
-              "group": "StringRules",
-              "rule": "enum",
-              "enum": [
-                "1001",
-                "1002",
-                "1004",
-                "1005",
-                "1006"
-              ]
-            }
-          },
-          "quantity": {
-            "type": "number",
-            "rule": {
-              "name": "quantity",
+              "rule": {
+                "name": "itemId",
+                "type": "string",
+                "group": "StringRules",
+                "rule": "enum",
+                "enum": [
+                  "1001",
+                  "1002",
+                  "1004",
+                  "1005",
+                  "1006"
+                ]
+              }
+            },
+            "quantity": {
               "type": "number",
-              "group": "StringRules",
-              "rule": "enum",
-              "enum": [
-                "1",
-                "2",
-                "3"
-              ]
+              "rule": {
+                "name": "quantity",
+                "type": "number",
+                "group": "StringRules",
+                "rule": "enum",
+                "enum": [
+                  "1",
+                  "2",
+                  "3",
+                  "4"
+                ]
+              }
+            },
+            "name": {
+              "type": "string",
+              "rule": {
+                "name": "name",
+                "type": "string",
+                "group": "StringRules",
+                "rule": "enum",
+                "enum": [
+                  "Java Chip Frappuccino",
+                  "Double Chocolate Chip Frappuccino",
+                  "Cappuccino",
+                  "Caffe Americano",
+                  "Cold coffee",
+                  "Pink Drink",
+                  "Gingerbread Latte",
+                  "Vienna Creamy Latte",
+                  "Hazelnut Oat Cortado",
+                  "Iced Salted Pretzel Caramel Latte"
+                ]
+              }
             }
           },
-          "name": {
-            "type": "string",
-            "rule": {
-              "name": "name",
-              "type": "string",
-              "group": "StringRules",
-              "rule": "enum",
-              "enum": [
-                "Java Chip Frappuccino",
-                "Double Chocolate Chip Frappuccino",
-                "Cappuccino",
-                "Caffe Americano",
-                "Cold coffee",
-                "Pink Drink",
-                "Gingerbread Latte",
-                "Vienna Creamy Latte",
-                "Hazelnut Oat Cortado",
-                "Iced Salted Pretzel Caramel Latte"
-              ]
-            }
-          }
+          "required": [
+            "itemId",
+            "name",
+            "quantity"
+          ]
+        },
+        "subType": "object",
+        "name": "items",
+        "rule": {
+          "name": "items",
+          "type": "object",
+          "count": 2
         }
       },
       "timestamp": {
