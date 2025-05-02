@@ -178,7 +178,10 @@
           "fieldType": "string"
         }
       }
-    ]
+    ],
+    "messageSettings": {
+      "partitionKeys": "transactionType | transactionNum | currency"
+    }
   },
   {
     "topic": "acmebank/solace/core/payment/creditCard/paid/v1/{currency}/{amount}/{transactionID}",
@@ -360,7 +363,11 @@
           "fieldType": "string"
         }
       }
-    ]
+    ],
+    "messageSettings": {
+      "partitionKeys": "transactionType | transactionNum | currency",
+      "appMessageId": "uuid"
+    }
   },
   {
     "topic": "acmebank/solace/core/withdrawal/v1/{currency}/{amount}/{transactionID}",
@@ -542,7 +549,10 @@
           "fieldType": "string"
         }
       }
-    ]
+    ],
+    "messageSettings": {
+      "partitionKeys": "transactionType | transactionNum | currency"
+    }
   },
   {
     "topic": "acmebank/solace/core/payment/loan/paid/v1/{currency}/{amount}/{transactionID}",
@@ -724,7 +734,11 @@
           "fieldType": "string"
         }
       }
-    ]
+    ],
+    "messageSettings": {
+      "partitionKeys": "transactionType | transactionNum | currency",
+      "appMessageId": "uuid"
+    }
   },
   {
     "topic": "acmebank/solace/core/transfer/v1/{currency}/{amount}/{transactionID}",
@@ -906,6 +920,9 @@
           "fieldType": "string"
         }
       }
-    ]
+    ],
+    "messageSettings": {
+      "partitionKeys": "transactionType | transactionNum | currency"
+    }
   }
 ]
