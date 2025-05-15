@@ -1,5 +1,8 @@
 {
+  "version": "1.0",
+  "feedType": "asyncapi_feed",
   "type": "asyncapi_feed",
+  "feedView": "default",
   "name": "Oracle GoldenGate Streaming",
   "description": "The Oracle GoldenGate Streaming feed provides real-time updates on retail orders, including new order insertions and status changes. This stream enables seamless order tracking, ensuring timely processing and accurate inventory management across sales channels.",
   "img": "https://cdn-icons-png.flaticon.com/512/6762/6762417.png",
@@ -7,6 +10,5 @@
   "github": "acagnetti",
   "domain": "retail",
   "tags": "oracle, goldengate, cdc, retail, insert, update, orders",
-  "lastUpdated": "2024-12-03T19:58:42.718Z",
-  "contributed": true
+  "lastUpdated": "2025-05-15T01:16:39.798Z"
 }

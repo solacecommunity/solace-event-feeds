@@ -76,7 +76,7 @@
                   "x-parser-schema-id": "<anonymous-schema-6>"
                 },
                 "STATE": {
-                  "type": "number",
+                  "type": "string",
                   "enum": [
                     "Created"
                   ],
@@ -114,7 +114,7 @@
       ],
       "receive": [],
       "hasPayload": true,
-      "schema": "Oracle Insert Order Schema"
+      "schema": "Oracle_Insert_Order_Schema"
     },
     "Update_Orders": {
       "send": [
@@ -167,7 +167,7 @@
                   "x-parser-schema-id": "<anonymous-schema-13>"
                 },
                 "STATE": {
-                  "type": "number",
+                  "type": "string",
                   "enum": [
                     "Pending",
                     "Paid",
@@ -204,11 +204,11 @@
       ],
       "receive": [],
       "hasPayload": true,
-      "schema": "Oracle Update Order"
+      "schema": "Oracle_Update_Order"
     }
   },
   "schemas": {
-    "Oracle Insert Order Schema": {
+    "Oracle_Insert_Order_Schema": {
       "x-ep-schema-version": "0.1.0",
       "x-ep-schema-version-id": "excfbjpb0ex",
       "$schema": "http://json-schema.org/draft-07/schema#",
@@ -254,7 +254,7 @@
           "x-parser-schema-id": "<anonymous-schema-6>"
         },
         "STATE": {
-          "type": "number",
+          "type": "string",
           "enum": [
             "Created"
           ],
@@ -275,7 +275,7 @@
       },
       "x-parser-schema-id": "Oracle_Insert_Order_Schema"
     },
-    "Oracle Update Order": {
+    "Oracle_Update_Order": {
       "x-ep-schema-version": "0.1.0",
       "x-ep-schema-version-id": "qsdv5eouhph",
       "$schema": "http://json-schema.org/draft-07/schema#",
@@ -303,7 +303,7 @@
           "x-parser-schema-id": "<anonymous-schema-13>"
         },
         "STATE": {
-          "type": "number",
+          "type": "string",
           "enum": [
             "Pending",
             "Paid",
@@ -337,5 +337,6 @@
     "x-ep-application-domain-name": "Oracle Database Feeds"
   },
   "version": "2.5.0",
-  "fileName": "Oracle-Retail-Database-0.1.0.json"
+  "fileName": "Oracle-Retail-Database-0.1.0.json",
+  "view": "sender"
 }

@@ -41,7 +41,7 @@
             "type": "number"
           },
           "STATE": {
-            "type": "number",
+            "type": "string",
             "enum": [
               "Created"
             ]
@@ -82,7 +82,7 @@
             "type": "number"
           },
           "STATE": {
-            "type": "number",
+            "type": "string",
             "enum": [
               "Pending",
               "Paid",
