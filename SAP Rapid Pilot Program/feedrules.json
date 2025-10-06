@@ -1,0 +1,243 @@
+[
+  {
+    "topic": "sap/businesspartner/created/V1/{businessPartnerType}/{country}/{city}",
+    "topicParameters": {
+      "country": {
+        "schema": {
+          "type": "string"
+        },
+        "rule": {
+          "name": "country",
+          "type": "string",
+          "group": "StringRules",
+          "rule": "alpha",
+          "casing": "mixed",
+          "minLength": 10,
+          "maxLength": 10
+        }
+      },
+      "city": {
+        "schema": {
+          "type": "string"
+        },
+        "rule": {
+          "name": "city",
+          "type": "string",
+          "group": "StringRules",
+          "rule": "alpha",
+          "casing": "mixed",
+          "minLength": 10,
+          "maxLength": 10
+        }
+      },
+      "businessPartnerType": {
+        "schema": {
+          "type": "string"
+        },
+        "rule": {
+          "name": "businessPartnerType",
+          "type": "string",
+          "group": "StringRules",
+          "rule": "alpha",
+          "casing": "mixed",
+          "minLength": 10,
+          "maxLength": 10
+        }
+      }
+    },
+    "eventName": "BP created",
+    "eventVersion": "0.1.0",
+    "messageName": "BP_created",
+    "hasPayload": true,
+    "payload": {
+      "lastName": {
+        "type": "string",
+        "maxLength": 40,
+        "rule": {
+          "name": "lastName",
+          "type": "string",
+          "group": "PersonRules",
+          "rule": "lastName"
+        }
+      },
+      "country": {
+        "type": "string",
+        "maxLength": 3,
+        "rule": {
+          "name": "country",
+          "type": "string",
+          "group": "LocationRules",
+          "rule": "countryCode"
+        }
+      },
+      "city": {
+        "type": "string",
+        "maxLength": 40,
+        "rule": {
+          "name": "city",
+          "type": "string",
+          "group": "LocationRules",
+          "rule": "city"
+        }
+      },
+      "postalCode": {
+        "type": "string",
+        "maxLength": 10,
+        "rule": {
+          "name": "postalCode",
+          "type": "string",
+          "group": "LocationRules",
+          "rule": "zipCode"
+        }
+      },
+      "houseNumber": {
+        "type": "string",
+        "maxLength": 10,
+        "rule": {
+          "name": "houseNumber",
+          "type": "string",
+          "group": "LocationRules",
+          "rule": "buildingNumber"
+        }
+      },
+      "validFrom": {
+        "format": "date-time",
+        "type": "string",
+        "rule": {
+          "name": "validFrom",
+          "type": "string",
+          "group": "DateRules",
+          "rule": "currentDateWithTime",
+          "format": "MM-DD-YYYY HH:mm:ss"
+        }
+      },
+      "firstName": {
+        "type": "string",
+        "maxLength": 40,
+        "rule": {
+          "name": "firstName",
+          "type": "string",
+          "group": "PersonRules",
+          "rule": "firstName"
+        }
+      },
+      "street": {
+        "type": "string",
+        "maxLength": 60,
+        "rule": {
+          "name": "street",
+          "type": "string",
+          "group": "LocationRules",
+          "rule": "street"
+        }
+      },
+      "addressNumber": {
+        "type": "string",
+        "maxLength": 10,
+        "rule": {
+          "name": "addressNumber",
+          "type": "string",
+          "group": "StringRules",
+          "rule": "numeric",
+          "minLength": 8,
+          "maxLength": 10,
+          "leadingZeros": true
+        }
+      },
+      "partnerId": {
+        "type": "string",
+        "maxLength": 10,
+        "rule": {
+          "name": "partnerId",
+          "type": "string",
+          "group": "StringRules",
+          "rule": "numeric",
+          "minLength": 10,
+          "maxLength": 10,
+          "leadingZeros": true
+        }
+      },
+      "businessPartnerType": {
+        "type": "string",
+        "maxLength": 1,
+        "rule": {
+          "name": "businessPartnerType",
+          "type": "string",
+          "group": "StringRules",
+          "rule": "enum",
+          "enum": [
+            "0",
+            "1",
+            "2"
+          ]
+        }
+      },
+      "validTo": {
+        "format": "date-time",
+        "type": "string",
+        "rule": {
+          "name": "validTo",
+          "type": "string",
+          "group": "DateRules",
+          "rule": "currentDateWithTime",
+          "format": "MM-DD-YYYY HH:mm:ss"
+        }
+      }
+    },
+    "publishSettings": {
+      "count": 0,
+      "interval": 1000,
+      "delay": 0
+    },
+    "mappings": [
+      {
+        "type": "Topic Parameter",
+        "source": {
+          "type": "Payload Parameter",
+          "name": "country",
+          "fieldName": "country",
+          "fieldType": "string"
+        },
+        "target": {
+          "type": "Topic Parameter",
+          "name": "country",
+          "fieldName": "country",
+          "fieldType": "string"
+        }
+      },
+      {
+        "type": "Topic Parameter",
+        "source": {
+          "type": "Payload Parameter",
+          "name": "city",
+          "fieldName": "city",
+          "fieldType": "string"
+        },
+        "target": {
+          "type": "Topic Parameter",
+          "name": "city",
+          "fieldName": "city",
+          "fieldType": "string"
+        }
+      },
+      {
+        "type": "Topic Parameter",
+        "source": {
+          "type": "Payload Parameter",
+          "name": "businessPartnerType",
+          "fieldName": "businessPartnerType",
+          "fieldType": "string"
+        },
+        "target": {
+          "type": "Topic Parameter",
+          "name": "businessPartnerType",
+          "fieldName": "businessPartnerType",
+          "fieldType": "string"
+        }
+      }
+    ],
+    "messageSettings": {
+      "partitionKeys": "country"
+    }
+  }
+]
