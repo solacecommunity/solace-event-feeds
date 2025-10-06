@@ -172,5 +172,20 @@
     "tags": "manufacturing",
     "lastUpdated": "2025-03-26T03:54:03.049Z",
     "contributed": true
+  },
+  {
+    "version": "1.0",
+    "feedType": "asyncapi_feed",
+    "type": "asyncapi_feed",
+    "feedView": "default",
+    "name": "SAP Rapid Pilot Program",
+    "description": "This feed provides the events used in the SAP Rapid Pilot Program. This program enables SAP customers to rapidly onboard to the SAM AEM platform.",
+    "img": "https://cdn-icons-png.flaticon.com/512/882/882701.png",
+    "contributor": "Hari Rangarajan",
+    "github": "HariRangarajan-Solace",
+    "domain": "SAP ERP",
+    "tags": "SAP, ERP, AEM, Rapid Pilot Program",
+    "lastUpdated": "2025-10-06T17:50:10.625Z",
+    "contributed": true
   }
 ]
