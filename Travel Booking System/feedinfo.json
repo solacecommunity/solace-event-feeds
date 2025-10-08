@@ -1,0 +1,15 @@
+{
+  "version": "1.0",
+  "feedType": "asyncapi_feed",
+  "type": "asyncapi_feed",
+  "feedView": "default",
+  "name": "Travel Booking System",
+  "description": "A collection of feeds representative of a large enterprise travel booking system",
+  "img": "assets/img/defaultfeed.png",
+  "contributor": "HariRangarajan-Solace",
+  "github": "HariRangarajan-Solace",
+  "domain": "Travel Technology,Global Distribution System,Passenger Service System,Airline Distribution",
+  "tags": "",
+  "lastUpdated": "2025-10-08T18:51:18.273Z",
+  "contributed": true
+}

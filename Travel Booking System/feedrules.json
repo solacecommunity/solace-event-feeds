@@ -1,0 +1,366 @@
+[
+  {
+    "topic": "OrMS/AirlineIT/v1/orders/{airlineOrderStatus}/{airlineCode}/{environment}/{id}",
+    "topicParameters": {
+      "environment": {
+        "schema": {
+          "type": "string"
+        },
+        "rule": {
+          "name": "environment",
+          "type": "string",
+          "group": "StringRules",
+          "rule": "enum",
+          "enum": [
+            "prd"
+          ]
+        }
+      },
+      "airlineOrderStatus": {
+        "schema": {
+          "type": "string",
+          "enum": [
+            "OrderCreated",
+            "OrderUpdated",
+            "OrderItemPaid",
+            "ServiceDelivered"
+          ]
+        },
+        "rule": {
+          "name": "airlineOrderStatus",
+          "type": "string",
+          "group": "StringRules",
+          "rule": "enum",
+          "enum": [
+            "OrderCreated",
+            "OrderUpdated",
+            "OrderItemPaid",
+            "ServiceDelivered"
+          ]
+        }
+      },
+      "airlineCode": {
+        "schema": {
+          "type": "string"
+        },
+        "rule": {
+          "name": "airlineCode",
+          "type": "string",
+          "group": "StringRules",
+          "rule": "enum",
+          "enum": [
+            "AA",
+            "DL",
+            "UA",
+            "WN",
+            "BA",
+            "LH",
+            "AF",
+            "KL",
+            "EK",
+            "QR",
+            "SQ",
+            "CX",
+            "JL",
+            "NH",
+            "AC",
+            "QF",
+            "VS",
+            "TK",
+            "IB",
+            "AZ"
+          ]
+        }
+      },
+      "id": {
+        "schema": {
+          "type": "string"
+        },
+        "rule": {
+          "name": "id",
+          "type": "string",
+          "group": "StringRules",
+          "rule": "alpha",
+          "casing": "mixed",
+          "minLength": 10,
+          "maxLength": 10
+        }
+      }
+    },
+    "eventName": "Airline Order",
+    "eventVersion": "0.1.0",
+    "messageName": "Airline_Order",
+    "hasPayload": true,
+    "payload": {
+      "eventId": {
+        "description": "Unique identifier for the event",
+        "type": "string",
+        "rule": {
+          "name": "eventId",
+          "type": "string",
+          "group": "StringRules",
+          "rule": "uuid"
+        }
+      },
+      "eventType": {
+        "description": "Type of the order event",
+        "type": "string",
+        "enum": [
+          "OrderCreated",
+          "OrderUpdated",
+          "OrderItemPaid",
+          "ServiceDelivered"
+        ],
+        "rule": {
+          "name": "eventType",
+          "type": "string",
+          "group": "StringRules",
+          "rule": "enum",
+          "enum": [
+            "OrderCreated",
+            "OrderUpdated",
+            "OrderItemPaid",
+            "ServiceDelivered"
+          ]
+        }
+      },
+      "timestamp": {
+        "format": "date-time",
+        "description": "Time the event was triggered",
+        "type": "string",
+        "rule": {
+          "name": "timestamp",
+          "type": "string",
+          "group": "DateRules",
+          "rule": "currentDateWithTime",
+          "format": "DD-MM-YYYY HH:mm:ss"
+        }
+      },
+      "order": {
+        "type": "object",
+        "properties": {
+          "orderId": {
+            "type": "string",
+            "rule": {
+              "name": "orderId",
+              "type": "string",
+              "group": "StringRules",
+              "rule": "alphanumeric",
+              "minLength": 10,
+              "maxLength": 10,
+              "casing": "upper"
+            }
+          },
+          "payment": {
+            "type": "object",
+            "properties": {
+              "amount": {
+                "type": "number",
+                "rule": {
+                  "name": "amount",
+                  "type": "number",
+                  "group": "NumberRules",
+                  "rule": "float",
+                  "minimum": 0,
+                  "maximum": 1000,
+                  "fractionDigits": 2
+                }
+              },
+              "currency": {
+                "type": "string",
+                "rule": {
+                  "name": "currency",
+                  "type": "string",
+                  "group": "StringRules",
+                  "rule": "enum",
+                  "enum": [
+                    "USD",
+                    "EUR",
+                    "GBP",
+                    "JPY",
+                    "CAD",
+                    "AUD",
+                    "CHF",
+                    "CNY",
+                    "SEK",
+                    "NOK",
+                    "DKK",
+                    "PLN",
+                    "INR",
+                    "SGD",
+                    "HKD",
+                    "NZD",
+                    "MXN",
+                    "BRL",
+                    "ZAR",
+                    "KRW"
+                  ]
+                }
+              },
+              "status": {
+                "type": "string",
+                "enum": [
+                  "Pending",
+                  "Paid",
+                  "Refunded"
+                ],
+                "rule": {
+                  "name": "status",
+                  "type": "string",
+                  "group": "StringRules",
+                  "rule": "enum",
+                  "enum": [
+                    "Pending",
+                    "Paid",
+                    "Refunded"
+                  ]
+                }
+              }
+            },
+            "required": [
+              "amount",
+              "currency",
+              "status"
+            ],
+            "rule": {
+              "name": "payment",
+              "type": "object"
+            }
+          },
+          "items": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "itemId": {
+                  "type": "string",
+                  "rule": {
+                    "name": "itemId",
+                    "type": "string",
+                    "group": "StringRules",
+                    "rule": "alphanumeric",
+                    "minLength": 10,
+                    "maxLength": 10,
+                    "casing": "upper"
+                  }
+                },
+                "quantity": {
+                  "type": "integer",
+                  "rule": {
+                    "name": "quantity",
+                    "type": "integer",
+                    "group": "NumberRules",
+                    "rule": "int",
+                    "minimum": 0,
+                    "maximum": 1000
+                  }
+                },
+                "price": {
+                  "type": "number",
+                  "rule": {
+                    "name": "price",
+                    "type": "number",
+                    "group": "NumberRules",
+                    "rule": "float",
+                    "minimum": 0,
+                    "maximum": 1000,
+                    "fractionDigits": 2
+                  }
+                },
+                "description": {
+                  "type": "string",
+                  "rule": {
+                    "name": "description",
+                    "type": "string",
+                    "group": "CommerceRules",
+                    "rule": "productDescription"
+                  }
+                }
+              },
+              "required": [
+                "itemId",
+                "description",
+                "quantity",
+                "price"
+              ]
+            },
+            "subType": "object",
+            "name": "items",
+            "rule": {
+              "name": "items",
+              "type": "object"
+            }
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "Pending",
+              "Confirmed",
+              "Cancelled",
+              "Completed"
+            ],
+            "rule": {
+              "name": "status",
+              "type": "string",
+              "group": "StringRules",
+              "rule": "enum",
+              "enum": [
+                "OrderCreated",
+                "OrderUpdated",
+                "OrderItemPaid",
+                "ServiceDelivered"
+              ]
+            }
+          }
+        },
+        "required": [
+          "orderId",
+          "status",
+          "items",
+          "payment"
+        ],
+        "rule": {
+          "name": "order",
+          "type": "object"
+        }
+      }
+    },
+    "publishSettings": {
+      "count": 0,
+      "interval": 1000,
+      "delay": 0
+    },
+    "mappings": [
+      {
+        "type": "Topic Parameter",
+        "source": {
+          "type": "Payload Parameter",
+          "name": "eventId",
+          "fieldName": "eventId",
+          "fieldType": "string"
+        },
+        "target": {
+          "type": "Topic Parameter",
+          "name": "id",
+          "fieldName": "id",
+          "fieldType": "string"
+        }
+      },
+      {
+        "type": "Topic Parameter",
+        "source": {
+          "type": "Payload Parameter",
+          "name": "order.status",
+          "fieldName": "status",
+          "fieldType": "string"
+        },
+        "target": {
+          "type": "Topic Parameter",
+          "name": "airlineOrderStatus",
+          "fieldName": "airlineOrderStatus",
+          "fieldType": "string"
+        }
+      }
+    ]
+  }
+]
