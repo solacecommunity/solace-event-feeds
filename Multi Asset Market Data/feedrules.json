@@ -1,0 +1,1457 @@
+[
+  {
+    "topic": "marketData/EQ/quotes/L1/v1/{region}/{exchange}/{symbol}",
+    "topicParameters": {
+      "region": {
+        "schema": {
+          "type": "string",
+          "enum": [
+            "US",
+            "UK",
+            "EU",
+            "APAC"
+          ]
+        },
+        "rule": {
+          "name": "region",
+          "type": "string",
+          "group": "StringRules",
+          "rule": "enum",
+          "enum": [
+            "US",
+            "UK",
+            "EU",
+            "APAC"
+          ]
+        }
+      },
+      "exchange": {
+        "schema": {
+          "type": "string",
+          "enum": [
+            "NYSE",
+            "NASDAQ",
+            "LSE",
+            "XETRA",
+            "TSE",
+            "SGX"
+          ]
+        },
+        "rule": {
+          "name": "exchange",
+          "type": "string",
+          "group": "StringRules",
+          "rule": "enum",
+          "enum": [
+            "NYSE",
+            "NASDAQ",
+            "LSE",
+            "XETRA",
+            "TSE",
+            "SGX"
+          ],
+          "description": ""
+        }
+      },
+      "symbol": {
+        "schema": {
+          "type": "string"
+        },
+        "rule": {
+          "name": "symbol",
+          "type": "string",
+          "group": "StringRules",
+          "rule": "enum",
+          "enum": [
+            "AAPL",
+            "MSFT",
+            "GOOGL",
+            "AMZN",
+            "NVDA",
+            "META",
+            "TSLA",
+            "IBM",
+            "JPM",
+            "BAC",
+            "WMT",
+            "JNJ",
+            "V",
+            "PG",
+            "HD"
+          ],
+          "description": ""
+        }
+      }
+    },
+    "eventName": "EquityL1Quote",
+    "eventVersion": "1.0.0",
+    "messageName": "EquityL1Quote",
+    "hasPayload": true,
+    "payload": {
+      "symbol": {
+        "type": "string",
+        "description": "Stock ticker symbol",
+        "example": "AAPL",
+        "rule": {
+          "name": "symbol",
+          "type": "string",
+          "group": "StringRules",
+          "rule": "enum",
+          "enum": [
+            "AAPL",
+            "MSFT",
+            "GOOGL",
+            "AMZN",
+            "NVDA",
+            "META",
+            "TSLA",
+            "IBM",
+            "JPM",
+            "BAC",
+            "WMT",
+            "JNJ",
+            "V",
+            "PG",
+            "HD"
+          ],
+          "description": "Stock ticker symbol"
+        }
+      },
+      "exchange": {
+        "type": "string",
+        "description": "Stock exchange",
+        "example": "NASDAQ",
+        "rule": {
+          "name": "exchange",
+          "type": "string",
+          "group": "StringRules",
+          "rule": "enum",
+          "enum": [
+            "NYSE",
+            "NASDAQ",
+            "LSE",
+            "XETRA",
+            "TSE",
+            "SGX"
+          ],
+          "description": "Stock exchange"
+        }
+      },
+      "currency": {
+        "type": "string",
+        "description": "Quote currency",
+        "example": "USD",
+        "rule": {
+          "name": "currency",
+          "type": "string",
+          "group": "StringRules",
+          "rule": "enum",
+          "enum": [
+            "USD",
+            "EUR",
+            "GBP",
+            "JPY",
+            "CHF",
+            "CAD",
+            "AUD"
+          ],
+          "description": "Quote currency"
+        }
+      },
+      "bidPrice": {
+        "type": "number",
+        "format": "double",
+        "description": "Best bid price",
+        "example": 189.45,
+        "rule": {
+          "name": "bidPrice",
+          "type": "number",
+          "group": "NumberRules",
+          "rule": "float",
+          "minimum": 0,
+          "maximum": 1000,
+          "fractionDigits": 2,
+          "format": "double",
+          "description": "Best bid price"
+        }
+      },
+      "bidSize": {
+        "type": "integer",
+        "description": "Size available at bid",
+        "example": 500,
+        "rule": {
+          "name": "bidSize",
+          "type": "integer",
+          "group": "NumberRules",
+          "rule": "int",
+          "minimum": 0,
+          "maximum": 1000,
+          "description": "Size available at bid"
+        }
+      },
+      "askPrice": {
+        "type": "number",
+        "format": "double",
+        "description": "Best ask price",
+        "example": 189.48,
+        "rule": {
+          "name": "askPrice",
+          "type": "number",
+          "group": "NumberRules",
+          "rule": "float",
+          "minimum": 0,
+          "maximum": 1000,
+          "fractionDigits": 2,
+          "format": "double",
+          "description": "Best ask price"
+        }
+      },
+      "askSize": {
+        "type": "integer",
+        "description": "Size available at ask",
+        "example": 300,
+        "rule": {
+          "name": "askSize",
+          "type": "integer",
+          "group": "NumberRules",
+          "rule": "int",
+          "minimum": 0,
+          "maximum": 1000,
+          "description": "Size available at ask"
+        }
+      },
+      "timestamp": {
+        "type": "string",
+        "format": "date-time",
+        "description": "Quote timestamp (ISO 8601)",
+        "example": "2026-04-23T14:30:15.123456Z",
+        "rule": {
+          "name": "timestamp",
+          "type": "string",
+          "group": "DateRules",
+          "rule": "currentDateWithTime",
+          "format": "MM-DD-YYYY HH:mm:ss",
+          "description": "Quote timestamp (ISO 8601)"
+        }
+      }
+    },
+    "publishSettings": {
+      "count": 0,
+      "interval": 1000,
+      "delay": 0
+    }
+  },
+  {
+    "topic": "marketData/EQ/trades/v1/{region}/{exchange}/{symbol}",
+    "topicParameters": {
+      "region": {
+        "schema": {
+          "type": "string",
+          "enum": [
+            "US",
+            "UK",
+            "EU",
+            "APAC"
+          ]
+        },
+        "rule": {
+          "name": "region",
+          "type": "string",
+          "group": "StringRules",
+          "rule": "enum",
+          "enum": [
+            "US",
+            "UK",
+            "EU",
+            "APAC"
+          ]
+        }
+      },
+      "exchange": {
+        "schema": {
+          "type": "string",
+          "enum": [
+            "NYSE",
+            "NASDAQ",
+            "LSE",
+            "XETRA",
+            "TSE",
+            "SGX"
+          ]
+        },
+        "rule": {
+          "name": "exchange",
+          "type": "string",
+          "group": "StringRules",
+          "rule": "enum",
+          "enum": [
+            "NYSE",
+            "NASDAQ",
+            "LSE",
+            "XETRA",
+            "TSE",
+            "SGX"
+          ],
+          "description": ""
+        }
+      },
+      "symbol": {
+        "schema": {
+          "type": "string"
+        },
+        "rule": {
+          "name": "symbol",
+          "type": "string",
+          "group": "StringRules",
+          "rule": "enum",
+          "enum": [
+            "AAPL",
+            "MSFT",
+            "GOOGL",
+            "AMZN",
+            "NVDA",
+            "META",
+            "TSLA",
+            "IBM",
+            "JPM",
+            "BAC",
+            "WMT",
+            "JNJ",
+            "V",
+            "PG",
+            "HD"
+          ],
+          "description": ""
+        }
+      }
+    },
+    "eventName": "EquityTrade",
+    "eventVersion": "1.0.0",
+    "messageName": "EquityTrade",
+    "hasPayload": true,
+    "payload": {
+      "symbol": {
+        "type": "string",
+        "description": "Stock ticker symbol",
+        "example": "AAPL",
+        "rule": {
+          "name": "symbol",
+          "type": "string",
+          "group": "StringRules",
+          "rule": "enum",
+          "enum": [
+            "AAPL",
+            "MSFT",
+            "GOOGL",
+            "AMZN",
+            "NVDA",
+            "META",
+            "TSLA",
+            "IBM",
+            "JPM",
+            "BAC",
+            "WMT",
+            "JNJ",
+            "V",
+            "PG",
+            "HD"
+          ],
+          "description": "Stock ticker symbol"
+        }
+      },
+      "exchange": {
+        "type": "string",
+        "description": "Stock exchange",
+        "example": "NASDAQ",
+        "rule": {
+          "name": "exchange",
+          "type": "string",
+          "group": "StringRules",
+          "rule": "enum",
+          "enum": [
+            "NYSE",
+            "NASDAQ",
+            "LSE",
+            "XETRA",
+            "TSE",
+            "SGX"
+          ],
+          "description": "Stock exchange"
+        }
+      },
+      "currency": {
+        "type": "string",
+        "description": "Trade currency",
+        "example": "USD",
+        "rule": {
+          "name": "currency",
+          "type": "string",
+          "group": "StringRules",
+          "rule": "enum",
+          "enum": [
+            "USD",
+            "EUR",
+            "GBP",
+            "JPY",
+            "CHF",
+            "CAD",
+            "AUD"
+          ],
+          "description": "Quote currency"
+        }
+      },
+      "price": {
+        "type": "number",
+        "format": "double",
+        "description": "Trade price",
+        "example": 189.47,
+        "rule": {
+          "name": "price",
+          "type": "number",
+          "group": "NumberRules",
+          "rule": "float",
+          "minimum": 0,
+          "maximum": 1000,
+          "fractionDigits": 2,
+          "format": "double",
+          "description": "Trade price"
+        }
+      },
+      "size": {
+        "type": "integer",
+        "description": "Trade size (shares)",
+        "example": 100,
+        "rule": {
+          "name": "size",
+          "type": "integer",
+          "group": "NumberRules",
+          "rule": "int",
+          "minimum": 0,
+          "maximum": 1000,
+          "description": "Trade size (shares)"
+        }
+      },
+      "tradeId": {
+        "type": "string",
+        "description": "Unique trade identifier",
+        "example": "TRD-20260423-001234",
+        "rule": {
+          "name": "tradeId",
+          "type": "string",
+          "group": "StringRules",
+          "rule": "alpha",
+          "casing": "mixed",
+          "minLength": 10,
+          "maxLength": 10,
+          "description": "Unique trade identifier"
+        }
+      },
+      "side": {
+        "type": "string",
+        "enum": [
+          "BUY",
+          "SELL"
+        ],
+        "description": "Trade side (aggressor)",
+        "example": "BUY",
+        "rule": {
+          "name": "side",
+          "type": "string",
+          "group": "StringRules",
+          "rule": "enum",
+          "enum": [
+            "BUY",
+            "SELL"
+          ],
+          "description": "Trade side (aggressor)"
+        }
+      },
+      "timestamp": {
+        "type": "string",
+        "format": "date-time",
+        "description": "Trade timestamp (ISO 8601)",
+        "example": "2026-04-23T14:30:15.123456Z",
+        "rule": {
+          "name": "timestamp",
+          "type": "string",
+          "group": "DateRules",
+          "rule": "currentDateWithTime",
+          "format": "MM-DD-YYYY HH:mm:ss",
+          "description": "Trade timestamp (ISO 8601)"
+        }
+      }
+    },
+    "publishSettings": {
+      "count": 0,
+      "interval": 1000,
+      "delay": 0
+    }
+  },
+  {
+    "topic": "marketData/FX/quotes/L1/v1/{venue}/{pair}",
+    "topicParameters": {
+      "venue": {
+        "schema": {
+          "type": "string",
+          "enum": [
+            "EBS",
+            "REUTERS",
+            "CURRENEX",
+            "HOTSPOT"
+          ]
+        },
+        "rule": {
+          "name": "venue",
+          "type": "string",
+          "group": "StringRules",
+          "rule": "enum",
+          "enum": [
+            "EBS",
+            "REUTERS",
+            "CURRENEX",
+            "HOTSPOT"
+          ],
+          "description": ""
+        }
+      },
+      "pair": {
+        "schema": {
+          "type": "string",
+          "pattern": "^[A-Z]{6}$"
+        },
+        "rule": {
+          "name": "pair",
+          "type": "string",
+          "group": "StringRules",
+          "rule": "enum",
+          "enum": [
+            "EURUSD",
+            "USDJPY",
+            "GBPUSD",
+            "USDCHF",
+            "AUDUSD",
+            "USDCAD",
+            "NZDUSD",
+            "EURGBP",
+            "EURJPY"
+          ],
+          "description": ""
+        }
+      }
+    },
+    "eventName": "FXL1Quote",
+    "eventVersion": "1.0.0",
+    "messageName": "FXL1Quote",
+    "hasPayload": true,
+    "payload": {
+      "pair": {
+        "type": "string",
+        "description": "Currency pair",
+        "example": "EURUSD",
+        "rule": {
+          "name": "pair",
+          "type": "string",
+          "group": "StringRules",
+          "rule": "enum",
+          "enum": [
+            "EURUSD",
+            "USDJPY",
+            "GBPUSD",
+            "USDCHF",
+            "AUDUSD",
+            "USDCAD",
+            "NZDUSD",
+            "EURGBP",
+            "EURJPY"
+          ],
+          "description": "Currency pair"
+        }
+      },
+      "baseCurrency": {
+        "type": "string",
+        "description": "Base currency",
+        "example": "EUR",
+        "rule": {
+          "name": "baseCurrency",
+          "type": "string",
+          "group": "StringRules",
+          "rule": "enum",
+          "enum": [
+            "EUR",
+            "GBP",
+            "AUD",
+            "NZD",
+            "USD"
+          ],
+          "description": "Base currency"
+        }
+      },
+      "quoteCurrency": {
+        "type": "string",
+        "description": "Quote currency",
+        "example": "USD",
+        "rule": {
+          "name": "quoteCurrency",
+          "type": "string",
+          "group": "StringRules",
+          "rule": "enum",
+          "enum": [
+            "USD",
+            "JPY",
+            "CHF",
+            "CAD",
+            "GBP"
+          ],
+          "description": "Quote currency"
+        }
+      },
+      "bid": {
+        "type": "number",
+        "format": "double",
+        "description": "Bid price (5 decimal places for majors)",
+        "example": 1.08235,
+        "rule": {
+          "name": "bid",
+          "type": "number",
+          "group": "NumberRules",
+          "rule": "float",
+          "minimum": 0,
+          "maximum": 1000,
+          "fractionDigits": 2,
+          "format": "double",
+          "description": "Bid price (5 decimal places for majors)"
+        }
+      },
+      "bidSize": {
+        "type": "number",
+        "format": "double",
+        "description": "Size available at bid (millions)",
+        "example": 5,
+        "rule": {
+          "name": "bidSize",
+          "type": "number",
+          "group": "NumberRules",
+          "rule": "float",
+          "minimum": 0,
+          "maximum": 1000,
+          "fractionDigits": 2,
+          "format": "double",
+          "description": "Size available at bid (millions)"
+        }
+      },
+      "ask": {
+        "type": "number",
+        "format": "double",
+        "description": "Ask price",
+        "example": 1.08238,
+        "rule": {
+          "name": "ask",
+          "type": "number",
+          "group": "NumberRules",
+          "rule": "float",
+          "minimum": 0,
+          "maximum": 1000,
+          "fractionDigits": 2,
+          "format": "double",
+          "description": "Ask price"
+        }
+      },
+      "askSize": {
+        "type": "number",
+        "format": "double",
+        "description": "Size available at ask (millions)",
+        "example": 3,
+        "rule": {
+          "name": "askSize",
+          "type": "number",
+          "group": "NumberRules",
+          "rule": "float",
+          "minimum": 0,
+          "maximum": 1000,
+          "fractionDigits": 2,
+          "format": "double",
+          "description": "Size available at ask (millions)"
+        }
+      },
+      "mid": {
+        "type": "number",
+        "format": "double",
+        "description": "Mid price",
+        "example": 1.082365,
+        "rule": {
+          "name": "mid",
+          "type": "number",
+          "group": "NumberRules",
+          "rule": "float",
+          "minimum": 0,
+          "maximum": 1000,
+          "fractionDigits": 2,
+          "format": "double",
+          "description": "Mid price"
+        }
+      },
+      "spread": {
+        "type": "number",
+        "format": "double",
+        "description": "Bid-ask spread in pips",
+        "example": 0.3,
+        "rule": {
+          "name": "spread",
+          "type": "number",
+          "group": "NumberRules",
+          "rule": "float",
+          "minimum": 0,
+          "maximum": 1000,
+          "fractionDigits": 2,
+          "format": "double",
+          "description": "Bid-ask spread in pips"
+        }
+      },
+      "venue": {
+        "type": "string",
+        "description": "Trading venue",
+        "example": "EBS",
+        "rule": {
+          "name": "venue",
+          "type": "string",
+          "group": "StringRules",
+          "rule": "enum",
+          "enum": [
+            "EBS",
+            "REUTERS",
+            "CURRENEX",
+            "HOTSPOT"
+          ],
+          "description": "Trading venue"
+        }
+      },
+      "timestamp": {
+        "type": "string",
+        "format": "date-time",
+        "description": "Quote timestamp (ISO 8601)",
+        "example": "2026-04-23T14:30:15.123456Z",
+        "rule": {
+          "name": "timestamp",
+          "type": "string",
+          "group": "DateRules",
+          "rule": "currentDateWithTime",
+          "format": "MM-DD-YYYY HH:mm:ss",
+          "description": "Quote timestamp (ISO 8601)"
+        }
+      }
+    },
+    "publishSettings": {
+      "count": 0,
+      "interval": 1000,
+      "delay": 0
+    }
+  },
+  {
+    "topic": "marketData/FX/trades/v1/{venue}/{pair}",
+    "topicParameters": {
+      "venue": {
+        "schema": {
+          "type": "string",
+          "enum": [
+            "EBS",
+            "REUTERS",
+            "CURRENEX",
+            "HOTSPOT"
+          ]
+        },
+        "rule": {
+          "name": "venue",
+          "type": "string",
+          "group": "StringRules",
+          "rule": "enum",
+          "enum": [
+            "EBS",
+            "REUTERS",
+            "CURRENEX",
+            "HOTSPOT"
+          ],
+          "description": ""
+        }
+      },
+      "pair": {
+        "schema": {
+          "type": "string",
+          "pattern": "^[A-Z]{6}$"
+        },
+        "rule": {
+          "name": "pair",
+          "type": "string",
+          "group": "StringRules",
+          "rule": "enum",
+          "enum": [
+            "EURUSD",
+            "USDJPY",
+            "GBPUSD",
+            "USDCHF",
+            "AUDUSD",
+            "USDCAD",
+            "NZDUSD",
+            "EURGBP",
+            "EURJPY"
+          ],
+          "description": ""
+        }
+      }
+    },
+    "eventName": "FXTrade",
+    "eventVersion": "1.0.0",
+    "messageName": "FXTrade",
+    "hasPayload": true,
+    "payload": {
+      "pair": {
+        "type": "string",
+        "description": "Currency pair",
+        "example": "EURUSD",
+        "rule": {
+          "name": "pair",
+          "type": "string",
+          "group": "StringRules",
+          "rule": "enum",
+          "enum": [
+            "EURUSD",
+            "USDJPY",
+            "GBPUSD",
+            "USDCHF",
+            "AUDUSD",
+            "USDCAD",
+            "NZDUSD",
+            "EURGBP",
+            "EURJPY"
+          ],
+          "description": "Currency pair"
+        }
+      },
+      "baseCurrency": {
+        "type": "string",
+        "description": "Base currency",
+        "example": "EUR",
+        "rule": {
+          "name": "baseCurrency",
+          "type": "string",
+          "group": "StringRules",
+          "rule": "enum",
+          "enum": [
+            "EUR",
+            "GBP",
+            "AUD",
+            "NZD",
+            "USD"
+          ],
+          "description": "Base currency"
+        }
+      },
+      "quoteCurrency": {
+        "type": "string",
+        "description": "Quote currency",
+        "example": "USD",
+        "rule": {
+          "name": "quoteCurrency",
+          "type": "string",
+          "group": "StringRules",
+          "rule": "enum",
+          "enum": [
+            "USD",
+            "JPY",
+            "CHF",
+            "CAD",
+            "GBP"
+          ],
+          "description": "Quote currency"
+        }
+      },
+      "price": {
+        "type": "number",
+        "format": "double",
+        "description": "Trade price",
+        "example": 1.08237,
+        "rule": {
+          "name": "price",
+          "type": "number",
+          "group": "NumberRules",
+          "rule": "float",
+          "minimum": 0,
+          "maximum": 1000,
+          "fractionDigits": 2,
+          "format": "double",
+          "description": "Trade price"
+        }
+      },
+      "size": {
+        "type": "number",
+        "format": "double",
+        "description": "Trade size in base currency (millions)",
+        "example": 2.5,
+        "rule": {
+          "name": "size",
+          "type": "number",
+          "group": "NumberRules",
+          "rule": "float",
+          "minimum": 0,
+          "maximum": 1000,
+          "fractionDigits": 2,
+          "format": "double",
+          "description": "Trade size in base currency (millions)"
+        }
+      },
+      "venue": {
+        "type": "string",
+        "description": "Trading venue",
+        "example": "EBS",
+        "rule": {
+          "name": "venue",
+          "type": "string",
+          "group": "StringRules",
+          "rule": "enum",
+          "enum": [
+            "EBS",
+            "REUTERS",
+            "CURRENEX",
+            "HOTSPOT"
+          ],
+          "description": "Trading venue"
+        }
+      },
+      "tradeId": {
+        "type": "string",
+        "description": "Unique trade identifier",
+        "example": "FX-20260423-005678",
+        "rule": {
+          "name": "tradeId",
+          "type": "string",
+          "group": "StringRules",
+          "rule": "alpha",
+          "casing": "mixed",
+          "minLength": 10,
+          "maxLength": 10,
+          "description": "Unique trade identifier"
+        }
+      },
+      "timestamp": {
+        "type": "string",
+        "format": "date-time",
+        "description": "Trade timestamp (ISO 8601)",
+        "example": "2026-04-23T14:30:15.123456Z",
+        "rule": {
+          "name": "timestamp",
+          "type": "string",
+          "group": "DateRules",
+          "rule": "currentDateWithTime",
+          "format": "MM-DD-YYYY HH:mm:ss",
+          "description": "Trade timestamp (ISO 8601)"
+        }
+      }
+    },
+    "publishSettings": {
+      "count": 0,
+      "interval": 1000,
+      "delay": 0
+    }
+  },
+  {
+    "topic": "marketData/CRYPTO/quotes/L1/v1/{exchange}/{pair}",
+    "topicParameters": {
+      "exchange": {
+        "schema": {
+          "type": "string",
+          "enum": [
+            "BINANCE",
+            "COINBASE",
+            "KRAKEN",
+            "FTX",
+            "GEMINI"
+          ]
+        },
+        "rule": {
+          "name": "exchange",
+          "type": "string",
+          "group": "StringRules",
+          "rule": "enum",
+          "enum": [
+            "BINANCE",
+            "COINBASE",
+            "KRAKEN",
+            "GEMINI"
+          ],
+          "description": ""
+        }
+      },
+      "pair": {
+        "schema": {
+          "type": "string"
+        },
+        "rule": {
+          "name": "pair",
+          "type": "string",
+          "group": "StringRules",
+          "rule": "enum",
+          "enum": [
+            "BTCUSDT",
+            "ETHUSDT",
+            "SOLUSDT",
+            "ADAUSDT",
+            "XRPUSDT",
+            "DOGEUSDT",
+            "AVAXUSDT",
+            "DOTUSDT"
+          ],
+          "description": ""
+        }
+      }
+    },
+    "eventName": "CryptoL1Quote",
+    "eventVersion": "1.0.0",
+    "messageName": "CryptoL1Quote",
+    "hasPayload": true,
+    "payload": {
+      "pair": {
+        "type": "string",
+        "description": "Trading pair",
+        "example": "BTCUSDT",
+        "rule": {
+          "name": "pair",
+          "type": "string",
+          "group": "StringRules",
+          "rule": "enum",
+          "enum": [
+            "BTCUSDT",
+            "ETHUSDT",
+            "SOLUSDT",
+            "ADAUSDT",
+            "XRPUSDT",
+            "DOGEUSDT",
+            "AVAXUSDT",
+            "DOTUSDT"
+          ],
+          "description": "Trading pair"
+        }
+      },
+      "baseCurrency": {
+        "type": "string",
+        "description": "Base currency",
+        "example": "BTC",
+        "rule": {
+          "name": "baseCurrency",
+          "type": "string",
+          "group": "StringRules",
+          "rule": "enum",
+          "enum": [
+            "BTC",
+            "ETH",
+            "SOL",
+            "ADA",
+            "XRP",
+            "DOGE",
+            "AVAX",
+            "DOT"
+          ],
+          "description": "Base currency"
+        }
+      },
+      "quoteCurrency": {
+        "type": "string",
+        "description": "Quote currency",
+        "example": "USDT",
+        "rule": {
+          "name": "quoteCurrency",
+          "type": "string",
+          "group": "StringRules",
+          "rule": "enum",
+          "enum": [
+            "USDT",
+            "USD",
+            "USDC",
+            "BUSD"
+          ],
+          "description": "Quote currency"
+        }
+      },
+      "bidPrice": {
+        "type": "number",
+        "format": "double",
+        "description": "Best bid price",
+        "example": 67234.5,
+        "rule": {
+          "name": "bidPrice",
+          "type": "number",
+          "group": "NumberRules",
+          "rule": "float",
+          "minimum": 0,
+          "maximum": 1000,
+          "fractionDigits": 2,
+          "format": "double",
+          "description": "Best bid price"
+        }
+      },
+      "bidSize": {
+        "type": "number",
+        "format": "double",
+        "description": "Size available at bid",
+        "example": 1.234,
+        "rule": {
+          "name": "bidSize",
+          "type": "number",
+          "group": "NumberRules",
+          "rule": "float",
+          "minimum": 0,
+          "maximum": 1000,
+          "fractionDigits": 2,
+          "format": "double",
+          "description": "Size available at bid"
+        }
+      },
+      "askPrice": {
+        "type": "number",
+        "format": "double",
+        "description": "Best ask price",
+        "example": 67235,
+        "rule": {
+          "name": "askPrice",
+          "type": "number",
+          "group": "NumberRules",
+          "rule": "float",
+          "minimum": 0,
+          "maximum": 1000,
+          "fractionDigits": 2,
+          "format": "double",
+          "description": "Best ask price"
+        }
+      },
+      "askSize": {
+        "type": "number",
+        "format": "double",
+        "description": "Size available at ask",
+        "example": 0.856,
+        "rule": {
+          "name": "askSize",
+          "type": "number",
+          "group": "NumberRules",
+          "rule": "float",
+          "minimum": 0,
+          "maximum": 1000,
+          "fractionDigits": 2,
+          "format": "double",
+          "description": "Size available at ask"
+        }
+      },
+      "lastPrice": {
+        "type": "number",
+        "format": "double",
+        "description": "Last traded price",
+        "example": 67234.75,
+        "rule": {
+          "name": "lastPrice",
+          "type": "number",
+          "group": "NumberRules",
+          "rule": "float",
+          "minimum": 0,
+          "maximum": 1000,
+          "fractionDigits": 2,
+          "format": "double",
+          "description": "Last traded price"
+        }
+      },
+      "volume24h": {
+        "type": "number",
+        "format": "double",
+        "description": "24-hour volume in base currency",
+        "example": 12543.67,
+        "rule": {
+          "name": "volume24h",
+          "type": "number",
+          "group": "NumberRules",
+          "rule": "float",
+          "minimum": 0,
+          "maximum": 1000,
+          "fractionDigits": 2,
+          "format": "double",
+          "description": "24-hour volume in base currency"
+        }
+      },
+      "change24h": {
+        "type": "number",
+        "format": "double",
+        "description": "24-hour price change percentage",
+        "example": 2.34,
+        "rule": {
+          "name": "change24h",
+          "type": "number",
+          "group": "NumberRules",
+          "rule": "float",
+          "minimum": 0,
+          "maximum": 1000,
+          "fractionDigits": 2,
+          "format": "double",
+          "description": "24-hour price change percentage"
+        }
+      },
+      "exchange": {
+        "type": "string",
+        "description": "Crypto exchange",
+        "example": "BINANCE",
+        "rule": {
+          "name": "exchange",
+          "type": "string",
+          "group": "StringRules",
+          "rule": "enum",
+          "enum": [
+            "BINANCE",
+            "COINBASE",
+            "KRAKEN",
+            "GEMINI"
+          ],
+          "description": "Crypto exchange"
+        }
+      },
+      "timestamp": {
+        "type": "string",
+        "format": "date-time",
+        "description": "Quote timestamp (ISO 8601)",
+        "example": "2026-04-23T14:30:15.123456Z",
+        "rule": {
+          "name": "timestamp",
+          "type": "string",
+          "group": "DateRules",
+          "rule": "currentDateWithTime",
+          "format": "MM-DD-YYYY HH:mm:ss",
+          "description": "Quote timestamp (ISO 8601)"
+        }
+      }
+    },
+    "publishSettings": {
+      "count": 0,
+      "interval": 1000,
+      "delay": 0
+    }
+  },
+  {
+    "topic": "marketData/CRYPTO/trades/v1/{exchange}/{pair}",
+    "topicParameters": {
+      "exchange": {
+        "schema": {
+          "type": "string",
+          "enum": [
+            "BINANCE",
+            "COINBASE",
+            "KRAKEN",
+            "FTX",
+            "GEMINI"
+          ]
+        },
+        "rule": {
+          "name": "exchange",
+          "type": "string",
+          "group": "StringRules",
+          "rule": "enum",
+          "enum": [
+            "BINANCE",
+            "COINBASE",
+            "KRAKEN",
+            "GEMINI"
+          ],
+          "description": ""
+        }
+      },
+      "pair": {
+        "schema": {
+          "type": "string"
+        },
+        "rule": {
+          "name": "pair",
+          "type": "string",
+          "group": "StringRules",
+          "rule": "enum",
+          "enum": [
+            "BTCUSDT",
+            "ETHUSDT",
+            "SOLUSDT",
+            "ADAUSDT",
+            "XRPUSDT",
+            "DOGEUSDT",
+            "AVAXUSDT",
+            "DOTUSDT"
+          ],
+          "description": ""
+        }
+      }
+    },
+    "eventName": "CryptoTrade",
+    "eventVersion": "1.0.0",
+    "messageName": "CryptoTrade",
+    "hasPayload": true,
+    "payload": {
+      "pair": {
+        "type": "string",
+        "description": "Trading pair",
+        "example": "BTCUSDT",
+        "rule": {
+          "name": "pair",
+          "type": "string",
+          "group": "StringRules",
+          "rule": "enum",
+          "enum": [
+            "BTCUSDT",
+            "ETHUSDT",
+            "SOLUSDT",
+            "ADAUSDT",
+            "XRPUSDT",
+            "DOGEUSDT",
+            "AVAXUSDT",
+            "DOTUSDT"
+          ],
+          "description": "Trading pair"
+        }
+      },
+      "baseCurrency": {
+        "type": "string",
+        "description": "Base currency",
+        "example": "BTC",
+        "rule": {
+          "name": "baseCurrency",
+          "type": "string",
+          "group": "StringRules",
+          "rule": "enum",
+          "enum": [
+            "BTC",
+            "ETH",
+            "SOL",
+            "ADA",
+            "XRP",
+            "DOGE",
+            "AVAX",
+            "DOT"
+          ],
+          "description": "Base currency"
+        }
+      },
+      "quoteCurrency": {
+        "type": "string",
+        "description": "Quote currency",
+        "example": "USDT",
+        "rule": {
+          "name": "quoteCurrency",
+          "type": "string",
+          "group": "StringRules",
+          "rule": "enum",
+          "enum": [
+            "USDT",
+            "USD",
+            "USDC",
+            "BUSD"
+          ],
+          "description": "Quote currency"
+        }
+      },
+      "price": {
+        "type": "number",
+        "format": "double",
+        "description": "Trade price",
+        "example": 67234.75,
+        "rule": {
+          "name": "price",
+          "type": "number",
+          "group": "NumberRules",
+          "rule": "float",
+          "minimum": 0,
+          "maximum": 1000,
+          "fractionDigits": 2,
+          "format": "double",
+          "description": "Trade price"
+        }
+      },
+      "size": {
+        "type": "number",
+        "format": "double",
+        "description": "Trade size in base currency",
+        "example": 0.0523,
+        "rule": {
+          "name": "size",
+          "type": "number",
+          "group": "NumberRules",
+          "rule": "float",
+          "minimum": 0,
+          "maximum": 1000,
+          "fractionDigits": 2,
+          "format": "double",
+          "description": "Trade size in base currency"
+        }
+      },
+      "side": {
+        "type": "string",
+        "enum": [
+          "BUY",
+          "SELL"
+        ],
+        "description": "Trade side (taker)",
+        "example": "BUY",
+        "rule": {
+          "name": "side",
+          "type": "string",
+          "group": "StringRules",
+          "rule": "enum",
+          "enum": [
+            "BUY",
+            "SELL"
+          ],
+          "description": "Trade side (taker)"
+        }
+      },
+      "exchange": {
+        "type": "string",
+        "description": "Crypto exchange",
+        "example": "BINANCE",
+        "rule": {
+          "name": "exchange",
+          "type": "string",
+          "group": "StringRules",
+          "rule": "enum",
+          "enum": [
+            "BINANCE",
+            "COINBASE",
+            "KRAKEN",
+            "GEMINI"
+          ],
+          "description": "Crypto exchange"
+        }
+      },
+      "tradeId": {
+        "type": "string",
+        "description": "Exchange trade ID",
+        "example": "1234567890",
+        "rule": {
+          "name": "tradeId",
+          "type": "string",
+          "group": "StringRules",
+          "rule": "alpha",
+          "casing": "mixed",
+          "minLength": 10,
+          "maxLength": 10,
+          "description": "Exchange trade ID"
+        }
+      },
+      "timestamp": {
+        "type": "string",
+        "format": "date-time",
+        "description": "Trade timestamp (ISO 8601)",
+        "example": "2026-04-23T14:30:15.123456Z",
+        "rule": {
+          "name": "timestamp",
+          "type": "string",
+          "group": "DateRules",
+          "rule": "currentDateWithTime",
+          "format": "MM-DD-YYYY HH:mm:ss",
+          "description": "Trade timestamp (ISO 8601)"
+        }
+      }
+    },
+    "publishSettings": {
+      "count": 0,
+      "interval": 1000,
+      "delay": 0
+    }
+  }
+]

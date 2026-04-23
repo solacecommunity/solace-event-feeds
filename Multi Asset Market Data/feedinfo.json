@@ -1,0 +1,15 @@
+{
+  "version": "1.0",
+  "feedType": "asyncapi_feed",
+  "type": "asyncapi_feed",
+  "feedView": "default",
+  "description": "Cross-asset L1 market data feed covering Equities, FX, and Crypto.\nPublishes real-time quotes (top of book) and trade executions.\n\n## Topic Structure\nAll topics follow the pattern: `marketData/{assetClass}/{dataType}/{version}/{venue}/{identifier}`\n\n## Wildcard Examples\n- `marketData/>` - All market data\n- `marketData/*/quotes/L1/>` - All L1 quotes\n- `marketData/EQ/>` - All equity data\n- `marketData/CRYPTO/*/v1/BINANCE/>` - All Binance crypto data",
+  "img": "assets/img/defaultfeed.png",
+  "contributor": "Himanshu Gupta",
+  "github": "himoacs",
+  "domain": "Finance",
+  "tags": "capital markets, market data, stocks, crypto, fx, tickers, wall street, prices, quotes, trades",
+  "name": "Multi-Asset-Market-Data",
+  "lastUpdated": "2026-04-23T21:56:53.262Z",
+  "contributed": true
+}

@@ -1,0 +1,703 @@
+{
+  "asyncapi": "2.6.0",
+  "id": "urn:solace:feeds:multi-asset-market-data",
+  "info": {
+    "title": "Multi-Asset Market Data Feed",
+    "version": "1.0.0",
+    "description": "Cross-asset L1 market data feed covering Equities, FX, and Crypto.\nPublishes real-time quotes (top of book) and trade executions.\n\n## Topic Structure\nAll topics follow the pattern: `marketData/{assetClass}/{dataType}/{version}/{venue}/{identifier}`\n\n## Wildcard Examples\n- `marketData/>` - All market data\n- `marketData/*/quotes/L1/>` - All L1 quotes\n- `marketData/EQ/>` - All equity data\n- `marketData/CRYPTO/*/v1/BINANCE/>` - All Binance crypto data\n",
+    "contact": {
+      "name": "Himanshu Gupta",
+      "url": "https://github.com/himoacs",
+      "email": "himanshu@example.com"
+    },
+    "license": {
+      "name": "MIT"
+    }
+  },
+  "tags": [
+    {
+      "name": "finance",
+      "description": "Financial market data"
+    },
+    {
+      "name": "trading",
+      "description": "Trading and market quotes"
+    },
+    {
+      "name": "cross-asset",
+      "description": "Multi-asset class coverage"
+    }
+  ],
+  "defaultContentType": "application/json",
+  "servers": {
+    "solace": {
+      "url": "solace://localhost:55555",
+      "protocol": "solace",
+      "description": "Solace PubSub+ Event Broker"
+    }
+  },
+  "channels": {
+    "marketData/EQ/quotes/L1/v1/{region}/{exchange}/{symbol}": {
+      "description": "L1 equity quotes (best bid/ask)",
+      "parameters": {
+        "region": {
+          "description": "Geographic region",
+          "schema": {
+            "type": "string",
+            "enum": [
+              "US",
+              "UK",
+              "EU",
+              "APAC"
+            ]
+          }
+        },
+        "exchange": {
+          "description": "Stock exchange",
+          "schema": {
+            "type": "string",
+            "enum": [
+              "NYSE",
+              "NASDAQ",
+              "LSE",
+              "XETRA",
+              "TSE",
+              "SGX"
+            ]
+          }
+        },
+        "symbol": {
+          "description": "Stock ticker symbol",
+          "schema": {
+            "type": "string"
+          }
+        }
+      },
+      "subscribe": {
+        "operationId": "receiveEquityQuote",
+        "summary": "Receive L1 equity quote",
+        "message": {
+          "$ref": "#/components/messages/EquityL1Quote"
+        }
+      }
+    },
+    "marketData/EQ/trades/v1/{region}/{exchange}/{symbol}": {
+      "description": "Equity trade executions",
+      "parameters": {
+        "region": {
+          "description": "Geographic region",
+          "schema": {
+            "type": "string",
+            "enum": [
+              "US",
+              "UK",
+              "EU",
+              "APAC"
+            ]
+          }
+        },
+        "exchange": {
+          "description": "Stock exchange",
+          "schema": {
+            "type": "string",
+            "enum": [
+              "NYSE",
+              "NASDAQ",
+              "LSE",
+              "XETRA",
+              "TSE",
+              "SGX"
+            ]
+          }
+        },
+        "symbol": {
+          "description": "Stock ticker symbol",
+          "schema": {
+            "type": "string"
+          }
+        }
+      },
+      "subscribe": {
+        "operationId": "receiveEquityTrade",
+        "summary": "Receive equity trade",
+        "message": {
+          "$ref": "#/components/messages/EquityTrade"
+        }
+      }
+    },
+    "marketData/FX/quotes/L1/v1/{venue}/{pair}": {
+      "description": "L1 FX spot quotes",
+      "parameters": {
+        "venue": {
+          "description": "FX trading venue",
+          "schema": {
+            "type": "string",
+            "enum": [
+              "EBS",
+              "REUTERS",
+              "CURRENEX",
+              "HOTSPOT"
+            ]
+          }
+        },
+        "pair": {
+          "description": "Currency pair (e.g., EURUSD, USDJPY)",
+          "schema": {
+            "type": "string",
+            "pattern": "^[A-Z]{6}$"
+          }
+        }
+      },
+      "subscribe": {
+        "operationId": "receiveFXQuote",
+        "summary": "Receive L1 FX quote",
+        "message": {
+          "$ref": "#/components/messages/FXL1Quote"
+        }
+      }
+    },
+    "marketData/FX/trades/v1/{venue}/{pair}": {
+      "description": "FX trade executions",
+      "parameters": {
+        "venue": {
+          "description": "FX trading venue",
+          "schema": {
+            "type": "string",
+            "enum": [
+              "EBS",
+              "REUTERS",
+              "CURRENEX",
+              "HOTSPOT"
+            ]
+          }
+        },
+        "pair": {
+          "description": "Currency pair (e.g., EURUSD, USDJPY)",
+          "schema": {
+            "type": "string",
+            "pattern": "^[A-Z]{6}$"
+          }
+        }
+      },
+      "subscribe": {
+        "operationId": "receiveFXTrade",
+        "summary": "Receive FX trade",
+        "message": {
+          "$ref": "#/components/messages/FXTrade"
+        }
+      }
+    },
+    "marketData/CRYPTO/quotes/L1/v1/{exchange}/{pair}": {
+      "description": "L1 crypto quotes",
+      "parameters": {
+        "exchange": {
+          "description": "Crypto exchange",
+          "schema": {
+            "type": "string",
+            "enum": [
+              "BINANCE",
+              "COINBASE",
+              "KRAKEN",
+              "FTX",
+              "GEMINI"
+            ]
+          }
+        },
+        "pair": {
+          "description": "Trading pair (e.g., BTCUSDT, ETHUSDT)",
+          "schema": {
+            "type": "string"
+          }
+        }
+      },
+      "subscribe": {
+        "operationId": "receiveCryptoQuote",
+        "summary": "Receive L1 crypto quote",
+        "message": {
+          "$ref": "#/components/messages/CryptoL1Quote"
+        }
+      }
+    },
+    "marketData/CRYPTO/trades/v1/{exchange}/{pair}": {
+      "description": "Crypto trade executions",
+      "parameters": {
+        "exchange": {
+          "description": "Crypto exchange",
+          "schema": {
+            "type": "string",
+            "enum": [
+              "BINANCE",
+              "COINBASE",
+              "KRAKEN",
+              "FTX",
+              "GEMINI"
+            ]
+          }
+        },
+        "pair": {
+          "description": "Trading pair (e.g., BTCUSDT, ETHUSDT)",
+          "schema": {
+            "type": "string"
+          }
+        }
+      },
+      "subscribe": {
+        "operationId": "receiveCryptoTrade",
+        "summary": "Receive crypto trade",
+        "message": {
+          "$ref": "#/components/messages/CryptoTrade"
+        }
+      }
+    }
+  },
+  "components": {
+    "messages": {
+      "EquityL1Quote": {
+        "messageId": "EquityL1Quote",
+        "name": "EquityL1Quote",
+        "title": "Equity L1 Quote",
+        "summary": "Top of book quote for an equity security",
+        "contentType": "application/json",
+        "payload": {
+          "$ref": "#/components/schemas/EquityL1QuotePayload"
+        }
+      },
+      "EquityTrade": {
+        "messageId": "EquityTrade",
+        "name": "EquityTrade",
+        "title": "Equity Trade",
+        "summary": "Executed equity trade",
+        "contentType": "application/json",
+        "payload": {
+          "$ref": "#/components/schemas/EquityTradePayload"
+        }
+      },
+      "FXL1Quote": {
+        "messageId": "FXL1Quote",
+        "name": "FXL1Quote",
+        "title": "FX L1 Quote",
+        "summary": "Top of book FX spot quote",
+        "contentType": "application/json",
+        "payload": {
+          "$ref": "#/components/schemas/FXL1QuotePayload"
+        }
+      },
+      "FXTrade": {
+        "messageId": "FXTrade",
+        "name": "FXTrade",
+        "title": "FX Trade",
+        "summary": "Executed FX trade",
+        "contentType": "application/json",
+        "payload": {
+          "$ref": "#/components/schemas/FXTradePayload"
+        }
+      },
+      "CryptoL1Quote": {
+        "messageId": "CryptoL1Quote",
+        "name": "CryptoL1Quote",
+        "title": "Crypto L1 Quote",
+        "summary": "Top of book crypto quote",
+        "contentType": "application/json",
+        "payload": {
+          "$ref": "#/components/schemas/CryptoL1QuotePayload"
+        }
+      },
+      "CryptoTrade": {
+        "messageId": "CryptoTrade",
+        "name": "CryptoTrade",
+        "title": "Crypto Trade",
+        "summary": "Executed crypto trade",
+        "contentType": "application/json",
+        "payload": {
+          "$ref": "#/components/schemas/CryptoTradePayload"
+        }
+      }
+    },
+    "schemas": {
+      "EquityL1QuotePayload": {
+        "type": "object",
+        "required": [
+          "symbol",
+          "exchange",
+          "bidPrice",
+          "bidSize",
+          "askPrice",
+          "askSize",
+          "timestamp"
+        ],
+        "properties": {
+          "symbol": {
+            "type": "string",
+            "description": "Stock ticker symbol",
+            "example": "AAPL"
+          },
+          "exchange": {
+            "type": "string",
+            "description": "Stock exchange",
+            "example": "NASDAQ"
+          },
+          "currency": {
+            "type": "string",
+            "description": "Quote currency",
+            "example": "USD"
+          },
+          "bidPrice": {
+            "type": "number",
+            "format": "double",
+            "description": "Best bid price",
+            "example": 189.45
+          },
+          "bidSize": {
+            "type": "integer",
+            "description": "Size available at bid",
+            "example": 500
+          },
+          "askPrice": {
+            "type": "number",
+            "format": "double",
+            "description": "Best ask price",
+            "example": 189.48
+          },
+          "askSize": {
+            "type": "integer",
+            "description": "Size available at ask",
+            "example": 300
+          },
+          "timestamp": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Quote timestamp (ISO 8601)",
+            "example": "2026-04-23T14:30:15.123456Z"
+          }
+        }
+      },
+      "EquityTradePayload": {
+        "type": "object",
+        "required": [
+          "symbol",
+          "exchange",
+          "price",
+          "size",
+          "timestamp"
+        ],
+        "properties": {
+          "symbol": {
+            "type": "string",
+            "description": "Stock ticker symbol",
+            "example": "AAPL"
+          },
+          "exchange": {
+            "type": "string",
+            "description": "Stock exchange",
+            "example": "NASDAQ"
+          },
+          "currency": {
+            "type": "string",
+            "description": "Trade currency",
+            "example": "USD"
+          },
+          "price": {
+            "type": "number",
+            "format": "double",
+            "description": "Trade price",
+            "example": 189.47
+          },
+          "size": {
+            "type": "integer",
+            "description": "Trade size (shares)",
+            "example": 100
+          },
+          "tradeId": {
+            "type": "string",
+            "description": "Unique trade identifier",
+            "example": "TRD-20260423-001234"
+          },
+          "side": {
+            "type": "string",
+            "enum": [
+              "BUY",
+              "SELL"
+            ],
+            "description": "Trade side (aggressor)",
+            "example": "BUY"
+          },
+          "timestamp": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Trade timestamp (ISO 8601)",
+            "example": "2026-04-23T14:30:15.123456Z"
+          }
+        }
+      },
+      "FXL1QuotePayload": {
+        "type": "object",
+        "required": [
+          "pair",
+          "bid",
+          "ask",
+          "timestamp"
+        ],
+        "properties": {
+          "pair": {
+            "type": "string",
+            "description": "Currency pair",
+            "example": "EURUSD"
+          },
+          "baseCurrency": {
+            "type": "string",
+            "description": "Base currency",
+            "example": "EUR"
+          },
+          "quoteCurrency": {
+            "type": "string",
+            "description": "Quote currency",
+            "example": "USD"
+          },
+          "bid": {
+            "type": "number",
+            "format": "double",
+            "description": "Bid price (5 decimal places for majors)",
+            "example": 1.08235
+          },
+          "bidSize": {
+            "type": "number",
+            "format": "double",
+            "description": "Size available at bid (millions)",
+            "example": 5
+          },
+          "ask": {
+            "type": "number",
+            "format": "double",
+            "description": "Ask price",
+            "example": 1.08238
+          },
+          "askSize": {
+            "type": "number",
+            "format": "double",
+            "description": "Size available at ask (millions)",
+            "example": 3
+          },
+          "mid": {
+            "type": "number",
+            "format": "double",
+            "description": "Mid price",
+            "example": 1.082365
+          },
+          "spread": {
+            "type": "number",
+            "format": "double",
+            "description": "Bid-ask spread in pips",
+            "example": 0.3
+          },
+          "venue": {
+            "type": "string",
+            "description": "Trading venue",
+            "example": "EBS"
+          },
+          "timestamp": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Quote timestamp (ISO 8601)",
+            "example": "2026-04-23T14:30:15.123456Z"
+          }
+        }
+      },
+      "FXTradePayload": {
+        "type": "object",
+        "required": [
+          "pair",
+          "price",
+          "size",
+          "timestamp"
+        ],
+        "properties": {
+          "pair": {
+            "type": "string",
+            "description": "Currency pair",
+            "example": "EURUSD"
+          },
+          "baseCurrency": {
+            "type": "string",
+            "description": "Base currency",
+            "example": "EUR"
+          },
+          "quoteCurrency": {
+            "type": "string",
+            "description": "Quote currency",
+            "example": "USD"
+          },
+          "price": {
+            "type": "number",
+            "format": "double",
+            "description": "Trade price",
+            "example": 1.08237
+          },
+          "size": {
+            "type": "number",
+            "format": "double",
+            "description": "Trade size in base currency (millions)",
+            "example": 2.5
+          },
+          "venue": {
+            "type": "string",
+            "description": "Trading venue",
+            "example": "EBS"
+          },
+          "tradeId": {
+            "type": "string",
+            "description": "Unique trade identifier",
+            "example": "FX-20260423-005678"
+          },
+          "timestamp": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Trade timestamp (ISO 8601)",
+            "example": "2026-04-23T14:30:15.123456Z"
+          }
+        }
+      },
+      "CryptoL1QuotePayload": {
+        "type": "object",
+        "required": [
+          "pair",
+          "bidPrice",
+          "askPrice",
+          "timestamp"
+        ],
+        "properties": {
+          "pair": {
+            "type": "string",
+            "description": "Trading pair",
+            "example": "BTCUSDT"
+          },
+          "baseCurrency": {
+            "type": "string",
+            "description": "Base currency",
+            "example": "BTC"
+          },
+          "quoteCurrency": {
+            "type": "string",
+            "description": "Quote currency",
+            "example": "USDT"
+          },
+          "bidPrice": {
+            "type": "number",
+            "format": "double",
+            "description": "Best bid price",
+            "example": 67234.5
+          },
+          "bidSize": {
+            "type": "number",
+            "format": "double",
+            "description": "Size available at bid",
+            "example": 1.234
+          },
+          "askPrice": {
+            "type": "number",
+            "format": "double",
+            "description": "Best ask price",
+            "example": 67235
+          },
+          "askSize": {
+            "type": "number",
+            "format": "double",
+            "description": "Size available at ask",
+            "example": 0.856
+          },
+          "lastPrice": {
+            "type": "number",
+            "format": "double",
+            "description": "Last traded price",
+            "example": 67234.75
+          },
+          "volume24h": {
+            "type": "number",
+            "format": "double",
+            "description": "24-hour volume in base currency",
+            "example": 12543.67
+          },
+          "change24h": {
+            "type": "number",
+            "format": "double",
+            "description": "24-hour price change percentage",
+            "example": 2.34
+          },
+          "exchange": {
+            "type": "string",
+            "description": "Crypto exchange",
+            "example": "BINANCE"
+          },
+          "timestamp": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Quote timestamp (ISO 8601)",
+            "example": "2026-04-23T14:30:15.123456Z"
+          }
+        }
+      },
+      "CryptoTradePayload": {
+        "type": "object",
+        "required": [
+          "pair",
+          "price",
+          "size",
+          "timestamp"
+        ],
+        "properties": {
+          "pair": {
+            "type": "string",
+            "description": "Trading pair",
+            "example": "BTCUSDT"
+          },
+          "baseCurrency": {
+            "type": "string",
+            "description": "Base currency",
+            "example": "BTC"
+          },
+          "quoteCurrency": {
+            "type": "string",
+            "description": "Quote currency",
+            "example": "USDT"
+          },
+          "price": {
+            "type": "number",
+            "format": "double",
+            "description": "Trade price",
+            "example": 67234.75
+          },
+          "size": {
+            "type": "number",
+            "format": "double",
+            "description": "Trade size in base currency",
+            "example": 0.0523
+          },
+          "side": {
+            "type": "string",
+            "enum": [
+              "BUY",
+              "SELL"
+            ],
+            "description": "Trade side (taker)",
+            "example": "BUY"
+          },
+          "exchange": {
+            "type": "string",
+            "description": "Crypto exchange",
+            "example": "BINANCE"
+          },
+          "tradeId": {
+            "type": "string",
+            "description": "Exchange trade ID",
+            "example": "1234567890"
+          },
+          "timestamp": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Trade timestamp (ISO 8601)",
+            "example": "2026-04-23T14:30:15.123456Z"
+          }
+        }
+      }
+    }
+  }
+}

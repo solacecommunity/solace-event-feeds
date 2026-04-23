@@ -1,0 +1,1243 @@
+{
+  "messages": {
+    "EquityL1Quote": {
+      "send": [
+        {
+          "topicName": "marketData/EQ/quotes/L1/v1/{region}/{exchange}/{symbol}",
+          "topicParameters": {
+            "region": {
+              "description": "Geographic region",
+              "schema": {
+                "type": "string",
+                "enum": [
+                  "US",
+                  "UK",
+                  "EU",
+                  "APAC"
+                ],
+                "x-parser-schema-id": "region"
+              }
+            },
+            "exchange": {
+              "description": "Stock exchange",
+              "schema": {
+                "type": "string",
+                "enum": [
+                  "NYSE",
+                  "NASDAQ",
+                  "LSE",
+                  "XETRA",
+                  "TSE",
+                  "SGX"
+                ],
+                "x-parser-schema-id": "exchange"
+              }
+            },
+            "symbol": {
+              "description": "Stock ticker symbol",
+              "schema": {
+                "type": "string",
+                "x-parser-schema-id": "symbol"
+              }
+            }
+          },
+          "topicDescription": "L1 equity quotes (best bid/ask)",
+          "message": {
+            "messageId": "EquityL1Quote",
+            "name": "EquityL1Quote",
+            "title": "Equity L1 Quote",
+            "summary": "Top of book quote for an equity security",
+            "contentType": "application/json",
+            "payload": {
+              "type": "object",
+              "required": [
+                "symbol",
+                "exchange",
+                "bidPrice",
+                "bidSize",
+                "askPrice",
+                "askSize",
+                "timestamp"
+              ],
+              "properties": {
+                "symbol": {
+                  "type": "string",
+                  "description": "Stock ticker symbol",
+                  "example": "AAPL",
+                  "x-parser-schema-id": "<anonymous-schema-1>"
+                },
+                "exchange": {
+                  "type": "string",
+                  "description": "Stock exchange",
+                  "example": "NASDAQ",
+                  "x-parser-schema-id": "<anonymous-schema-2>"
+                },
+                "currency": {
+                  "type": "string",
+                  "description": "Quote currency",
+                  "example": "USD",
+                  "x-parser-schema-id": "<anonymous-schema-3>"
+                },
+                "bidPrice": {
+                  "type": "number",
+                  "format": "double",
+                  "description": "Best bid price",
+                  "example": 189.45,
+                  "x-parser-schema-id": "<anonymous-schema-4>"
+                },
+                "bidSize": {
+                  "type": "integer",
+                  "description": "Size available at bid",
+                  "example": 500,
+                  "x-parser-schema-id": "<anonymous-schema-5>"
+                },
+                "askPrice": {
+                  "type": "number",
+                  "format": "double",
+                  "description": "Best ask price",
+                  "example": 189.48,
+                  "x-parser-schema-id": "<anonymous-schema-6>"
+                },
+                "askSize": {
+                  "type": "integer",
+                  "description": "Size available at ask",
+                  "example": 300,
+                  "x-parser-schema-id": "<anonymous-schema-7>"
+                },
+                "timestamp": {
+                  "type": "string",
+                  "format": "date-time",
+                  "description": "Quote timestamp (ISO 8601)",
+                  "example": "2026-04-23T14:30:15.123456Z",
+                  "x-parser-schema-id": "<anonymous-schema-8>"
+                }
+              },
+              "x-parser-schema-id": "EquityL1QuotePayload"
+            }
+          },
+          "servers": {
+            "solace": {
+              "url": "solace://localhost:55555",
+              "protocol": "solace",
+              "description": "Solace PubSub+ Event Broker"
+            }
+          },
+          "bindings": {}
+        }
+      ],
+      "receive": [],
+      "hasPayload": true,
+      "schema": "EquityL1QuotePayload"
+    },
+    "EquityTrade": {
+      "send": [
+        {
+          "topicName": "marketData/EQ/trades/v1/{region}/{exchange}/{symbol}",
+          "topicParameters": {
+            "region": {
+              "description": "Geographic region",
+              "schema": {
+                "type": "string",
+                "enum": [
+                  "US",
+                  "UK",
+                  "EU",
+                  "APAC"
+                ],
+                "x-parser-schema-id": "region"
+              }
+            },
+            "exchange": {
+              "description": "Stock exchange",
+              "schema": {
+                "type": "string",
+                "enum": [
+                  "NYSE",
+                  "NASDAQ",
+                  "LSE",
+                  "XETRA",
+                  "TSE",
+                  "SGX"
+                ],
+                "x-parser-schema-id": "exchange"
+              }
+            },
+            "symbol": {
+              "description": "Stock ticker symbol",
+              "schema": {
+                "type": "string",
+                "x-parser-schema-id": "symbol"
+              }
+            }
+          },
+          "topicDescription": "Equity trade executions",
+          "message": {
+            "messageId": "EquityTrade",
+            "name": "EquityTrade",
+            "title": "Equity Trade",
+            "summary": "Executed equity trade",
+            "contentType": "application/json",
+            "payload": {
+              "type": "object",
+              "required": [
+                "symbol",
+                "exchange",
+                "price",
+                "size",
+                "timestamp"
+              ],
+              "properties": {
+                "symbol": {
+                  "type": "string",
+                  "description": "Stock ticker symbol",
+                  "example": "AAPL",
+                  "x-parser-schema-id": "<anonymous-schema-9>"
+                },
+                "exchange": {
+                  "type": "string",
+                  "description": "Stock exchange",
+                  "example": "NASDAQ",
+                  "x-parser-schema-id": "<anonymous-schema-10>"
+                },
+                "currency": {
+                  "type": "string",
+                  "description": "Trade currency",
+                  "example": "USD",
+                  "x-parser-schema-id": "<anonymous-schema-11>"
+                },
+                "price": {
+                  "type": "number",
+                  "format": "double",
+                  "description": "Trade price",
+                  "example": 189.47,
+                  "x-parser-schema-id": "<anonymous-schema-12>"
+                },
+                "size": {
+                  "type": "integer",
+                  "description": "Trade size (shares)",
+                  "example": 100,
+                  "x-parser-schema-id": "<anonymous-schema-13>"
+                },
+                "tradeId": {
+                  "type": "string",
+                  "description": "Unique trade identifier",
+                  "example": "TRD-20260423-001234",
+                  "x-parser-schema-id": "<anonymous-schema-14>"
+                },
+                "side": {
+                  "type": "string",
+                  "enum": [
+                    "BUY",
+                    "SELL"
+                  ],
+                  "description": "Trade side (aggressor)",
+                  "example": "BUY",
+                  "x-parser-schema-id": "<anonymous-schema-15>"
+                },
+                "timestamp": {
+                  "type": "string",
+                  "format": "date-time",
+                  "description": "Trade timestamp (ISO 8601)",
+                  "example": "2026-04-23T14:30:15.123456Z",
+                  "x-parser-schema-id": "<anonymous-schema-16>"
+                }
+              },
+              "x-parser-schema-id": "EquityTradePayload"
+            }
+          },
+          "servers": {
+            "solace": {
+              "url": "solace://localhost:55555",
+              "protocol": "solace",
+              "description": "Solace PubSub+ Event Broker"
+            }
+          },
+          "bindings": {}
+        }
+      ],
+      "receive": [],
+      "hasPayload": true,
+      "schema": "EquityTradePayload"
+    },
+    "FXL1Quote": {
+      "send": [
+        {
+          "topicName": "marketData/FX/quotes/L1/v1/{venue}/{pair}",
+          "topicParameters": {
+            "venue": {
+              "description": "FX trading venue",
+              "schema": {
+                "type": "string",
+                "enum": [
+                  "EBS",
+                  "REUTERS",
+                  "CURRENEX",
+                  "HOTSPOT"
+                ],
+                "x-parser-schema-id": "venue"
+              }
+            },
+            "pair": {
+              "description": "Currency pair (e.g., EURUSD, USDJPY)",
+              "schema": {
+                "type": "string",
+                "pattern": "^[A-Z]{6}$",
+                "x-parser-schema-id": "pair"
+              }
+            }
+          },
+          "topicDescription": "L1 FX spot quotes",
+          "message": {
+            "messageId": "FXL1Quote",
+            "name": "FXL1Quote",
+            "title": "FX L1 Quote",
+            "summary": "Top of book FX spot quote",
+            "contentType": "application/json",
+            "payload": {
+              "type": "object",
+              "required": [
+                "pair",
+                "bid",
+                "ask",
+                "timestamp"
+              ],
+              "properties": {
+                "pair": {
+                  "type": "string",
+                  "description": "Currency pair",
+                  "example": "EURUSD",
+                  "x-parser-schema-id": "<anonymous-schema-17>"
+                },
+                "baseCurrency": {
+                  "type": "string",
+                  "description": "Base currency",
+                  "example": "EUR",
+                  "x-parser-schema-id": "<anonymous-schema-18>"
+                },
+                "quoteCurrency": {
+                  "type": "string",
+                  "description": "Quote currency",
+                  "example": "USD",
+                  "x-parser-schema-id": "<anonymous-schema-19>"
+                },
+                "bid": {
+                  "type": "number",
+                  "format": "double",
+                  "description": "Bid price (5 decimal places for majors)",
+                  "example": 1.08235,
+                  "x-parser-schema-id": "<anonymous-schema-20>"
+                },
+                "bidSize": {
+                  "type": "number",
+                  "format": "double",
+                  "description": "Size available at bid (millions)",
+                  "example": 5,
+                  "x-parser-schema-id": "<anonymous-schema-21>"
+                },
+                "ask": {
+                  "type": "number",
+                  "format": "double",
+                  "description": "Ask price",
+                  "example": 1.08238,
+                  "x-parser-schema-id": "<anonymous-schema-22>"
+                },
+                "askSize": {
+                  "type": "number",
+                  "format": "double",
+                  "description": "Size available at ask (millions)",
+                  "example": 3,
+                  "x-parser-schema-id": "<anonymous-schema-23>"
+                },
+                "mid": {
+                  "type": "number",
+                  "format": "double",
+                  "description": "Mid price",
+                  "example": 1.082365,
+                  "x-parser-schema-id": "<anonymous-schema-24>"
+                },
+                "spread": {
+                  "type": "number",
+                  "format": "double",
+                  "description": "Bid-ask spread in pips",
+                  "example": 0.3,
+                  "x-parser-schema-id": "<anonymous-schema-25>"
+                },
+                "venue": {
+                  "type": "string",
+                  "description": "Trading venue",
+                  "example": "EBS",
+                  "x-parser-schema-id": "<anonymous-schema-26>"
+                },
+                "timestamp": {
+                  "type": "string",
+                  "format": "date-time",
+                  "description": "Quote timestamp (ISO 8601)",
+                  "example": "2026-04-23T14:30:15.123456Z",
+                  "x-parser-schema-id": "<anonymous-schema-27>"
+                }
+              },
+              "x-parser-schema-id": "FXL1QuotePayload"
+            }
+          },
+          "servers": {
+            "solace": {
+              "url": "solace://localhost:55555",
+              "protocol": "solace",
+              "description": "Solace PubSub+ Event Broker"
+            }
+          },
+          "bindings": {}
+        }
+      ],
+      "receive": [],
+      "hasPayload": true,
+      "schema": "FXL1QuotePayload"
+    },
+    "FXTrade": {
+      "send": [
+        {
+          "topicName": "marketData/FX/trades/v1/{venue}/{pair}",
+          "topicParameters": {
+            "venue": {
+              "description": "FX trading venue",
+              "schema": {
+                "type": "string",
+                "enum": [
+                  "EBS",
+                  "REUTERS",
+                  "CURRENEX",
+                  "HOTSPOT"
+                ],
+                "x-parser-schema-id": "venue"
+              }
+            },
+            "pair": {
+              "description": "Currency pair (e.g., EURUSD, USDJPY)",
+              "schema": {
+                "type": "string",
+                "pattern": "^[A-Z]{6}$",
+                "x-parser-schema-id": "pair"
+              }
+            }
+          },
+          "topicDescription": "FX trade executions",
+          "message": {
+            "messageId": "FXTrade",
+            "name": "FXTrade",
+            "title": "FX Trade",
+            "summary": "Executed FX trade",
+            "contentType": "application/json",
+            "payload": {
+              "type": "object",
+              "required": [
+                "pair",
+                "price",
+                "size",
+                "timestamp"
+              ],
+              "properties": {
+                "pair": {
+                  "type": "string",
+                  "description": "Currency pair",
+                  "example": "EURUSD",
+                  "x-parser-schema-id": "<anonymous-schema-28>"
+                },
+                "baseCurrency": {
+                  "type": "string",
+                  "description": "Base currency",
+                  "example": "EUR",
+                  "x-parser-schema-id": "<anonymous-schema-29>"
+                },
+                "quoteCurrency": {
+                  "type": "string",
+                  "description": "Quote currency",
+                  "example": "USD",
+                  "x-parser-schema-id": "<anonymous-schema-30>"
+                },
+                "price": {
+                  "type": "number",
+                  "format": "double",
+                  "description": "Trade price",
+                  "example": 1.08237,
+                  "x-parser-schema-id": "<anonymous-schema-31>"
+                },
+                "size": {
+                  "type": "number",
+                  "format": "double",
+                  "description": "Trade size in base currency (millions)",
+                  "example": 2.5,
+                  "x-parser-schema-id": "<anonymous-schema-32>"
+                },
+                "venue": {
+                  "type": "string",
+                  "description": "Trading venue",
+                  "example": "EBS",
+                  "x-parser-schema-id": "<anonymous-schema-33>"
+                },
+                "tradeId": {
+                  "type": "string",
+                  "description": "Unique trade identifier",
+                  "example": "FX-20260423-005678",
+                  "x-parser-schema-id": "<anonymous-schema-34>"
+                },
+                "timestamp": {
+                  "type": "string",
+                  "format": "date-time",
+                  "description": "Trade timestamp (ISO 8601)",
+                  "example": "2026-04-23T14:30:15.123456Z",
+                  "x-parser-schema-id": "<anonymous-schema-35>"
+                }
+              },
+              "x-parser-schema-id": "FXTradePayload"
+            }
+          },
+          "servers": {
+            "solace": {
+              "url": "solace://localhost:55555",
+              "protocol": "solace",
+              "description": "Solace PubSub+ Event Broker"
+            }
+          },
+          "bindings": {}
+        }
+      ],
+      "receive": [],
+      "hasPayload": true,
+      "schema": "FXTradePayload"
+    },
+    "CryptoL1Quote": {
+      "send": [
+        {
+          "topicName": "marketData/CRYPTO/quotes/L1/v1/{exchange}/{pair}",
+          "topicParameters": {
+            "exchange": {
+              "description": "Crypto exchange",
+              "schema": {
+                "type": "string",
+                "enum": [
+                  "BINANCE",
+                  "COINBASE",
+                  "KRAKEN",
+                  "FTX",
+                  "GEMINI"
+                ],
+                "x-parser-schema-id": "exchange"
+              }
+            },
+            "pair": {
+              "description": "Trading pair (e.g., BTCUSDT, ETHUSDT)",
+              "schema": {
+                "type": "string",
+                "x-parser-schema-id": "pair"
+              }
+            }
+          },
+          "topicDescription": "L1 crypto quotes",
+          "message": {
+            "messageId": "CryptoL1Quote",
+            "name": "CryptoL1Quote",
+            "title": "Crypto L1 Quote",
+            "summary": "Top of book crypto quote",
+            "contentType": "application/json",
+            "payload": {
+              "type": "object",
+              "required": [
+                "pair",
+                "bidPrice",
+                "askPrice",
+                "timestamp"
+              ],
+              "properties": {
+                "pair": {
+                  "type": "string",
+                  "description": "Trading pair",
+                  "example": "BTCUSDT",
+                  "x-parser-schema-id": "<anonymous-schema-36>"
+                },
+                "baseCurrency": {
+                  "type": "string",
+                  "description": "Base currency",
+                  "example": "BTC",
+                  "x-parser-schema-id": "<anonymous-schema-37>"
+                },
+                "quoteCurrency": {
+                  "type": "string",
+                  "description": "Quote currency",
+                  "example": "USDT",
+                  "x-parser-schema-id": "<anonymous-schema-38>"
+                },
+                "bidPrice": {
+                  "type": "number",
+                  "format": "double",
+                  "description": "Best bid price",
+                  "example": 67234.5,
+                  "x-parser-schema-id": "<anonymous-schema-39>"
+                },
+                "bidSize": {
+                  "type": "number",
+                  "format": "double",
+                  "description": "Size available at bid",
+                  "example": 1.234,
+                  "x-parser-schema-id": "<anonymous-schema-40>"
+                },
+                "askPrice": {
+                  "type": "number",
+                  "format": "double",
+                  "description": "Best ask price",
+                  "example": 67235,
+                  "x-parser-schema-id": "<anonymous-schema-41>"
+                },
+                "askSize": {
+                  "type": "number",
+                  "format": "double",
+                  "description": "Size available at ask",
+                  "example": 0.856,
+                  "x-parser-schema-id": "<anonymous-schema-42>"
+                },
+                "lastPrice": {
+                  "type": "number",
+                  "format": "double",
+                  "description": "Last traded price",
+                  "example": 67234.75,
+                  "x-parser-schema-id": "<anonymous-schema-43>"
+                },
+                "volume24h": {
+                  "type": "number",
+                  "format": "double",
+                  "description": "24-hour volume in base currency",
+                  "example": 12543.67,
+                  "x-parser-schema-id": "<anonymous-schema-44>"
+                },
+                "change24h": {
+                  "type": "number",
+                  "format": "double",
+                  "description": "24-hour price change percentage",
+                  "example": 2.34,
+                  "x-parser-schema-id": "<anonymous-schema-45>"
+                },
+                "exchange": {
+                  "type": "string",
+                  "description": "Crypto exchange",
+                  "example": "BINANCE",
+                  "x-parser-schema-id": "<anonymous-schema-46>"
+                },
+                "timestamp": {
+                  "type": "string",
+                  "format": "date-time",
+                  "description": "Quote timestamp (ISO 8601)",
+                  "example": "2026-04-23T14:30:15.123456Z",
+                  "x-parser-schema-id": "<anonymous-schema-47>"
+                }
+              },
+              "x-parser-schema-id": "CryptoL1QuotePayload"
+            }
+          },
+          "servers": {
+            "solace": {
+              "url": "solace://localhost:55555",
+              "protocol": "solace",
+              "description": "Solace PubSub+ Event Broker"
+            }
+          },
+          "bindings": {}
+        }
+      ],
+      "receive": [],
+      "hasPayload": true,
+      "schema": "CryptoL1QuotePayload"
+    },
+    "CryptoTrade": {
+      "send": [
+        {
+          "topicName": "marketData/CRYPTO/trades/v1/{exchange}/{pair}",
+          "topicParameters": {
+            "exchange": {
+              "description": "Crypto exchange",
+              "schema": {
+                "type": "string",
+                "enum": [
+                  "BINANCE",
+                  "COINBASE",
+                  "KRAKEN",
+                  "FTX",
+                  "GEMINI"
+                ],
+                "x-parser-schema-id": "exchange"
+              }
+            },
+            "pair": {
+              "description": "Trading pair (e.g., BTCUSDT, ETHUSDT)",
+              "schema": {
+                "type": "string",
+                "x-parser-schema-id": "pair"
+              }
+            }
+          },
+          "topicDescription": "Crypto trade executions",
+          "message": {
+            "messageId": "CryptoTrade",
+            "name": "CryptoTrade",
+            "title": "Crypto Trade",
+            "summary": "Executed crypto trade",
+            "contentType": "application/json",
+            "payload": {
+              "type": "object",
+              "required": [
+                "pair",
+                "price",
+                "size",
+                "timestamp"
+              ],
+              "properties": {
+                "pair": {
+                  "type": "string",
+                  "description": "Trading pair",
+                  "example": "BTCUSDT",
+                  "x-parser-schema-id": "<anonymous-schema-48>"
+                },
+                "baseCurrency": {
+                  "type": "string",
+                  "description": "Base currency",
+                  "example": "BTC",
+                  "x-parser-schema-id": "<anonymous-schema-49>"
+                },
+                "quoteCurrency": {
+                  "type": "string",
+                  "description": "Quote currency",
+                  "example": "USDT",
+                  "x-parser-schema-id": "<anonymous-schema-50>"
+                },
+                "price": {
+                  "type": "number",
+                  "format": "double",
+                  "description": "Trade price",
+                  "example": 67234.75,
+                  "x-parser-schema-id": "<anonymous-schema-51>"
+                },
+                "size": {
+                  "type": "number",
+                  "format": "double",
+                  "description": "Trade size in base currency",
+                  "example": 0.0523,
+                  "x-parser-schema-id": "<anonymous-schema-52>"
+                },
+                "side": {
+                  "type": "string",
+                  "enum": [
+                    "BUY",
+                    "SELL"
+                  ],
+                  "description": "Trade side (taker)",
+                  "example": "BUY",
+                  "x-parser-schema-id": "<anonymous-schema-53>"
+                },
+                "exchange": {
+                  "type": "string",
+                  "description": "Crypto exchange",
+                  "example": "BINANCE",
+                  "x-parser-schema-id": "<anonymous-schema-54>"
+                },
+                "tradeId": {
+                  "type": "string",
+                  "description": "Exchange trade ID",
+                  "example": "1234567890",
+                  "x-parser-schema-id": "<anonymous-schema-55>"
+                },
+                "timestamp": {
+                  "type": "string",
+                  "format": "date-time",
+                  "description": "Trade timestamp (ISO 8601)",
+                  "example": "2026-04-23T14:30:15.123456Z",
+                  "x-parser-schema-id": "<anonymous-schema-56>"
+                }
+              },
+              "x-parser-schema-id": "CryptoTradePayload"
+            }
+          },
+          "servers": {
+            "solace": {
+              "url": "solace://localhost:55555",
+              "protocol": "solace",
+              "description": "Solace PubSub+ Event Broker"
+            }
+          },
+          "bindings": {}
+        }
+      ],
+      "receive": [],
+      "hasPayload": true,
+      "schema": "CryptoTradePayload"
+    }
+  },
+  "schemas": {
+    "EquityL1QuotePayload": {
+      "type": "object",
+      "required": [
+        "symbol",
+        "exchange",
+        "bidPrice",
+        "bidSize",
+        "askPrice",
+        "askSize",
+        "timestamp"
+      ],
+      "properties": {
+        "symbol": {
+          "type": "string",
+          "description": "Stock ticker symbol",
+          "example": "AAPL",
+          "x-parser-schema-id": "<anonymous-schema-1>"
+        },
+        "exchange": {
+          "type": "string",
+          "description": "Stock exchange",
+          "example": "NASDAQ",
+          "x-parser-schema-id": "<anonymous-schema-2>"
+        },
+        "currency": {
+          "type": "string",
+          "description": "Quote currency",
+          "example": "USD",
+          "x-parser-schema-id": "<anonymous-schema-3>"
+        },
+        "bidPrice": {
+          "type": "number",
+          "format": "double",
+          "description": "Best bid price",
+          "example": 189.45,
+          "x-parser-schema-id": "<anonymous-schema-4>"
+        },
+        "bidSize": {
+          "type": "integer",
+          "description": "Size available at bid",
+          "example": 500,
+          "x-parser-schema-id": "<anonymous-schema-5>"
+        },
+        "askPrice": {
+          "type": "number",
+          "format": "double",
+          "description": "Best ask price",
+          "example": 189.48,
+          "x-parser-schema-id": "<anonymous-schema-6>"
+        },
+        "askSize": {
+          "type": "integer",
+          "description": "Size available at ask",
+          "example": 300,
+          "x-parser-schema-id": "<anonymous-schema-7>"
+        },
+        "timestamp": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Quote timestamp (ISO 8601)",
+          "example": "2026-04-23T14:30:15.123456Z",
+          "x-parser-schema-id": "<anonymous-schema-8>"
+        }
+      },
+      "x-parser-schema-id": "EquityL1QuotePayload"
+    },
+    "EquityTradePayload": {
+      "type": "object",
+      "required": [
+        "symbol",
+        "exchange",
+        "price",
+        "size",
+        "timestamp"
+      ],
+      "properties": {
+        "symbol": {
+          "type": "string",
+          "description": "Stock ticker symbol",
+          "example": "AAPL",
+          "x-parser-schema-id": "<anonymous-schema-9>"
+        },
+        "exchange": {
+          "type": "string",
+          "description": "Stock exchange",
+          "example": "NASDAQ",
+          "x-parser-schema-id": "<anonymous-schema-10>"
+        },
+        "currency": {
+          "type": "string",
+          "description": "Trade currency",
+          "example": "USD",
+          "x-parser-schema-id": "<anonymous-schema-11>"
+        },
+        "price": {
+          "type": "number",
+          "format": "double",
+          "description": "Trade price",
+          "example": 189.47,
+          "x-parser-schema-id": "<anonymous-schema-12>"
+        },
+        "size": {
+          "type": "integer",
+          "description": "Trade size (shares)",
+          "example": 100,
+          "x-parser-schema-id": "<anonymous-schema-13>"
+        },
+        "tradeId": {
+          "type": "string",
+          "description": "Unique trade identifier",
+          "example": "TRD-20260423-001234",
+          "x-parser-schema-id": "<anonymous-schema-14>"
+        },
+        "side": {
+          "type": "string",
+          "enum": [
+            "BUY",
+            "SELL"
+          ],
+          "description": "Trade side (aggressor)",
+          "example": "BUY",
+          "x-parser-schema-id": "<anonymous-schema-15>"
+        },
+        "timestamp": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Trade timestamp (ISO 8601)",
+          "example": "2026-04-23T14:30:15.123456Z",
+          "x-parser-schema-id": "<anonymous-schema-16>"
+        }
+      },
+      "x-parser-schema-id": "EquityTradePayload"
+    },
+    "FXL1QuotePayload": {
+      "type": "object",
+      "required": [
+        "pair",
+        "bid",
+        "ask",
+        "timestamp"
+      ],
+      "properties": {
+        "pair": {
+          "type": "string",
+          "description": "Currency pair",
+          "example": "EURUSD",
+          "x-parser-schema-id": "<anonymous-schema-17>"
+        },
+        "baseCurrency": {
+          "type": "string",
+          "description": "Base currency",
+          "example": "EUR",
+          "x-parser-schema-id": "<anonymous-schema-18>"
+        },
+        "quoteCurrency": {
+          "type": "string",
+          "description": "Quote currency",
+          "example": "USD",
+          "x-parser-schema-id": "<anonymous-schema-19>"
+        },
+        "bid": {
+          "type": "number",
+          "format": "double",
+          "description": "Bid price (5 decimal places for majors)",
+          "example": 1.08235,
+          "x-parser-schema-id": "<anonymous-schema-20>"
+        },
+        "bidSize": {
+          "type": "number",
+          "format": "double",
+          "description": "Size available at bid (millions)",
+          "example": 5,
+          "x-parser-schema-id": "<anonymous-schema-21>"
+        },
+        "ask": {
+          "type": "number",
+          "format": "double",
+          "description": "Ask price",
+          "example": 1.08238,
+          "x-parser-schema-id": "<anonymous-schema-22>"
+        },
+        "askSize": {
+          "type": "number",
+          "format": "double",
+          "description": "Size available at ask (millions)",
+          "example": 3,
+          "x-parser-schema-id": "<anonymous-schema-23>"
+        },
+        "mid": {
+          "type": "number",
+          "format": "double",
+          "description": "Mid price",
+          "example": 1.082365,
+          "x-parser-schema-id": "<anonymous-schema-24>"
+        },
+        "spread": {
+          "type": "number",
+          "format": "double",
+          "description": "Bid-ask spread in pips",
+          "example": 0.3,
+          "x-parser-schema-id": "<anonymous-schema-25>"
+        },
+        "venue": {
+          "type": "string",
+          "description": "Trading venue",
+          "example": "EBS",
+          "x-parser-schema-id": "<anonymous-schema-26>"
+        },
+        "timestamp": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Quote timestamp (ISO 8601)",
+          "example": "2026-04-23T14:30:15.123456Z",
+          "x-parser-schema-id": "<anonymous-schema-27>"
+        }
+      },
+      "x-parser-schema-id": "FXL1QuotePayload"
+    },
+    "FXTradePayload": {
+      "type": "object",
+      "required": [
+        "pair",
+        "price",
+        "size",
+        "timestamp"
+      ],
+      "properties": {
+        "pair": {
+          "type": "string",
+          "description": "Currency pair",
+          "example": "EURUSD",
+          "x-parser-schema-id": "<anonymous-schema-28>"
+        },
+        "baseCurrency": {
+          "type": "string",
+          "description": "Base currency",
+          "example": "EUR",
+          "x-parser-schema-id": "<anonymous-schema-29>"
+        },
+        "quoteCurrency": {
+          "type": "string",
+          "description": "Quote currency",
+          "example": "USD",
+          "x-parser-schema-id": "<anonymous-schema-30>"
+        },
+        "price": {
+          "type": "number",
+          "format": "double",
+          "description": "Trade price",
+          "example": 1.08237,
+          "x-parser-schema-id": "<anonymous-schema-31>"
+        },
+        "size": {
+          "type": "number",
+          "format": "double",
+          "description": "Trade size in base currency (millions)",
+          "example": 2.5,
+          "x-parser-schema-id": "<anonymous-schema-32>"
+        },
+        "venue": {
+          "type": "string",
+          "description": "Trading venue",
+          "example": "EBS",
+          "x-parser-schema-id": "<anonymous-schema-33>"
+        },
+        "tradeId": {
+          "type": "string",
+          "description": "Unique trade identifier",
+          "example": "FX-20260423-005678",
+          "x-parser-schema-id": "<anonymous-schema-34>"
+        },
+        "timestamp": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Trade timestamp (ISO 8601)",
+          "example": "2026-04-23T14:30:15.123456Z",
+          "x-parser-schema-id": "<anonymous-schema-35>"
+        }
+      },
+      "x-parser-schema-id": "FXTradePayload"
+    },
+    "CryptoL1QuotePayload": {
+      "type": "object",
+      "required": [
+        "pair",
+        "bidPrice",
+        "askPrice",
+        "timestamp"
+      ],
+      "properties": {
+        "pair": {
+          "type": "string",
+          "description": "Trading pair",
+          "example": "BTCUSDT",
+          "x-parser-schema-id": "<anonymous-schema-36>"
+        },
+        "baseCurrency": {
+          "type": "string",
+          "description": "Base currency",
+          "example": "BTC",
+          "x-parser-schema-id": "<anonymous-schema-37>"
+        },
+        "quoteCurrency": {
+          "type": "string",
+          "description": "Quote currency",
+          "example": "USDT",
+          "x-parser-schema-id": "<anonymous-schema-38>"
+        },
+        "bidPrice": {
+          "type": "number",
+          "format": "double",
+          "description": "Best bid price",
+          "example": 67234.5,
+          "x-parser-schema-id": "<anonymous-schema-39>"
+        },
+        "bidSize": {
+          "type": "number",
+          "format": "double",
+          "description": "Size available at bid",
+          "example": 1.234,
+          "x-parser-schema-id": "<anonymous-schema-40>"
+        },
+        "askPrice": {
+          "type": "number",
+          "format": "double",
+          "description": "Best ask price",
+          "example": 67235,
+          "x-parser-schema-id": "<anonymous-schema-41>"
+        },
+        "askSize": {
+          "type": "number",
+          "format": "double",
+          "description": "Size available at ask",
+          "example": 0.856,
+          "x-parser-schema-id": "<anonymous-schema-42>"
+        },
+        "lastPrice": {
+          "type": "number",
+          "format": "double",
+          "description": "Last traded price",
+          "example": 67234.75,
+          "x-parser-schema-id": "<anonymous-schema-43>"
+        },
+        "volume24h": {
+          "type": "number",
+          "format": "double",
+          "description": "24-hour volume in base currency",
+          "example": 12543.67,
+          "x-parser-schema-id": "<anonymous-schema-44>"
+        },
+        "change24h": {
+          "type": "number",
+          "format": "double",
+          "description": "24-hour price change percentage",
+          "example": 2.34,
+          "x-parser-schema-id": "<anonymous-schema-45>"
+        },
+        "exchange": {
+          "type": "string",
+          "description": "Crypto exchange",
+          "example": "BINANCE",
+          "x-parser-schema-id": "<anonymous-schema-46>"
+        },
+        "timestamp": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Quote timestamp (ISO 8601)",
+          "example": "2026-04-23T14:30:15.123456Z",
+          "x-parser-schema-id": "<anonymous-schema-47>"
+        }
+      },
+      "x-parser-schema-id": "CryptoL1QuotePayload"
+    },
+    "CryptoTradePayload": {
+      "type": "object",
+      "required": [
+        "pair",
+        "price",
+        "size",
+        "timestamp"
+      ],
+      "properties": {
+        "pair": {
+          "type": "string",
+          "description": "Trading pair",
+          "example": "BTCUSDT",
+          "x-parser-schema-id": "<anonymous-schema-48>"
+        },
+        "baseCurrency": {
+          "type": "string",
+          "description": "Base currency",
+          "example": "BTC",
+          "x-parser-schema-id": "<anonymous-schema-49>"
+        },
+        "quoteCurrency": {
+          "type": "string",
+          "description": "Quote currency",
+          "example": "USDT",
+          "x-parser-schema-id": "<anonymous-schema-50>"
+        },
+        "price": {
+          "type": "number",
+          "format": "double",
+          "description": "Trade price",
+          "example": 67234.75,
+          "x-parser-schema-id": "<anonymous-schema-51>"
+        },
+        "size": {
+          "type": "number",
+          "format": "double",
+          "description": "Trade size in base currency",
+          "example": 0.0523,
+          "x-parser-schema-id": "<anonymous-schema-52>"
+        },
+        "side": {
+          "type": "string",
+          "enum": [
+            "BUY",
+            "SELL"
+          ],
+          "description": "Trade side (taker)",
+          "example": "BUY",
+          "x-parser-schema-id": "<anonymous-schema-53>"
+        },
+        "exchange": {
+          "type": "string",
+          "description": "Crypto exchange",
+          "example": "BINANCE",
+          "x-parser-schema-id": "<anonymous-schema-54>"
+        },
+        "tradeId": {
+          "type": "string",
+          "description": "Exchange trade ID",
+          "example": "1234567890",
+          "x-parser-schema-id": "<anonymous-schema-55>"
+        },
+        "timestamp": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Trade timestamp (ISO 8601)",
+          "example": "2026-04-23T14:30:15.123456Z",
+          "x-parser-schema-id": "<anonymous-schema-56>"
+        }
+      },
+      "x-parser-schema-id": "CryptoTradePayload"
+    }
+  },
+  "servers": {
+    "solace": {
+      "url": "solace://localhost:55555",
+      "protocol": "solace",
+      "description": "Solace PubSub+ Event Broker"
+    }
+  },
+  "info": {
+    "title": "Multi-Asset Market Data Feed",
+    "version": "1.0.0",
+    "description": "Cross-asset L1 market data feed covering Equities, FX, and Crypto.\nPublishes real-time quotes (top of book) and trade executions.\n\n## Topic Structure\nAll topics follow the pattern: `marketData/{assetClass}/{dataType}/{version}/{venue}/{identifier}`\n\n## Wildcard Examples\n- `marketData/>` - All market data\n- `marketData/*/quotes/L1/>` - All L1 quotes\n- `marketData/EQ/>` - All equity data\n- `marketData/CRYPTO/*/v1/BINANCE/>` - All Binance crypto data\n",
+    "contact": {
+      "name": "Himanshu Gupta",
+      "url": "https://github.com/himoacs",
+      "email": "himanshu@example.com"
+    },
+    "license": {
+      "name": "MIT"
+    }
+  },
+  "version": "2.6.0",
+  "fileName": "multi-asset-market-data.yaml",
+  "view": "sender"
+}
