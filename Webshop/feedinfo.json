@@ -1,0 +1,14 @@
+{
+  "version": "1.0",
+  "feedType": "asyncapi_feed",
+  "type": "asyncapi_feed",
+  "feedView": "default",
+  "name": "Webshop",
+  "description": "Retail webshop application publishing events across the customer purchase lifecycle - from cart abandonment through order placement, cancellation, and returns - enabling downstream order management, fulfillment, and customer analytics use cases.",
+  "img": "https://raw.githubusercontent.com/microsoft/fluentui-emoji/main/assets/Shopping%20bags/Color/shopping_bags_color.svg",
+  "contributor": "Pascal Reitermann",
+  "github": "pascalre",
+  "domain": "Retail",
+  "tags": "retail, e-commerce, webshop, order-management, sales, returns, omnichannel, customer-lifecycle",
+  "lastUpdated": "2026-07-08T20:34:35.895Z"
+}

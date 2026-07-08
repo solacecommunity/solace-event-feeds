@@ -1,0 +1,865 @@
+[
+  {
+    "topic": "acme/sales/cart/abandoned/v1/{country}/{device}",
+    "topicParameters": {
+      "country": {
+        "schema": {
+          "type": "string",
+          "enum": [
+            "de",
+            "fr",
+            "it",
+            "ch",
+            "es",
+            "si",
+            "pt",
+            "pl"
+          ]
+        },
+        "rule": {
+          "name": "country",
+          "type": "string",
+          "group": "StringRules",
+          "rule": "enum",
+          "enum": [
+            "de",
+            "fr",
+            "it",
+            "ch",
+            "es",
+            "si",
+            "pt",
+            "pl"
+          ]
+        }
+      },
+      "device": {
+        "schema": {
+          "type": "string",
+          "enum": [
+            "mobile",
+            "desktop"
+          ]
+        },
+        "rule": {
+          "name": "device",
+          "type": "string",
+          "group": "StringRules",
+          "rule": "enum",
+          "enum": [
+            "mobile",
+            "desktop"
+          ]
+        }
+      }
+    },
+    "eventName": "Cart Abandoned",
+    "eventVersion": "0.1.0",
+    "messageName": "Cart_Abandoned",
+    "hasPayload": true,
+    "payload": {
+      "lastActiveStep": {
+        "description": "Last checkout step the customer reached before abandoning the cart",
+        "type": "string",
+        "enum": [
+          "cart",
+          "shipping_info",
+          "payment_info",
+          "review"
+        ],
+        "rule": {
+          "name": "lastActiveStep",
+          "type": "string",
+          "group": "StringRules",
+          "rule": "enum",
+          "enum": [
+            "cart",
+            "shipping_info",
+            "payment_info",
+            "review"
+          ],
+          "description": "Last checkout step the customer reached before abandoning the cart"
+        }
+      },
+      "cartId": {
+        "format": "uuid",
+        "description": "Unique identifier of the abandoned cart",
+        "type": "string",
+        "rule": {
+          "name": "cartId",
+          "type": "string",
+          "group": "StringRules",
+          "rule": "uuid",
+          "casing": "mixed",
+          "format": "uuid",
+          "description": "Unique identifier of the abandoned cart"
+        }
+      },
+      "customerId": {
+        "description": "Identifier of the customer, null if the cart belongs to a guest session",
+        "type": "string",
+        "rule": {
+          "name": "customerId",
+          "type": "string",
+          "group": "StringRules",
+          "rule": "alpha",
+          "casing": "mixed",
+          "minLength": 10,
+          "maxLength": 10,
+          "description": "Identifier of the customer, null if the cart belongs to a guest session"
+        }
+      },
+      "cartValue": {
+        "description": "Total monetary value of the cart at the time of abandonment",
+        "type": "number",
+        "rule": {
+          "name": "cartValue",
+          "type": "number",
+          "group": "NumberRules",
+          "rule": "float",
+          "minimum": 0,
+          "maximum": 1000,
+          "fractionDigits": 2,
+          "description": "Total monetary value of the cart at the time of abandonment"
+        }
+      },
+      "itemCount": {
+        "description": "Number of distinct items in the cart at the time of abandonment",
+        "type": "integer",
+        "minimum": 1,
+        "rule": {
+          "name": "itemCount",
+          "type": "integer",
+          "group": "NumberRules",
+          "rule": "int",
+          "minimum": 1,
+          "maximum": 1000,
+          "description": "Number of distinct items in the cart at the time of abandonment"
+        }
+      }
+    },
+    "publishSettings": {
+      "count": 0,
+      "interval": 1000,
+      "delay": 0
+    }
+  },
+  {
+    "topic": "acme/customer/account/registered/v1/{country}/{accountId}",
+    "topicParameters": {
+      "country": {
+        "schema": {
+          "type": "string",
+          "enum": [
+            "de",
+            "fr",
+            "it",
+            "ch",
+            "es",
+            "si",
+            "pt",
+            "pl"
+          ]
+        },
+        "rule": {
+          "name": "country",
+          "type": "string",
+          "group": "StringRules",
+          "rule": "enum",
+          "enum": [
+            "de",
+            "fr",
+            "it",
+            "ch",
+            "es",
+            "si",
+            "pt",
+            "pl"
+          ]
+        }
+      },
+      "accountId": {
+        "schema": {
+          "type": "string"
+        },
+        "rule": {
+          "name": "accountId",
+          "type": "string",
+          "group": "StringRules",
+          "rule": "alpha",
+          "casing": "mixed",
+          "minLength": 10,
+          "maxLength": 10
+        }
+      }
+    },
+    "eventName": "Account Registered",
+    "eventVersion": "0.1.0",
+    "messageName": "Account_Registered",
+    "hasPayload": true,
+    "payload": {
+      "customerSegment": {
+        "description": "Business segment the customer is classified into at registration",
+        "type": "string",
+        "enum": [
+          "retail",
+          "vip",
+          "wholesale",
+          "employee"
+        ],
+        "rule": {
+          "name": "customerSegment",
+          "type": "string",
+          "group": "StringRules",
+          "rule": "enum",
+          "enum": [
+            "retail",
+            "vip",
+            "wholesale",
+            "employee"
+          ],
+          "description": "Business segment the customer is classified into at registration"
+        }
+      },
+      "customerId": {
+        "description": "Unique identifier of the newly created customer account",
+        "type": "string",
+        "rule": {
+          "name": "customerId",
+          "type": "string",
+          "group": "StringRules",
+          "rule": "alpha",
+          "casing": "mixed",
+          "minLength": 10,
+          "maxLength": 10,
+          "description": "Unique identifier of the newly created customer account"
+        }
+      },
+      "email": {
+        "format": "email",
+        "description": "Email address used for the account",
+        "type": "string",
+        "rule": {
+          "name": "email",
+          "type": "string",
+          "group": "InternetRules",
+          "rule": "email",
+          "casing": "mixed",
+          "format": "email",
+          "description": "Email address used for the account"
+        }
+      },
+      "marketingOptIn": {
+        "description": "Whether the customer consented to marketing communications during registration",
+        "type": "boolean",
+        "rule": {
+          "name": "marketingOptIn",
+          "type": "boolean",
+          "group": "BooleanRules",
+          "rule": "boolean",
+          "description": "Whether the customer consented to marketing communications during registration"
+        }
+      }
+    },
+    "publishSettings": {
+      "count": 0,
+      "interval": 1000,
+      "delay": 0
+    }
+  },
+  {
+    "topic": "acme/sales/order/placed/v1/{country}/{channel}/{orderId}",
+    "topicParameters": {
+      "country": {
+        "schema": {
+          "type": "string",
+          "enum": [
+            "de",
+            "fr",
+            "it",
+            "ch",
+            "es",
+            "si",
+            "pt",
+            "pl"
+          ]
+        },
+        "rule": {
+          "name": "country",
+          "type": "string",
+          "group": "StringRules",
+          "rule": "enum",
+          "enum": [
+            "de",
+            "fr",
+            "it",
+            "ch",
+            "es",
+            "si",
+            "pt",
+            "pl"
+          ]
+        }
+      },
+      "orderId": {
+        "schema": {
+          "type": "string"
+        },
+        "rule": {
+          "name": "orderId",
+          "type": "string",
+          "group": "StringRules",
+          "rule": "alpha",
+          "casing": "mixed",
+          "minLength": 10,
+          "maxLength": 10
+        }
+      },
+      "channel": {
+        "schema": {
+          "type": "string",
+          "enum": [
+            "online",
+            "marketplace",
+            "app",
+            "store"
+          ]
+        },
+        "rule": {
+          "name": "channel",
+          "type": "string",
+          "group": "StringRules",
+          "rule": "enum",
+          "enum": [
+            "online",
+            "marketplace",
+            "app",
+            "store"
+          ]
+        }
+      }
+    },
+    "eventName": "Order Placed",
+    "eventVersion": "0.1.0",
+    "messageName": "Order_Placed",
+    "hasPayload": true,
+    "payload": {
+      "totalAmount": {
+        "description": "Total monetary value of the order, including shipping, excluding any later refunds",
+        "type": "number",
+        "rule": {
+          "name": "totalAmount",
+          "type": "number",
+          "group": "NumberRules",
+          "rule": "float",
+          "minimum": 0,
+          "maximum": 1000,
+          "fractionDigits": 2,
+          "description": "Total monetary value of the order, including shipping, excluding any later refunds"
+        }
+      },
+      "orderId": {
+        "format": "uuid",
+        "description": "Unique identifier of the placed order",
+        "type": "string",
+        "rule": {
+          "name": "orderId",
+          "type": "string",
+          "group": "StringRules",
+          "rule": "uuid",
+          "casing": "mixed",
+          "format": "uuid",
+          "description": "Unique identifier of the placed order"
+        }
+      },
+      "shippingMethod": {
+        "description": "Shipping method selected by the customer at checkout",
+        "type": "string",
+        "enum": [
+          "standard",
+          "express",
+          "click_and_collect",
+          "same_day"
+        ],
+        "rule": {
+          "name": "shippingMethod",
+          "type": "string",
+          "group": "StringRules",
+          "rule": "enum",
+          "enum": [
+            "standard",
+            "express",
+            "click_and_collect",
+            "same_day"
+          ],
+          "description": "Shipping method selected by the customer at checkout"
+        }
+      },
+      "customerId": {
+        "description": "Identifier of the customer, null if the order was placed as a guest",
+        "type": "string",
+        "rule": {
+          "name": "customerId",
+          "type": "string",
+          "group": "StringRules",
+          "rule": "alpha",
+          "casing": "mixed",
+          "minLength": 10,
+          "maxLength": 10,
+          "description": "Identifier of the customer, null if the order was placed as a guest"
+        }
+      },
+      "currency": {
+        "description": "Currency in which the order was placed",
+        "type": "string",
+        "enum": [
+          "EUR",
+          "CHF",
+          "PLN"
+        ],
+        "rule": {
+          "name": "currency",
+          "type": "string",
+          "group": "StringRules",
+          "rule": "enum",
+          "enum": [
+            "EUR",
+            "CHF",
+            "PLN"
+          ],
+          "description": "Currency in which the order was placed"
+        }
+      },
+      "items": {
+        "minItems": 1,
+        "description": "Line items included in the order",
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "unitPrice": {
+              "type": "number",
+              "rule": {
+                "name": "unitPrice",
+                "type": "number",
+                "group": "NumberRules",
+                "rule": "float",
+                "minimum": 0,
+                "maximum": 1000,
+                "fractionDigits": 2
+              }
+            },
+            "quantity": {
+              "type": "integer",
+              "minimum": 1,
+              "rule": {
+                "name": "quantity",
+                "type": "integer",
+                "group": "NumberRules",
+                "rule": "int",
+                "minimum": 1,
+                "maximum": 1000
+              }
+            },
+            "sku": {
+              "description": "Stock keeping unit identifying the purchased product",
+              "type": "string",
+              "rule": {
+                "name": "sku",
+                "type": "string",
+                "group": "StringRules",
+                "rule": "alpha",
+                "casing": "mixed",
+                "minLength": 10,
+                "maxLength": 10,
+                "description": "Stock keeping unit identifying the purchased product"
+              }
+            }
+          },
+          "required": [
+            "sku",
+            "quantity",
+            "unitPrice"
+          ]
+        },
+        "subType": "object",
+        "name": "items",
+        "rule": {
+          "name": "items",
+          "type": "object"
+        }
+      }
+    },
+    "publishSettings": {
+      "count": 0,
+      "interval": 1000,
+      "delay": 0
+    }
+  },
+  {
+    "topic": "acme/sales/order/cancelled/v1/{country}/{channel}/{orderId}",
+    "topicParameters": {
+      "country": {
+        "schema": {
+          "type": "string",
+          "enum": [
+            "de",
+            "fr",
+            "it",
+            "ch",
+            "es",
+            "si",
+            "pt",
+            "pl"
+          ]
+        },
+        "rule": {
+          "name": "country",
+          "type": "string",
+          "group": "StringRules",
+          "rule": "enum",
+          "enum": [
+            "de",
+            "fr",
+            "it",
+            "ch",
+            "es",
+            "si",
+            "pt",
+            "pl"
+          ]
+        }
+      },
+      "orderId": {
+        "schema": {
+          "type": "string"
+        },
+        "rule": {
+          "name": "orderId",
+          "type": "string",
+          "group": "StringRules",
+          "rule": "alpha",
+          "casing": "mixed",
+          "minLength": 10,
+          "maxLength": 10
+        }
+      },
+      "channel": {
+        "schema": {
+          "type": "string",
+          "enum": [
+            "online",
+            "marketplace",
+            "app",
+            "store"
+          ]
+        },
+        "rule": {
+          "name": "channel",
+          "type": "string",
+          "group": "StringRules",
+          "rule": "enum",
+          "enum": [
+            "online",
+            "marketplace",
+            "app",
+            "store"
+          ]
+        }
+      }
+    },
+    "eventName": "Order Cancelled",
+    "eventVersion": "0.1.0",
+    "messageName": "Order_Cancelled",
+    "hasPayload": true,
+    "payload": {
+      "orderId": {
+        "format": "uuid",
+        "description": "Unique identifier of the cancelled order",
+        "type": "string",
+        "rule": {
+          "name": "orderId",
+          "type": "string",
+          "group": "StringRules",
+          "rule": "uuid",
+          "casing": "mixed",
+          "format": "uuid",
+          "description": "Unique identifier of the cancelled order"
+        }
+      },
+      "cancellationReason": {
+        "description": "Business reason for the cancellation",
+        "type": "string",
+        "enum": [
+          "customer_request",
+          "payment_failed",
+          "fraud_suspected",
+          "out_of_stock",
+          "duplicate_order"
+        ],
+        "rule": {
+          "name": "cancellationReason",
+          "type": "string",
+          "group": "StringRules",
+          "rule": "enum",
+          "enum": [
+            "customer_request",
+            "payment_failed",
+            "fraud_suspected",
+            "out_of_stock",
+            "duplicate_order"
+          ],
+          "description": "Business reason for the cancellation"
+        }
+      },
+      "cancelledBy": {
+        "description": "Actor who initiated the cancellation",
+        "type": "string",
+        "enum": [
+          "customer",
+          "system",
+          "support_agent"
+        ],
+        "rule": {
+          "name": "cancelledBy",
+          "type": "string",
+          "group": "StringRules",
+          "rule": "enum",
+          "enum": [
+            "customer",
+            "system",
+            "support_agent"
+          ],
+          "description": "Actor who initiated the cancellation"
+        }
+      },
+      "refundAmount": {
+        "description": "Amount refunded to the customer as a result of the cancellation, 0 if no payment had been captured",
+        "type": "number",
+        "rule": {
+          "name": "refundAmount",
+          "type": "number",
+          "group": "NumberRules",
+          "rule": "float",
+          "minimum": 0,
+          "maximum": 1000,
+          "fractionDigits": 2,
+          "description": "Amount refunded to the customer as a result of the cancellation, 0 if no payment had been captured"
+        }
+      }
+    },
+    "publishSettings": {
+      "count": 0,
+      "interval": 1000,
+      "delay": 0
+    }
+  },
+  {
+    "topic": "acme/sales/return/requested/v1/{country}/{channel}/{reason}",
+    "topicParameters": {
+      "country": {
+        "schema": {
+          "type": "string",
+          "enum": [
+            "de",
+            "fr",
+            "it",
+            "ch",
+            "es",
+            "si",
+            "pt",
+            "pl"
+          ]
+        },
+        "rule": {
+          "name": "country",
+          "type": "string",
+          "group": "StringRules",
+          "rule": "enum",
+          "enum": [
+            "de",
+            "fr",
+            "it",
+            "ch",
+            "es",
+            "si",
+            "pt",
+            "pl"
+          ]
+        }
+      },
+      "reason": {
+        "schema": {
+          "type": "string",
+          "enum": [
+            "defective",
+            "size",
+            "other",
+            "description",
+            "unwanted"
+          ]
+        },
+        "rule": {
+          "name": "reason",
+          "type": "string",
+          "group": "StringRules",
+          "rule": "enum",
+          "enum": [
+            "defective",
+            "size",
+            "other",
+            "description",
+            "unwanted"
+          ]
+        }
+      },
+      "channel": {
+        "schema": {
+          "type": "string",
+          "enum": [
+            "online",
+            "marketplace",
+            "app",
+            "store"
+          ]
+        },
+        "rule": {
+          "name": "channel",
+          "type": "string",
+          "group": "StringRules",
+          "rule": "enum",
+          "enum": [
+            "online",
+            "marketplace",
+            "app",
+            "store"
+          ]
+        }
+      }
+    },
+    "eventName": "Return Requested",
+    "eventVersion": "0.1.0",
+    "messageName": "Return_Requested",
+    "hasPayload": true,
+    "payload": {
+      "reason": {
+        "description": "Business reason for the return",
+        "type": "string",
+        "enum": [
+          "faulty",
+          "missized",
+          "misdescribed",
+          "unwanted",
+          "damaged"
+        ],
+        "rule": {
+          "name": "reason",
+          "type": "string",
+          "group": "StringRules",
+          "rule": "enum",
+          "enum": [
+            "faulty",
+            "missized",
+            "misdescribed",
+            "unwanted",
+            "damaged"
+          ],
+          "description": "Business reason for the return"
+        }
+      },
+      "orderId": {
+        "format": "uuid",
+        "description": "Identifier of the order this return relates to",
+        "type": "string",
+        "rule": {
+          "name": "orderId",
+          "type": "string",
+          "group": "StringRules",
+          "rule": "uuid",
+          "casing": "mixed",
+          "format": "uuid",
+          "description": "Identifier of the order this return relates to"
+        }
+      },
+      "itemsReturned": {
+        "minItems": 1,
+        "description": "Line items included in the return request",
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "quantity": {
+              "type": "integer",
+              "minimum": 1,
+              "rule": {
+                "name": "quantity",
+                "type": "integer",
+                "group": "NumberRules",
+                "rule": "int",
+                "minimum": 1,
+                "maximum": 1000
+              }
+            },
+            "sku": {
+              "description": "Stock keeping unit identifying the returned product",
+              "type": "string",
+              "rule": {
+                "name": "sku",
+                "type": "string",
+                "group": "StringRules",
+                "rule": "alpha",
+                "casing": "mixed",
+                "minLength": 10,
+                "maxLength": 10,
+                "description": "Stock keeping unit identifying the returned product"
+              }
+            }
+          },
+          "required": [
+            "sku",
+            "quantity"
+          ]
+        },
+        "subType": "object",
+        "name": "itemsReturned",
+        "rule": {
+          "name": "itemsReturned",
+          "type": "object"
+        }
+      },
+      "returnId": {
+        "format": "uuid",
+        "description": "Unique identifier of the return request",
+        "type": "string",
+        "rule": {
+          "name": "returnId",
+          "type": "string",
+          "group": "StringRules",
+          "rule": "uuid",
+          "casing": "mixed",
+          "format": "uuid",
+          "description": "Unique identifier of the return request"
+        }
+      },
+      "refundAmount": {
+        "description": "Amount to be refunded once the return is processed, 0 if not yet determined",
+        "type": "number",
+        "rule": {
+          "name": "refundAmount",
+          "type": "number",
+          "group": "NumberRules",
+          "rule": "float",
+          "minimum": 0,
+          "maximum": 1000,
+          "fractionDigits": 2,
+          "description": "Amount to be refunded once the return is processed, 0 if not yet determined"
+        }
+      }
+    },
+    "publishSettings": {
+      "count": 0,
+      "interval": 1000,
+      "delay": 0
+    }
+  }
+]
