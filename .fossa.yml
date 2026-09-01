@@ -1,0 +1,25 @@
+version: 3
+
+project:
+  locator: solacecommunity_solace-event-feeds
+  id: solacecommunity_solace-event-feeds
+  name: solace-event-feeds
+  teams: []
+  labels:
+    - data
+
+vendoredDependencies:
+  forceRescans: false
+  scanMethod: CLILicenseScan
+  licenseScanPathFilters:
+    exclude:
+      - "./.git"
+      - "./.github"
+
+paths:
+  exclude:
+    - ./.git
+    - ./.github
+
+telemetry:
+  scope: full
