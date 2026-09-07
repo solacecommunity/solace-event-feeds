@@ -228,5 +228,20 @@
     "name": "Multi-Asset-Market-Data",
     "lastUpdated": "2026-04-23T21:56:53.262Z",
     "contributed": true
+  },
+  {
+    "version": "1.0",
+    "feedType": "asyncapi_feed",
+    "type": "asyncapi_feed",
+    "feedView": "default",
+    "name": "Travel Disruption Feed",
+    "description": "Operational event stream that disrupts trips already planned as a part of the Solace Agent Mesh workshops.",
+    "img": "assets/img/defaultfeed.png",
+    "contributor": "Hari Rangarajan",
+    "github": "HariRangarajan-Solace",
+    "domain": "Travel, AI",
+    "tags": "Travel, AI",
+    "lastUpdated": "2026-09-07T11:02:19.518Z",
+    "contributed": true
   }
 ]
