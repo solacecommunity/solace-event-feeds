@@ -1,0 +1,1748 @@
+[
+  {
+    "topic": "travel/flight/status-changed/v1/{severity}/{corridorKey}/{disruptionType}",
+    "topicParameters": {
+      "severity": {
+        "schema": {
+          "type": "string",
+          "enum": [
+            "info",
+            "minor",
+            "major",
+            "critical"
+          ]
+        },
+        "rule": {
+          "name": "severity",
+          "type": "string",
+          "group": "StringRules",
+          "rule": "enum",
+          "enum": [
+            "info",
+            "minor",
+            "major",
+            "critical"
+          ]
+        }
+      },
+      "corridorKey": {
+        "schema": {
+          "type": "string",
+          "enum": [
+            "SG-SIN-HND",
+            "SG-SIN-NRT",
+            "IN-BLR-SFO",
+            "KE-NBO-EZE",
+            "GB-LHR-DPS"
+          ]
+        },
+        "rule": {
+          "name": "corridorKey",
+          "type": "string",
+          "group": "StringRules",
+          "rule": "enum",
+          "enum": [
+            "SG-SIN-HND",
+            "SG-SIN-NRT",
+            "IN-BLR-SFO",
+            "KE-NBO-EZE",
+            "GB-LHR-DPS"
+          ]
+        }
+      },
+      "disruptionType": {
+        "schema": {
+          "type": "string",
+          "enum": [
+            "delay",
+            "cancellation",
+            "gate-change",
+            "diversion",
+            "equipment-change",
+            "schedule-change"
+          ]
+        },
+        "rule": {
+          "name": "disruptionType",
+          "type": "string",
+          "group": "StringRules",
+          "rule": "enum",
+          "enum": [
+            "delay",
+            "cancellation",
+            "gate-change",
+            "diversion",
+            "equipment-change",
+            "schedule-change"
+          ]
+        }
+      }
+    },
+    "eventName": "FlightStatusChanged",
+    "eventVersion": "1.0.0",
+    "messageName": "FlightStatusChanged",
+    "hasPayload": true,
+    "payload": {
+      "eventId": {
+        "type": "string",
+        "format": "uuid",
+        "description": "Unique identifier for this event instance.",
+        "rule": {
+          "name": "eventId",
+          "type": "string",
+          "group": "StringRules",
+          "rule": "uuid",
+          "casing": "mixed",
+          "format": "uuid",
+          "description": "Unique identifier for this event instance."
+        }
+      },
+      "eventType": {
+        "type": "string",
+        "enum": [
+          "travel.flight.statusChanged"
+        ],
+        "rule": {
+          "name": "eventType",
+          "type": "string",
+          "group": "StringRules",
+          "rule": "enum",
+          "enum": [
+            "travel.flight.statusChanged"
+          ]
+        }
+      },
+      "specVersion": {
+        "type": "string",
+        "enum": [
+          "1.0"
+        ],
+        "rule": {
+          "name": "specVersion",
+          "type": "string",
+          "group": "StringRules",
+          "rule": "enum",
+          "enum": [
+            "1.0"
+          ]
+        }
+      },
+      "occurredAt": {
+        "type": "string",
+        "format": "date-time",
+        "description": "When the operational change was recorded. Generate as recent past.",
+        "rule": {
+          "name": "occurredAt",
+          "type": "string",
+          "group": "DateRules",
+          "rule": "currentDateWithTime",
+          "format": "MM-DD-YYYY HH:mm:ss",
+          "description": "When the operational change was recorded. Generate as recent past."
+        }
+      },
+      "source": {
+        "type": "string",
+        "enum": [
+          "ops.airline.ocs",
+          "ops.airport.aodb"
+        ],
+        "rule": {
+          "name": "source",
+          "type": "string",
+          "group": "StringRules",
+          "rule": "enum",
+          "enum": [
+            "ops.airline.ocs",
+            "ops.airport.aodb"
+          ]
+        }
+      },
+      "severity": {
+        "type": "string",
+        "enum": [
+          "info",
+          "minor",
+          "major",
+          "critical"
+        ],
+        "rule": {
+          "name": "severity",
+          "type": "string",
+          "group": "StringRules",
+          "rule": "enum",
+          "enum": [
+            "info",
+            "minor",
+            "major",
+            "critical"
+          ]
+        }
+      },
+      "correlationId": {
+        "type": "string",
+        "format": "uuid",
+        "rule": {
+          "name": "correlationId",
+          "type": "string",
+          "group": "StringRules",
+          "rule": "uuid",
+          "casing": "mixed",
+          "format": "uuid"
+        }
+      },
+      "flight": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "corridor",
+          "scheduledDepartureUtc"
+        ],
+        "properties": {
+          "corridor": {
+            "type": "string",
+            "description": "Identical enum to the {corridorKey} topic parameter. In `stm feed configure`, MAP the {corridorKey} topic parameter to this payload field so the two are guaranteed identical. If your STM version does not support topic parameter mapping, delete this field and have TripGuardianAgent read the corridor from the topic string instead — the topic is authoritative.\n",
+            "enum": [
+              "SG-SIN-HND",
+              "SG-SIN-NRT",
+              "IN-BLR-SFO",
+              "KE-NBO-EZE",
+              "GB-LHR-DPS"
+            ],
+            "rule": {
+              "name": "corridor",
+              "type": "string",
+              "group": "StringRules",
+              "rule": "enum",
+              "enum": [
+                "SG-SIN-HND",
+                "SG-SIN-NRT",
+                "IN-BLR-SFO",
+                "KE-NBO-EZE",
+                "GB-LHR-DPS"
+              ],
+              "description": "Identical enum to the {corridorKey} topic parameter. In `stm feed configure`, MAP the {corridorKey} topic parameter to this payload field so the two are guaranteed identical. If your STM version does not support topic parameter mapping, delete this field and have TripGuardianAgent read the corridor from the topic string instead — the topic is authoritative.\n"
+            }
+          },
+          "flightNumber": {
+            "type": "string",
+            "description": "COSMETIC ONLY — makes the event read like a real ops feed. Generated from a pattern, so it will NOT exist in flight_offers.flight_no. Never look it up. FlightSearchAgent finds alternatives by querying the corridor's route.\n",
+            "pattern": "^(SQ|BA|AI|KQ|UA|JL|NH|GA)[0-9]{2,4}$",
+            "rule": {
+              "name": "flightNumber",
+              "type": "string",
+              "group": "AirlineRules",
+              "rule": "flightNumber",
+              "minimum": 2,
+              "maximum": 4,
+              "leadingZeros": false
+            }
+          },
+          "scheduledDepartureUtc": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Originally scheduled departure. Generate as near future (0-14 days).",
+            "rule": {
+              "name": "scheduledDepartureUtc",
+              "type": "string",
+              "group": "DateRules",
+              "rule": "soon",
+              "days": 14
+            }
+          },
+          "terminalDep": {
+            "type": "string",
+            "enum": [
+              "1",
+              "2",
+              "3",
+              "4",
+              "A",
+              "B"
+            ],
+            "rule": {
+              "name": "terminalDep",
+              "type": "string",
+              "group": "StringRules",
+              "rule": "enum",
+              "enum": [
+                "1",
+                "2",
+                "3",
+                "4",
+                "A",
+                "B"
+              ]
+            }
+          },
+          "gate": {
+            "type": "string",
+            "pattern": "^[A-F](0[1-9]|[1-4][0-9])$",
+            "rule": {
+              "name": "gate",
+              "type": "string",
+              "group": "NumberRules",
+              "rule": "int",
+              "minimum": 1,
+              "maximum": 30
+            }
+          }
+        },
+        "rule": {
+          "name": "flight",
+          "type": "object"
+        }
+      },
+      "disruption": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "type",
+          "reason"
+        ],
+        "properties": {
+          "type": {
+            "type": "string",
+            "description": "Identical enum to the {disruptionType} topic parameter, same casing, so the two can be bound by topic parameter mapping.\n",
+            "enum": [
+              "delay",
+              "cancellation",
+              "gate-change",
+              "diversion",
+              "equipment-change",
+              "schedule-change"
+            ],
+            "rule": {
+              "name": "type",
+              "type": "string",
+              "group": "StringRules",
+              "rule": "enum",
+              "enum": [
+                "delay",
+                "cancellation",
+                "gate-change",
+                "diversion",
+                "equipment-change",
+                "schedule-change"
+              ],
+              "description": "Identical enum to the {disruptionType} topic parameter, same casing, so the two can be bound by topic parameter mapping.\n"
+            }
+          },
+          "delayMinutes": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 720,
+            "description": "Minutes of delay. Zero for CANCELLATION and GATE_CHANGE. Deliberately no newDepartureUtc field — the agent derives it from scheduledDepartureUtc + delayMinutes, so the two can never contradict each other.\n",
+            "rule": {
+              "name": "delayMinutes",
+              "type": "integer",
+              "group": "NumberRules",
+              "rule": "int",
+              "minimum": 0,
+              "maximum": 720,
+              "description": "Minutes of delay. Zero for CANCELLATION and GATE_CHANGE. Deliberately no newDepartureUtc field — the agent derives it from scheduledDepartureUtc + delayMinutes, so the two can never contradict each other.\n"
+            }
+          },
+          "reason": {
+            "type": "string",
+            "enum": [
+              "WEATHER",
+              "TECHNICAL",
+              "ATC",
+              "CREW",
+              "SECURITY",
+              "STRIKE",
+              "AIRPORT_OPS"
+            ],
+            "rule": {
+              "name": "reason",
+              "type": "string",
+              "group": "StringRules",
+              "rule": "enum",
+              "enum": [
+                "WEATHER",
+                "TECHNICAL",
+                "ATC",
+                "CREW",
+                "SECURITY",
+                "STRIKE",
+                "AIRPORT_OPS"
+              ]
+            }
+          },
+          "rebookingAvailable": {
+            "type": "boolean",
+            "rule": {
+              "name": "rebookingAvailable",
+              "type": "boolean",
+              "group": "BooleanRules",
+              "rule": "boolean"
+            }
+          },
+          "bookingRef": {
+            "type": "string",
+            "pattern": "^[A-Z0-9]{6}$",
+            "description": "PNR of an affected booking. Correlates to a watched trip.",
+            "rule": {
+              "name": "bookingRef",
+              "type": "string",
+              "group": "StringRules",
+              "rule": "alpha",
+              "minLength": 6,
+              "maxLength": 6,
+              "casing": "mixed"
+            }
+          }
+        },
+        "rule": {
+          "name": "disruption",
+          "type": "object"
+        }
+      },
+      "impact": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "passengersAffected": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 420,
+            "rule": {
+              "name": "passengersAffected",
+              "type": "integer",
+              "group": "NumberRules",
+              "rule": "int",
+              "minimum": 1,
+              "maximum": 420
+            }
+          },
+          "connectionRisk": {
+            "type": "string",
+            "enum": [
+              "NONE",
+              "LOW",
+              "HIGH"
+            ],
+            "rule": {
+              "name": "connectionRisk",
+              "type": "string",
+              "group": "StringRules",
+              "rule": "enum",
+              "enum": [
+                "NONE",
+                "LOW",
+                "HIGH"
+              ]
+            }
+          }
+        },
+        "rule": {
+          "name": "impact",
+          "type": "object"
+        }
+      }
+    },
+    "publishSettings": {
+      "count": 0,
+      "interval": 1000,
+      "delay": 0
+    },
+    "mappings": [
+      {
+        "type": "Topic Parameter",
+        "source": {
+          "type": "Payload Parameter",
+          "name": "severity",
+          "fieldName": "severity",
+          "fieldType": "string"
+        },
+        "target": {
+          "type": "Topic Parameter",
+          "name": "severity",
+          "fieldName": "severity",
+          "fieldType": "string"
+        }
+      },
+      {
+        "type": "Topic Parameter",
+        "source": {
+          "type": "Payload Parameter",
+          "name": "flight.corridor",
+          "fieldName": "corridor",
+          "fieldType": "string"
+        },
+        "target": {
+          "type": "Topic Parameter",
+          "name": "corridorKey",
+          "fieldName": "corridorKey",
+          "fieldType": "string"
+        }
+      },
+      {
+        "type": "Topic Parameter",
+        "source": {
+          "type": "Payload Parameter",
+          "name": "disruption.type",
+          "fieldName": "type",
+          "fieldType": "string"
+        },
+        "target": {
+          "type": "Topic Parameter",
+          "name": "disruptionType",
+          "fieldName": "disruptionType",
+          "fieldType": "string"
+        }
+      }
+    ]
+  },
+  {
+    "topic": "travel/weather/alert-issued/v1/{severity}/{locationKey}/{alertType}",
+    "topicParameters": {
+      "severity": {
+        "schema": {
+          "type": "string",
+          "enum": [
+            "info",
+            "minor",
+            "major",
+            "critical"
+          ]
+        },
+        "rule": {
+          "name": "severity",
+          "type": "string",
+          "group": "StringRules",
+          "rule": "enum",
+          "enum": [
+            "info",
+            "minor",
+            "major",
+            "critical"
+          ]
+        }
+      },
+      "locationKey": {
+        "schema": {
+          "type": "string",
+          "enum": [
+            "JP-TYO",
+            "TH-HKT",
+            "ID-DPS",
+            "AR-BUE"
+          ]
+        },
+        "rule": {
+          "name": "locationKey",
+          "type": "string",
+          "group": "StringRules",
+          "rule": "enum",
+          "enum": [
+            "JP-TYO",
+            "TH-HKT",
+            "ID-DPS",
+            "AR-BUE"
+          ]
+        }
+      },
+      "alertType": {
+        "schema": {
+          "type": "string",
+          "enum": [
+            "typhoon",
+            "heavy-rain",
+            "snow",
+            "heatwave",
+            "wind",
+            "thunderstorm",
+            "flood"
+          ]
+        },
+        "rule": {
+          "name": "alertType",
+          "type": "string",
+          "group": "StringRules",
+          "rule": "enum",
+          "enum": [
+            "typhoon",
+            "heavy-rain",
+            "snow",
+            "heatwave",
+            "wind",
+            "thunderstorm",
+            "flood"
+          ]
+        }
+      }
+    },
+    "eventName": "WeatherAlertIssued",
+    "eventVersion": "1.0.0",
+    "messageName": "WeatherAlertIssued",
+    "hasPayload": true,
+    "payload": {
+      "eventId": {
+        "type": "string",
+        "format": "uuid",
+        "rule": {
+          "name": "eventId",
+          "type": "string",
+          "group": "StringRules",
+          "rule": "uuid",
+          "casing": "mixed",
+          "format": "uuid"
+        }
+      },
+      "eventType": {
+        "type": "string",
+        "enum": [
+          "travel.weather.alertIssued"
+        ],
+        "rule": {
+          "name": "eventType",
+          "type": "string",
+          "group": "StringRules",
+          "rule": "enum",
+          "enum": [
+            "travel.weather.alertIssued"
+          ]
+        }
+      },
+      "specVersion": {
+        "type": "string",
+        "enum": [
+          "1.0"
+        ],
+        "rule": {
+          "name": "specVersion",
+          "type": "string",
+          "group": "StringRules",
+          "rule": "enum",
+          "enum": [
+            "1.0"
+          ]
+        }
+      },
+      "occurredAt": {
+        "type": "string",
+        "format": "date-time",
+        "rule": {
+          "name": "occurredAt",
+          "type": "string",
+          "group": "DateRules",
+          "rule": "currentDateWithTime",
+          "format": "MM-DD-YYYY HH:mm:ss"
+        }
+      },
+      "source": {
+        "type": "string",
+        "enum": [
+          "weather.national-service",
+          "weather.aggregator.open-meteo"
+        ],
+        "rule": {
+          "name": "source",
+          "type": "string",
+          "group": "StringRules",
+          "rule": "enum",
+          "enum": [
+            "weather.national-service",
+            "weather.aggregator.open-meteo"
+          ]
+        }
+      },
+      "severity": {
+        "type": "string",
+        "enum": [
+          "info",
+          "minor",
+          "major",
+          "critical"
+        ],
+        "rule": {
+          "name": "severity",
+          "type": "string",
+          "group": "StringRules",
+          "rule": "enum",
+          "enum": [
+            "info",
+            "minor",
+            "major",
+            "critical"
+          ]
+        }
+      },
+      "correlationId": {
+        "type": "string",
+        "format": "uuid",
+        "rule": {
+          "name": "correlationId",
+          "type": "string",
+          "group": "StringRules",
+          "rule": "uuid",
+          "casing": "mixed",
+          "format": "uuid"
+        }
+      },
+      "location": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "locationKey"
+        ],
+        "properties": {
+          "locationKey": {
+            "type": "string",
+            "description": "Identical enum to the {locationKey} topic parameter. Bind the two with a topic parameter mapping in `stm feed configure`. The city half MUST match hotel_offers.city_code (Q2).\n",
+            "enum": [
+              "JP-TYO",
+              "TH-HKT",
+              "ID-DPS",
+              "AR-BUE"
+            ],
+            "rule": {
+              "name": "locationKey",
+              "type": "string",
+              "group": "StringRules",
+              "rule": "enum",
+              "enum": [
+                "JP-TYO",
+                "TH-HKT",
+                "ID-DPS",
+                "AR-BUE",
+                "JP-HND"
+              ]
+            }
+          }
+        },
+        "rule": {
+          "name": "location",
+          "type": "object"
+        }
+      },
+      "alert": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "type",
+          "headline",
+          "onsetUtc",
+          "durationHours"
+        ],
+        "properties": {
+          "type": {
+            "type": "string",
+            "enum": [
+              "typhoon",
+              "heavy-rain",
+              "snow",
+              "heatwave",
+              "wind",
+              "thunderstorm",
+              "flood"
+            ],
+            "rule": {
+              "name": "type",
+              "type": "string",
+              "group": "StringRules",
+              "rule": "enum",
+              "enum": [
+                "typhoon",
+                "heavy-rain",
+                "snow",
+                "heatwave",
+                "wind",
+                "thunderstorm",
+                "flood"
+              ]
+            }
+          },
+          "headline": {
+            "type": "string",
+            "description": "Curated pool. Never generate free text with Faker lorem.",
+            "enum": [
+              "Severe weather warning in effect for the metropolitan area",
+              "Heavy precipitation expected, localised flooding possible",
+              "High winds forecast, outdoor attractions may close",
+              "Extreme heat advisory issued for daytime hours",
+              "Thunderstorms expected, ground stops possible at area airports",
+              "Winter weather advisory, surface transport delays likely"
+            ],
+            "rule": {
+              "name": "headline",
+              "type": "string",
+              "group": "StringRules",
+              "rule": "enum",
+              "enum": [
+                "Severe weather warning in effect for the metropolitan area",
+                "Heavy precipitation expected, localised flooding possible",
+                "High winds forecast, outdoor attractions may close",
+                "Extreme heat advisory issued for daytime hours",
+                "Thunderstorms expected, ground stops possible at area airports",
+                "Winter weather advisory, surface transport delays likely"
+              ],
+              "description": "Curated pool. Never generate free text with Faker lorem."
+            }
+          },
+          "onsetUtc": {
+            "type": "string",
+            "format": "date-time",
+            "description": "When the alert takes effect. Generate as near future (0-5 days).",
+            "rule": {
+              "name": "onsetUtc",
+              "type": "string",
+              "group": "DateRules",
+              "rule": "soon",
+              "days": 5
+            }
+          },
+          "durationHours": {
+            "type": "integer",
+            "minimum": 3,
+            "maximum": 96,
+            "description": "Duration instead of an end timestamp. Guarantees the window is always valid regardless of what the generator picks.\n",
+            "rule": {
+              "name": "durationHours",
+              "type": "integer",
+              "group": "NumberRules",
+              "rule": "int",
+              "minimum": 3,
+              "maximum": 96,
+              "description": "Duration instead of an end timestamp. Guarantees the window is always valid regardless of what the generator picks.\n"
+            }
+          },
+          "confidence": {
+            "type": "number",
+            "minimum": 0.5,
+            "maximum": 1,
+            "rule": {
+              "name": "confidence",
+              "type": "number",
+              "group": "NumberRules",
+              "rule": "float",
+              "minimum": 0.5,
+              "maximum": 1,
+              "fractionDigits": 2
+            }
+          }
+        },
+        "rule": {
+          "name": "alert",
+          "type": "object"
+        }
+      },
+      "guidance": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "outdoorActivitiesAdvised": {
+            "type": "boolean",
+            "rule": {
+              "name": "outdoorActivitiesAdvised",
+              "type": "boolean",
+              "group": "BooleanRules",
+              "rule": "boolean"
+            }
+          },
+          "transportImpactLikely": {
+            "type": "boolean",
+            "rule": {
+              "name": "transportImpactLikely",
+              "type": "boolean",
+              "group": "BooleanRules",
+              "rule": "boolean"
+            }
+          }
+        },
+        "rule": {
+          "name": "guidance",
+          "type": "object"
+        }
+      }
+    },
+    "publishSettings": {
+      "count": 0,
+      "interval": 1000,
+      "delay": 0
+    },
+    "mappings": [
+      {
+        "type": "Topic Parameter",
+        "source": {
+          "type": "Payload Parameter",
+          "name": "severity",
+          "fieldName": "severity",
+          "fieldType": "string"
+        },
+        "target": {
+          "type": "Topic Parameter",
+          "name": "severity",
+          "fieldName": "severity",
+          "fieldType": "string"
+        }
+      },
+      {
+        "type": "Topic Parameter",
+        "source": {
+          "type": "Payload Parameter",
+          "name": "location.locationKey",
+          "fieldName": "locationKey",
+          "fieldType": "string"
+        },
+        "target": {
+          "type": "Topic Parameter",
+          "name": "locationKey",
+          "fieldName": "locationKey",
+          "fieldType": "string"
+        }
+      },
+      {
+        "type": "Topic Parameter",
+        "source": {
+          "type": "Payload Parameter",
+          "name": "alert.type",
+          "fieldName": "type",
+          "fieldType": "string"
+        },
+        "target": {
+          "type": "Topic Parameter",
+          "name": "alertType",
+          "fieldName": "alertType",
+          "fieldType": "string"
+        }
+      }
+    ]
+  },
+  {
+    "topic": "travel/hotel/booking-impacted/v1/{severity}/{locationKey}/{impactType}",
+    "topicParameters": {
+      "severity": {
+        "schema": {
+          "type": "string",
+          "enum": [
+            "info",
+            "minor",
+            "major",
+            "critical"
+          ]
+        },
+        "rule": {
+          "name": "severity",
+          "type": "string",
+          "group": "StringRules",
+          "rule": "enum",
+          "enum": [
+            "info",
+            "minor",
+            "major",
+            "critical"
+          ]
+        }
+      },
+      "locationKey": {
+        "schema": {
+          "type": "string",
+          "enum": [
+            "JP-TYO",
+            "TH-HKT",
+            "ID-DPS",
+            "AR-BUE"
+          ]
+        },
+        "rule": {
+          "name": "locationKey",
+          "type": "string",
+          "group": "StringRules",
+          "rule": "enum",
+          "enum": [
+            "JP-TYO",
+            "TH-HKT",
+            "ID-DPS",
+            "AR-BUE"
+          ]
+        }
+      },
+      "impactType": {
+        "schema": {
+          "type": "string",
+          "enum": [
+            "overbooking",
+            "maintenance-closure",
+            "rate-change",
+            "amenity-unavailable",
+            "evacuation"
+          ]
+        },
+        "rule": {
+          "name": "impactType",
+          "type": "string",
+          "group": "StringRules",
+          "rule": "enum",
+          "enum": [
+            "overbooking",
+            "maintenance-closure",
+            "rate-change",
+            "amenity-unavailable",
+            "evacuation"
+          ]
+        }
+      }
+    },
+    "eventName": "HotelBookingImpacted",
+    "eventVersion": "1.0.0",
+    "messageName": "HotelBookingImpacted",
+    "hasPayload": true,
+    "payload": {
+      "eventId": {
+        "type": "string",
+        "format": "uuid",
+        "rule": {
+          "name": "eventId",
+          "type": "string",
+          "group": "StringRules",
+          "rule": "uuid",
+          "casing": "mixed",
+          "format": "uuid"
+        }
+      },
+      "eventType": {
+        "type": "string",
+        "enum": [
+          "travel.hotel.bookingImpacted"
+        ],
+        "rule": {
+          "name": "eventType",
+          "type": "string",
+          "group": "StringRules",
+          "rule": "enum",
+          "enum": [
+            "travel.hotel.bookingImpacted"
+          ]
+        }
+      },
+      "specVersion": {
+        "type": "string",
+        "enum": [
+          "1.0"
+        ],
+        "rule": {
+          "name": "specVersion",
+          "type": "string",
+          "group": "StringRules",
+          "rule": "enum",
+          "enum": [
+            "1.0"
+          ]
+        }
+      },
+      "occurredAt": {
+        "type": "string",
+        "format": "date-time",
+        "rule": {
+          "name": "occurredAt",
+          "type": "string",
+          "group": "DateRules",
+          "rule": "currentDateWithTime",
+          "format": "MM-DD-YYYY HH:mm:ss"
+        }
+      },
+      "source": {
+        "type": "string",
+        "enum": [
+          "hotel.pms",
+          "hotel.channel-manager"
+        ],
+        "rule": {
+          "name": "source",
+          "type": "string",
+          "group": "StringRules",
+          "rule": "enum",
+          "enum": [
+            "hotel.pms",
+            "hotel.channel-manager"
+          ]
+        }
+      },
+      "severity": {
+        "type": "string",
+        "enum": [
+          "info",
+          "minor",
+          "major",
+          "critical"
+        ],
+        "rule": {
+          "name": "severity",
+          "type": "string",
+          "group": "StringRules",
+          "rule": "enum",
+          "enum": [
+            "info",
+            "minor",
+            "major",
+            "critical"
+          ]
+        }
+      },
+      "correlationId": {
+        "type": "string",
+        "format": "uuid",
+        "rule": {
+          "name": "correlationId",
+          "type": "string",
+          "group": "StringRules",
+          "rule": "uuid",
+          "casing": "mixed",
+          "format": "uuid"
+        }
+      },
+      "hotel": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "locationKey",
+          "starRating"
+        ],
+        "properties": {
+          "starRating": {
+            "type": "string",
+            "description": "Star band of the affected properties. No hotel NAME in this event on purpose — a generated name would drift from the city and would need extracting from the database. Instead HotelSearchAgent queries hotel_offers by city_code + star_rating to find the affected and alternative properties itself.\n",
+            "enum": [
+              "3",
+              "4",
+              "5"
+            ],
+            "rule": {
+              "name": "starRating",
+              "type": "string",
+              "group": "StringRules",
+              "rule": "enum",
+              "enum": [
+                "3",
+                "4",
+                "5"
+              ],
+              "description": "Star band of the affected properties. No hotel NAME in this event on purpose — a generated name would drift from the city and would need extracting from the database. Instead HotelSearchAgent queries hotel_offers by city_code + star_rating to find the affected and alternative properties itself.\n"
+            }
+          },
+          "locationKey": {
+            "type": "string",
+            "enum": [
+              "JP-TYO",
+              "TH-HKT",
+              "ID-DPS",
+              "AR-BUE"
+            ],
+            "rule": {
+              "name": "locationKey",
+              "type": "string",
+              "group": "StringRules",
+              "rule": "enum",
+              "enum": [
+                "JP-TYO",
+                "TH-HKT",
+                "ID-DPS",
+                "AR-BUE",
+                "JP-HND"
+              ]
+            }
+          }
+        },
+        "rule": {
+          "name": "hotel",
+          "type": "object"
+        }
+      },
+      "impact": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "type",
+          "affectedFromDate",
+          "affectedNights"
+        ],
+        "properties": {
+          "type": {
+            "type": "string",
+            "enum": [
+              "overbooking",
+              "maintenance-closure",
+              "rate-change",
+              "amenity-unavailable",
+              "evacuation"
+            ],
+            "rule": {
+              "name": "type",
+              "type": "string",
+              "group": "StringRules",
+              "rule": "enum",
+              "enum": [
+                "overbooking",
+                "maintenance-closure",
+                "rate-change",
+                "amenity-unavailable",
+                "evacuation"
+              ]
+            }
+          },
+          "affectedFromDate": {
+            "type": "string",
+            "format": "date",
+            "description": "First affected night. Generate as near future (0-30 days).",
+            "rule": {
+              "name": "affectedFromDate",
+              "type": "string",
+              "group": "DateRules",
+              "rule": "soon",
+              "days": 30
+            }
+          },
+          "affectedNights": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 7,
+            "description": "Nights affected, instead of an end date.",
+            "rule": {
+              "name": "affectedNights",
+              "type": "integer",
+              "group": "NumberRules",
+              "rule": "int",
+              "minimum": 1,
+              "maximum": 7,
+              "description": "Nights affected, instead of an end date."
+            }
+          },
+          "affectedRoomTypes": {
+            "type": "array",
+            "minItems": 1,
+            "maxItems": 3,
+            "subType": "string",
+            "name": "affectedRoomTypes",
+            "rule": {
+              "name": "affectedRoomTypes",
+              "type": "string",
+              "group": "StringRules",
+              "rule": "enum",
+              "enum": [
+                "STANDARD_ROOM",
+                "DELUXE_ROOM",
+                "SUITE",
+                "JUNIOR_SUITE",
+                "POOL_SUITE",
+                "OCEAN_SUITE",
+                "JUNGLE_VILLA",
+                "RICE_TERRACE_VILLA",
+                "DIVE_LODGE"
+              ]
+            },
+            "description": "MUST match hotel_offers.room_type values exactly."
+          },
+          "affectedAmenities": {
+            "type": "array",
+            "minItems": 0,
+            "maxItems": 3,
+            "subType": "string",
+            "name": "affectedAmenities",
+            "rule": {
+              "name": "affectedAmenities",
+              "type": "string",
+              "group": "StringRules",
+              "rule": "enum",
+              "enum": [
+                "WIFI",
+                "RESTAURANT",
+                "SPA",
+                "BAR",
+                "POOL",
+                "SWIMMING_POOL",
+                "BEACH_ACCESS",
+                "WATER_SPORTS",
+                "AIRPORT_TRANSFER",
+                "FITNESS_CENTER"
+              ]
+            },
+            "description": "MUST match values found in hotel_offers.amenities."
+          },
+          "alternativeOffered": {
+            "type": "boolean",
+            "rule": {
+              "name": "alternativeOffered",
+              "type": "boolean",
+              "group": "BooleanRules",
+              "rule": "boolean"
+            }
+          },
+          "newRatePerNightUsd": {
+            "type": "number",
+            "minimum": 60,
+            "maximum": 1200,
+            "description": "Populated only for RATE_CHANGE. Range mirrors hotel_offers.price_per_night.",
+            "rule": {
+              "name": "newRatePerNightUsd",
+              "type": "number",
+              "group": "NumberRules",
+              "rule": "float",
+              "minimum": 60,
+              "maximum": 1200,
+              "fractionDigits": 2,
+              "description": "Populated only for RATE_CHANGE. Range mirrors hotel_offers.price_per_night."
+            }
+          },
+          "bookingRef": {
+            "type": "string",
+            "pattern": "^[A-Z0-9]{6}$",
+            "rule": {
+              "name": "bookingRef",
+              "type": "string",
+              "group": "StringRules",
+              "rule": "alpha",
+              "casing": "mixed",
+              "minLength": 10,
+              "maxLength": 10
+            }
+          }
+        },
+        "rule": {
+          "name": "impact",
+          "type": "object"
+        }
+      }
+    },
+    "publishSettings": {
+      "count": 0,
+      "interval": 1000,
+      "delay": 0
+    },
+    "mappings": [
+      {
+        "type": "Topic Parameter",
+        "source": {
+          "type": "Payload Parameter",
+          "name": "severity",
+          "fieldName": "severity",
+          "fieldType": "string"
+        },
+        "target": {
+          "type": "Topic Parameter",
+          "name": "severity",
+          "fieldName": "severity",
+          "fieldType": "string"
+        }
+      },
+      {
+        "type": "Topic Parameter",
+        "source": {
+          "type": "Payload Parameter",
+          "name": "hotel.locationKey",
+          "fieldName": "locationKey",
+          "fieldType": "string"
+        },
+        "target": {
+          "type": "Topic Parameter",
+          "name": "locationKey",
+          "fieldName": "locationKey",
+          "fieldType": "string"
+        }
+      },
+      {
+        "type": "Topic Parameter",
+        "source": {
+          "type": "Payload Parameter",
+          "name": "impact.type",
+          "fieldName": "type",
+          "fieldType": "string"
+        },
+        "target": {
+          "type": "Topic Parameter",
+          "name": "impactType",
+          "fieldName": "impactType",
+          "fieldType": "string"
+        }
+      }
+    ]
+  },
+  {
+    "topic": "travel/ground/advisory-published/v1/{severity}/{locationKey}/{advisoryType}",
+    "topicParameters": {
+      "severity": {
+        "schema": {
+          "type": "string",
+          "enum": [
+            "info",
+            "minor",
+            "major",
+            "critical"
+          ]
+        },
+        "rule": {
+          "name": "severity",
+          "type": "string",
+          "group": "StringRules",
+          "rule": "enum",
+          "enum": [
+            "info",
+            "minor",
+            "major",
+            "critical"
+          ]
+        }
+      },
+      "locationKey": {
+        "schema": {
+          "type": "string",
+          "enum": [
+            "JP-TYO",
+            "TH-HKT",
+            "ID-DPS",
+            "AR-BUE"
+          ]
+        },
+        "rule": {
+          "name": "locationKey",
+          "type": "string",
+          "group": "StringRules",
+          "rule": "enum",
+          "enum": [
+            "JP-TYO",
+            "TH-HKT",
+            "ID-DPS",
+            "AR-BUE"
+          ]
+        }
+      },
+      "advisoryType": {
+        "schema": {
+          "type": "string",
+          "enum": [
+            "transit-strike",
+            "road-closure",
+            "attraction-closure",
+            "public-event",
+            "security-alert",
+            "health-notice"
+          ]
+        },
+        "rule": {
+          "name": "advisoryType",
+          "type": "string",
+          "group": "StringRules",
+          "rule": "enum",
+          "enum": [
+            "transit-strike",
+            "road-closure",
+            "attraction-closure",
+            "public-event",
+            "security-alert",
+            "health-notice"
+          ]
+        }
+      }
+    },
+    "eventName": "GroundAdvisoryPublished",
+    "eventVersion": "1.0.0",
+    "messageName": "GroundAdvisoryPublished",
+    "hasPayload": true,
+    "payload": {
+      "eventId": {
+        "type": "string",
+        "format": "uuid",
+        "rule": {
+          "name": "eventId",
+          "type": "string",
+          "group": "StringRules",
+          "rule": "uuid",
+          "casing": "mixed",
+          "format": "uuid"
+        }
+      },
+      "eventType": {
+        "type": "string",
+        "enum": [
+          "travel.ground.advisoryPublished"
+        ],
+        "rule": {
+          "name": "eventType",
+          "type": "string",
+          "group": "StringRules",
+          "rule": "enum",
+          "enum": [
+            "travel.ground.advisoryPublished"
+          ]
+        }
+      },
+      "specVersion": {
+        "type": "string",
+        "enum": [
+          "1.0"
+        ],
+        "rule": {
+          "name": "specVersion",
+          "type": "string",
+          "group": "StringRules",
+          "rule": "enum",
+          "enum": [
+            "1.0"
+          ]
+        }
+      },
+      "occurredAt": {
+        "type": "string",
+        "format": "date-time",
+        "rule": {
+          "name": "occurredAt",
+          "type": "string",
+          "group": "DateRules",
+          "rule": "currentDateWithTime",
+          "format": "MM-DD-YYYY HH:mm:ss"
+        }
+      },
+      "source": {
+        "type": "string",
+        "enum": [
+          "city.transport-authority",
+          "city.tourism-board",
+          "gov.travel-advisory"
+        ],
+        "rule": {
+          "name": "source",
+          "type": "string",
+          "group": "StringRules",
+          "rule": "enum",
+          "enum": [
+            "city.transport-authority",
+            "city.tourism-board",
+            "gov.travel-advisory"
+          ]
+        }
+      },
+      "severity": {
+        "type": "string",
+        "enum": [
+          "info",
+          "minor",
+          "major",
+          "critical"
+        ],
+        "rule": {
+          "name": "severity",
+          "type": "string",
+          "group": "StringRules",
+          "rule": "enum",
+          "enum": [
+            "info",
+            "minor",
+            "major",
+            "critical"
+          ]
+        }
+      },
+      "correlationId": {
+        "type": "string",
+        "format": "uuid",
+        "rule": {
+          "name": "correlationId",
+          "type": "string",
+          "group": "StringRules",
+          "rule": "uuid",
+          "casing": "mixed",
+          "format": "uuid"
+        }
+      },
+      "location": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "locationKey"
+        ],
+        "properties": {
+          "locationKey": {
+            "type": "string",
+            "enum": [
+              "JP-TYO",
+              "TH-HKT",
+              "ID-DPS",
+              "AR-BUE"
+            ],
+            "rule": {
+              "name": "locationKey",
+              "type": "string",
+              "group": "StringRules",
+              "rule": "enum",
+              "enum": [
+                "JP-TYO",
+                "TH-HKT",
+                "ID-DPS",
+                "AR-BUE"
+              ]
+            }
+          }
+        },
+        "rule": {
+          "name": "location",
+          "type": "object"
+        }
+      },
+      "advisory": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "type",
+          "headline",
+          "startUtc",
+          "durationHours"
+        ],
+        "properties": {
+          "type": {
+            "type": "string",
+            "enum": [
+              "transit-strike",
+              "road-closure",
+              "attraction-closure",
+              "public-event",
+              "security-alert",
+              "health-notice"
+            ],
+            "rule": {
+              "name": "type",
+              "type": "string",
+              "group": "StringRules",
+              "rule": "enum",
+              "enum": [
+                "transit-strike",
+                "road-closure",
+                "attraction-closure",
+                "public-event",
+                "security-alert",
+                "health-notice"
+              ]
+            }
+          },
+          "headline": {
+            "type": "string",
+            "enum": [
+              "Metro and bus services reduced to a limited timetable",
+              "Central district roads closed for a scheduled public event",
+              "Major museum closed for unscheduled maintenance",
+              "Large public gathering expected, heavy congestion likely",
+              "Increased security screening at major transport hubs",
+              "Rail services suspended between the airport and city centre"
+            ],
+            "rule": {
+              "name": "headline",
+              "type": "string",
+              "group": "StringRules",
+              "rule": "enum",
+              "enum": [
+                "Metro and bus services reduced to a limited timetable",
+                "Central district roads closed for a scheduled public event",
+                "Major museum closed for unscheduled maintenance",
+                "Large public gathering expected, heavy congestion likely",
+                "Increased security screening at major transport hubs",
+                "Rail services suspended between the airport and city centre"
+              ]
+            }
+          },
+          "startUtc": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Generate as near future (0-14 days).",
+            "rule": {
+              "name": "startUtc",
+              "type": "string",
+              "group": "DateRules",
+              "rule": "soon",
+              "days": 14
+            }
+          },
+          "durationHours": {
+            "type": "integer",
+            "minimum": 2,
+            "maximum": 120,
+            "rule": {
+              "name": "durationHours",
+              "type": "integer",
+              "group": "NumberRules",
+              "rule": "int",
+              "minimum": 2,
+              "maximum": 120
+            }
+          },
+          "affectedModes": {
+            "type": "array",
+            "minItems": 1,
+            "maxItems": 3,
+            "subType": "string",
+            "name": "affectedModes",
+            "rule": {
+              "name": "affectedModes",
+              "type": "string",
+              "group": "StringRules",
+              "rule": "enum",
+              "enum": [
+                "METRO",
+                "BUS",
+                "RAIL",
+                "TAXI",
+                "FERRY",
+                "ROAD"
+              ]
+            }
+          }
+        },
+        "rule": {
+          "name": "advisory",
+          "type": "object"
+        }
+      }
+    },
+    "publishSettings": {
+      "count": 0,
+      "interval": 1000,
+      "delay": 0
+    },
+    "mappings": [
+      {
+        "type": "Topic Parameter",
+        "source": {
+          "type": "Payload Parameter",
+          "name": "severity",
+          "fieldName": "severity",
+          "fieldType": "string"
+        },
+        "target": {
+          "type": "Topic Parameter",
+          "name": "severity",
+          "fieldName": "severity",
+          "fieldType": "string"
+        }
+      },
+      {
+        "type": "Topic Parameter",
+        "source": {
+          "type": "Payload Parameter",
+          "name": "location.locationKey",
+          "fieldName": "locationKey",
+          "fieldType": "string"
+        },
+        "target": {
+          "type": "Topic Parameter",
+          "name": "locationKey",
+          "fieldName": "locationKey",
+          "fieldType": "string"
+        }
+      },
+      {
+        "type": "Topic Parameter",
+        "source": {
+          "type": "Payload Parameter",
+          "name": "advisory.type",
+          "fieldName": "type",
+          "fieldType": "string"
+        },
+        "target": {
+          "type": "Topic Parameter",
+          "name": "advisoryType",
+          "fieldName": "advisoryType",
+          "fieldType": "string"
+        }
+      }
+    ]
+  }
+]

@@ -1,0 +1,2206 @@
+{
+  "messages": {
+    "FlightStatusChanged": {
+      "send": [
+        {
+          "topicName": "travel/flight/status-changed/v1/{severity}/{corridorKey}/{disruptionType}",
+          "topicParameters": {
+            "severity": {
+              "description": "Business impact of the event. Fixed at level 5 across all event types.",
+              "schema": {
+                "type": "string",
+                "enum": [
+                  "info",
+                  "minor",
+                  "major",
+                  "critical"
+                ],
+                "x-parser-schema-id": "severity"
+              }
+            },
+            "corridorKey": {
+              "description": "Origin country, origin airport and destination airport as ONE token. Origin and destination are never generated independently, so an unroutable pair cannot occur. The five values are exactly the routes exercised by the workshop's own test prompts. Subscribe with `SG-*` for Singapore departures, `SG-SIN-HND` for one route.\n",
+              "schema": {
+                "type": "string",
+                "enum": [
+                  "SG-SIN-HND",
+                  "SG-SIN-NRT",
+                  "IN-BLR-SFO",
+                  "KE-NBO-EZE",
+                  "GB-LHR-DPS"
+                ],
+                "x-parser-schema-id": "corridorKey"
+              }
+            },
+            "disruptionType": {
+              "description": "Replaces the former {flightKey} level. Far more useful to subscribe on — an agent that only cares about cancellations can say so in the subscription rather than in a prompt.\n",
+              "schema": {
+                "type": "string",
+                "enum": [
+                  "delay",
+                  "cancellation",
+                  "gate-change",
+                  "diversion",
+                  "equipment-change",
+                  "schedule-change"
+                ],
+                "x-parser-schema-id": "disruptionType"
+              }
+            }
+          },
+          "topicDescription": "An airline operational irregularity affecting a scheduled flight: delay, cancellation, gate change, diversion or equipment swap.\n",
+          "message": {
+            "name": "FlightStatusChanged",
+            "title": "Flight Status Changed",
+            "summary": "An airline operational irregularity affecting a scheduled flight.",
+            "contentType": "application/json",
+            "payload": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "eventId",
+                "eventType",
+                "specVersion",
+                "occurredAt",
+                "source",
+                "severity",
+                "flight",
+                "disruption"
+              ],
+              "properties": {
+                "eventId": {
+                  "type": "string",
+                  "format": "uuid",
+                  "description": "Unique identifier for this event instance.",
+                  "x-parser-schema-id": "<anonymous-schema-1>"
+                },
+                "eventType": {
+                  "type": "string",
+                  "enum": [
+                    "travel.flight.statusChanged"
+                  ],
+                  "x-parser-schema-id": "<anonymous-schema-2>"
+                },
+                "specVersion": {
+                  "type": "string",
+                  "enum": [
+                    "1.0"
+                  ],
+                  "x-parser-schema-id": "<anonymous-schema-3>"
+                },
+                "occurredAt": {
+                  "type": "string",
+                  "format": "date-time",
+                  "description": "When the operational change was recorded. Generate as recent past.",
+                  "x-parser-schema-id": "<anonymous-schema-4>"
+                },
+                "source": {
+                  "type": "string",
+                  "enum": [
+                    "ops.airline.ocs",
+                    "ops.airport.aodb"
+                  ],
+                  "x-parser-schema-id": "<anonymous-schema-5>"
+                },
+                "severity": {
+                  "type": "string",
+                  "enum": [
+                    "info",
+                    "minor",
+                    "major",
+                    "critical"
+                  ],
+                  "x-parser-schema-id": "<anonymous-schema-6>"
+                },
+                "correlationId": {
+                  "type": "string",
+                  "format": "uuid",
+                  "x-parser-schema-id": "<anonymous-schema-7>"
+                },
+                "flight": {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "required": [
+                    "corridor",
+                    "scheduledDepartureUtc"
+                  ],
+                  "properties": {
+                    "corridor": {
+                      "type": "string",
+                      "description": "Identical enum to the {corridorKey} topic parameter. In `stm feed configure`, MAP the {corridorKey} topic parameter to this payload field so the two are guaranteed identical. If your STM version does not support topic parameter mapping, delete this field and have TripGuardianAgent read the corridor from the topic string instead — the topic is authoritative.\n",
+                      "enum": [
+                        "SG-SIN-HND",
+                        "SG-SIN-NRT",
+                        "IN-BLR-SFO",
+                        "KE-NBO-EZE",
+                        "GB-LHR-DPS"
+                      ],
+                      "x-parser-schema-id": "<anonymous-schema-9>"
+                    },
+                    "flightNumber": {
+                      "type": "string",
+                      "description": "COSMETIC ONLY — makes the event read like a real ops feed. Generated from a pattern, so it will NOT exist in flight_offers.flight_no. Never look it up. FlightSearchAgent finds alternatives by querying the corridor's route.\n",
+                      "pattern": "^(SQ|BA|AI|KQ|UA|JL|NH|GA)[0-9]{2,4}$",
+                      "x-parser-schema-id": "<anonymous-schema-10>"
+                    },
+                    "scheduledDepartureUtc": {
+                      "type": "string",
+                      "format": "date-time",
+                      "description": "Originally scheduled departure. Generate as near future (0-14 days).",
+                      "x-parser-schema-id": "<anonymous-schema-11>"
+                    },
+                    "terminalDep": {
+                      "type": "string",
+                      "enum": [
+                        "1",
+                        "2",
+                        "3",
+                        "4",
+                        "A",
+                        "B"
+                      ],
+                      "x-parser-schema-id": "<anonymous-schema-12>"
+                    },
+                    "gate": {
+                      "type": "string",
+                      "pattern": "^[A-F](0[1-9]|[1-4][0-9])$",
+                      "x-parser-schema-id": "<anonymous-schema-13>"
+                    }
+                  },
+                  "x-parser-schema-id": "<anonymous-schema-8>"
+                },
+                "disruption": {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "required": [
+                    "type",
+                    "reason"
+                  ],
+                  "properties": {
+                    "type": {
+                      "type": "string",
+                      "description": "Identical enum to the {disruptionType} topic parameter, same casing, so the two can be bound by topic parameter mapping.\n",
+                      "enum": [
+                        "delay",
+                        "cancellation",
+                        "gate-change",
+                        "diversion",
+                        "equipment-change",
+                        "schedule-change"
+                      ],
+                      "x-parser-schema-id": "<anonymous-schema-15>"
+                    },
+                    "delayMinutes": {
+                      "type": "integer",
+                      "minimum": 0,
+                      "maximum": 720,
+                      "description": "Minutes of delay. Zero for CANCELLATION and GATE_CHANGE. Deliberately no newDepartureUtc field — the agent derives it from scheduledDepartureUtc + delayMinutes, so the two can never contradict each other.\n",
+                      "x-parser-schema-id": "<anonymous-schema-16>"
+                    },
+                    "reason": {
+                      "type": "string",
+                      "enum": [
+                        "WEATHER",
+                        "TECHNICAL",
+                        "ATC",
+                        "CREW",
+                        "SECURITY",
+                        "STRIKE",
+                        "AIRPORT_OPS"
+                      ],
+                      "x-parser-schema-id": "<anonymous-schema-17>"
+                    },
+                    "rebookingAvailable": {
+                      "type": "boolean",
+                      "x-parser-schema-id": "<anonymous-schema-18>"
+                    },
+                    "bookingRef": {
+                      "type": "string",
+                      "pattern": "^[A-Z0-9]{6}$",
+                      "description": "PNR of an affected booking. Correlates to a watched trip.",
+                      "x-parser-schema-id": "<anonymous-schema-19>"
+                    }
+                  },
+                  "x-parser-schema-id": "<anonymous-schema-14>"
+                },
+                "impact": {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "properties": {
+                    "passengersAffected": {
+                      "type": "integer",
+                      "minimum": 1,
+                      "maximum": 420,
+                      "x-parser-schema-id": "<anonymous-schema-21>"
+                    },
+                    "connectionRisk": {
+                      "type": "string",
+                      "enum": [
+                        "NONE",
+                        "LOW",
+                        "HIGH"
+                      ],
+                      "x-parser-schema-id": "<anonymous-schema-22>"
+                    }
+                  },
+                  "x-parser-schema-id": "<anonymous-schema-20>"
+                }
+              },
+              "x-parser-schema-id": "FlightStatusChanged"
+            }
+          },
+          "servers": {
+            "solace-broker": {
+              "url": "tcp://localhost:55555",
+              "protocol": "smf",
+              "description": "Local or Solace Cloud PubSub+ broker. Overridden at `stm feed run` time."
+            }
+          },
+          "bindings": {}
+        }
+      ],
+      "receive": [],
+      "hasPayload": true,
+      "schema": "FlightStatusChanged"
+    },
+    "WeatherAlertIssued": {
+      "send": [
+        {
+          "topicName": "travel/weather/alert-issued/v1/{severity}/{locationKey}/{alertType}",
+          "topicParameters": {
+            "severity": {
+              "schema": {
+                "type": "string",
+                "enum": [
+                  "info",
+                  "minor",
+                  "major",
+                  "critical"
+                ],
+                "x-parser-schema-id": "severity"
+              }
+            },
+            "locationKey": {
+              "description": "ISO country code and destination CITY code, joined by a hyphen. Note these are city codes (TYO, LON, BUE), not airport codes — they match hotel_offers.city_code.\n",
+              "schema": {
+                "type": "string",
+                "enum": [
+                  "JP-TYO",
+                  "TH-HKT",
+                  "ID-DPS",
+                  "AR-BUE"
+                ],
+                "x-parser-schema-id": "locationKey"
+              }
+            },
+            "alertType": {
+              "schema": {
+                "type": "string",
+                "enum": [
+                  "typhoon",
+                  "heavy-rain",
+                  "snow",
+                  "heatwave",
+                  "wind",
+                  "thunderstorm",
+                  "flood"
+                ],
+                "x-parser-schema-id": "alertType"
+              }
+            }
+          },
+          "topicDescription": "A meteorological alert issued for a destination, threatening outdoor activities, packing assumptions or ground transport.\n",
+          "message": {
+            "name": "WeatherAlertIssued",
+            "title": "Weather Alert Issued",
+            "summary": "A meteorological alert issued for a destination.",
+            "contentType": "application/json",
+            "payload": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "eventId",
+                "eventType",
+                "specVersion",
+                "occurredAt",
+                "source",
+                "severity",
+                "location",
+                "alert"
+              ],
+              "properties": {
+                "eventId": {
+                  "type": "string",
+                  "format": "uuid",
+                  "x-parser-schema-id": "<anonymous-schema-23>"
+                },
+                "eventType": {
+                  "type": "string",
+                  "enum": [
+                    "travel.weather.alertIssued"
+                  ],
+                  "x-parser-schema-id": "<anonymous-schema-24>"
+                },
+                "specVersion": {
+                  "type": "string",
+                  "enum": [
+                    "1.0"
+                  ],
+                  "x-parser-schema-id": "<anonymous-schema-25>"
+                },
+                "occurredAt": {
+                  "type": "string",
+                  "format": "date-time",
+                  "x-parser-schema-id": "<anonymous-schema-26>"
+                },
+                "source": {
+                  "type": "string",
+                  "enum": [
+                    "weather.national-service",
+                    "weather.aggregator.open-meteo"
+                  ],
+                  "x-parser-schema-id": "<anonymous-schema-27>"
+                },
+                "severity": {
+                  "type": "string",
+                  "enum": [
+                    "info",
+                    "minor",
+                    "major",
+                    "critical"
+                  ],
+                  "x-parser-schema-id": "<anonymous-schema-28>"
+                },
+                "correlationId": {
+                  "type": "string",
+                  "format": "uuid",
+                  "x-parser-schema-id": "<anonymous-schema-29>"
+                },
+                "location": {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "required": [
+                    "locationKey"
+                  ],
+                  "properties": {
+                    "locationKey": {
+                      "type": "string",
+                      "description": "Identical enum to the {locationKey} topic parameter. Bind the two with a topic parameter mapping in `stm feed configure`. The city half MUST match hotel_offers.city_code (Q2).\n",
+                      "enum": [
+                        "JP-TYO",
+                        "TH-HKT",
+                        "ID-DPS",
+                        "AR-BUE"
+                      ],
+                      "x-parser-schema-id": "<anonymous-schema-31>"
+                    }
+                  },
+                  "x-parser-schema-id": "<anonymous-schema-30>"
+                },
+                "alert": {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "required": [
+                    "type",
+                    "headline",
+                    "onsetUtc",
+                    "durationHours"
+                  ],
+                  "properties": {
+                    "type": {
+                      "type": "string",
+                      "enum": [
+                        "typhoon",
+                        "heavy-rain",
+                        "snow",
+                        "heatwave",
+                        "wind",
+                        "thunderstorm",
+                        "flood"
+                      ],
+                      "x-parser-schema-id": "<anonymous-schema-33>"
+                    },
+                    "headline": {
+                      "type": "string",
+                      "description": "Curated pool. Never generate free text with Faker lorem.",
+                      "enum": [
+                        "Severe weather warning in effect for the metropolitan area",
+                        "Heavy precipitation expected, localised flooding possible",
+                        "High winds forecast, outdoor attractions may close",
+                        "Extreme heat advisory issued for daytime hours",
+                        "Thunderstorms expected, ground stops possible at area airports",
+                        "Winter weather advisory, surface transport delays likely"
+                      ],
+                      "x-parser-schema-id": "<anonymous-schema-34>"
+                    },
+                    "onsetUtc": {
+                      "type": "string",
+                      "format": "date-time",
+                      "description": "When the alert takes effect. Generate as near future (0-5 days).",
+                      "x-parser-schema-id": "<anonymous-schema-35>"
+                    },
+                    "durationHours": {
+                      "type": "integer",
+                      "minimum": 3,
+                      "maximum": 96,
+                      "description": "Duration instead of an end timestamp. Guarantees the window is always valid regardless of what the generator picks.\n",
+                      "x-parser-schema-id": "<anonymous-schema-36>"
+                    },
+                    "confidence": {
+                      "type": "number",
+                      "minimum": 0.5,
+                      "maximum": 1,
+                      "x-parser-schema-id": "<anonymous-schema-37>"
+                    }
+                  },
+                  "x-parser-schema-id": "<anonymous-schema-32>"
+                },
+                "guidance": {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "properties": {
+                    "outdoorActivitiesAdvised": {
+                      "type": "boolean",
+                      "x-parser-schema-id": "<anonymous-schema-39>"
+                    },
+                    "transportImpactLikely": {
+                      "type": "boolean",
+                      "x-parser-schema-id": "<anonymous-schema-40>"
+                    }
+                  },
+                  "x-parser-schema-id": "<anonymous-schema-38>"
+                }
+              },
+              "x-parser-schema-id": "WeatherAlertIssued"
+            }
+          },
+          "servers": {
+            "solace-broker": {
+              "url": "tcp://localhost:55555",
+              "protocol": "smf",
+              "description": "Local or Solace Cloud PubSub+ broker. Overridden at `stm feed run` time."
+            }
+          },
+          "bindings": {}
+        }
+      ],
+      "receive": [],
+      "hasPayload": true,
+      "schema": "WeatherAlertIssued"
+    },
+    "HotelBookingImpacted": {
+      "send": [
+        {
+          "topicName": "travel/hotel/booking-impacted/v1/{severity}/{locationKey}/{impactType}",
+          "topicParameters": {
+            "severity": {
+              "schema": {
+                "type": "string",
+                "enum": [
+                  "info",
+                  "minor",
+                  "major",
+                  "critical"
+                ],
+                "x-parser-schema-id": "severity"
+              }
+            },
+            "locationKey": {
+              "schema": {
+                "type": "string",
+                "enum": [
+                  "JP-TYO",
+                  "TH-HKT",
+                  "ID-DPS",
+                  "AR-BUE"
+                ],
+                "x-parser-schema-id": "locationKey"
+              }
+            },
+            "impactType": {
+              "schema": {
+                "type": "string",
+                "enum": [
+                  "overbooking",
+                  "maintenance-closure",
+                  "rate-change",
+                  "amenity-unavailable",
+                  "evacuation"
+                ],
+                "x-parser-schema-id": "impactType"
+              }
+            }
+          },
+          "topicDescription": "A property-side event affecting an existing or prospective hotel stay: overbooking, closure, rate change, amenity outage or evacuation.\n",
+          "message": {
+            "name": "HotelBookingImpacted",
+            "title": "Hotel Booking Impacted",
+            "summary": "A property-side event affecting a hotel stay.",
+            "contentType": "application/json",
+            "payload": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "eventId",
+                "eventType",
+                "specVersion",
+                "occurredAt",
+                "source",
+                "severity",
+                "hotel",
+                "impact"
+              ],
+              "properties": {
+                "eventId": {
+                  "type": "string",
+                  "format": "uuid",
+                  "x-parser-schema-id": "<anonymous-schema-41>"
+                },
+                "eventType": {
+                  "type": "string",
+                  "enum": [
+                    "travel.hotel.bookingImpacted"
+                  ],
+                  "x-parser-schema-id": "<anonymous-schema-42>"
+                },
+                "specVersion": {
+                  "type": "string",
+                  "enum": [
+                    "1.0"
+                  ],
+                  "x-parser-schema-id": "<anonymous-schema-43>"
+                },
+                "occurredAt": {
+                  "type": "string",
+                  "format": "date-time",
+                  "x-parser-schema-id": "<anonymous-schema-44>"
+                },
+                "source": {
+                  "type": "string",
+                  "enum": [
+                    "hotel.pms",
+                    "hotel.channel-manager"
+                  ],
+                  "x-parser-schema-id": "<anonymous-schema-45>"
+                },
+                "severity": {
+                  "type": "string",
+                  "enum": [
+                    "info",
+                    "minor",
+                    "major",
+                    "critical"
+                  ],
+                  "x-parser-schema-id": "<anonymous-schema-46>"
+                },
+                "correlationId": {
+                  "type": "string",
+                  "format": "uuid",
+                  "x-parser-schema-id": "<anonymous-schema-47>"
+                },
+                "hotel": {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "required": [
+                    "locationKey",
+                    "starRating"
+                  ],
+                  "properties": {
+                    "starRating": {
+                      "type": "string",
+                      "description": "Star band of the affected properties. No hotel NAME in this event on purpose — a generated name would drift from the city and would need extracting from the database. Instead HotelSearchAgent queries hotel_offers by city_code + star_rating to find the affected and alternative properties itself.\n",
+                      "enum": [
+                        "3",
+                        "4",
+                        "5"
+                      ],
+                      "x-parser-schema-id": "<anonymous-schema-49>"
+                    },
+                    "locationKey": {
+                      "type": "string",
+                      "enum": [
+                        "JP-TYO",
+                        "TH-HKT",
+                        "ID-DPS",
+                        "AR-BUE"
+                      ],
+                      "x-parser-schema-id": "<anonymous-schema-50>"
+                    }
+                  },
+                  "x-parser-schema-id": "<anonymous-schema-48>"
+                },
+                "impact": {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "required": [
+                    "type",
+                    "affectedFromDate",
+                    "affectedNights"
+                  ],
+                  "properties": {
+                    "type": {
+                      "type": "string",
+                      "enum": [
+                        "overbooking",
+                        "maintenance-closure",
+                        "rate-change",
+                        "amenity-unavailable",
+                        "evacuation"
+                      ],
+                      "x-parser-schema-id": "<anonymous-schema-52>"
+                    },
+                    "affectedFromDate": {
+                      "type": "string",
+                      "format": "date",
+                      "description": "First affected night. Generate as near future (0-30 days).",
+                      "x-parser-schema-id": "<anonymous-schema-53>"
+                    },
+                    "affectedNights": {
+                      "type": "integer",
+                      "minimum": 1,
+                      "maximum": 7,
+                      "description": "Nights affected, instead of an end date.",
+                      "x-parser-schema-id": "<anonymous-schema-54>"
+                    },
+                    "affectedRoomTypes": {
+                      "type": "array",
+                      "minItems": 1,
+                      "maxItems": 3,
+                      "items": {
+                        "type": "string",
+                        "description": "MUST match hotel_offers.room_type values exactly.",
+                        "enum": [
+                          "STANDARD_ROOM",
+                          "DELUXE_ROOM",
+                          "SUITE",
+                          "BEACH_VILLA"
+                        ],
+                        "x-parser-schema-id": "<anonymous-schema-56>"
+                      },
+                      "x-parser-schema-id": "<anonymous-schema-55>"
+                    },
+                    "affectedAmenities": {
+                      "type": "array",
+                      "minItems": 0,
+                      "maxItems": 3,
+                      "items": {
+                        "type": "string",
+                        "description": "MUST match values found in hotel_offers.amenities.",
+                        "enum": [
+                          "POOL",
+                          "SPA",
+                          "WIFI",
+                          "RESTAURANT",
+                          "GYM",
+                          "PARKING"
+                        ],
+                        "x-parser-schema-id": "<anonymous-schema-58>"
+                      },
+                      "x-parser-schema-id": "<anonymous-schema-57>"
+                    },
+                    "alternativeOffered": {
+                      "type": "boolean",
+                      "x-parser-schema-id": "<anonymous-schema-59>"
+                    },
+                    "newRatePerNightUsd": {
+                      "type": "number",
+                      "minimum": 60,
+                      "maximum": 1200,
+                      "description": "Populated only for RATE_CHANGE. Range mirrors hotel_offers.price_per_night.",
+                      "x-parser-schema-id": "<anonymous-schema-60>"
+                    },
+                    "bookingRef": {
+                      "type": "string",
+                      "pattern": "^[A-Z0-9]{6}$",
+                      "x-parser-schema-id": "<anonymous-schema-61>"
+                    }
+                  },
+                  "x-parser-schema-id": "<anonymous-schema-51>"
+                }
+              },
+              "x-parser-schema-id": "HotelBookingImpacted"
+            }
+          },
+          "servers": {
+            "solace-broker": {
+              "url": "tcp://localhost:55555",
+              "protocol": "smf",
+              "description": "Local or Solace Cloud PubSub+ broker. Overridden at `stm feed run` time."
+            }
+          },
+          "bindings": {}
+        }
+      ],
+      "receive": [],
+      "hasPayload": true,
+      "schema": "HotelBookingImpacted"
+    },
+    "GroundAdvisoryPublished": {
+      "send": [
+        {
+          "topicName": "travel/ground/advisory-published/v1/{severity}/{locationKey}/{advisoryType}",
+          "topicParameters": {
+            "severity": {
+              "schema": {
+                "type": "string",
+                "enum": [
+                  "info",
+                  "minor",
+                  "major",
+                  "critical"
+                ],
+                "x-parser-schema-id": "severity"
+              }
+            },
+            "locationKey": {
+              "schema": {
+                "type": "string",
+                "enum": [
+                  "JP-TYO",
+                  "TH-HKT",
+                  "ID-DPS",
+                  "AR-BUE"
+                ],
+                "x-parser-schema-id": "locationKey"
+              }
+            },
+            "advisoryType": {
+              "schema": {
+                "type": "string",
+                "enum": [
+                  "transit-strike",
+                  "road-closure",
+                  "attraction-closure",
+                  "public-event",
+                  "security-alert",
+                  "health-notice"
+                ],
+                "x-parser-schema-id": "advisoryType"
+              }
+            }
+          },
+          "topicDescription": "A destination-side advisory affecting local movement or activities: transit strike, road closure, attraction closure, major public event.\n",
+          "message": {
+            "name": "GroundAdvisoryPublished",
+            "title": "Ground Advisory Published",
+            "summary": "A destination-side advisory affecting local movement or activities.",
+            "contentType": "application/json",
+            "payload": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "eventId",
+                "eventType",
+                "specVersion",
+                "occurredAt",
+                "source",
+                "severity",
+                "location",
+                "advisory"
+              ],
+              "properties": {
+                "eventId": {
+                  "type": "string",
+                  "format": "uuid",
+                  "x-parser-schema-id": "<anonymous-schema-62>"
+                },
+                "eventType": {
+                  "type": "string",
+                  "enum": [
+                    "travel.ground.advisoryPublished"
+                  ],
+                  "x-parser-schema-id": "<anonymous-schema-63>"
+                },
+                "specVersion": {
+                  "type": "string",
+                  "enum": [
+                    "1.0"
+                  ],
+                  "x-parser-schema-id": "<anonymous-schema-64>"
+                },
+                "occurredAt": {
+                  "type": "string",
+                  "format": "date-time",
+                  "x-parser-schema-id": "<anonymous-schema-65>"
+                },
+                "source": {
+                  "type": "string",
+                  "enum": [
+                    "city.transport-authority",
+                    "city.tourism-board",
+                    "gov.travel-advisory"
+                  ],
+                  "x-parser-schema-id": "<anonymous-schema-66>"
+                },
+                "severity": {
+                  "type": "string",
+                  "enum": [
+                    "info",
+                    "minor",
+                    "major",
+                    "critical"
+                  ],
+                  "x-parser-schema-id": "<anonymous-schema-67>"
+                },
+                "correlationId": {
+                  "type": "string",
+                  "format": "uuid",
+                  "x-parser-schema-id": "<anonymous-schema-68>"
+                },
+                "location": {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "required": [
+                    "locationKey"
+                  ],
+                  "properties": {
+                    "locationKey": {
+                      "type": "string",
+                      "enum": [
+                        "JP-TYO",
+                        "TH-HKT",
+                        "ID-DPS",
+                        "AR-BUE"
+                      ],
+                      "x-parser-schema-id": "<anonymous-schema-70>"
+                    }
+                  },
+                  "x-parser-schema-id": "<anonymous-schema-69>"
+                },
+                "advisory": {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "required": [
+                    "type",
+                    "headline",
+                    "startUtc",
+                    "durationHours"
+                  ],
+                  "properties": {
+                    "type": {
+                      "type": "string",
+                      "enum": [
+                        "transit-strike",
+                        "road-closure",
+                        "attraction-closure",
+                        "public-event",
+                        "security-alert",
+                        "health-notice"
+                      ],
+                      "x-parser-schema-id": "<anonymous-schema-72>"
+                    },
+                    "headline": {
+                      "type": "string",
+                      "enum": [
+                        "Metro and bus services reduced to a limited timetable",
+                        "Central district roads closed for a scheduled public event",
+                        "Major museum closed for unscheduled maintenance",
+                        "Large public gathering expected, heavy congestion likely",
+                        "Increased security screening at major transport hubs",
+                        "Rail services suspended between the airport and city centre"
+                      ],
+                      "x-parser-schema-id": "<anonymous-schema-73>"
+                    },
+                    "startUtc": {
+                      "type": "string",
+                      "format": "date-time",
+                      "description": "Generate as near future (0-14 days).",
+                      "x-parser-schema-id": "<anonymous-schema-74>"
+                    },
+                    "durationHours": {
+                      "type": "integer",
+                      "minimum": 2,
+                      "maximum": 120,
+                      "x-parser-schema-id": "<anonymous-schema-75>"
+                    },
+                    "affectedModes": {
+                      "type": "array",
+                      "minItems": 1,
+                      "maxItems": 3,
+                      "items": {
+                        "type": "string",
+                        "enum": [
+                          "METRO",
+                          "BUS",
+                          "RAIL",
+                          "TAXI",
+                          "FERRY",
+                          "ROAD"
+                        ],
+                        "x-parser-schema-id": "<anonymous-schema-77>"
+                      },
+                      "x-parser-schema-id": "<anonymous-schema-76>"
+                    }
+                  },
+                  "x-parser-schema-id": "<anonymous-schema-71>"
+                }
+              },
+              "x-parser-schema-id": "GroundAdvisoryPublished"
+            }
+          },
+          "servers": {
+            "solace-broker": {
+              "url": "tcp://localhost:55555",
+              "protocol": "smf",
+              "description": "Local or Solace Cloud PubSub+ broker. Overridden at `stm feed run` time."
+            }
+          },
+          "bindings": {}
+        }
+      ],
+      "receive": [],
+      "hasPayload": true,
+      "schema": "GroundAdvisoryPublished"
+    },
+    "ItineraryReplanned": {
+      "send": [],
+      "receive": [
+        {
+          "topicName": "travel/itinerary/replanned/v1/{severity}/{locationKey}/{tripId}/{outcome}",
+          "topicParameters": {
+            "severity": {
+              "schema": {
+                "type": "string",
+                "enum": [
+                  "info",
+                  "minor",
+                  "major",
+                  "critical"
+                ],
+                "x-parser-schema-id": "severity"
+              }
+            },
+            "locationKey": {
+              "schema": {
+                "type": "string",
+                "enum": [
+                  "JP-TYO",
+                  "TH-HKT",
+                  "ID-DPS",
+                  "AR-BUE"
+                ],
+                "x-parser-schema-id": "locationKey"
+              }
+            },
+            "tripId": {
+              "schema": {
+                "type": "string",
+                "pattern": "^TRIP-[A-Z0-9]{8}$",
+                "x-parser-schema-id": "tripId"
+              }
+            },
+            "outcome": {
+              "schema": {
+                "type": "string",
+                "enum": [
+                  "auto-replanned",
+                  "options-proposed",
+                  "approval-required",
+                  "no-action"
+                ],
+                "x-parser-schema-id": "outcome"
+              }
+            }
+          },
+          "topicDescription": "Emitted by the TripGuardianAgent after Solace Agent Mesh has evaluated a disruption event and either repaired the itinerary, proposed options, escalated to a human, or decided no action was needed.\n",
+          "message": {
+            "name": "ItineraryReplanned",
+            "title": "Itinerary Replanned",
+            "summary": "Replanning decision emitted by Solace Agent Mesh.",
+            "contentType": "application/json",
+            "payload": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "eventId",
+                "eventType",
+                "specVersion",
+                "occurredAt",
+                "source",
+                "severity",
+                "trip",
+                "trigger",
+                "outcome"
+              ],
+              "properties": {
+                "eventId": {
+                  "type": "string",
+                  "format": "uuid",
+                  "x-parser-schema-id": "<anonymous-schema-78>"
+                },
+                "eventType": {
+                  "type": "string",
+                  "enum": [
+                    "travel.itinerary.replanned"
+                  ],
+                  "x-parser-schema-id": "<anonymous-schema-79>"
+                },
+                "specVersion": {
+                  "type": "string",
+                  "enum": [
+                    "1.0"
+                  ],
+                  "x-parser-schema-id": "<anonymous-schema-80>"
+                },
+                "occurredAt": {
+                  "type": "string",
+                  "format": "date-time",
+                  "x-parser-schema-id": "<anonymous-schema-81>"
+                },
+                "source": {
+                  "type": "string",
+                  "enum": [
+                    "agent.sam.trip-guardian"
+                  ],
+                  "x-parser-schema-id": "<anonymous-schema-82>"
+                },
+                "severity": {
+                  "type": "string",
+                  "enum": [
+                    "info",
+                    "minor",
+                    "major",
+                    "critical"
+                  ],
+                  "x-parser-schema-id": "<anonymous-schema-83>"
+                },
+                "correlationId": {
+                  "type": "string",
+                  "format": "uuid",
+                  "description": "Carries the eventId of the disruption event that triggered this.",
+                  "x-parser-schema-id": "<anonymous-schema-84>"
+                },
+                "trip": {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "required": [
+                    "tripId",
+                    "corridor"
+                  ],
+                  "properties": {
+                    "tripId": {
+                      "type": "string",
+                      "pattern": "^TRIP-[A-Z0-9]{8}$",
+                      "x-parser-schema-id": "<anonymous-schema-86>"
+                    },
+                    "travelerId": {
+                      "type": "string",
+                      "pattern": "^TRV-[0-9]{6}$",
+                      "x-parser-schema-id": "<anonymous-schema-87>"
+                    },
+                    "corridor": {
+                      "type": "string",
+                      "enum": [
+                        "SG-SIN-HND",
+                        "SG-SIN-NRT",
+                        "IN-BLR-SFO",
+                        "KE-NBO-EZE",
+                        "GB-LHR-DPS"
+                      ],
+                      "x-parser-schema-id": "<anonymous-schema-88>"
+                    },
+                    "startDate": {
+                      "type": "string",
+                      "format": "date",
+                      "x-parser-schema-id": "<anonymous-schema-89>"
+                    },
+                    "nights": {
+                      "type": "integer",
+                      "minimum": 1,
+                      "maximum": 21,
+                      "x-parser-schema-id": "<anonymous-schema-90>"
+                    }
+                  },
+                  "x-parser-schema-id": "<anonymous-schema-85>"
+                },
+                "trigger": {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "required": [
+                    "eventId",
+                    "eventType"
+                  ],
+                  "properties": {
+                    "eventId": {
+                      "type": "string",
+                      "format": "uuid",
+                      "x-parser-schema-id": "<anonymous-schema-92>"
+                    },
+                    "eventType": {
+                      "type": "string",
+                      "enum": [
+                        "travel.flight.statusChanged",
+                        "travel.weather.alertIssued",
+                        "travel.hotel.bookingImpacted",
+                        "travel.ground.advisoryPublished"
+                      ],
+                      "x-parser-schema-id": "<anonymous-schema-93>"
+                    },
+                    "topic": {
+                      "type": "string",
+                      "x-parser-schema-id": "<anonymous-schema-94>"
+                    }
+                  },
+                  "x-parser-schema-id": "<anonymous-schema-91>"
+                },
+                "outcome": {
+                  "type": "string",
+                  "enum": [
+                    "AUTO_REPLANNED",
+                    "OPTIONS_PROPOSED",
+                    "APPROVAL_REQUIRED",
+                    "NO_ACTION"
+                  ],
+                  "x-parser-schema-id": "<anonymous-schema-95>"
+                },
+                "changes": {
+                  "type": "array",
+                  "maxItems": 8,
+                  "items": {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "required": [
+                      "domain",
+                      "before",
+                      "after"
+                    ],
+                    "properties": {
+                      "domain": {
+                        "type": "string",
+                        "enum": [
+                          "FLIGHT",
+                          "HOTEL",
+                          "ACTIVITY",
+                          "PACKING"
+                        ],
+                        "x-parser-schema-id": "<anonymous-schema-98>"
+                      },
+                      "before": {
+                        "type": "string",
+                        "x-parser-schema-id": "<anonymous-schema-99>"
+                      },
+                      "after": {
+                        "type": "string",
+                        "x-parser-schema-id": "<anonymous-schema-100>"
+                      },
+                      "deltaUsd": {
+                        "type": "number",
+                        "x-parser-schema-id": "<anonymous-schema-101>"
+                      }
+                    },
+                    "x-parser-schema-id": "<anonymous-schema-97>"
+                  },
+                  "x-parser-schema-id": "<anonymous-schema-96>"
+                },
+                "budget": {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "properties": {
+                    "originalUsd": {
+                      "type": "number",
+                      "minimum": 0,
+                      "x-parser-schema-id": "<anonymous-schema-103>"
+                    },
+                    "revisedUsd": {
+                      "type": "number",
+                      "minimum": 0,
+                      "x-parser-schema-id": "<anonymous-schema-104>"
+                    },
+                    "deltaUsd": {
+                      "type": "number",
+                      "x-parser-schema-id": "<anonymous-schema-105>"
+                    }
+                  },
+                  "x-parser-schema-id": "<anonymous-schema-102>"
+                },
+                "humanApproval": {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "properties": {
+                    "required": {
+                      "type": "boolean",
+                      "x-parser-schema-id": "<anonymous-schema-107>"
+                    },
+                    "requestedAt": {
+                      "type": "string",
+                      "format": "date-time",
+                      "x-parser-schema-id": "<anonymous-schema-108>"
+                    },
+                    "reason": {
+                      "type": "string",
+                      "enum": [
+                        "Rebooking cost exceeds the approved budget delta",
+                        "Cancellation requires a change of destination city",
+                        "No alternative accommodation available within policy",
+                        "Change affects more than one traveller on the booking"
+                      ],
+                      "x-parser-schema-id": "<anonymous-schema-109>"
+                    }
+                  },
+                  "x-parser-schema-id": "<anonymous-schema-106>"
+                }
+              },
+              "x-parser-schema-id": "ItineraryReplanned"
+            }
+          },
+          "servers": {
+            "solace-broker": {
+              "url": "tcp://localhost:55555",
+              "protocol": "smf",
+              "description": "Local or Solace Cloud PubSub+ broker. Overridden at `stm feed run` time."
+            }
+          },
+          "bindings": {}
+        }
+      ],
+      "hasPayload": true,
+      "schema": "ItineraryReplanned"
+    }
+  },
+  "schemas": {
+    "FlightStatusChanged": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "eventId",
+        "eventType",
+        "specVersion",
+        "occurredAt",
+        "source",
+        "severity",
+        "flight",
+        "disruption"
+      ],
+      "properties": {
+        "eventId": {
+          "type": "string",
+          "format": "uuid",
+          "description": "Unique identifier for this event instance.",
+          "x-parser-schema-id": "<anonymous-schema-1>"
+        },
+        "eventType": {
+          "type": "string",
+          "enum": [
+            "travel.flight.statusChanged"
+          ],
+          "x-parser-schema-id": "<anonymous-schema-2>"
+        },
+        "specVersion": {
+          "type": "string",
+          "enum": [
+            "1.0"
+          ],
+          "x-parser-schema-id": "<anonymous-schema-3>"
+        },
+        "occurredAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "When the operational change was recorded. Generate as recent past.",
+          "x-parser-schema-id": "<anonymous-schema-4>"
+        },
+        "source": {
+          "type": "string",
+          "enum": [
+            "ops.airline.ocs",
+            "ops.airport.aodb"
+          ],
+          "x-parser-schema-id": "<anonymous-schema-5>"
+        },
+        "severity": {
+          "type": "string",
+          "enum": [
+            "info",
+            "minor",
+            "major",
+            "critical"
+          ],
+          "x-parser-schema-id": "<anonymous-schema-6>"
+        },
+        "correlationId": {
+          "type": "string",
+          "format": "uuid",
+          "x-parser-schema-id": "<anonymous-schema-7>"
+        },
+        "flight": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "corridor",
+            "scheduledDepartureUtc"
+          ],
+          "properties": {
+            "corridor": {
+              "type": "string",
+              "description": "Identical enum to the {corridorKey} topic parameter. In `stm feed configure`, MAP the {corridorKey} topic parameter to this payload field so the two are guaranteed identical. If your STM version does not support topic parameter mapping, delete this field and have TripGuardianAgent read the corridor from the topic string instead — the topic is authoritative.\n",
+              "enum": [
+                "SG-SIN-HND",
+                "SG-SIN-NRT",
+                "IN-BLR-SFO",
+                "KE-NBO-EZE",
+                "GB-LHR-DPS"
+              ],
+              "x-parser-schema-id": "<anonymous-schema-9>"
+            },
+            "flightNumber": {
+              "type": "string",
+              "description": "COSMETIC ONLY — makes the event read like a real ops feed. Generated from a pattern, so it will NOT exist in flight_offers.flight_no. Never look it up. FlightSearchAgent finds alternatives by querying the corridor's route.\n",
+              "pattern": "^(SQ|BA|AI|KQ|UA|JL|NH|GA)[0-9]{2,4}$",
+              "x-parser-schema-id": "<anonymous-schema-10>"
+            },
+            "scheduledDepartureUtc": {
+              "type": "string",
+              "format": "date-time",
+              "description": "Originally scheduled departure. Generate as near future (0-14 days).",
+              "x-parser-schema-id": "<anonymous-schema-11>"
+            },
+            "terminalDep": {
+              "type": "string",
+              "enum": [
+                "1",
+                "2",
+                "3",
+                "4",
+                "A",
+                "B"
+              ],
+              "x-parser-schema-id": "<anonymous-schema-12>"
+            },
+            "gate": {
+              "type": "string",
+              "pattern": "^[A-F](0[1-9]|[1-4][0-9])$",
+              "x-parser-schema-id": "<anonymous-schema-13>"
+            }
+          },
+          "x-parser-schema-id": "<anonymous-schema-8>"
+        },
+        "disruption": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "type",
+            "reason"
+          ],
+          "properties": {
+            "type": {
+              "type": "string",
+              "description": "Identical enum to the {disruptionType} topic parameter, same casing, so the two can be bound by topic parameter mapping.\n",
+              "enum": [
+                "delay",
+                "cancellation",
+                "gate-change",
+                "diversion",
+                "equipment-change",
+                "schedule-change"
+              ],
+              "x-parser-schema-id": "<anonymous-schema-15>"
+            },
+            "delayMinutes": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 720,
+              "description": "Minutes of delay. Zero for CANCELLATION and GATE_CHANGE. Deliberately no newDepartureUtc field — the agent derives it from scheduledDepartureUtc + delayMinutes, so the two can never contradict each other.\n",
+              "x-parser-schema-id": "<anonymous-schema-16>"
+            },
+            "reason": {
+              "type": "string",
+              "enum": [
+                "WEATHER",
+                "TECHNICAL",
+                "ATC",
+                "CREW",
+                "SECURITY",
+                "STRIKE",
+                "AIRPORT_OPS"
+              ],
+              "x-parser-schema-id": "<anonymous-schema-17>"
+            },
+            "rebookingAvailable": {
+              "type": "boolean",
+              "x-parser-schema-id": "<anonymous-schema-18>"
+            },
+            "bookingRef": {
+              "type": "string",
+              "pattern": "^[A-Z0-9]{6}$",
+              "description": "PNR of an affected booking. Correlates to a watched trip.",
+              "x-parser-schema-id": "<anonymous-schema-19>"
+            }
+          },
+          "x-parser-schema-id": "<anonymous-schema-14>"
+        },
+        "impact": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "passengersAffected": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 420,
+              "x-parser-schema-id": "<anonymous-schema-21>"
+            },
+            "connectionRisk": {
+              "type": "string",
+              "enum": [
+                "NONE",
+                "LOW",
+                "HIGH"
+              ],
+              "x-parser-schema-id": "<anonymous-schema-22>"
+            }
+          },
+          "x-parser-schema-id": "<anonymous-schema-20>"
+        }
+      },
+      "x-parser-schema-id": "FlightStatusChanged"
+    },
+    "WeatherAlertIssued": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "eventId",
+        "eventType",
+        "specVersion",
+        "occurredAt",
+        "source",
+        "severity",
+        "location",
+        "alert"
+      ],
+      "properties": {
+        "eventId": {
+          "type": "string",
+          "format": "uuid",
+          "x-parser-schema-id": "<anonymous-schema-23>"
+        },
+        "eventType": {
+          "type": "string",
+          "enum": [
+            "travel.weather.alertIssued"
+          ],
+          "x-parser-schema-id": "<anonymous-schema-24>"
+        },
+        "specVersion": {
+          "type": "string",
+          "enum": [
+            "1.0"
+          ],
+          "x-parser-schema-id": "<anonymous-schema-25>"
+        },
+        "occurredAt": {
+          "type": "string",
+          "format": "date-time",
+          "x-parser-schema-id": "<anonymous-schema-26>"
+        },
+        "source": {
+          "type": "string",
+          "enum": [
+            "weather.national-service",
+            "weather.aggregator.open-meteo"
+          ],
+          "x-parser-schema-id": "<anonymous-schema-27>"
+        },
+        "severity": {
+          "type": "string",
+          "enum": [
+            "info",
+            "minor",
+            "major",
+            "critical"
+          ],
+          "x-parser-schema-id": "<anonymous-schema-28>"
+        },
+        "correlationId": {
+          "type": "string",
+          "format": "uuid",
+          "x-parser-schema-id": "<anonymous-schema-29>"
+        },
+        "location": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "locationKey"
+          ],
+          "properties": {
+            "locationKey": {
+              "type": "string",
+              "description": "Identical enum to the {locationKey} topic parameter. Bind the two with a topic parameter mapping in `stm feed configure`. The city half MUST match hotel_offers.city_code (Q2).\n",
+              "enum": [
+                "JP-TYO",
+                "TH-HKT",
+                "ID-DPS",
+                "AR-BUE"
+              ],
+              "x-parser-schema-id": "<anonymous-schema-31>"
+            }
+          },
+          "x-parser-schema-id": "<anonymous-schema-30>"
+        },
+        "alert": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "type",
+            "headline",
+            "onsetUtc",
+            "durationHours"
+          ],
+          "properties": {
+            "type": {
+              "type": "string",
+              "enum": [
+                "typhoon",
+                "heavy-rain",
+                "snow",
+                "heatwave",
+                "wind",
+                "thunderstorm",
+                "flood"
+              ],
+              "x-parser-schema-id": "<anonymous-schema-33>"
+            },
+            "headline": {
+              "type": "string",
+              "description": "Curated pool. Never generate free text with Faker lorem.",
+              "enum": [
+                "Severe weather warning in effect for the metropolitan area",
+                "Heavy precipitation expected, localised flooding possible",
+                "High winds forecast, outdoor attractions may close",
+                "Extreme heat advisory issued for daytime hours",
+                "Thunderstorms expected, ground stops possible at area airports",
+                "Winter weather advisory, surface transport delays likely"
+              ],
+              "x-parser-schema-id": "<anonymous-schema-34>"
+            },
+            "onsetUtc": {
+              "type": "string",
+              "format": "date-time",
+              "description": "When the alert takes effect. Generate as near future (0-5 days).",
+              "x-parser-schema-id": "<anonymous-schema-35>"
+            },
+            "durationHours": {
+              "type": "integer",
+              "minimum": 3,
+              "maximum": 96,
+              "description": "Duration instead of an end timestamp. Guarantees the window is always valid regardless of what the generator picks.\n",
+              "x-parser-schema-id": "<anonymous-schema-36>"
+            },
+            "confidence": {
+              "type": "number",
+              "minimum": 0.5,
+              "maximum": 1,
+              "x-parser-schema-id": "<anonymous-schema-37>"
+            }
+          },
+          "x-parser-schema-id": "<anonymous-schema-32>"
+        },
+        "guidance": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "outdoorActivitiesAdvised": {
+              "type": "boolean",
+              "x-parser-schema-id": "<anonymous-schema-39>"
+            },
+            "transportImpactLikely": {
+              "type": "boolean",
+              "x-parser-schema-id": "<anonymous-schema-40>"
+            }
+          },
+          "x-parser-schema-id": "<anonymous-schema-38>"
+        }
+      },
+      "x-parser-schema-id": "WeatherAlertIssued"
+    },
+    "HotelBookingImpacted": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "eventId",
+        "eventType",
+        "specVersion",
+        "occurredAt",
+        "source",
+        "severity",
+        "hotel",
+        "impact"
+      ],
+      "properties": {
+        "eventId": {
+          "type": "string",
+          "format": "uuid",
+          "x-parser-schema-id": "<anonymous-schema-41>"
+        },
+        "eventType": {
+          "type": "string",
+          "enum": [
+            "travel.hotel.bookingImpacted"
+          ],
+          "x-parser-schema-id": "<anonymous-schema-42>"
+        },
+        "specVersion": {
+          "type": "string",
+          "enum": [
+            "1.0"
+          ],
+          "x-parser-schema-id": "<anonymous-schema-43>"
+        },
+        "occurredAt": {
+          "type": "string",
+          "format": "date-time",
+          "x-parser-schema-id": "<anonymous-schema-44>"
+        },
+        "source": {
+          "type": "string",
+          "enum": [
+            "hotel.pms",
+            "hotel.channel-manager"
+          ],
+          "x-parser-schema-id": "<anonymous-schema-45>"
+        },
+        "severity": {
+          "type": "string",
+          "enum": [
+            "info",
+            "minor",
+            "major",
+            "critical"
+          ],
+          "x-parser-schema-id": "<anonymous-schema-46>"
+        },
+        "correlationId": {
+          "type": "string",
+          "format": "uuid",
+          "x-parser-schema-id": "<anonymous-schema-47>"
+        },
+        "hotel": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "locationKey",
+            "starRating"
+          ],
+          "properties": {
+            "starRating": {
+              "type": "string",
+              "description": "Star band of the affected properties. No hotel NAME in this event on purpose — a generated name would drift from the city and would need extracting from the database. Instead HotelSearchAgent queries hotel_offers by city_code + star_rating to find the affected and alternative properties itself.\n",
+              "enum": [
+                "3",
+                "4",
+                "5"
+              ],
+              "x-parser-schema-id": "<anonymous-schema-49>"
+            },
+            "locationKey": {
+              "type": "string",
+              "enum": [
+                "JP-TYO",
+                "TH-HKT",
+                "ID-DPS",
+                "AR-BUE"
+              ],
+              "x-parser-schema-id": "<anonymous-schema-50>"
+            }
+          },
+          "x-parser-schema-id": "<anonymous-schema-48>"
+        },
+        "impact": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "type",
+            "affectedFromDate",
+            "affectedNights"
+          ],
+          "properties": {
+            "type": {
+              "type": "string",
+              "enum": [
+                "overbooking",
+                "maintenance-closure",
+                "rate-change",
+                "amenity-unavailable",
+                "evacuation"
+              ],
+              "x-parser-schema-id": "<anonymous-schema-52>"
+            },
+            "affectedFromDate": {
+              "type": "string",
+              "format": "date",
+              "description": "First affected night. Generate as near future (0-30 days).",
+              "x-parser-schema-id": "<anonymous-schema-53>"
+            },
+            "affectedNights": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 7,
+              "description": "Nights affected, instead of an end date.",
+              "x-parser-schema-id": "<anonymous-schema-54>"
+            },
+            "affectedRoomTypes": {
+              "type": "array",
+              "minItems": 1,
+              "maxItems": 3,
+              "items": {
+                "type": "string",
+                "description": "MUST match hotel_offers.room_type values exactly.",
+                "enum": [
+                  "STANDARD_ROOM",
+                  "DELUXE_ROOM",
+                  "SUITE",
+                  "BEACH_VILLA"
+                ],
+                "x-parser-schema-id": "<anonymous-schema-56>"
+              },
+              "x-parser-schema-id": "<anonymous-schema-55>"
+            },
+            "affectedAmenities": {
+              "type": "array",
+              "minItems": 0,
+              "maxItems": 3,
+              "items": {
+                "type": "string",
+                "description": "MUST match values found in hotel_offers.amenities.",
+                "enum": [
+                  "POOL",
+                  "SPA",
+                  "WIFI",
+                  "RESTAURANT",
+                  "GYM",
+                  "PARKING"
+                ],
+                "x-parser-schema-id": "<anonymous-schema-58>"
+              },
+              "x-parser-schema-id": "<anonymous-schema-57>"
+            },
+            "alternativeOffered": {
+              "type": "boolean",
+              "x-parser-schema-id": "<anonymous-schema-59>"
+            },
+            "newRatePerNightUsd": {
+              "type": "number",
+              "minimum": 60,
+              "maximum": 1200,
+              "description": "Populated only for RATE_CHANGE. Range mirrors hotel_offers.price_per_night.",
+              "x-parser-schema-id": "<anonymous-schema-60>"
+            },
+            "bookingRef": {
+              "type": "string",
+              "pattern": "^[A-Z0-9]{6}$",
+              "x-parser-schema-id": "<anonymous-schema-61>"
+            }
+          },
+          "x-parser-schema-id": "<anonymous-schema-51>"
+        }
+      },
+      "x-parser-schema-id": "HotelBookingImpacted"
+    },
+    "GroundAdvisoryPublished": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "eventId",
+        "eventType",
+        "specVersion",
+        "occurredAt",
+        "source",
+        "severity",
+        "location",
+        "advisory"
+      ],
+      "properties": {
+        "eventId": {
+          "type": "string",
+          "format": "uuid",
+          "x-parser-schema-id": "<anonymous-schema-62>"
+        },
+        "eventType": {
+          "type": "string",
+          "enum": [
+            "travel.ground.advisoryPublished"
+          ],
+          "x-parser-schema-id": "<anonymous-schema-63>"
+        },
+        "specVersion": {
+          "type": "string",
+          "enum": [
+            "1.0"
+          ],
+          "x-parser-schema-id": "<anonymous-schema-64>"
+        },
+        "occurredAt": {
+          "type": "string",
+          "format": "date-time",
+          "x-parser-schema-id": "<anonymous-schema-65>"
+        },
+        "source": {
+          "type": "string",
+          "enum": [
+            "city.transport-authority",
+            "city.tourism-board",
+            "gov.travel-advisory"
+          ],
+          "x-parser-schema-id": "<anonymous-schema-66>"
+        },
+        "severity": {
+          "type": "string",
+          "enum": [
+            "info",
+            "minor",
+            "major",
+            "critical"
+          ],
+          "x-parser-schema-id": "<anonymous-schema-67>"
+        },
+        "correlationId": {
+          "type": "string",
+          "format": "uuid",
+          "x-parser-schema-id": "<anonymous-schema-68>"
+        },
+        "location": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "locationKey"
+          ],
+          "properties": {
+            "locationKey": {
+              "type": "string",
+              "enum": [
+                "JP-TYO",
+                "TH-HKT",
+                "ID-DPS",
+                "AR-BUE"
+              ],
+              "x-parser-schema-id": "<anonymous-schema-70>"
+            }
+          },
+          "x-parser-schema-id": "<anonymous-schema-69>"
+        },
+        "advisory": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "type",
+            "headline",
+            "startUtc",
+            "durationHours"
+          ],
+          "properties": {
+            "type": {
+              "type": "string",
+              "enum": [
+                "transit-strike",
+                "road-closure",
+                "attraction-closure",
+                "public-event",
+                "security-alert",
+                "health-notice"
+              ],
+              "x-parser-schema-id": "<anonymous-schema-72>"
+            },
+            "headline": {
+              "type": "string",
+              "enum": [
+                "Metro and bus services reduced to a limited timetable",
+                "Central district roads closed for a scheduled public event",
+                "Major museum closed for unscheduled maintenance",
+                "Large public gathering expected, heavy congestion likely",
+                "Increased security screening at major transport hubs",
+                "Rail services suspended between the airport and city centre"
+              ],
+              "x-parser-schema-id": "<anonymous-schema-73>"
+            },
+            "startUtc": {
+              "type": "string",
+              "format": "date-time",
+              "description": "Generate as near future (0-14 days).",
+              "x-parser-schema-id": "<anonymous-schema-74>"
+            },
+            "durationHours": {
+              "type": "integer",
+              "minimum": 2,
+              "maximum": 120,
+              "x-parser-schema-id": "<anonymous-schema-75>"
+            },
+            "affectedModes": {
+              "type": "array",
+              "minItems": 1,
+              "maxItems": 3,
+              "items": {
+                "type": "string",
+                "enum": [
+                  "METRO",
+                  "BUS",
+                  "RAIL",
+                  "TAXI",
+                  "FERRY",
+                  "ROAD"
+                ],
+                "x-parser-schema-id": "<anonymous-schema-77>"
+              },
+              "x-parser-schema-id": "<anonymous-schema-76>"
+            }
+          },
+          "x-parser-schema-id": "<anonymous-schema-71>"
+        }
+      },
+      "x-parser-schema-id": "GroundAdvisoryPublished"
+    },
+    "ItineraryReplanned": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "eventId",
+        "eventType",
+        "specVersion",
+        "occurredAt",
+        "source",
+        "severity",
+        "trip",
+        "trigger",
+        "outcome"
+      ],
+      "properties": {
+        "eventId": {
+          "type": "string",
+          "format": "uuid",
+          "x-parser-schema-id": "<anonymous-schema-78>"
+        },
+        "eventType": {
+          "type": "string",
+          "enum": [
+            "travel.itinerary.replanned"
+          ],
+          "x-parser-schema-id": "<anonymous-schema-79>"
+        },
+        "specVersion": {
+          "type": "string",
+          "enum": [
+            "1.0"
+          ],
+          "x-parser-schema-id": "<anonymous-schema-80>"
+        },
+        "occurredAt": {
+          "type": "string",
+          "format": "date-time",
+          "x-parser-schema-id": "<anonymous-schema-81>"
+        },
+        "source": {
+          "type": "string",
+          "enum": [
+            "agent.sam.trip-guardian"
+          ],
+          "x-parser-schema-id": "<anonymous-schema-82>"
+        },
+        "severity": {
+          "type": "string",
+          "enum": [
+            "info",
+            "minor",
+            "major",
+            "critical"
+          ],
+          "x-parser-schema-id": "<anonymous-schema-83>"
+        },
+        "correlationId": {
+          "type": "string",
+          "format": "uuid",
+          "description": "Carries the eventId of the disruption event that triggered this.",
+          "x-parser-schema-id": "<anonymous-schema-84>"
+        },
+        "trip": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "tripId",
+            "corridor"
+          ],
+          "properties": {
+            "tripId": {
+              "type": "string",
+              "pattern": "^TRIP-[A-Z0-9]{8}$",
+              "x-parser-schema-id": "<anonymous-schema-86>"
+            },
+            "travelerId": {
+              "type": "string",
+              "pattern": "^TRV-[0-9]{6}$",
+              "x-parser-schema-id": "<anonymous-schema-87>"
+            },
+            "corridor": {
+              "type": "string",
+              "enum": [
+                "SG-SIN-HND",
+                "SG-SIN-NRT",
+                "IN-BLR-SFO",
+                "KE-NBO-EZE",
+                "GB-LHR-DPS"
+              ],
+              "x-parser-schema-id": "<anonymous-schema-88>"
+            },
+            "startDate": {
+              "type": "string",
+              "format": "date",
+              "x-parser-schema-id": "<anonymous-schema-89>"
+            },
+            "nights": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 21,
+              "x-parser-schema-id": "<anonymous-schema-90>"
+            }
+          },
+          "x-parser-schema-id": "<anonymous-schema-85>"
+        },
+        "trigger": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "eventId",
+            "eventType"
+          ],
+          "properties": {
+            "eventId": {
+              "type": "string",
+              "format": "uuid",
+              "x-parser-schema-id": "<anonymous-schema-92>"
+            },
+            "eventType": {
+              "type": "string",
+              "enum": [
+                "travel.flight.statusChanged",
+                "travel.weather.alertIssued",
+                "travel.hotel.bookingImpacted",
+                "travel.ground.advisoryPublished"
+              ],
+              "x-parser-schema-id": "<anonymous-schema-93>"
+            },
+            "topic": {
+              "type": "string",
+              "x-parser-schema-id": "<anonymous-schema-94>"
+            }
+          },
+          "x-parser-schema-id": "<anonymous-schema-91>"
+        },
+        "outcome": {
+          "type": "string",
+          "enum": [
+            "AUTO_REPLANNED",
+            "OPTIONS_PROPOSED",
+            "APPROVAL_REQUIRED",
+            "NO_ACTION"
+          ],
+          "x-parser-schema-id": "<anonymous-schema-95>"
+        },
+        "changes": {
+          "type": "array",
+          "maxItems": 8,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "domain",
+              "before",
+              "after"
+            ],
+            "properties": {
+              "domain": {
+                "type": "string",
+                "enum": [
+                  "FLIGHT",
+                  "HOTEL",
+                  "ACTIVITY",
+                  "PACKING"
+                ],
+                "x-parser-schema-id": "<anonymous-schema-98>"
+              },
+              "before": {
+                "type": "string",
+                "x-parser-schema-id": "<anonymous-schema-99>"
+              },
+              "after": {
+                "type": "string",
+                "x-parser-schema-id": "<anonymous-schema-100>"
+              },
+              "deltaUsd": {
+                "type": "number",
+                "x-parser-schema-id": "<anonymous-schema-101>"
+              }
+            },
+            "x-parser-schema-id": "<anonymous-schema-97>"
+          },
+          "x-parser-schema-id": "<anonymous-schema-96>"
+        },
+        "budget": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "originalUsd": {
+              "type": "number",
+              "minimum": 0,
+              "x-parser-schema-id": "<anonymous-schema-103>"
+            },
+            "revisedUsd": {
+              "type": "number",
+              "minimum": 0,
+              "x-parser-schema-id": "<anonymous-schema-104>"
+            },
+            "deltaUsd": {
+              "type": "number",
+              "x-parser-schema-id": "<anonymous-schema-105>"
+            }
+          },
+          "x-parser-schema-id": "<anonymous-schema-102>"
+        },
+        "humanApproval": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "required": {
+              "type": "boolean",
+              "x-parser-schema-id": "<anonymous-schema-107>"
+            },
+            "requestedAt": {
+              "type": "string",
+              "format": "date-time",
+              "x-parser-schema-id": "<anonymous-schema-108>"
+            },
+            "reason": {
+              "type": "string",
+              "enum": [
+                "Rebooking cost exceeds the approved budget delta",
+                "Cancellation requires a change of destination city",
+                "No alternative accommodation available within policy",
+                "Change affects more than one traveller on the booking"
+              ],
+              "x-parser-schema-id": "<anonymous-schema-109>"
+            }
+          },
+          "x-parser-schema-id": "<anonymous-schema-106>"
+        }
+      },
+      "x-parser-schema-id": "ItineraryReplanned"
+    }
+  },
+  "servers": {
+    "solace-broker": {
+      "url": "tcp://localhost:55555",
+      "protocol": "smf",
+      "description": "Local or Solace Cloud PubSub+ broker. Overridden at `stm feed run` time."
+    }
+  },
+  "info": {
+    "title": "Trip Disruption Ops Hub",
+    "version": "1.0.0",
+    "description": "Operational event stream that disrupts trips already planned by the\nSolace Agent Mesh Multi-Agent Travel Planning workshop.\n\nPublishes four classes of real-world event (flight irregularities, weather\nalerts, hotel property impacts, ground advisories) and consumes the decision\nevent that Solace Agent Mesh emits after it repairs an itinerary.\n\nDESIGN CONSTRAINTS FOR STM FEED GENERATION\n------------------------------------------\n1. Every topic parameter and payload field is generated INDEPENDENTLY by\n   Faker. Correlated values (country+city, airline+flight number) are\n   therefore folded into a single composite level rather than split across\n   two levels, so they can never drift apart.\n2. Events carry IDENTIFIERS plus WHAT CHANGED. They deliberately do NOT\n   carry reference data (airline name, city name, aircraft type, star\n   rating, room descriptions). The SAM agents enrich from the `amadeus`\n   PostgreSQL database, which is the system of record. This removes almost\n   all cross-field consistency risk.\n3. No event carries both a start timestamp and an end timestamp. End times\n   are expressed as durations, which are always internally consistent.\n4. All free text is drawn from curated enums, never from Faker lorem.\n\nTOPIC SHAPE\n-----------\n  travel/<object>/<verb>/<version>/<severity>/<where>/<specifics...>\n\n`severity` is always level 5 and `where` is always level 6 across every\nevent type, so cross-domain subscriptions work without payload knowledge:\n\n  travel/>                            all events\n  travel/*/*/v1/critical/>            all critical events, any domain\n  travel/*/*/v1/*/JP-*/>              everything happening in Japan\n  travel/flight/status-changed/v1/*/*/*/SQ*/>   one airline's disruptions\n",
+    "contact": {
+      "name": "Solace Developer Advocacy",
+      "url": "https://solace.dev/"
+    },
+    "license": {
+      "name": "Apache 2.0",
+      "url": "https://www.apache.org/licenses/LICENSE-2.0"
+    }
+  },
+  "version": "2.5.0",
+  "fileName": "travel-disruption-feed-asyncapi.yaml",
+  "view": "sender"
+}
